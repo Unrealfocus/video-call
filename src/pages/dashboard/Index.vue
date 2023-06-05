@@ -1,6 +1,6 @@
 <template>
-  <div class="flex">
-    <div class="w-[350px]">
+  <div class="flex h-screen">
+    <div class="w-[300px]">
       <Sidebar />
     </div>
     <div class="w-[90%] xl:w-[1280px] mx-auto"></div>
