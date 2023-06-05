@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@200;400;700&family=Lato:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;1,200&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.app-input {
+  @apply bg-white w-full p-4 rounded-2xl font-inter font-medium placeholder:font-inter placeholder:font-medium border focus-within:outline-none border-[#484848];
+}
