@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-screen border">
+  <div class="w-full h-screen border bg-[#fff]">
     <div class="flex w-[80%] mx-auto py-5 items-center space-x-[15px]">
       <div class="hamburger">
         <img src="/ham.svg" />
@@ -12,7 +12,7 @@
     <!-- //top links  -->
     <div class="py-[72px]">
       <!-- selected item  -->
-      <!-- <div class="w-full bg-[#295F2D] rounded-xl">
+      <div class="w-full bg-[#295F2D] rounded-xl">
         <div class="w-[97%] bg-[#eef3ef] rounded">
           <div class="flex w-[80%] mx-auto space-x-[22px] py-[20px]">
             <img class="" src="/smallCheck.svg" />
@@ -21,7 +21,7 @@
             </p>
           </div>
         </div>
-      </div> -->
+      </div>
 
       <div class="w-full rounded-xl">
         <div v-for="item in topLinks" class="w-[97%] rounded">
