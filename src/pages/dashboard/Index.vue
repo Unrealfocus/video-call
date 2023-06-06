@@ -6,7 +6,7 @@
     <div class="w-full">
       <Topbar />
 
-      //page content goes here
+      //dashboard page content goes here
     </div>
   </div>
 </template>
