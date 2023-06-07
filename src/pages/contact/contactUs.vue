@@ -3,7 +3,7 @@ import Navbar from '../../components/layout/navabar_test.vue'
 import Footer from '../../components/layout/footer.vue'
 </script>
 <template>
-  <Navbar class="shadow-aboutContainer" />
+  <Navbar class="" />
 
   <main class="bg-[##FFFFFF] mt-5">
     <section
@@ -97,7 +97,7 @@ import Footer from '../../components/layout/footer.vue'
           <img class="" src="arrow-right.svg" alt="" />
         </button>
       </div>
-      <Footer class="-mt-2"></Footer>
+      <Footer class=""></Footer>
     </section>
   </main>
 </template>

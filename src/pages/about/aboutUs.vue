@@ -150,7 +150,7 @@ const images = ref([
           </div>
         </section>
       </section>
-      <div class="py-5"></div>
+
       <Footer></Footer>
     </section>
     <!-- ABOUT US SECTION ENDS -->

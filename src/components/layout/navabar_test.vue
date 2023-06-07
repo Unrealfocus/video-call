@@ -14,13 +14,14 @@
         class="hidden lg:flex space-x-[40px] font-[500] text-[16px] font-poppins"
       >
         <div class=""><router-link to="/">Home</router-link></div>
- 
+
         <div class="">
           <router-link to="/contact-us">Fundraiser Category</router-link>
         </div>
-        <div class="">How it works</div>
+        <div class="">
+          <router-link to="/how-it-works">How it works</router-link>
+        </div>
         <div class=""><router-link to="/about-us">About us</router-link></div>
- 
       </div>
 
       <div class="flex space-x-[43px] font-poppins font-[700] items-center">
@@ -28,7 +29,7 @@
           <button
             class="hidden lg:block text-[#295F2D] px-[23px] py-[11px] border-2 border-[#295F2D] rounded-full"
           >
-            <router-link to="/sign-up">Sign in</router-link>
+            <router-link to="/sign-up1">Sign in</router-link>
           </button>
         </div>
         <div class="">

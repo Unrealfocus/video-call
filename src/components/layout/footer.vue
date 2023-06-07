@@ -6,7 +6,7 @@ export default {
 
 <template>
   <footer
-    class="pt-4 pb-10 bg-bgDarkerGreen mx-3 px-14 rounded-2xl lg:mt-36 sm:-mt-40"
+    class="pt-4 pb-10 bg-bgDarkerGreen mx-3 px-14 rounded-2xl lg:mt-9 sm:mt-5"
   >
     <section
       class="grid lg:grid-cols-2 sm:grid-cols-1 my-5 container justify-between lg:mt-36 sm:mt-20"
