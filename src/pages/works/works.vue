@@ -100,14 +100,12 @@ export default {
             class="md:grid lg:grid-cols-4 grid-cols-2 grid-flow-row auto-rows-max gap-2"
           >
             <div
-              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover"
+              class="group/item m-2 rounded-lg relative bg-[#F3F3F3] bg-cover hover:bg-green-500 transition-all duration-300"
             >
               <div class="py-[46px]">
                 <div class="w-full">
                   <img src="/handStar.svg" class="mx-auto" />
-                  <p
-                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]"
-                  >
+                  <p class="w-[80%] mx-auto text-center font-semibold text-lg">
                     Create an account
                   </p>
                 </div>
