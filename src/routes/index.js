@@ -1,40 +1,40 @@
-import { createRouter, createWebHistory } from "vue-router";
-import Home from "../pages/home/Home.vue";
-import AboutUs from "../pages/about/aboutUs.vue";
-import singup from "../pages/auth/signUp.vue";
-import CreateBucket from "../pages/buckets/CreateBucket.vue";
-import ContactUs from "../pages/contact/contactUs.vue";
-import Index from "../pages/dashboard/Index.vue";
+import { createRouter, createWebHistory } from 'vue-router'
+import Home from '../pages/home/Home.vue'
+import AboutUs from '../pages/about/aboutUs.vue'
+import singup from '../pages/auth/signUp.vue'
+import CreateBucket from '../pages/buckets/CreateBucket.vue'
+import ContactUs from '../pages/contact/contactUs.vue'
+import Index from '../pages/dashboard/Index.vue'
 
 export const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: "/",
+      path: '/',
       component: Home,
     },
     {
-      path: "/about-us",
+      path: '/about-us',
       component: AboutUs,
     },
     {
-      path: "/sign-up",
+      path: '/signUp',
       component: singup,
     },
     {
-      path: "/create-bucket",
+      path: '/create-bucket',
       component: CreateBucket,
     },
     {
-      path: "/contact-us",
+      path: '/contact-us',
       component: ContactUs,
     },
 
     {
-      path: "/dashboard",
+      path: '/dashboard',
       component: Index,
     },
   ],
-});
+})
 
-export default router;
+export default router
