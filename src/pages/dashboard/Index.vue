@@ -1,17 +1,23 @@
 <template>
-  <div class="flex">
-    <div class="w-[350px]">
+  <div class="flex h-screen bg-[#F9F9F9]">
+    <div class="hidden lg:block w-[20%]">
       <Sidebar />
     </div>
-    <div class="w-[90%] xl:w-[1280px] mx-auto"></div>
+    <div class="w-full">
+      <Topbar />
+
+      //dashboard page content goes here
+    </div>
   </div>
 </template>
 <script>
-import Sidebar from "../../components/layout/sidebar.vue";
+import Sidebar from "../../components/dashboardLayout/sidebar.vue";
+import Topbar from "../../components/dashboardLayout/topbar.vue";
 export default {
   name: "index",
   components: {
     Sidebar,
+    Topbar,
   },
   data() {
     return {};
