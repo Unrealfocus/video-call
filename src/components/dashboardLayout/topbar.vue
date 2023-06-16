@@ -1,9 +1,10 @@
 <template>
   <div class="top-bar w-full bg-[#fff] py-[21px]">
-    <div class="w-[90%] md:w-[] mx-auto flex">
+    <div class="w-[85%] md:w-[] mx-auto flex justify-between">
       <div class="w-2/3">
         <div
-          class="bg-[#F3F3F3] rounded-full p-[12px] flex items-center space-x-[24px]">
+          class="bg-[#F3F3F3] rounded-full p-[12px] md:flex hidden items-center space-x-[24px]"
+        >
           <div class="">
             <img src="/smallCheck.svg" />
           </div>
@@ -11,17 +12,96 @@
             <input
               type="text"
               placeholder="Search"
-              class="bg-transparent outline-none font-[600] text-[16px]" />
+              class="bg-transparent outline-none font-[600] text-[16px]"
+            />
           </div>
         </div>
       </div>
-      <div class="flex">notification</div>
+      <div class="flex items-center gap-5">
+        <div class="relative">
+          <button
+            @click="toggleDropdown"
+            class="p-2 bg-gray-200 rounded-full hover:bg-gray-300 focus:outline-none focus:bg-gray-300"
+          >
+            <span class="relative">
+              <img src="/bell.svg" alt="" />
+              <span
+                v-if="unreadCount"
+                class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full text-xs px-2"
+                >{{ unreadCount }}</span
+              >
+            </span>
+          </button>
+          <div
+            v-if="isDropdownOpen"
+            class="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg z-10"
+          >
+            <ul class="divide-y divide-gray-200">
+              <li
+                v-for="notification in notifications"
+                :key="notification.id"
+                class="p-4 hover:bg-gray-100 cursor-pointer"
+                @click="clearNotifications"
+              >
+                <p>{{ notification.message }}</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <img src="/roundman.svg" alt="" />
+        <p class="font-inter font-semibold text-base">David Sampson</p>
+        <img src="/arrowdown.svg" alt="" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Topbar",
-};
+  name: 'Topbar',
+  data() {
+    return {
+      activeTab: 0,
+      tabs: ['Profile Setting', 'Notification', 'Security Setting'],
+      isActive: false,
+      isDropdownOpen: false,
+      notifications: [
+        { id: 1, message: 'Notification 1' },
+        { id: 2, message: 'Notification 2' },
+        { id: 3, message: 'Notification 3' },
+        { id: 4, message: 'Notification 4' },
+        { id: 5, message: 'Notification 5' },
+        { id: 6, message: 'Notification 6' },
+        { id: 7, message: 'Notification 7' },
+        { id: 8, message: 'Notification 8' },
+        { id: 9, message: 'Notification 9' },
+        { id: 10, message: 'Notification 10' },
+        { id: 11, message: 'Notification 11' },
+        { id: 12, message: 'Notification 12' },
+        { id: 13, message: 'Notification 13' },
+        { id: 14, message: 'Notification 14' },
+        { id: 15, message: 'Notification 15' },
+      ],
+    }
+  },
+  computed: {
+    unreadCount() {
+      return this.notifications.length
+    },
+  },
+  methods: {
+    changeTab(index) {
+      this.activeTab = index
+    },
+    toggleSwitch() {
+      this.isActive = !this.isActive
+    },
+    toggleDropdown() {
+      this.isDropdownOpen = !this.isDropdownOpen
+    },
+    clearNotifications() {
+      this.notifications = []
+    },
+  },
+}
 </script>

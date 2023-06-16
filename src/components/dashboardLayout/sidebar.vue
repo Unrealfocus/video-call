@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-screen border bg-[#fff]">
+  <div class="w-full h-screen overflow-hidden border bg-[#fff]">
     <div class="flex w-[80%] mx-auto py-5 items-center space-x-[15px]">
       <div class="hamburger">
         <img src="/ham.svg" />
@@ -12,25 +12,28 @@
     <!-- //top links  -->
     <div class="py-[72px]">
       <!-- selected item  -->
-      <div class="w-full bg-[#295F2D] rounded-xl">
+      <!-- <div class="w-full bg-[#295F2D] rounded-xl">
         <div class="w-[97%] bg-[#eef3ef] rounded">
           <div class="flex w-[80%] mx-auto space-x-[22px] py-[20px]">
             <img class="" src="/smallCheck.svg" />
             <p class="text-[#295F2D] font-poppins font-[600] text-[18px]">
-              Dashboard
+              dashboard
             </p>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div class="w-full rounded-xl">
         <div v-for="item in topLinks" class="w-[97%] rounded">
           <div
-            class="flex w-[80%] mx-auto space-x-[22px] py-[20px] cursor-pointer">
-            <img class="" src="/smallCheck.svg" />
-            <p class="text-[#484848] font-poppins font-[600] text-[18px]">
-              {{ item.target }}
-            </p>
+            class="flex w-[80%] mx-auto space-x-[22px] py-[20px] cursor-pointer"
+          >
+            <img class="" :src="item.icon" />
+            <router-link :to="item.target"
+              ><p class="text-[#484848] font-poppins font-[600] text-[18px]">
+                {{ item.title }}
+              </p></router-link
+            >
           </div>
         </div>
       </div>
@@ -41,10 +44,12 @@
       <div v-for="item in downLinks" class="w-full rounded-xl">
         <div class="w-[97%] rounded">
           <div
-            class="flex w-[80%] mx-auto space-x-[22px] py-[20px] cursor-pointer">
-            <img class="" src="/smallCheck.svg" />
+            class="flex w-[80%] mx-auto space-x-[22px] py-[20px] cursor-pointer"
+          >
+            <img class="" :src="item.icon" />
+
             <p class="text-[#484848] font-poppins font-[600] text-[18px]">
-              {{ item.target }}
+              {{ item.title }}
             </p>
           </div>
         </div>
@@ -55,21 +60,49 @@
 
 <script>
 export default {
-  name: "Sidebar",
+  name: 'Sidebar',
   data() {
     return {
       topLinks: [
-        { icon: "", target: "Dashboard" },
-        { icon: "", target: "Manage" },
-        { icon: "", target: "Transaction History" },
-        { icon: "", target: "Donation" },
-        { icon: "", target: "Account Setting" },
+        {
+          icon: '/category.svg',
+          title: 'Dashboard',
+          target: '/dashboard/dashboard',
+        },
+        {
+          icon: '/setting3.svg',
+          title: 'Manage',
+          target: '/dashboard/manage',
+        },
+        {
+          icon: '/receipt-text.svg',
+          title: 'Transaction History',
+          target: '/dashboard/transactions',
+        },
+        {
+          icon: '/la_donate.svg',
+          title: 'Donation',
+          target: '/dashboard/donations',
+        },
+        {
+          icon: '/setting2.svg',
+          title: 'Account Setting',
+          target: '/dashboard/account-settings',
+        },
       ],
       downLinks: [
-        { icon: "", target: "Help" },
-        { icon: "", target: "Logout" },
+        {
+          icon: '/help.svg',
+          title: 'Help',
+          target: '/dashboard/help',
+        },
+        {
+          icon: '/logoutcurve.svg',
+          title: 'Logout',
+          target: '/dashboard/transaction',
+        },
       ],
-    };
+    }
   },
-};
+}
 </script>
