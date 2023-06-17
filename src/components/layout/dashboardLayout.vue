@@ -6,8 +6,8 @@
       </div>
       <div class="md:w-[20%]"></div>
       <div class="w-full">
-        <Topbar class="hidden" />
-        <main class="lg:w-[85%] mx-auto hidden">
+        <Topbar class="" />
+        <main class="lg:w-[85%] mx-auto">
           <router-view> </router-view>
         </main>
         <div class="py-[50px]"></div>
