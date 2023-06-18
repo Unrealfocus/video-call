@@ -1,5 +1,5 @@
 <template>
-  <div class="top-bar w-full bg-[#fff] py-[21px]">
+  <div class="hidden md:block top-bar w-full bg-[#fff] py-[21px]">
     <div class="w-[85%] md:w-[] mx-auto flex justify-between">
       <div class="w-2/3">
         <div
@@ -27,20 +27,20 @@
               <img src="/bell.svg" alt="" />
               <span
                 v-if="unreadCount"
-                class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full text-xs px-2"
+                class="absolute px-2 text-xs text-white bg-red-500 rounded-full -top-1 -right-1"
                 >{{ unreadCount }}</span
               >
             </span>
           </button>
           <div
             v-if="isDropdownOpen"
-            class="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg z-10"
+            class="absolute right-0 z-10 w-64 mt-2 bg-white rounded-lg shadow-lg"
           >
             <ul class="divide-y divide-gray-200">
               <li
                 v-for="notification in notifications"
                 :key="notification.id"
-                class="p-4 hover:bg-gray-100 cursor-pointer"
+                class="p-4 cursor-pointer hover:bg-gray-100"
                 @click="clearNotifications"
               >
                 <p>{{ notification.message }}</p>
@@ -49,7 +49,7 @@
           </div>
         </div>
         <img src="/roundman.svg" alt="" />
-        <p class="font-inter font-semibold text-base">David Sampson</p>
+        <p class="text-base font-semibold font-inter">David Sampson</p>
         <img src="/arrowdown.svg" alt="" />
       </div>
     </div>
@@ -57,51 +57,53 @@
 </template>
 
 <script>
+
 export default {
-  name: 'Topbar',
-  data() {
-    return {
-      activeTab: 0,
-      tabs: ['Profile Setting', 'Notification', 'Security Setting'],
-      isActive: false,
-      isDropdownOpen: false,
-      notifications: [
-        { id: 1, message: 'Notification 1' },
-        { id: 2, message: 'Notification 2' },
-        { id: 3, message: 'Notification 3' },
-        { id: 4, message: 'Notification 4' },
-        { id: 5, message: 'Notification 5' },
-        { id: 6, message: 'Notification 6' },
-        { id: 7, message: 'Notification 7' },
-        { id: 8, message: 'Notification 8' },
-        { id: 9, message: 'Notification 9' },
-        { id: 10, message: 'Notification 10' },
-        { id: 11, message: 'Notification 11' },
-        { id: 12, message: 'Notification 12' },
-        { id: 13, message: 'Notification 13' },
-        { id: 14, message: 'Notification 14' },
-        { id: 15, message: 'Notification 15' },
-      ],
-    }
-  },
-  computed: {
-    unreadCount() {
-      return this.notifications.length
+    name: "Topbar",
+    data() {
+        return {
+            activeTab: 0,
+            tabs: ["Profile Setting", "Notification", "Security Setting"],
+            isActive: false,
+            isDropdownOpen: false,
+            notifications: [
+                { id: 1, message: "Notification 1" },
+                { id: 2, message: "Notification 2" },
+                { id: 3, message: "Notification 3" },
+                { id: 4, message: "Notification 4" },
+                { id: 5, message: "Notification 5" },
+                { id: 6, message: "Notification 6" },
+                { id: 7, message: "Notification 7" },
+                { id: 8, message: "Notification 8" },
+                { id: 9, message: "Notification 9" },
+                { id: 10, message: "Notification 10" },
+                { id: 11, message: "Notification 11" },
+                { id: 12, message: "Notification 12" },
+                { id: 13, message: "Notification 13" },
+                { id: 14, message: "Notification 14" },
+                { id: 15, message: "Notification 15" },
+            ],
+        };
     },
-  },
-  methods: {
-    changeTab(index) {
-      this.activeTab = index
+    computed: {
+        unreadCount() {
+            return this.notifications.length;
+        },
     },
-    toggleSwitch() {
-      this.isActive = !this.isActive
+    methods: {
+        changeTab(index) {
+            this.activeTab = index;
+        },
+        toggleSwitch() {
+            this.isActive = !this.isActive;
+        },
+        toggleDropdown() {
+            this.isDropdownOpen = !this.isDropdownOpen;
+        },
+        clearNotifications() {
+            this.notifications = [];
+        },
     },
-    toggleDropdown() {
-      this.isDropdownOpen = !this.isDropdownOpen
-    },
-    clearNotifications() {
-      this.notifications = []
-    },
-  },
+  
 }
 </script>
