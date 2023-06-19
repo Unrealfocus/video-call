@@ -1,11 +1,11 @@
 <template>
   <div>
-    <main class="lg:w-[85%] mx-auto">
+    <main class="lg:w-[85%] mx-auto p-6 sm:p-6">
       <section class="section 1">
-        <h1 class="font-poppins font-bold text-base">Hi David Sampson</h1>
-        <div class="flex justify-between items-center">
+        <h1 class="text-base font-bold font-poppins">Hi David Sampson</h1>
+        <div class="items-center justify-between block md:flex">
           <div class="flex">
-            <p class="font-poppins font-medium text-3xl">Welcome back 👋🏼</p>
+            <p class="text-3xl font-medium font-poppins">Welcome back 👋🏼</p>
             <img src="" alt="" />
           </div>
 
@@ -17,11 +17,11 @@
         </div>
       </section>
 
-      <section class="section 2 mt-12">
+      <section class="mt-12 section 2">
         <div
           class="w-[1000px] h-[146.19px] top-277px left-33px rounded-[16.4px] p-[8.2px] bg-white gap-[8.2px]"
         >
-          <div class="cards flex">
+          <div class="flex cards">
             <div
               class="w-[273.96px] h-Hug-[129.79px] top-[8.2px] left-[8.2px] p-[34px 14px]"
             >
@@ -31,7 +31,7 @@
                   Total Donation
                 </div>
                 <div
-                  class="font-poppins font-semibold text-2xl pt-2 flex gap-2"
+                  class="flex gap-2 pt-2 text-2xl font-semibold font-poppins"
                 >
                   <img src="/money.svg" alt="" />
                   500,000.00
@@ -53,9 +53,9 @@
                   Total Fundraisers
                 </div>
 
-                <div class="font-poppins font-semibold text-2xl pt-2">
+                <div class="pt-2 text-2xl font-semibold font-poppins">
                   500
-                  <span class="font-poppins text-xs font-medium leading-4"
+                  <span class="text-xs font-medium leading-4 font-poppins"
                     >Persons</span
                   >
 
@@ -77,7 +77,7 @@
                   Average Donation
                 </div>
                 <div
-                  class="font-poppins font-semibold text-2xl pt-2 flex gap-2"
+                  class="flex gap-2 pt-2 text-2xl font-semibold font-poppins"
                 >
                   <img src="/money.svg" alt="" />
                   500,000.00
@@ -98,9 +98,9 @@
                   <img src="/naira.svg" class="-mt-1" alt="" />
                   Total Fundraising Buckets
                 </div>
-                <div class="font-poppins font-semibold text-2xl pt-2">
+                <div class="pt-2 text-2xl font-semibold font-poppins">
                   50
-                  <span class="font-poppins text-xs font-medium">Buckets</span>
+                  <span class="text-xs font-medium font-poppins">Buckets</span>
                 </div>
               </div>
             </div>
@@ -116,10 +116,10 @@
           class="w-[1,000px] h-[339.71px] top-53px rounded-[15px] p-[40px] gap-[10px] bg-white"
         >
           <div class="p-2">
-            <div class="font-bold font-poppins text-3xl">
+            <div class="text-3xl font-bold font-poppins">
               Community electricity support
             </div>
-            <div class="py-5 font-poppins font-medium text-base">
+            <div class="py-5 text-base font-medium font-poppins">
               Lorem ipsum dolor sit amet, consectetur adipiscing nostrud
               exercitation ullamco laboris nisi ut aliquip ex ea commodo
               consequat.
@@ -135,7 +135,7 @@
               >
             </dl>
             <div
-              class="font-poppins font-semibold text-2xl pt-2 flex gap-1 justify-between"
+              class="flex justify-between gap-1 pt-2 text-2xl font-semibold font-poppins"
             >
               <div class="flex py-5">
                 <img src="/money.svg" alt="" /> 500,000.00
@@ -182,34 +182,35 @@
 
       <section class="">
         <div class="pt-4 pb-10">
-          <p class="pt-9 pb-5 font-poppins font-bold text-xl">
+          <p class="pb-5 text-xl font-bold pt-9 font-poppins">
             PUT HAND FOR SOMEONE TODAY? 
           </p>
-          <ul class="flex gap-7 no-scrollbar overflow-x-scroll">
+          <!-- flex overflow-x-scroll gap-7 no-scrollbar -->
+          <ul class="grid grid-cols-1 md:grid-cols-3">
             <li v-for="num in 3" class="flex-shrink-0 w-72">
-              <figure class="bg-white py-5 px-5 rounded-2xl">
+              <figure class="px-5 py-5 bg-white rounded-2xl">
                 <img
                   src="/community.svg"
-                  class="h-44 w-full object-cover object-center rounded-2xl"
+                  class="object-cover object-center w-full h-44 rounded-2xl"
                   alt=""
                 />
                 <button
                   type="button"
-                  class="bg-appGreen100 py-1 px-2 my-3 rounded-lg flex items-center"
+                  class="flex items-center px-2 py-1 my-3 rounded-lg bg-appGreen100"
                 >
                   <span
-                    class="text-appGreen200 font-poppins font-bold text-sm shadow-md shadow-appGreen100"
+                    class="text-sm font-bold shadow-md text-appGreen200 font-poppins shadow-appGreen100"
                   >
                     Medical
                   </span>
                   <img src="/Vector.svg" alt="vector" class="px-2" />
                 </button>
-                <p class="font-poppins font-semibold text-base">
+                <p class="text-base font-semibold font-poppins">
                   Adeola Potts-Johnson is organizing this fundraiser on behalf
                   of Girls.
                 </p>
 
-                <p class="text-sm mt-5 mb-2 font-poppins font-medium">
+                <p class="mt-5 mb-2 text-sm font-medium font-poppins">
                   Jorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
                   eu turpis molestie, dictum est a, mattis tellus. Sed
                   dignissim, metus nec fringilla accumsan, risus sem
@@ -218,7 +219,7 @@
                 </p>
 
                 <dl class="flex">
-                  <div class="flex flex-1 bg-appGray100 rounded-full mr-3">
+                  <div class="flex flex-1 mr-3 rounded-full bg-appGray100">
                     <span class="bg-yellow-500 w-[60%] rounded-full" />
                   </div>
                   <data

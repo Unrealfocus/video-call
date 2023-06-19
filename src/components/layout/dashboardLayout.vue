@@ -6,8 +6,8 @@
       </div>
       <!-- <div class="md:w-[20%]"></div> -->
       <div class="w-full">
-        <Topbar/>
-        <MobileDashboardHeader class="md:hidden"/>
+        <Topbar />
+        <MobileDashboardHeader class="md:hidden" />
         <main class="lg:w-[85%] mx-auto">
           <router-view> </router-view>
         </main>
@@ -20,22 +20,22 @@
   </div>
 </template>
 <script>
-import Sidebar from '../../components/dashboardLayout/sidebar.vue'
-import Topbar from '../../components/dashboardLayout/topbar.vue'
-import MobileNav from '../../components/dashboardLayout/mobileNav.vue'
-import MobileDashboardHeader from '../dashboardLayout/mobileDashboardHeader.vue'
+import Sidebar from "../../components/dashboardLayout/sidebar.vue";
+import Topbar from "../../components/dashboardLayout/topbar.vue";
+import MobileNav from "../../components/dashboardLayout/mobileNav.vue";
+import MobileDashboardHeader from "../dashboardLayout/mobileDashboardHeader.vue";
 
 export default {
-  name: 'index',
+  name: "index",
   components: {
     Sidebar,
     Topbar,
     MobileNav,
-    MobileDashboardHeader
-},
+    MobileDashboardHeader,
+  },
   data() {
-    return {}
+    return {};
   },
   methods: {},
-}
+};
 </script>
