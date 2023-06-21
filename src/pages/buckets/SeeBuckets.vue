@@ -7,6 +7,7 @@
         <!-- filter by categories  -->
         <div class="categories flex space-x-[20px] overflow-hidden">
           <div
+            @click="toggleCategory(cat)"
             class="border cursor-pointer rounded-lg py-[8px] px-[24px] font-[500] font-poppins text-[16px]"
             :class="[
               cat.current == true ? 'bg-[#242424] text-white' : 'bg-[#fff] ',
@@ -50,6 +51,7 @@
             </div>
             <div class="">
               <button
+                @click="singleBucket"
                 class="bg-[#295F2D] py-[8px] w-full text-white rounded-2xl font-poppins font-[600] text-[20px]">
                 Donate
               </button>
@@ -76,12 +78,29 @@ export default {
   data() {
     return {
       categories: [
-        { current: true, name: "Trending Now" },
-        { current: false, name: "Medical" },
-        { current: false, name: "Voluteer" },
+        { id: 1, current: true, name: "Trending Now" },
+        { id: 2, current: false, name: "Medical" },
+        { id: 3, current: false, name: "Academic" },
       ],
     };
   },
-  methods: {},
+  methods: {
+    singleBucket() {
+      this.$router.push("/bucket");
+    },
+    toggleCategory(item) {
+      let arr = [];
+      this.categories.forEach((i) => {
+        if (i == item) {
+          i.current = true;
+          arr.push(i);
+        } else {
+          i.current = false;
+          arr.push(i);
+        }
+      });
+      this.categories = arr;
+    },
+  },
 };
 </script>
