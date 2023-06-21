@@ -2,10 +2,18 @@
   <div>
     <main class="lg:w-[85%] mx-auto p-6 sm:p-6">
       <section class="section 1">
-        <h1 class="text-base font-bold font-poppins">Hi David Sampson</h1>
+        <h1
+          class="pb-3 text-sm font-medium md:text-base md:font-bold font-poppins"
+        >
+          Hi David Sampson
+        </h1>
         <div class="items-center justify-between block md:flex">
           <div class="flex">
-            <p class="text-3xl font-medium font-poppins">Welcome back 👋🏼</p>
+            <p
+              class="pb-3 text-2xl font-bold md:text-3xl md:font-medium font-poppins"
+            >
+              Welcome back 👋🏼
+            </p>
             <img src="" alt="" />
           </div>
 
@@ -17,7 +25,7 @@
         </div>
       </section>
 
-      <section class="mt-12 section 2">
+      <section class="hidden mt-12 md:block section 2">
         <div
           class="w-[1000px] h-[146.19px] top-277px left-33px rounded-[16.4px] p-[8.2px] bg-white gap-[8.2px]"
         >
@@ -108,7 +116,7 @@
         </div>
       </section>
 
-      <section class="section 3">
+      <section class="hidden section 3 md:block">
         <p class="pt-9 pb-5 font-poppins font-semibold text-xl text-[#484848]">
           Recent Fund Bucket
         </p>
@@ -186,81 +194,87 @@
             PUT HAND FOR SOMEONE TODAY? 
           </p>
           <!-- flex overflow-x-scroll gap-7 no-scrollbar -->
-          <ul class="grid grid-cols-1 md:grid-cols-3">
-            <li v-for="num in 3" class="flex-shrink-0 w-72">
-              <figure class="px-5 py-5 bg-white rounded-2xl">
-                <img
-                  src="/community.svg"
-                  class="object-cover object-center w-full h-44 rounded-2xl"
-                  alt=""
-                />
-                <button
-                  type="button"
-                  class="flex items-center px-2 py-1 my-3 rounded-lg bg-appGreen100"
-                >
-                  <span
-                    class="text-sm font-bold shadow-md text-appGreen200 font-poppins shadow-appGreen100"
+          <div class="mt-10">
+            <ul class="grid grid-cols-1 md:grid-cols-3 gap-7">
+              <li v-for="num in 3" class="">
+                <figure class="px-5 py-5 bg-white rounded-2xl">
+                  <img
+                    src="/community.svg"
+                    class="object-cover object-center w-full h-44 rounded-2xl"
+                    alt=""
+                  />
+                  <button
+                    type="button"
+                    class="flex items-center px-2 py-1 my-3 rounded-lg bg-appGreen100"
                   >
-                    Medical
-                  </span>
-                  <img src="/Vector.svg" alt="vector" class="px-2" />
-                </button>
-                <p class="text-base font-semibold font-poppins">
-                  Adeola Potts-Johnson is organizing this fundraiser on behalf
-                  of Girls.
-                </p>
+                    <span
+                      class="text-sm font-bold shadow-md text-appGreen200 font-poppins shadow-appGreen100"
+                    >
+                      Medical
+                    </span>
+                    <img src="/Vector.svg" alt="vector" class="px-2" />
+                  </button>
+                  <p class="text-base font-semibold font-poppins">
+                    Adeola Potts-Johnson is organizing this fundraiser on behalf
+                    of Girls.
+                  </p>
 
-                <p class="mt-5 mb-2 text-sm font-medium font-poppins">
-                  Jorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                  eu turpis molestie, dictum est a, mattis tellus. Sed
-                  dignissim, metus nec fringilla accumsan, risus sem
-                  sollicitudin lacus, ut interdum tellus elit sed risus.
-                  Maecenas eget condimentum velit.
-                </p>
+                  <p class="mt-5 mb-2 text-sm font-medium font-poppins">
+                    Jorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Etiam eu turpis molestie, dictum est a, mattis tellus. Sed
+                    dignissim, metus nec fringilla accumsan, risus sem
+                    sollicitudin lacus, ut interdum tellus elit sed risus.
+                    Maecenas eget condimentum velit.
+                  </p>
 
-                <dl class="flex">
-                  <div class="flex flex-1 mr-3 rounded-full bg-appGray100">
-                    <span class="bg-yellow-500 w-[60%] rounded-full" />
-                  </div>
-                  <data
-                    value="60"
-                    class="font-poppins font-medium text-sm text-[#000000]"
-                    >60%</data
+                  <dl class="flex">
+                    <div class="flex flex-1 mr-3 rounded-full bg-appGray100">
+                      <span class="bg-yellow-500 w-[60%] rounded-full" />
+                    </div>
+                    <data
+                      value="60"
+                      class="font-poppins font-medium text-sm text-[#000000]"
+                      >60%</data
+                    >
+                  </dl>
+
+                  <dl class="flex justify-between my-4">
+                    <span class="flex">
+                      <dt
+                        class="font-bold font-poppins text-xs mr-1 text-[#000000]"
+                      >
+                        Raised:
+                      </dt>
+
+                      <dd
+                        class="font-medium font-poppins text-xs text-[#000000]"
+                      >
+                        50,000
+                      </dd>
+                    </span>
+                    <span class="flex">
+                      <dt
+                        class="font-bold font-poppins text-xs text-[#295F2D] mr-1"
+                      >
+                        Goals:
+                      </dt>
+                      <dd
+                        class="font-medium font-poppins text-xs text-[#295F2D]"
+                      >
+                        1,000,000
+                      </dd>
+                    </span>
+                  </dl>
+                  <button
+                    class="bg-appGreen300 w-full rounded-full py-2 font-semibold font-poppins text-lg text-[#FFFFFF]"
+                    type="button"
                   >
-                </dl>
-
-                <dl class="flex justify-between my-4">
-                  <span class="flex">
-                    <dt
-                      class="font-bold font-poppins text-xs mr-1 text-[#000000]"
-                    >
-                      Raised:
-                    </dt>
-
-                    <dd class="font-medium font-poppins text-xs text-[#000000]">
-                      50,000
-                    </dd>
-                  </span>
-                  <span class="flex">
-                    <dt
-                      class="font-bold font-poppins text-xs text-[#295F2D] mr-1"
-                    >
-                      Goals:
-                    </dt>
-                    <dd class="font-medium font-poppins text-xs text-[#295F2D]">
-                      1,000,000
-                    </dd>
-                  </span>
-                </dl>
-                <button
-                  class="bg-appGreen300 w-full rounded-full py-2 font-semibold font-poppins text-lg text-[#FFFFFF]"
-                  type="button"
-                >
-                  Donate
-                </button>
-              </figure>
-            </li>
-          </ul>
+                    Donate
+                  </button>
+                </figure>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
     </main>

@@ -1,5 +1,5 @@
 <template>
-  <div class="hidden md:block top-bar w-full bg-[#fff] py-[21px]">
+  <div class="hidden lg:block top-bar w-full bg-[#fff] py-[21px]">
     <div class="w-[85%] md:w-[] mx-auto flex justify-between">
       <div class="w-2/3">
         <div
@@ -57,53 +57,51 @@
 </template>
 
 <script>
-
 export default {
-    name: "Topbar",
-    data() {
-        return {
-            activeTab: 0,
-            tabs: ["Profile Setting", "Notification", "Security Setting"],
-            isActive: false,
-            isDropdownOpen: false,
-            notifications: [
-                { id: 1, message: "Notification 1" },
-                { id: 2, message: "Notification 2" },
-                { id: 3, message: "Notification 3" },
-                { id: 4, message: "Notification 4" },
-                { id: 5, message: "Notification 5" },
-                { id: 6, message: "Notification 6" },
-                { id: 7, message: "Notification 7" },
-                { id: 8, message: "Notification 8" },
-                { id: 9, message: "Notification 9" },
-                { id: 10, message: "Notification 10" },
-                { id: 11, message: "Notification 11" },
-                { id: 12, message: "Notification 12" },
-                { id: 13, message: "Notification 13" },
-                { id: 14, message: "Notification 14" },
-                { id: 15, message: "Notification 15" },
-            ],
-        };
+  name: "Topbar",
+  data() {
+    return {
+      activeTab: 0,
+      tabs: ["Profile Setting", "Notification", "Security Setting"],
+      isActive: false,
+      isDropdownOpen: false,
+      notifications: [
+        { id: 1, message: "Notification 1" },
+        { id: 2, message: "Notification 2" },
+        { id: 3, message: "Notification 3" },
+        { id: 4, message: "Notification 4" },
+        { id: 5, message: "Notification 5" },
+        { id: 6, message: "Notification 6" },
+        { id: 7, message: "Notification 7" },
+        { id: 8, message: "Notification 8" },
+        { id: 9, message: "Notification 9" },
+        { id: 10, message: "Notification 10" },
+        { id: 11, message: "Notification 11" },
+        { id: 12, message: "Notification 12" },
+        { id: 13, message: "Notification 13" },
+        { id: 14, message: "Notification 14" },
+        { id: 15, message: "Notification 15" },
+      ],
+    };
+  },
+  computed: {
+    unreadCount() {
+      return this.notifications.length;
     },
-    computed: {
-        unreadCount() {
-            return this.notifications.length;
-        },
+  },
+  methods: {
+    changeTab(index) {
+      this.activeTab = index;
     },
-    methods: {
-        changeTab(index) {
-            this.activeTab = index;
-        },
-        toggleSwitch() {
-            this.isActive = !this.isActive;
-        },
-        toggleDropdown() {
-            this.isDropdownOpen = !this.isDropdownOpen;
-        },
-        clearNotifications() {
-            this.notifications = [];
-        },
+    toggleSwitch() {
+      this.isActive = !this.isActive;
     },
-  
-}
+    toggleDropdown() {
+      this.isDropdownOpen = !this.isDropdownOpen;
+    },
+    clearNotifications() {
+      this.notifications = [];
+    },
+  },
+};
 </script>

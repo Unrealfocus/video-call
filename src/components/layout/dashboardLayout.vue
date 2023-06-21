@@ -8,6 +8,7 @@
       <div class="w-full">
         <Topbar />
         <MobileDashboardHeader class="md:hidden" />
+        <TabletDashboardHeader class="sm:hidden" />
         <main class="lg:w-[85%] mx-auto">
           <router-view> </router-view>
         </main>
@@ -24,6 +25,7 @@ import Sidebar from "../../components/dashboardLayout/sidebar.vue";
 import Topbar from "../../components/dashboardLayout/topbar.vue";
 import MobileNav from "../../components/dashboardLayout/mobileNav.vue";
 import MobileDashboardHeader from "../dashboardLayout/mobileDashboardHeader.vue";
+import TabletDashboardHeader from "../dashboardLayout/tabletDashboardHeader.vue";
 
 export default {
   name: "index",
@@ -32,6 +34,7 @@ export default {
     Topbar,
     MobileNav,
     MobileDashboardHeader,
+    TabletDashboardHeader,
   },
   data() {
     return {};

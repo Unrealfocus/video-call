@@ -1,8 +1,8 @@
 <script>
-import Sidebar from '../../components/dashboardLayout/sidebar.vue'
-import Topbar from '../../components/dashboardLayout/topbar.vue'
+import Sidebar from "../../components/dashboardLayout/sidebar.vue";
+import Topbar from "../../components/dashboardLayout/topbar.vue";
 export default {
-  name: 'index',
+  name: "index",
   components: {
     Sidebar,
     Topbar,
@@ -10,27 +10,27 @@ export default {
   data() {
     return {
       activeTab: 0,
-      tabs: ['Profile Setting', 'Notification', 'Security Setting'],
+      tabs: ["Profile Setting", "Notification", "Security Setting"],
       isActive1: false,
       isActive2: false,
       isActive3: false,
-    }
+    };
   },
   methods: {
     changeTab(index) {
-      this.activeTab = index
+      this.activeTab = index;
     },
     toggleSwitch(identifier) {
       if (identifier === 1) {
-        this.isActive1 = !this.isActive1
+        this.isActive1 = !this.isActive1;
       } else if (identifier === 2) {
-        this.isActive2 = !this.isActive2
+        this.isActive2 = !this.isActive2;
       } else if (identifier === 3) {
-        this.isActive3 = !this.isActive3
+        this.isActive3 = !this.isActive3;
       }
     },
   },
-}
+};
 </script>
 
 <template>
@@ -53,16 +53,16 @@ export default {
         {{ tab }}
       </div>
     </section>
-    <div class="bg-white p-8 shadow mb-10 rounded-2xl">
+    <div class="p-8 mb-10 bg-white shadow rounded-2xl">
       <div v-show="activeTab === 0">
         <section class="pt-3 pb-10 bg-white">
           <p class="font-poppins font-semibold text-4xl text-[#484848] py-10">
             Profile Settings
           </p>
           <img src="/Man.svg" class="pb-10" alt="" />
-          <div class="flex flex-col lg:flex-row gap-5 pb-10">
+          <div class="flex flex-col gap-5 pb-10 lg:flex-row">
             <input
-              class="bg-white w-[519px] p-4 rounded-2xl font-inter font-medium placeholder:font-inter placeholder:font-medium border focus-within:outline-none border-[#484848]"
+              class="app-input"
               type="text"
               name="firstName"
               id="firstName"
@@ -70,7 +70,7 @@ export default {
               placeholder="First Name"
             />
             <input
-              class="bg-white w-[519px] p-4 rounded-2xl font-inter font-medium placeholder:font-inter placeholder:font-medium border focus-within:outline-none border-[#484848]"
+              class="app-input"
               type="text"
               name="lastName"
               id="lastName"
@@ -79,7 +79,7 @@ export default {
             />
           </div>
           <input
-            class="app-input mt-4"
+            class="mt-4 app-input"
             type="email"
             name="email"
             id="email"
@@ -92,7 +92,7 @@ export default {
               Language
             </p>
             <input
-              class="app-input mt-4"
+              class="mt-4 app-input"
               type="email"
               name="email"
               id="email"
@@ -106,7 +106,7 @@ export default {
           </p>
           <div>
             <div
-              class="flex justify-between rounded-2xl bg-[#1877F2] w-[500px] px-5 py-3 mb-7"
+              class="flex justify-between bg-[#1877F2] md:w-[500px] w-full p-4 rounded-2xl px-5 py-3 mb-7"
             >
               <img src="Vector(1).svg" alt="" />
               <div class="rounded-xl bg-white px-8 py-2 text-[#406EE5]">
@@ -114,7 +114,7 @@ export default {
               </div>
             </div>
             <div
-              class="flex justify-between rounded-2xl bg-[#1877F2] w-[500px] px-5 py-3"
+              class="flex justify-between bg-[#1877F2] w-full p-4 rounded-2xl md:w-[500px] px-5 py-3"
             >
               <img src="Vector(2).svg" alt="" />
               <div class="rounded-xl bg-white px-8 py-2 text-[#406EE5]">
@@ -123,10 +123,10 @@ export default {
             </div>
           </div>
 
-          <section class="flex justify-between items-center py-14">
+          <section class="flex items-center justify-between py-14">
             <div class="font-poppins font-medium text-sm text-[#999999]">
               <p>
-                <span class="font-bold text-lg">
+                <span class="text-lg font-bold">
                   Deleting your account will
                 </span>
                 <br />
@@ -156,10 +156,10 @@ export default {
                 @change="toggleSwitch(1)"
               />
               <div
-                class="w-12 h-8 bg-gray-300 rounded-full shadow-inner transition-colors duration-300 ease-in-out"
+                class="w-12 h-8 transition-colors duration-300 ease-in-out bg-gray-300 rounded-full shadow-inner"
               ></div>
               <div
-                class="absolute w-7 h-7 bg-white rounded-full shadow top-0 left-0 transition-transform duration-300 ease-in-out transform translate-x-0 translate-y-1"
+                class="absolute top-0 left-0 transition-transform duration-300 ease-in-out transform translate-x-0 translate-y-1 bg-white rounded-full shadow w-7 h-7"
                 :class="{ 'translate-x-6 bg-green-500': isActive1 }"
               >
                 <svg
@@ -184,7 +184,7 @@ export default {
             </div>
           </label>
         </section>
-        <hr class="border-gray-300 my-4" />
+        <hr class="my-4 border-gray-300" />
         <section class="flex justify-between">
           <div class="font-poppins font-medium text-base text-[#999999]">
             Receive an email for every withdrawal of donation
@@ -198,10 +198,10 @@ export default {
                 @change="toggleSwitch(2)"
               />
               <div
-                class="w-12 h-8 bg-gray-300 rounded-full shadow-inner transition-colors duration-300 ease-in-out"
+                class="w-12 h-8 transition-colors duration-300 ease-in-out bg-gray-300 rounded-full shadow-inner"
               ></div>
               <div
-                class="absolute w-7 h-7 bg-white rounded-full shadow top-0 left-0 transition-transform duration-300 ease-in-out transform translate-x-0 translate-y-1"
+                class="absolute top-0 left-0 transition-transform duration-300 ease-in-out transform translate-x-0 translate-y-1 bg-white rounded-full shadow w-7 h-7"
                 :class="{ 'translate-x-6 bg-green-500': isActive2 }"
               >
                 <svg
@@ -226,7 +226,7 @@ export default {
             </div>
           </label>
         </section>
-        <hr class="border-gray-300 my-4" />
+        <hr class="my-4 border-gray-300" />
         <section class="flex justify-between">
           <div class="font-poppins font-medium text-base text-[#999999]">
             Receive daily summary of every donation i get
@@ -240,10 +240,10 @@ export default {
                 @change="toggleSwitch(3)"
               />
               <div
-                class="w-12 h-8 bg-gray-300 rounded-full shadow-inner transition-colors duration-300 ease-in-out"
+                class="w-12 h-8 transition-colors duration-300 ease-in-out bg-gray-300 rounded-full shadow-inner"
               ></div>
               <div
-                class="absolute w-7 h-7 bg-white rounded-full shadow top-0 left-0 transition-transform duration-300 ease-in-out transform translate-x-0 translate-y-1"
+                class="absolute top-0 left-0 transition-transform duration-300 ease-in-out transform translate-x-0 translate-y-1 bg-white rounded-full shadow w-7 h-7"
                 :class="{ 'translate-x-6 bg-green-500': isActive3 }"
               >
                 <svg
@@ -270,16 +270,111 @@ export default {
         </section>
         <section class="flex justify-center mt-20">
           <button
-            class="rounded-xl bg-appGreen200 px-20 py-3 text-white font-poppins font-semibold text-base"
+            class="px-20 py-3 text-base font-semibold text-white rounded-xl bg-appGreen200 font-poppins"
           >
             Save Changes
           </button>
         </section>
       </div>
       <div v-show="activeTab === 2">
-        <!-- Content for Security Setting tab -->
-        <!-- Add your content here -->
-        <h2>Security Setting Content</h2>
+        <section>
+          <p class="text-xl font-semibold font-poppins text-[#C8C8C8]">
+            Password Setting
+          </p>
+          <div>
+            <p class="pt-4 text-sm font-semibold font-poppins">
+              Current Password
+            </p>
+            <input
+              class="mt-4 app-input"
+              type="password"
+              name="current password"
+              id="current password"
+              placeholder="thedesignerofficial1@gmail.com"
+            />
+          </div>
+
+          <div>
+            <p class="pt-4 text-sm font-semibold font-poppins">New Password</p>
+            <input
+              class="mt-4 app-input"
+              type="password"
+              name="new password"
+              id="new password"
+              placeholder="!Fav90800000000"
+            />
+          </div>
+
+          <div>
+            <p class="pt-4 text-sm font-semibold font-poppins">
+              Confirm New Password
+            </p>
+            <input
+              class="mt-4 app-input"
+              type="password"
+              name="confirm new password"
+              id="confirm new password"
+              placeholder="************"
+            />
+          </div>
+        </section>
+        <section class="pt-10">
+          <p class="text-xl font-semibold font-poppins text-[#C8C8C8]">
+            Email address setting
+          </p>
+
+          <div>
+            <p class="pt-4 text-sm font-semibold font-poppins">
+              Current Email Address
+            </p>
+            <input
+              class="mt-4 app-input"
+              type="email"
+              name="current email adresss"
+              id="current email address"
+              autocomplete="email"
+              placeholder="PhelTakon@gmail.com"
+              v-model="email"
+            />
+          </div>
+
+          <div>
+            <p class="pt-4 text-sm font-semibold font-poppins">
+              New Email Address
+            </p>
+            <input
+              class="mt-4 app-input"
+              type="email"
+              name="new email adresss"
+              id="new email address"
+              autocomplete="email"
+              placeholder="PhelTakon1234@gmail.com"
+              v-model="email"
+            />
+          </div>
+
+          <div>
+            <p class="pt-4 text-sm font-semibold font-poppins">
+              Confirm New Email Address
+            </p>
+            <input
+              class="mt-4 app-input"
+              type="email"
+              name="confirm new email adresss"
+              id="confirm new email address"
+              autocomplete="email"
+              placeholder="PhelTakon1234@gmail.com"
+              v-model="email"
+            />
+          </div>
+        </section>
+        <section class="flex justify-center mt-20">
+          <button
+            class="px-20 py-3 text-base font-semibold text-white rounded-xl bg-appGreen200 font-poppins"
+          >
+            Save Changes
+          </button>
+        </section>
       </div>
     </div>
   </div>

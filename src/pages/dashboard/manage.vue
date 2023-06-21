@@ -1,7 +1,11 @@
 <template>
-  <div class="pt-12 mb-20">
-    <section class="lg:flex sm:block justify-between items-center">
-      <p class="font-poppins font-medium text-3xl">Manage your fundraiser</p>
+  <div class="p-6 pt-12 mb-20 sm:p-6">
+    <section class="items-center justify-between lg:flex sm:block">
+      <p
+        class="mb-5 text-2xl font-bold md:text-3xl md:font-medium font-poppins"
+      >
+        Manage your fundraiser
+      </p>
       <button
         class="rounded-full bg-[#2A5E2A] border-[1px] text-[#fff] py-3 text-[14px] px-10 font-poppins font-bold text-base"
       >
@@ -9,17 +13,17 @@
       </button>
     </section>
     <section class="mt-10">
-      <ul class="md:grid grid-cols-3 gap-7">
-        <li v-for="num in 15" class="">
+      <ul class="grid grid-cols-1 gap-10 md:grid-cols-3">
+        <li v-for="num in 6" class="">
           <div class="bg-white rounded-2xl">
-            <figure class="py-5 px-5 rounded-2xl">
+            <figure class="px-5 py-5 rounded-2xl">
               <img
                 src="/community.svg"
-                class="h-44 w-full object-cover object-center rounded-2xl"
+                class="object-cover object-center w-full h-44 rounded-2xl"
                 alt=""
               />
 
-              <p class="font-poppins font-semibold text-base">
+              <p class="text-base font-semibold font-poppins">
                 Help david Community get support
               </p>
 
@@ -27,14 +31,14 @@
                 by David Sampson
               </p>
 
-              <p class="text-sm mb-2 font-poppins font-medium">
+              <p class="mb-2 text-sm font-medium font-poppins">
                 Jorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
                 eu turpis molestie, dictum est a, mattis tellus.
               </p>
 
               <dl class="flex">
-                <div class="flex flex-1 bg-appGray100 rounded-full mr-3">
-                  <span class="bg-[#2AC769] w-[60%] rounded-full" />
+                <div class="flex flex-1 mr-3 rounded-full bg-[#EAF9F0]">
+                  <span class="bg-[#F6A609] w-[60%] rounded-full" />
                 </div>
                 <data
                   value="60"
@@ -63,18 +67,39 @@
                 >
               </div>
 
-              <button
-                class="flex text-left bg-appGreen300 rounded-md py-2 px-10 font-semibold font-poppins text-sm text-[#FFFFFF]"
-                type="button"
-              >
-                Donate
-              </button>
+              <div class="flex justify-end pt-4">
+                <button
+                  class="flex text-left bg-appGreen300 rounded-md py-2 px-10 font-semibold font-poppins text-sm text-[#FFFFFF]"
+                  type="button"
+                  @click="toggleSection"
+                >
+                  Donate
+                </button>
+              </div>
             </figure>
           </div>
         </li>
       </ul>
     </section>
   </div>
+
+  <section v-if="showSection" class="mt-10">
+    <!-- Your section content goes here -->
+    heklllo world
+  </section>
 </template>
 
-<script setup></script>
+<script>
+export default {
+  data() {
+    return {
+      showSection: false,
+    };
+  },
+  methods: {
+    toggleSection() {
+      this.showSection = !this.showSection;
+    },
+  },
+};
+</script>
