@@ -28,6 +28,7 @@
         </div>
         <div class="">
           <button
+            @click="this.$router.push('/buckets')"
             :class="[toggleNav == true ? 'md:hidden' : '']"
             class="hidden md:block bg-[#295F2D] rounded-full px-[23px] py-[11px] text-white">
             Let's Put Hands

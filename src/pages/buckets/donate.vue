@@ -1,16 +1,18 @@
 <template>
   <div class="bg-[#B7B7B7] lg:h-screen">
     <div class="flex lg:h-screen items-center justify-center">
-      <div class="bg-[#fff] w-[820px] rounded-lg px-[45px] py-[50px]">
+      <div
+        class="bg-[#fff] w-[820px] rounded-lg px-[12px] md:px-[45px] py-[50px]">
         <div class="">
           <button
+            @click="this.$router.push('/bucket')"
             class="border-2 border-[#295F2D] text-[#295F2D] rounded-2xl px-[23px] py-[12px] font-[700] text-[16px]">
             Back to fund raiser
           </button>
         </div>
         <div class="steps py-[30px]">
-          <div class="flex items-center space-x-[20px]">
-            <div class="rounded-2xl w-[30%]">
+          <div class="md:flex items-center space-x-[20px]">
+            <div class="rounded-2xl md:w-[30%]">
               <img src="/donateLarge.svg" alt="" />
             </div>
             <div class="">
@@ -20,7 +22,6 @@
             </div>
           </div>
         </div>
-
         <!-- second slide  -->
         <div class="form">
           <div class="py-4 space-y-[20px]">
@@ -88,7 +89,6 @@
               <p class="text-[#242424] text-[18px] font-[600] font-poppins">
                 Your donation
               </p>
-
               <div class="w-full border-t-2 border-b-2 border-[#000] py-3">
                 <div class="flex justify-between">
                   <p class="text-[#939393] font-poppins font-[600]">
@@ -132,10 +132,12 @@
             </div>
             <div class="">
               <button
+                @click="payWithPaystack"
                 class="w-full bg-[#295F2D] text-white rounded-2xl py-[12px] font-poppins font-[600]">
                 Donate Now
               </button>
             </div>
+
             <div class="">
               <p class="text-center text-[#999999]">
                 By continue, you agree with Puthand terms and Privacy Policy.
@@ -148,15 +150,51 @@
   </div>
 </template>
 <script>
+import paystack from "vue-paystack";
+
 export default {
   name: "donate",
+  components: {
+    paystack,
+  },
   data() {
     return {
       amount: 0,
       tip: 0,
       total: 0,
+      paystackkey: "pk_test_xxxxxxxxxxxxxxxxxxxxxxx", //paystack public key
+      email: "mrfranktook@yahoo.com", // Customer email
     };
   },
-  methods: {},
+
+  methods: {
+    payWithPaystack() {
+      var handler = PaystackPop.setup({
+        key: import.meta.env.VITE_PAYSTACK_KEY,
+
+        email: this.email,
+
+        amount: 100 * 100,
+
+        currency: "NGN", // Use GHS for Ghana Cedis or USD for US Dollars
+
+        callback: function (response) {
+          //this happens after the payment is completed successfully
+
+          var reference = response.reference;
+
+          alert("Payment complete! Reference: " + reference);
+
+          //call backend and confirm the transaction
+        },
+
+        onClose: function () {
+          alert("Transaction was not completed, window closed.");
+        },
+      });
+
+      handler.openIframe();
+    },
+  },
 };
 </script>
