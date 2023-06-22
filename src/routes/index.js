@@ -12,6 +12,7 @@ import Index from "../pages/dashboard/Index.vue";
 import CreateBucket from "../pages/buckets/CreateBucket.vue";
 import SeeBuckets from "../pages/buckets/SeeBuckets.vue";
 import SingleBucket from "../pages/buckets/SingleBucket.vue";
+import donate from "../pages/buckets/donate.vue";
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -49,6 +50,10 @@ export const router = createRouter({
     {
       path: "/bucket",
       component: SingleBucket,
+    },
+    {
+      path: "/donate",
+      component: donate,
     },
   ],
 });

@@ -90,6 +90,7 @@
 
               <div class="">
                 <button
+                  @click="this.$router.push('/donate')"
                   class="w-full bg-[#295F2D] text-white rounded-2xl font-poppins">
                   Donate Now
                 </button>
