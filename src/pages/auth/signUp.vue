@@ -1,37 +1,37 @@
 <script setup>
-import { ref, watchEffect, watch } from "vue";
-import statesWithLGA from "../../assets/statesWithLGA";
+import { ref, watchEffect, watch } from 'vue'
+import statesWithLGA from '../../assets/statesWithLGA'
 
-const states = ref([]);
-const activeState = ref("");
-const activeLGA = ref([]);
+const states = ref([])
+const activeState = ref('')
+const activeLGA = ref([])
 
 Object.keys(statesWithLGA).forEach((key) => {
-  states.value.push(key);
-});
+  states.value.push(key)
+})
 
 const LGAs = () =>
   Object.entries(statesWithLGA).forEach(([key, value]) => {
     if (key.toLowerCase() === activeState.value.toLowerCase()) {
-      activeLGA.value = value;
+      activeLGA.value = value
     }
-  });
+  })
 
 const handleStateChange = (e) => {
-  activeState.value = e.target.value;
-  console.log(typeof statesWithLGA);
-};
+  activeState.value = e.target.value
+  console.log(typeof statesWithLGA)
+}
 watchEffect(() => {
-  LGAs();
-});
+  LGAs()
+})
 
-const activeIndex = ref(1);
-const isTrue = ref(false);
+const activeIndex = ref(1)
+const isTrue = ref(false)
 
 const handleToggle = (e) => {
-  e.preventDefault();
-  isTrue.value = !isTrue.value;
-};
+  e.preventDefault()
+  isTrue.value = !isTrue.value
+}
 </script>
 
 <template>
@@ -41,7 +41,8 @@ const handleToggle = (e) => {
         src="/signup.svg"
         alt="hero"
         class="h-full w-full object-cover"
-        draggable="false" />
+        draggable="false"
+      />
       <!-- <button
         :onclick="handleToggle"
         class="bg-appGreen200 absolute top-10 right-10 z-50 text-white py-3 px-6 rounded-full my-5 hover:scale-110 duration-300 transition-all hover:bg-green-950"
@@ -52,7 +53,8 @@ const handleToggle = (e) => {
       <img
         src="/green-bg.svg"
         draggable="false"
-        class="absolute z-20 h-full w-full object-cover top-0 bottom-0 left-0 right-0" />
+        class="absolute z-20 h-full w-full object-cover top-0 bottom-0 left-0 right-0"
+      />
 
       <!-- <img
         src="/signup.svg  "
@@ -73,10 +75,12 @@ SIGN UP SECTION
     <section class="h-[100vh] overflow-hidden p-10">
       <div
         :class="{ '-translate-y-[110%] hidden': isTrue }"
-        class="bg-white px-6 pt-10 pb-5 rounded-3xl shadow-aboutContainer transition-all duration-500 h-full overflow-y-scroll no-scrollbar">
+        class="bg-white px-6 pt-10 pb-5 rounded-3xl shadow-aboutContainer transition-all duration-500 h-full overflow-y-scroll no-scrollbar"
+      >
         <div>
           <h2
-            class="font-poppins text-lg md:text-xl lg:text-2xl font-bold text-appGreen400">
+            class="font-poppins text-lg md:text-xl lg:text-2xl font-bold text-appGreen400"
+          >
             What ‘s your name
           </h2>
           <label
@@ -91,14 +95,16 @@ SIGN UP SECTION
               name="firstName"
               id="firstName"
               autocomplete="given-name"
-              placeholder="First Name" />
+              placeholder="First Name"
+            />
             <input
               class="app-input"
               type="text"
               name="lastName"
               id="lastName"
               autocomplete="family-name"
-              placeholder="Last Name" />
+              placeholder="Last Name"
+            />
           </div>
 
           <input
@@ -107,7 +113,8 @@ SIGN UP SECTION
             name="password"
             id="password"
             autocomplete="new-password"
-            placeholder="Password" />
+            placeholder="Password"
+          />
 
           <input
             class="app-input"
@@ -115,7 +122,8 @@ SIGN UP SECTION
             name="confirmPassword"
             id="confirmPassword"
             autocomplete="new-password"
-            placeholder="Confirm Password" />
+            placeholder="Confirm Password"
+          />
           <input
             class="app-input mt-4"
             type="email"
@@ -123,11 +131,13 @@ SIGN UP SECTION
             id="email"
             autocomplete="email"
             placeholder="Email"
-            v-model="email" />
+            v-model="email"
+          />
         </div>
 
         <h3
-          class="my-5 font-poppins font-bold text-base md:text-lg lg:text-xl text-appGreen400">
+          class="my-5 font-poppins font-bold text-base md:text-lg lg:text-xl text-appGreen400"
+        >
           Where are you located?
         </h3>
 
@@ -137,12 +147,14 @@ SIGN UP SECTION
             :onchange="handleStateChange"
             class="app-input"
             name="state"
-            id="state">
+            id="state"
+          >
             <option value="">Select your state</option>
             <option
               v-for="(state, index) in states"
               :key="index"
-              :value="state">
+              :value="state"
+            >
               {{ state }}
             </option>
           </select>
@@ -153,7 +165,8 @@ SIGN UP SECTION
             <option
               v-for="(cities, index) in activeLGA"
               :key="index"
-              :value="cities">
+              :value="cities"
+            >
               {{ cities }}
             </option>
           </select>
@@ -164,7 +177,8 @@ SIGN UP SECTION
             type="checkbox"
             class="w-5 h-5 rounded-full"
             name="terms"
-            id="terms" />
+            id="terms"
+          />
           <span class="block ml-2 text-[#999999] font-poppins text-sm">
             By accepting, I agree to comply with data regulations as outlined in
             the Puthand Privacy Policy, granting my consent for the collection
@@ -176,7 +190,8 @@ SIGN UP SECTION
           <button
             :onclick="handleToggle"
             class="bg-appGreen200 text-white py-3 px-6 rounded-full my-5 hover:scale-110 duration-300 transition-all hover:bg-green-950"
-            type="button">
+            type="button"
+          >
             Next
           </button>
         </div>
@@ -191,7 +206,8 @@ SIGN UP SECTION
 
       <div
         :class="{ '-translate-y-7   ': isTrue }"
-        class="px-6 pt-10 pb-5 block rounded-3xl translate-y-[110%] shadow-aboutContainer transition-all duration-500 bg-white mt-11 h-full overflow-y-scroll no-scrollbar">
+        class="px-6 pt-10 pb-5 block rounded-3xl translate-y-[110%] shadow-aboutContainer transition-all duration-500 bg-white mt-11 h-full overflow-y-scroll no-scrollbar"
+      >
         <section class="text-center">
           <img src="/mail.svg" class="mx-auto" alt="" />
           <p class="font-poppins font-extrabold text-3xl my-9">
@@ -226,11 +242,13 @@ SIGN UP SECTION
           <div class="flex justify-between pt-16">
             <button
               :onclick="handleToggle"
-              class="rounded-2xl py-3 px-6 my-5 border border-[#295F2D]">
+              class="rounded-2xl py-3 px-6 my-5 border border-[#295F2D]"
+            >
               Back
             </button>
             <button
-              class="bg-appGreen200 text-white py-3 px-6 rounded-2xl my-5 hover:scale-110 duration-300 transition-all hover:bg-green-950">
+              class="bg-appGreen200 text-white py-3 px-6 rounded-2xl my-5 hover:scale-110 duration-300 transition-all hover:bg-green-950"
+            >
               Next
             </button>
           </div>
