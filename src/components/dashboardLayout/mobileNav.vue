@@ -47,8 +47,13 @@ export default {
         {
           icon: "/element-equal.svg",
           title: "More",
-          target: "/dashboard/account-settings",
+          target: "/dashboard/more",
         },
+        // {
+        //   icon: "/element-equal.svg",
+        //   title: "More",
+        //   target: "/dashboard/account-settings",
+        // },
       ],
     };
   },

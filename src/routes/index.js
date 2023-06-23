@@ -13,6 +13,7 @@ import ManagePage from '../pages/dashboard/manage.vue'
 import TransactionPage from '../pages/dashboard/transaction.vue'
 import HelpPage from '../pages/dashboard/help.vue'
 import Test from '../pages/dashboard/test.vue'
+import More from '../pages/dashboard/more.vue'
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -33,6 +34,12 @@ export const router = createRouter({
       path: '/create-bucket',
       component: CreateBucket,
     },
+
+    {
+      path: '/account-settings',
+      component: AccountSettings,
+    },
+
     {
       path: '/contact-us',
       component: ContactUs,
@@ -65,6 +72,10 @@ export const router = createRouter({
         {
           path: 'help',
           component: HelpPage,
+        },
+        {
+          path:'more',
+          component: More,
         },
       ],
     },
