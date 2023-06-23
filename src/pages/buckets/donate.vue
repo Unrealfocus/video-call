@@ -67,6 +67,50 @@
                 who will leave an optional amount here:
               </p>
             </div>
+            <div class="space-y-[10px]">
+              <p class="text-[#484848] text-[18px] font-[600] font-poppins">
+                Tell us about yourself
+              </p>
+              <div
+                class="w-full border-2 border-[#93939] rounded-2xl p-3 flex space-x-[10px]">
+                <div class="flex justify-center items-center rounded">
+                  <div class="border border-[#295F2D] rounded-full p-1">
+                    <div
+                      class="bg-[#295F2D] w-[10px] h-[10px] rounded-full"></div>
+                  </div>
+                </div>
+                <input
+                  class="bg-[#fff] w-full border-none bg-transparent outline-none rounded full text-[21px] text-[#939393] font-[600]/"
+                  placeholder="Email"
+                  v-model="email" />
+              </div>
+              <div
+                class="w-full border-2 border-[#93939] rounded-2xl p-3 flex space-x-[10px]">
+                <div class="flex justify-center items-center rounded">
+                  <div class="border border-[#295F2D] rounded-full p-1">
+                    <div
+                      class="bg-[#295F2D] w-[10px] h-[10px] rounded-full"></div>
+                  </div>
+                </div>
+                <input
+                  class="bg-[#fff] w-full border-none bg-transparent outline-none rounded full text-[21px] text-[#939393] font-[600]/"
+                  placeholder="Full Name"
+                  v-model="name" />
+              </div>
+              <div
+                class="w-full border-2 border-[#93939] rounded-2xl p-3 flex space-x-[10px]">
+                <div class="flex justify-center items-center rounded">
+                  <div class="border border-[#295F2D] rounded-full p-1">
+                    <div
+                      class="bg-[#295F2D] w-[10px] h-[10px] rounded-full"></div>
+                  </div>
+                </div>
+                <input
+                  class="bg-[#fff] w-full border-none bg-transparent outline-none rounded full text-[21px] text-[#939393] font-[600]/"
+                  placeholder="Phone Number"
+                  v-model="phone" />
+              </div>
+            </div>
             <div class="">
               <p class="text-[#484848] text-[18px] font-[600] font-poppins">
                 Payment Method
@@ -133,7 +177,8 @@
             <div class="">
               <button
                 @click="payWithPaystack"
-                class="w-full bg-[#295F2D] text-white rounded-2xl py-[12px] font-poppins font-[600]">
+                :class="[complete == false ? 'bg-[#939393]' : 'bg-[#295F2D]']"
+                class="w-full text-white rounded-2xl py-[12px] font-poppins font-[600]">
                 Donate Now
               </button>
             </div>
@@ -150,20 +195,21 @@
   </div>
 </template>
 <script>
-import paystack from "vue-paystack";
-
+import swal from "sweetalert";
 export default {
   name: "donate",
-  components: {
-    paystack,
-  },
+  components: {},
   data() {
     return {
+      complete: false,
       amount: 0,
       tip: 0,
       total: 0,
-      paystackkey: "pk_test_xxxxxxxxxxxxxxxxxxxxxxx", //paystack public key
-      email: "mrfranktook@yahoo.com", // Customer email
+      email: "",
+      name: "",
+      phone: "",
+      errorMessage: "",
+      error: false,
     };
   },
 
@@ -174,7 +220,7 @@ export default {
 
         email: this.email,
 
-        amount: 100 * 100,
+        amount: parseInt(this.amount) * 100,
 
         currency: "NGN", // Use GHS for Ghana Cedis or USD for US Dollars
 
@@ -184,12 +230,25 @@ export default {
           var reference = response.reference;
 
           alert("Payment complete! Reference: " + reference);
+          swal(
+            "Yay! your donation has been recieved with love. Please feel free to tell others about my need :) Thank you.",
+            {
+              buttons: false,
+              timer: 3000,
+              class: "font-poppins font-[700] text-[300px]",
+            }
+          );
 
           //call backend and confirm the transaction
         },
 
         onClose: function () {
-          alert("Transaction was not completed, window closed.");
+          // alert("Transaction was not completed, window closed.");
+          swal("Transaction was not completed, Please try again.", {
+            buttons: false,
+            timer: 3000,
+            class: "font-poppins font-[700] text-[300px]",
+          });
         },
       });
 
