@@ -14,6 +14,12 @@ import TransactionPage from '../pages/dashboard/transaction.vue'
 import HelpPage from '../pages/dashboard/help.vue'
 import Test from '../pages/dashboard/test.vue'
 
+//all things buckets
+import CreateBucket from "../pages/buckets/CreateBucket.vue";
+import SeeBuckets from "../pages/buckets/SeeBuckets.vue";
+import SingleBucket from "../pages/buckets/SingleBucket.vue";
+import donate from "../pages/buckets/donate.vue";
+
 export const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -76,6 +82,22 @@ export const router = createRouter({
     {
       path: '/test',
       component: Test,
+    },
+    {
+      path: "/create-bucket",
+      component: CreateBucket,
+    },
+    {
+      path: "/buckets",
+      component: SeeBuckets,
+    },
+    {
+      path: "/bucket",
+      component: SingleBucket,
+    },
+    {
+      path: "/donate",
+      component: donate,
     },
   ],
 })
