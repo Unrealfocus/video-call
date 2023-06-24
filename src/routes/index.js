@@ -58,10 +58,6 @@ export const router = createRouter({
           component: Index,
         },
         {
-          path: 'donations',
-          component: DonationsPage,
-        },
-        {
           path: 'manage',
           component: ManagePage,
         },
@@ -87,6 +83,10 @@ export const router = createRouter({
     {
       path: '/test',
       component: Test,
+    },
+    {
+      path: '/donations',
+      component: DonationsPage,
     },
   ],
 })

@@ -60,49 +60,49 @@
 
 <script>
 export default {
-  name: 'Sidebar',
+  name: "Sidebar",
   data() {
     return {
       topLinks: [
         {
-          icon: '/category.svg',
-          title: 'Dashboard',
-          target: '/dashboard/dashboard',
+          icon: "/category.svg",
+          title: "Dashboard",
+          target: "/dashboard/dashboard",
         },
         {
-          icon: '/setting3.svg',
-          title: 'Manage',
-          target: '/dashboard/manage',
+          icon: "/setting3.svg",
+          title: "Manage",
+          target: "/dashboard/manage",
         },
         {
-          icon: '/receipt-text.svg',
-          title: 'Transaction History',
-          target: '/dashboard/transactions',
+          icon: "/receipt-text.svg",
+          title: "Transaction History",
+          target: "/dashboard/transactions",
         },
         {
-          icon: '/la_donate.svg',
-          title: 'Donation',
-          target: '/dashboard/donations',
+          icon: "/la_donate.svg",
+          title: "Donation",
+          target: "/donations",
         },
         {
-          icon: '/setting2.svg',
-          title: 'Account Setting',
-          target: '/dashboard/account-settings',
+          icon: "/setting2.svg",
+          title: "Account Setting",
+          target: "/dashboard/account-settings",
         },
       ],
       downLinks: [
         {
-          icon: '/help.svg',
-          title: 'Help',
-          target: '/dashboard/help',
+          icon: "/help.svg",
+          title: "Help",
+          target: "/dashboard/help",
         },
         {
-          icon: '/logoutcurve.svg',
-          title: 'Logout',
-          target: '/dashboard/transaction',
+          icon: "/logoutcurve.svg",
+          title: "Logout",
+          target: "/dashboard/transaction",
         },
       ],
-    }
+    };
   },
-}
+};
 </script>
