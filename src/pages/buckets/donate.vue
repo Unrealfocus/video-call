@@ -193,14 +193,13 @@
                 class="w-full text-white rounded-2xl py-[12px] font-poppins font-[600]">
                 Donate Now
               </button>
-              <div class="flex justify-between">
+              <div v-if="currentPage !== 3" class="flex justify-between">
                 <button
-                  v-if="currentPage !== 3"
                   @click="prevSlide"
                   class="text-[#295F2D] rounded-2xl py-[12px] font-poppins font-[600] border border-[#295F2D] px-5">
-                  previous</button
-                ><button
-                  v-if="currentPage !== 3"
+                  previous
+                </button>
+                <button
                   @click="nextSlide"
                   class="text-white rounded-2xl py-[12px] font-poppins font-[600] bg-[#295F2D] px-5">
                   Next
@@ -234,8 +233,7 @@ export default {
       email: "",
       name: "",
       phone: "",
-      errorMessage: "",
-      error: false,
+      error: true,
     };
   },
 
@@ -247,12 +245,27 @@ export default {
       this.currentPage--;
     },
     payWithPaystack() {
+      //validate inputs
+      if (this.email == "") {
+        swal(
+          "Enter a valid email address",
+
+          {
+            icon: "error",
+            buttons: false,
+            timer: 3000,
+            class: "font-poppins font-[700] text-[300px]",
+          }
+        );
+        return;
+      }
+
       var handler = PaystackPop.setup({
         key: import.meta.env.VITE_PAYSTACK_KEY,
 
         email: this.email,
 
-        amount: parseInt(this.amount) * 100,
+        amount: parseInt(this.amount + this.tip) * 100,
 
         currency: "NGN", // Use GHS for Ghana Cedis or USD for US Dollars
 
