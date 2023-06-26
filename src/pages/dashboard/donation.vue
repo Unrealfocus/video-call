@@ -50,7 +50,9 @@
 
         <!-- second slide  -->
         <div :class="[currentStep == 2 ? '' : 'hidden']" class="form">
-          <p class="pt-10">Bank Details</p>
+          <p class="pt-10 pb-16 text-4xl font-extrabold font-poppins">
+            Bank Details
+          </p>
 
           <div>
             <p class="text-base font-semibold font-poppins">Bank Names</p>
@@ -80,6 +82,7 @@
               id="account number"
               placeholder="123456789"
               v-model="accountnumber"
+              @input="handleInputChange"
             />
           </div>
           <div>
