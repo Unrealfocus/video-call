@@ -1,35 +1,36 @@
 <script>
-import Navbar from '../../components/layout/navabar_test.vue'
-import Footer from '../../components/layout/footer.vue'
-import { ref, computed, onMounted } from 'vue'
+import Navbar from "../../components/layout/navabar_test.vue";
+import Footer from "../../components/layout/footer.vue";
+import { ref, computed, onMounted } from "vue";
 
 export default {
+  name: "works",
   components: {
     Navbar,
     Footer,
   },
   setup() {
-    const words = ref(['you', 'a friend', 'Charity'])
-    const colors = ref(['#2AC769', '#295F2D ', '#E6D171']) // Array of colors for each word
-    const currentIndex = ref(0)
+    const words = ref(["you", "a friend", "Charity"]);
+    const colors = ref(["#2AC769", "#295F2D ", "#E6D171"]); // Array of colors for each word
+    const currentIndex = ref(0);
 
-    const currentWord = computed(() => words.value[currentIndex.value])
-    const currentWordColor = computed(() => colors.value[currentIndex.value])
+    const currentWord = computed(() => words.value[currentIndex.value]);
+    const currentWordColor = computed(() => colors.value[currentIndex.value]);
 
     const updateIndex = () => {
-      currentIndex.value = (currentIndex.value + 1) % words.value.length
-    }
+      currentIndex.value = (currentIndex.value + 1) % words.value.length;
+    };
 
     onMounted(() => {
-      setInterval(updateIndex, 2000)
-    })
+      setInterval(updateIndex, 2000);
+    });
 
     return {
       currentWord,
       currentWordColor,
-    }
+    };
   },
-}
+};
 </script>
 
 <template>
@@ -37,17 +38,14 @@ export default {
 
   <main class="bg-[##ffffff] mt-10">
     <section
-      class="w-[90%] xl:w-[1280px] mb-10 mx-auto grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-5 items-center ]"
-    >
+      class="w-[90%] xl:w-[1280px] mb-10 mx-auto grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-5 items-center ]">
       <section class="md:mt-20 py-10">
         <h1
-          class="bg-appGreen100 text-appGreen200 py-2 px-4 flex w-max rounded-xl font-bold font-poppins"
-        >
+          class="bg-appGreen100 text-appGreen200 py-2 px-4 flex w-max rounded-xl font-bold font-poppins">
           How it works
         </h1>
         <h2
-          class="my-12 font-poppins font-extrabold text-4xl md:text-5xl lg:text-6xl mt-4"
-        >
+          class="my-12 font-poppins font-extrabold text-4xl md:text-5xl lg:text-6xl mt-4">
           A place for <br />
 
           <span class="flex mt-3">
@@ -56,8 +54,7 @@ export default {
                 <div
                   :key="currentWord"
                   class="animate-word animate-bounce"
-                  v-slide-y-transition
-                >
+                  v-slide-y-transition>
                   <span
                     :style="`color: ${currentWordColor}; animation: bounce 0.5s infinite`"
                     >{{ currentWord }}</span
@@ -69,8 +66,7 @@ export default {
         </h2>
         <button
           type="button"
-          class="flex gap-2 rounded-full bg-[#2A5E2A] border-[1px] border-[#fff] text-[#fff] py-3 text-[14px] px-10 m-3"
-        >
+          class="flex gap-2 rounded-full bg-[#2A5E2A] border-[1px] border-[#fff] text-[#fff] py-3 text-[14px] px-10 m-3">
           <img src="/puthand.svg" alt="" />
           <span class="font-poppins font-bold text-base">Let's Put Hands</span>
         </button>
@@ -84,24 +80,20 @@ export default {
         <div class="w-[90%] xl:w-[1280px] mx-auto">
           <div class="">
             <p
-              class="font-[800] text-[26px] lg:text-[52px] font-poppins text-[#242424]"
-            >
+              class="font-[800] text-[26px] lg:text-[52px] font-poppins text-[#242424]">
               How PutHand Works
             </p>
             <p
-              class="font-[500] text-[16px] font-poppins py-[20px] lg:py-[54px] text-[#484848]"
-            >
+              class="font-[500] text-[16px] font-poppins py-[20px] lg:py-[54px] text-[#484848]">
               To create a bucket for people to PutHand, here is a step by step
               easy process that won’t stress you.
             </p>
           </div>
           <!-- cards  -->
           <div
-            class="md:grid lg:grid-cols-4 grid-cols-2 grid-flow-row auto-rows-max gap-2"
-          >
+            class="md:grid lg:grid-cols-4 grid-cols-2 grid-flow-row auto-rows-max gap-2">
             <div
-              class="group/item m-2 rounded-lg relative bg-[#F3F3F3] bg-cover hover:bg-green-500 transition-all duration-300"
-            >
+              class="group/item m-2 rounded-lg relative bg-[#F3F3F3] bg-cover hover:bg-green-500 transition-all duration-300">
               <div class="py-[46px]">
                 <div class="w-full">
                   <img src="/handStar.svg" class="mx-auto" />
@@ -112,14 +104,12 @@ export default {
               </div>
             </div>
             <div
-              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover"
-            >
+              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover">
               <div class="py-[46px]">
                 <div class="w-full">
                   <img src="/Icon02.svg" class="mx-auto" />
                   <p
-                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]"
-                  >
+                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]">
                     Register attendance
                   </p>
                 </div>
@@ -127,14 +117,12 @@ export default {
             </div>
 
             <div
-              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover"
-            >
+              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover">
               <div class="py-[46px]">
                 <div class="w-full">
                   <img src="/Icon01.svg" class="mx-auto" />
                   <p
-                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]"
-                  >
+                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]">
                     Tell the class why you created a bucket
                   </p>
                 </div>
@@ -145,8 +133,7 @@ export default {
                 <div class="w-full">
                   <img src="/Icon03.svg" class="mx-auto" />
                   <p
-                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]"
-                  >
+                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]">
                     share the story with everyone
                   </p>
                 </div>
@@ -155,8 +142,7 @@ export default {
           </div>
           <!-- bottom texts  -->
           <div
-            class="text-[#484848] font-[400] font-poppins text-[18px] py-[40px]"
-          >
+            class="text-[#484848] font-[400] font-poppins text-[18px] py-[40px]">
             <p>
               As soon as the campaign is live, share it with family and friends
               and strangers. Donors can contribute to the bucket using their

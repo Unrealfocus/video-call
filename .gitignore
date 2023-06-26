@@ -25,4 +25,5 @@ dist-ssr
 *.ntvs*
 *.njsproj
 *.sln
+yarn.lock
 *.sw?

@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../pages/home/Home.vue";
+import works from "../pages/works/works.vue";
 import AboutUs from "../pages/about/aboutUs.vue";
 import singup from "../pages/auth/signUp.vue";
 import ContactUs from "../pages/contact/contactUs.vue";
@@ -29,6 +30,10 @@ export const router = createRouter({
     {
       path: "/about-us",
       component: AboutUs,
+    },
+    {
+      path: "/works",
+      component: works,
     },
     {
       path: "/signUp",
@@ -77,10 +82,6 @@ export const router = createRouter({
         {
           path: "help",
           component: HelpPage,
-        },
-        {
-          path: "more",
-          component: More,
         },
       ],
     },
