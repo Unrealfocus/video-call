@@ -36,7 +36,7 @@ export default {
 <template>
   <div>
     <section
-      class="flex bg-white pt-3 pb-5 px-8 w-[100%] rounded-full items-center justify-between mt-20 mb-20"
+      class="md:flex hidden bg-white pt-3 pb-5 px-8 w-[100%] rounded-full items-center justify-between mt-20 mb-20"
     >
       <div
         v-for="(tab, index) in tabs"
@@ -53,7 +53,7 @@ export default {
         {{ tab }}
       </div>
     </section>
-    <div class="p-8 mb-10 bg-white shadow rounded-2xl">
+    <div class="p-8 mt-10 mb-10 bg-white shadow rounded-2xl">
       <div v-show="activeTab === 0">
         <section class="pt-3 pb-10 bg-white">
           <p class="font-poppins font-semibold text-4xl text-[#484848] py-10">
