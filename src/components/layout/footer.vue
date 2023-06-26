@@ -1,14 +1,13 @@
 <script>
 export default {
-  name: 'footer',
-}
+  name: "footer",
+};
 </script>
 
 <template>
   <footer class="pt-3 pb-5 bg-bgDarkerGreen mx-3 px-14 rounded-3xl">
     <section
-      class="grid lg:grid-cols-2 sm:grid-cols-1 my-3 container mx-auto lg:px-24 lg:items-center lg:mt-20 sm:mt-20"
-    >
+      class="grid lg:grid-cols-2 sm:grid-cols-1 my-3 container mx-auto lg:px-24 lg:items-center lg:mt-20 sm:mt-20">
       <img src="/Logo.svg" alt="logo" class="mb-5" />
       <section class="lg:flex sm:block gap-10 text-[#fff]">
         <ul class="mb-5">
