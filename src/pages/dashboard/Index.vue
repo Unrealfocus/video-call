@@ -20,7 +20,7 @@
           <button
             class="rounded-full bg-[#2A5E2A] border-[1px] text-[#fff] py-3 text-[14px] px-10 font-poppins font-bold text-base"
           >
-            Create a bucket
+            <router-link to="/create-bucket"> Create a bucket</router-link>
           </button>
         </div>
       </section>

@@ -2,7 +2,7 @@
 <!-- w-[820px] px-[45px] py-[50px] -->
 <template>
   <main class="bg-[#B7B7B7] lg:h-screen">
-    <div class="flex lg:h-screen items-center justify-center">
+    <div class="flex items-center justify-center lg:h-screen">
       <div
         class="bg-[#fff] rounded-3xl pt-3 pb-10 w-[700px] px-[45px] py-[50px]"
       >
@@ -15,7 +15,7 @@
           </p>
           <section>
             <input
-              class="app-input mb-4"
+              class="mb-4 app-input"
               type="email"
               name="email"
               id="email"
@@ -23,7 +23,7 @@
               placeholder="Email address"
             />
             <input
-              class="app-input mt-4"
+              class="mt-4 app-input"
               type="password"
               name="password"
               id="password"
@@ -35,7 +35,7 @@
             Forgotten Password?
           </div>
           <div>
-            <span class="flex items-baseline">
+            <span class="flex">
               <input
                 type="checkbox"
                 class="w-5 h-5 rounded-full"
@@ -49,12 +49,12 @@
               </span>
             </span>
             <div class="flex mt-7">
-              <div class="mx-auto flex items-center">
+              <div class="flex items-center mx-auto">
                 <button
                   type="button"
                   class="flex gap-2 rounded-full bg-[#2A5E2A] border-[1px] border-[#fff] text-[#fff] py-3 text-[14px] px-10 m-3"
                 >
-                  <span class="font-poppins font-bold text-base">Sign In </span>
+                  <span class="text-base font-bold font-poppins">Sign In </span>
                 </button>
               </div>
             </div>

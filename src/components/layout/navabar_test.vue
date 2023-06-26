@@ -6,7 +6,7 @@
     <header
       class="w-[90%] xl:w-[1280px] mx-auto flex items-center justify-between flex-wrap py-[20px]"
     >
-      <div class="flex items-center flex-no-shrink text-white mr-6">
+      <div class="flex items-center mr-6 text-white flex-no-shrink">
         <img src="/logo1.svg" alt="logo" />
       </div>
       <!-- center block  -->
@@ -18,25 +18,29 @@
         <div class="">
           <router-link to="/contact-us">Fundraiser Category</router-link>
         </div>
-        <div class="">How it works</div>
+        <div class=""><router-link to="/">How it works</router-link></div>
         <div class=""><router-link to="/about-us">About us</router-link></div>
       </div>
 
       <div class="flex space-x-[43px] font-poppins font-[700] items-center">
         <div class="">
-          <button
-            class="hidden lg:block text-[#295F2D] px-[23px] py-[11px] border-2 border-[#295F2D] rounded-full"
+          <router-link to="/sign-in"
+            ><button
+              class="hidden lg:block text-[#295F2D] px-[23px] py-[11px] border-2 border-[#295F2D] rounded-full"
+            >
+              Sign in
+            </button></router-link
           >
-            <router-link to="/signUp">Sign in</router-link>
-          </button>
         </div>
         <div class="">
-          <button
-            :class="[toggleNav == true ? 'md:hidden' : '']"
-            class="hidden md:block bg-[#295F2D] rounded-full px-[23px] py-[11px] text-white"
+          <router-link to="/signUp"
+            ><button
+              :class="[toggleNav == true ? 'md:hidden' : '']"
+              class="hidden md:block bg-[#295F2D] rounded-full px-[23px] py-[11px] text-white"
+            >
+              Let's Put Hands
+            </button></router-link
           >
-            Let's Put Hands
-          </button>
         </div>
         <div
           @click="navDrop"
@@ -85,16 +89,16 @@
 
 <script>
 export default {
-  name: 'navbar_test',
+  name: "navbar_test",
   data() {
     return {
       toggleNav: false,
-    }
+    };
   },
   methods: {
     navDrop() {
-      this.toggleNav = !this.toggleNav
+      this.toggleNav = !this.toggleNav;
     },
   },
-}
+};
 </script>
