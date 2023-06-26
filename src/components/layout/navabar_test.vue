@@ -15,7 +15,7 @@
         <div class="">
           <router-link to="/contact-us">Fundraiser Category</router-link>
         </div>
-        <div class="">How it works</div>
+        <div class=""><router-link to="/works">How it works</router-link></div>
         <div class=""><router-link to="/about-us">About us</router-link></div>
       </div>
 

@@ -9,6 +9,7 @@
             Back
           </button>
         </div>
+
         <div
           :class="[currentStep == 4 ? 'hidden' : '']"
           class="steps py-[30px]">
@@ -27,6 +28,7 @@
               class="w-[105px] h-[8px] rounded-full"></div>
           </div>
         </div>
+
         <div :class="[currentStep == 1 ? '' : 'hidden']" class="form">
           <div class="">
             <p class="text-[32px] font-[800] font-poppins">

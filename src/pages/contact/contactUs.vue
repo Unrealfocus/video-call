@@ -3,21 +3,18 @@ import Navbar from "../../components/layout/navabar_test.vue";
 import Footer from "../../components/layout/footer.vue";
 </script>
 <template>
-  <Navbar class="shadow-aboutContainer" />
+  <Navbar class="" />
 
   <main class="bg-[##FFFFFF] mt-5">
     <section
-      class="w-[90%] xl:w-[1280px] mb-10 mx-auto grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-5 items-center bg-[url('/public/Vector2.svg')]"
-    >
+      class="w-[90%] xl:w-[1280px] mb-10 mx-auto grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-5 items-center bg-[url('/public/Vector2.svg')]">
       <section class="py-10 md:mt-20">
         <h1
-          class="flex px-4 py-2 font-bold bg-appGreen100 text-appGreen200 w-max rounded-xl font-poppins"
-        >
+          class="flex px-4 py-2 font-bold bg-appGreen100 text-appGreen200 w-max rounded-xl font-poppins">
           Support
         </h1>
         <h2
-          class="my-12 mt-4 text-4xl font-extrabold font-poppins md:text-5xl lg:text-6xl"
-        >
+          class="my-12 mt-4 text-4xl font-extrabold font-poppins md:text-5xl lg:text-6xl">
           Get in Touch.
         </h2>
         <p class="text-sm font-medium font-poppins sm:text-base">
@@ -25,8 +22,7 @@ import Footer from "../../components/layout/footer.vue";
           help@puthands.com.
         </p>
         <div
-          class="w-[100%] bg-[#F9F9F9] flex gap-3 px-5 py-3 pb-5 rounded-lg mt-5"
-        >
+          class="w-[100%] bg-[#F9F9F9] flex gap-3 px-5 py-3 pb-5 rounded-lg mt-5">
           <img src="/mail1.svg" alt="" />
           <p class="py-2 text-base font-medium font-poppins">
             <span class="text-base font-bold font-poppins">Email address:</span>
@@ -53,16 +49,14 @@ import Footer from "../../components/layout/footer.vue";
             name="firstName"
             id="firstName"
             autocomplete="given-name"
-            placeholder="First Name"
-          />
+            placeholder="First Name" />
           <input
             class="app-input"
             type="text"
             name="lastName"
             id="lastName"
             autocomplete="family-name"
-            placeholder="Last Name"
-          />
+            placeholder="Last Name" />
         </div>
         <label>
           <span class="mb-3 text-base font-semibold font-poppins">
@@ -74,27 +68,24 @@ import Footer from "../../components/layout/footer.vue";
             name="phoneNumber"
             id="phoneNumber"
             autocomplete="phoneNumber"
-            placeholder="phoneNumber"
-          />
+            placeholder="phoneNumber" />
         </label>
         <div class="space-y-[20px]">
           <p class="font-[600] text-[18px]">Tell us your Story</p>
           <div class="border rounded-2xl w-full border-[#000] p-3">
             <textarea
               class="w-full bg-transparent border-none outline-none"
-              rows="4"
-            ></textarea>
+              rows="4"></textarea>
           </div>
         </div>
 
         <button
-          class="gap-10 text-center bg-[#F8B83A] text-[#242424] py-4 px-10 flex w-[285px] mt-7 rounded-xl"
-        >
+          class="gap-10 text-center bg-[#F8B83A] text-[#242424] py-4 px-10 flex w-[285px] mt-7 rounded-xl">
           <div class="mt-2 text-base font-bold font-poppins">Send an email</div>
           <img class="" src="arrow-right.svg" alt="" />
         </button>
       </div>
-      <Footer class="-mt-2"></Footer>
+      <Footer class=""></Footer>
     </section>
   </main>
 </template>

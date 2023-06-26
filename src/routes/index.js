@@ -1,5 +1,6 @@
- import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import Home from "../pages/home/Home.vue";
+import works from "../pages/works/works.vue";
 import AboutUs from "../pages/about/aboutUs.vue";
 import singup from "../pages/auth/signUp.vue";
 import ContactUs from "../pages/contact/contactUs.vue";
@@ -18,7 +19,6 @@ import CreateBucket from "../pages/buckets/CreateBucket.vue";
 import SeeBuckets from "../pages/buckets/SeeBuckets.vue";
 import SingleBucket from "../pages/buckets/SingleBucket.vue";
 import donate from "../pages/buckets/donate.vue";
- 
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -32,6 +32,10 @@ export const router = createRouter({
       component: AboutUs,
     },
     {
+      path: "/works",
+      component: works,
+    },
+    {
       path: "/signUp",
       component: singup,
     },
@@ -41,7 +45,7 @@ export const router = createRouter({
     },
 
     {
-      path: '/account-settings',
+      path: "/account-settings",
       component: AccountSettings,
     },
 
@@ -63,13 +67,12 @@ export const router = createRouter({
           component: Index,
         },
         {
- 
           path: "donations",
           component: DonationsPage,
         },
         {
           path: "manage",
- 
+
           component: ManagePage,
         },
         {
@@ -79,10 +82,6 @@ export const router = createRouter({
         {
           path: "help",
           component: HelpPage,
-        },
-        {
-          path:'more',
-          component: More,
         },
       ],
     },
@@ -96,7 +95,6 @@ export const router = createRouter({
       component: Test,
     },
     {
- 
       path: "/create-bucket",
       component: CreateBucket,
     },
@@ -111,7 +109,6 @@ export const router = createRouter({
     {
       path: "/donate",
       component: donate,
- 
     },
   ],
 });
