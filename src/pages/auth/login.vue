@@ -1,13 +1,40 @@
 <script>
+import axios from "axios";
+
 export default {
   name: "login",
   data() {
     return {
       email: "",
       password: "",
+      loading: false,
     };
   },
-  methods: {},
+  methods: {
+    async signin() {
+      const loginLink = import.meta.env.VITE_APP_ENGINE + "login";
+      this.loading = true;
+      await axios
+        .post(loginLink, {
+          email: this.email,
+          password: this.password,
+        })
+        .then((res) => {
+          this.loading = false;
+          this.$router.push("/dashboard");
+        })
+        .catch((err) => {
+          this.loading = false;
+          let error = err.response.data.message;
+          swal(error, {
+            icon: "error",
+            buttons: false,
+            timer: 3000,
+            class: "font-poppins font-[700] text-[300px]",
+          });
+        });
+    },
+  },
 };
 </script>
 <!-- w-[820px] px-[45px] py-[50px] -->
@@ -15,7 +42,8 @@ export default {
   <main class="bg-[#B7B7B7] lg:h-screen">
     <div class="flex items-center justify-center lg:h-screen">
       <div
-        class="bg-[#fff] rounded-3xl pt-3 pb-10 w-[700px] px-[45px] py-[50px]">
+        class="bg-[#fff] rounded-3xl pt-3 pb-10 w-[700px] px-[45px] py-[50px]"
+      >
         <div class="p-10">
           <h1 class="pb-4 font-poppins font-extrabold text-4xl text-[#484848]">
             Welcome Back
@@ -31,7 +59,8 @@ export default {
               id="email"
               autocomplete="email"
               placeholder="Email address"
-              v-model="email" />
+              v-model="email"
+            />
             <input
               class="mt-4 app-input"
               type="password"
@@ -39,7 +68,8 @@ export default {
               id="password"
               autocomplete="password"
               placeholder="Password"
-              v-model="password" />
+              v-model="password"
+            />
           </section>
           <div class="py-7 font-poppins font-semibold text-xs text-[#295F2D]">
             Forgotten Password?
@@ -50,7 +80,8 @@ export default {
                 type="checkbox"
                 class="w-5 h-5 rounded-full"
                 name="terms"
-                id="terms" />
+                id="terms"
+              />
               <span class="block ml-2 text-[#999999] font-poppins text-sm">
                 By accepting, I agree to comply with data regulations as
                 outlined in the Puthand Privacy Policy, granting my consent for
@@ -62,8 +93,11 @@ export default {
                 <button
                   type="button"
                   class="flex gap-2 rounded-full bg-[#2A5E2A] border-[1px] border-[#fff] text-[#fff] py-3 text-[14px] px-10 m-3"
-                  @click="signin">
-                  <span class="text-base font-bold font-poppins">Sign In </span>
+                  @click="signin"
+                >
+                  <span class="text-base font-bold font-poppins">
+                    {{ loading == true ? "loading..." : "Sign In" }}</span
+                  >
                 </button>
               </div>
             </div>
