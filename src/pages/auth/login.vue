@@ -1,4 +1,12 @@
-<script></script>
+<script>
+export default {
+  name: "login",
+  data() {
+    return { email: "", password: "" };
+  },
+  methods: {},
+};
+</script>
 <!-- w-[820px] px-[45px] py-[50px] -->
 <template>
   <main class="bg-[#B7B7B7] lg:h-screen">
@@ -21,6 +29,7 @@
               id="email"
               autocomplete="email"
               placeholder="Email address"
+              v-model="email"
             />
             <input
               class="mt-4 app-input"
@@ -29,6 +38,7 @@
               id="password"
               autocomplete="password"
               placeholder="Password"
+              v-model="password"
             />
           </section>
           <div class="py-7 font-poppins font-semibold text-xs text-[#295F2D]">
@@ -53,6 +63,7 @@
                 <button
                   type="button"
                   class="flex gap-2 rounded-full bg-[#2A5E2A] border-[1px] border-[#fff] text-[#fff] py-3 text-[14px] px-10 m-3"
+                  @click="signin"
                 >
                   <span class="text-base font-bold font-poppins">Sign In </span>
                 </button>

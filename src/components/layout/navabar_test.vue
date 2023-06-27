@@ -18,7 +18,7 @@
         <div class="">
           <router-link to="/contact-us">Fundraiser Category</router-link>
         </div>
-        <div class="">How it works</div>
+        <div class=""><router-link to="/works">How it works</router-link></div>
         <div class=""><router-link to="/about-us">About us</router-link></div>
       </div>
 
@@ -27,7 +27,7 @@
           <button
             class="hidden lg:block text-[#295F2D] px-[23px] py-[11px] border-2 border-[#295F2D] rounded-full"
           >
-            <router-link to="/signUp">Sign in</router-link>
+            <router-link to="/sign-in">Sign in</router-link>
           </button>
         </div>
         <div class="">

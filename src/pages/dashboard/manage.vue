@@ -38,8 +38,14 @@
       <span class="text-black">50,000</span></P
     >
     <div class="items-center lg:flex sm:block">
+      <div v-if="manageCount == 3" class="">
+        <button @click="toggleNext">toggle page 3</button>
+      </div>
+
       <button
         class="flex text-left gap-2 items-center bg-appGreen300 rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#FFFFFF] mt-5"
+        type="button"
+        @click="toogleSection"
       >
         <img src="/basil_edit-outline.svg" alt="" />
         edit/settings
@@ -50,12 +56,15 @@
         >
           Preview fundraiser
         </div>
-        <button
-          class="flex items-center gap-2 text-left bg-[#EAF9F0] rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#295F2D] mt-5"
+
+        <router-link to="/withdrawal"
+          ><button
+            class="flex items-center gap-2 text-left bg-[#EAF9F0] rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#295F2D] mt-5"
+          >
+            <img src="/uil_money-withdraw.svg" alt="" />
+            withdrawal
+          </button></router-link
         >
-          <img src="/uil_money-withdraw.svg" alt="" />
-          withdrawal
-        </button>
       </div>
     </div>
 
@@ -173,15 +182,13 @@
       </div>
     </div>
   </div>
-
-  <div v-if="manageCount == 3" class="">
-    <button @click="toggleNext">toggle page 3</button>
-  </div>
 </template>
 
 <script>
 import bucket from "../../components/manageBucket/bucket.vue";
 export default {
+  name: "manage",
+  emits: ["edit"],
   components: {
     bucket,
   },
@@ -201,6 +208,9 @@ export default {
     },
     togglePrev() {
       this.manageCount--;
+    },
+    toogleSection() {
+      this.$emit("edit");
     },
   },
 };
