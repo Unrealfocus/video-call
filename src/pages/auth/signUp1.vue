@@ -1,17 +1,19 @@
 <script>
 import statesWithLGA from "../../assets/statesWithLGA";
+
+import axios from "axios";
 export default {
   name: "signUp",
   data() {
     return {
+      loading: false,
       currentStep: 1,
-
-      forWho: "",
-      forWhoList: [
-        { icon: "", target: "Yourself" },
-        { icon: "", target: "A Friend" },
-        { icon: "", target: "Charity" },
-      ],
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      password: "",
+      confirmPassword: "",
       states: [],
       activeState: "",
       activeLGA: [],
@@ -23,9 +25,34 @@ export default {
     });
   },
   methods: {
-    setForWho(item) {
-      this.forWho = item;
+    async submit() {
+      const registerLink = import.meta.env.VITE_APP_ENGINE + "register";
+      this.loading = true;
+      await axios
+        .post(registerLink, {
+          first_name: this.firstName,
+          last_name: this.lastName,
+          email: this.email,
+          phone: this.phone,
+          password: this.password,
+          password_confirmation: this.confirmPassword,
+        })
+        .then((res) => {
+          this.loading = false;
+          this.currentStep++;
+        })
+        .catch((err) => {
+          this.loading = false;
+          let error = err.response.data.message;
+          swal(error, {
+            icon: "error",
+            buttons: false,
+            timer: 3000,
+            class: "font-poppins font-[700] text-[300px]",
+          });
+        });
     },
+
     nextSlide() {
       if (this.currentStep < 4) {
         this.currentStep++;
@@ -63,8 +90,7 @@ export default {
         <div :class="[currentStep == 1 ? '' : 'hidden']" class="form">
           <div>
             <h2
-              class="text-lg font-bold font-poppins md:text-xl lg:text-2xl text-appGreen400"
-            >
+              class="text-lg font-bold font-poppins md:text-xl lg:text-2xl text-appGreen400">
               What ‘s your name
             </h2>
             <label
@@ -79,35 +105,26 @@ export default {
                 name="firstName"
                 id="firstName"
                 autocomplete="given-name"
-                placeholder="First Name"
-              />
+                v-model="firstName"
+                placeholder="First Name" />
               <input
                 class="app-input"
                 type="text"
-                name="lastName"
-                id="lastName"
-                autocomplete="family-name"
-                placeholder="Last Name"
-              />
+                v-model="lastName"
+                placeholder="Last Name" />
             </div>
 
             <input
               class="my-4 app-input"
               type="password"
-              name="password"
-              id="password"
-              autocomplete="new-password"
-              placeholder="Password"
-            />
+              v-model="password"
+              placeholder="Password" />
 
             <input
               class="app-input"
               type="password"
-              name="confirmPassword"
-              id="confirmPassword"
-              autocomplete="new-password"
-              placeholder="Confirm Password"
-            />
+              v-model="confirmPassword"
+              placeholder="Confirm Password" />
             <input
               class="mt-4 app-input"
               type="email"
@@ -115,53 +132,21 @@ export default {
               id="email"
               autocomplete="email"
               placeholder="Email"
-              v-model="email"
-            />
+              v-model="email" />
+            <input
+              class="mt-4 app-input"
+              type="email"
+              autocomplete="phone"
+              placeholder="Phone Number"
+              v-model="phone" />
           </div>
-          <h3
-            class="my-5 text-base font-bold font-poppins md:text-lg lg:text-xl text-appGreen400"
-          >
-            Where are you located?
-          </h3>
-
-          <section class="flex flex-col gap-5 lg:flex-row text-appGreen400">
-            <select
-              :value="activeState"
-              :onchange="handleStateChange"
-              class="app-input"
-              name="state"
-              id="state"
-            >
-              <option value="">Select your state</option>
-              <option
-                v-for="(state, index) in states"
-                :key="index"
-                :value="state"
-              >
-                {{ state }}
-              </option>
-            </select>
-
-            <!-- CITY -->
-            <select class="app-input" name="state" id="state">
-              <option value="">Select your city</option>
-              <option
-                v-for="(cities, index) in activeLGA"
-                :key="index"
-                :value="cities"
-              >
-                {{ cities }}
-              </option>
-            </select>
-          </section>
 
           <span class="flex items-baseline mt-8">
             <input
               type="checkbox"
               class="w-5 h-5 rounded-full"
               name="terms"
-              id="terms"
-            />
+              id="terms" />
             <span class="block ml-2 text-[#999999] font-poppins text-sm">
               By accepting, I agree to comply with data regulations as outlined
               in the Puthand Privacy Policy, granting my consent for the
@@ -222,8 +207,7 @@ export default {
         <!-- success slide  -->
         <div
           :class="[currentStep == 3 ? '' : 'hidden']"
-          class="form space-y-[140px] py-[100px]"
-        >
+          class="form space-y-[140px] py-[100px]">
           <div class="flex items-center justify-center">
             <img class="" src="/bigCheck.svg" />
           </div>
@@ -232,33 +216,22 @@ export default {
               Successfully Completed
             </p>
             <div
-              class="flex justify-center rounded-full text-[#fff] py-3 text-[14px] px-10"
-            >
+              class="flex justify-center rounded-full text-[#fff] py-3 text-[14px] px-10">
               <button
-                class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl px-40"
-              >
+                class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl px-40">
                 Done
               </button>
             </div>
           </div>
         </div>
 
-        <div class="flex justify-between pt-16">
-          <div :class="[currentStep == 3 ? 'hidden' : '']" class="">
-            <button
-              @click="prevSlide()"
-              class="border-2 border-[#295F2D] text-[#295F2D] rounded-2xl px-[23px] py-[12px] font-[700] text-[16px]"
-            >
-              Back
-            </button>
-          </div>
+        <div class="pt-16">
           <div class="next-button">
             <div
-              :class="[currentStep == 3 ? 'hidden' : '']"
-              @click="nextSlide()"
-              class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl px-6"
-            >
-              {{ currentStep > 2 ? "Done" : "Next" }}
+              :class="[currentStep != 1 ? 'hidden' : '']"
+              @click="submit"
+              class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl px-6">
+              {{ loading == true ? "loading..." : "Sign Up" }}
             </div>
           </div>
         </div>
