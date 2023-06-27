@@ -84,11 +84,11 @@ export default {
                 the collection and processing of my personal data.
               </span>
             </span>
-            <div class="flex mt-7">
-              <div class="flex items-center mx-auto">
+            <div class="mt-7">
+              <div class="mx-auto">
                 <button
                   type="button"
-                  class="flex gap-2 rounded-full bg-[#2A5E2A] border-[1px] border-[#fff] text-[#fff] py-3 text-[14px] px-10 m-3"
+                  class="w-full rounded-2xl bg-[#2A5E2A] border-[1px] border-[#fff] text-[#fff] py-3 text-[14px] m-3"
                   @click="signin">
                   <span class="text-base font-bold font-poppins">
                     {{ loading == true ? "loading..." : "Sign In" }}</span
