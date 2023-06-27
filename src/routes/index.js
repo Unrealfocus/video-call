@@ -15,7 +15,7 @@ import TransactionPage from "../pages/dashboard/transaction.vue";
 import HelpPage from "../pages/dashboard/help.vue";
 import Test from "../pages/dashboard/test.vue";
 import More from "../pages/dashboard/more.vue";
-import Edit from "../pages/dashboard/edit.vue"
+import Edit from "../pages/dashboard/edit.vue";
 
 //all things buckets
 import CreateBucket from "../pages/buckets/CreateBucket.vue";
@@ -55,10 +55,10 @@ export const router = createRouter({
       path: "/account-settings",
       component: AccountSettings,
     },
-// {
-//   path: "/donations",
-//   component: DonationsPage,
-// },
+    // {
+    //   path: "/donations",
+    //   component: DonationsPage,
+    // },
     {
       path: "/contact-us",
       component: ContactUs,
@@ -77,14 +77,9 @@ export const router = createRouter({
           component: AccountSettings,
         },
         {
-          path: "dashboard",
+          path: "",
           component: Index,
         },
-       
-        // {
-        //   path: "donations",
-        //   component: DonationsPage,
-        // },
         {
           path: "manage",
 
