@@ -12,7 +12,6 @@ import DonationsPage from "../pages/dashboard/donation.vue";
 import ManagePage from "../pages/dashboard/manage.vue";
 import TransactionPage from "../pages/dashboard/transaction.vue";
 import HelpPage from "../pages/dashboard/help.vue";
-import Test from "../pages/dashboard/test.vue";
 
 //all things buckets
 import CreateBucket from "../pages/buckets/CreateBucket.vue";
@@ -90,10 +89,6 @@ export const router = createRouter({
       component: signin,
     },
 
-    {
-      path: "/test",
-      component: Test,
-    },
     {
       path: "/create-bucket",
       component: CreateBucket,
