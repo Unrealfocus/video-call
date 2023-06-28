@@ -3,7 +3,6 @@ import Home from "../pages/home/Home.vue";
 import works from "../pages/works/works.vue";
 import AboutUs from "../pages/about/aboutUs.vue";
 import singup from "../pages/auth/signUp1.vue";
-import singup from "../pages/auth/signUp1.vue";
 import ContactUs from "../pages/contact/contactUs.vue";
 import Index from "../pages/dashboard/Index.vue";
 import dashboardLayout from "../components/layout/dashboardLayout.vue";
