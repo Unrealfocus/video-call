@@ -1,5 +1,5 @@
 <template>
-  <section class="p-5 mb-10">
+  <section class="p-5 mb-10 lg:hidden">
     <p class="text-xl font-semibold font-poppins">More</p>
     <div class="flex items-center gap-5 mt-10">
       <img src="/Man.svg" alt="" />
@@ -15,7 +15,7 @@
     </div>
     <section>
       <div
-        class="flex items-center gap-2 pb-3 mx-auto text-base font-medium pt-9 font-poppins"
+        class="flex items-center gap-5 pb-3 text-base font-medium md:mx-auto pt-9 font-poppins"
       >
         <router-link to="/dashboard/account-settings"
           ><img src="/setting2.svg" alt="" /> Account Settings</router-link

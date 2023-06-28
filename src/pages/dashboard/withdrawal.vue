@@ -177,8 +177,8 @@
           </div>
           <div class="space-y-[30px]">
             <!-- <p class="text-center font-poppins font-[700] text-[24px]">
-                  Successfully Completed
-                </p> -->
+                Successfully Completed
+              </p> -->
             <div
               :class="[currentStep == 3 ? '' : 'hidden']"
               class="bg-[#295F2D] cursor-pointer text-center font-[700] font-poppins px-[90px] py-[11px] text-[#fff] rounded-2xl mx-auto"

@@ -1,6 +1,6 @@
 <template>
   <section
-    class="flex shadow-aboutContainer lg:hidden"
+    class="hidden sm:flex shadow-aboutContainer lg:hidden"
     :class="[toggleNav == true ? 'bg-[#f9f9f9]' : 'bg-[#fff]']"
   >
     <header

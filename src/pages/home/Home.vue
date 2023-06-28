@@ -176,11 +176,13 @@ import Footer from "../../components/layout/footer.vue";
                 community.
               </p>
               <div class="py-[50px]">
-                <button
-                  class="bg-[#295F2D] text-white px-[23px] py-[12px] rounded-full font-[700]"
+                <router-link to=""
+                  ><button
+                    class="bg-[#295F2D] text-white px-[23px] py-[12px] rounded-full font-[700]"
+                  >
+                    Let's Put Hands
+                  </button></router-link
                 >
-                  Let's Put Hands
-                </button>
               </div>
             </div>
             <div class="image md:w-1/2">
