@@ -1,26 +1,26 @@
 <script setup>
-import Navbar from '../../components/layout/navabar_test.vue'
-import Footer from '../../components/layout/footer.vue'
-import { ref } from 'vue'
+import Navbar from "../../components/layout/navabar_test.vue";
+import Footer from "../../components/layout/footer.vue";
+import { ref } from "vue";
 
 const images = ref([
   {
-    img: '/Component9.svg',
-    title: 'Transparency',
+    img: "/Component9.svg",
+    title: "Transparency",
     subtitle:
-      'We are honest and open in every decision regarding your  money and other operations.',
+      "We are honest and open in every decision regarding your  money and other operations.",
   },
   {
-    img: '/Component7.svg',
-    title: 'Inclusivity',
-    subtitle: 'This is home. Everyone is welcome.',
+    img: "/Component7.svg",
+    title: "Inclusivity",
+    subtitle: "This is home. Everyone is welcome.",
   },
   {
-    img: '/Component8.svg',
-    title: 'Responsiveness',
-    subtitle: 'We’ll listen and respond to you anytime and any day',
+    img: "/Component8.svg",
+    title: "Responsiveness",
+    subtitle: "We’ll listen and respond to you anytime and any day",
   },
-])
+]);
 </script>
 
 <template>
@@ -29,17 +29,14 @@ const images = ref([
   <main class="mt-5">
     <!-- HERO SECTION STARTS -->
     <section
-      class="w-[90%] xl:w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 items-center"
-    >
+      class="w-[90%] xl:w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
       <section class="md:mt-20 py-10">
         <h1
-          class="bg-appGreen100 text-appGreen200 py-2 px-4 flex w-max rounded-xl font-bold font-poppins"
-        >
+          class="bg-appGreen100 text-appGreen200 py-2 px-4 flex w-max rounded-xl font-bold font-poppins">
           Our Mission
         </h1>
         <h2
-          class="my-12 font-inter font-extrabold text-4xl md:text-5xl lg:text-6xl"
-        >
+          class="my-12 font-inter font-extrabold text-4xl md:text-5xl lg:text-6xl">
           Empowering you <br class="hidden lg:block" />
           and people you<br class="hidden lg:block" />
           may know through <br class="hidden lg:block" />
@@ -62,13 +59,11 @@ const images = ref([
       <section class="w-[90%] xl:w-[1280px] mx-auto">
         <!-- TODO ADD THE Clash Grotesk FONT HERE -->
         <h2
-          class="font-[800] lg:text-4xl md:text-[52px] text-[36px] text-center pt-10"
-        >
+          class="font-[800] lg:text-4xl md:text-[52px] text-[36px] text-center pt-10">
           About Us
         </h2>
         <p
-          class="text-base font-poppins text-[16px] font-[500] text-appDarkGray100 mt-5 mb-14"
-        >
+          class="text-base font-poppins text-[16px] font-[500] text-appDarkGray100 mt-5 mb-14">
           Everyone should be able to have enough funds to achieve their goals,
           right? That is what we believe. And if you believe in the same thing,
           you are on the right platform. Whether you want to donate or ask for
@@ -79,12 +74,10 @@ const images = ref([
         </p>
 
         <div
-          class="lg:grid grid-cols-2 bg-bgDarkerGreen mx-auto px-[20px] py-12 rounded-3xl pt-16 mb-24 gap-28"
-        >
+          class="lg:grid grid-cols-2 bg-bgDarkerGreen mx-auto px-[20px] py-12 rounded-3xl pt-16 mb-24 gap-28">
           <article class="text-white my-10">
             <h3
-              class="text-center pb-12 font-poppins font-semibold font text-4xl"
-            >
+              class="text-center pb-12 font-poppins font-semibold font text-4xl">
               OUR VALUES
             </h3>
 
@@ -92,8 +85,7 @@ const images = ref([
               <li
                 v-for="value in images"
                 :key="value.title"
-                class="p-4 bg-appGreen300 rounded-2xl hover:scale-105 hover:animate-pulse transition-all duration-300 flex gap-4"
-              >
+                class="p-4 bg-appGreen300 rounded-2xl hover:scale-105 hover:animate-pulse transition-all duration-300 flex gap-4">
                 <span
                   ><img
                     :src="value.img"
@@ -115,12 +107,10 @@ const images = ref([
         <section class="bg-appGray100 font-poppins">
           <div class="xl:w-[1280px] mx-auto md:py-[67px] lg:py-[49px]">
             <div
-              class="content bg-[#FEF7D6] md:py-[110px] py-[20px] lg:py-[130px] px-[10px] lg:px-[34px] rounded-lg md:flex"
-            >
+              class="content bg-[#FEF7D6] md:py-[110px] py-[20px] lg:py-[130px] px-[10px] lg:px-[34px] rounded-lg md:flex">
               <div class="text md:w-1/2">
                 <p
-                  class="md:w-2/3 font-[600] text-[28px] lg:text-[44px] leading-[36px] lg:leading-[48px] font-poppins"
-                >
+                  class="md:w-2/3 font-[600] text-[28px] lg:text-[44px] leading-[36px] lg:leading-[48px] font-poppins">
                   Become a part of a community of our today.
                 </p>
                 <p class="pt-[16px] font-[500]">
@@ -136,8 +126,7 @@ const images = ref([
                 </p>
                 <div class="py-[50px]">
                   <button
-                    class="bg-[#295F2D] text-white px-[23px] py-[12px] rounded-full font-[700]"
-                  >
+                    class="bg-[#295F2D] text-white px-[23px] py-[12px] rounded-full font-[700]">
                     Let's Put Hands
                   </button>
                 </div>
@@ -150,7 +139,7 @@ const images = ref([
           </div>
         </section>
       </section>
-      <div class="py-5"></div>
+
       <Footer></Footer>
     </section>
     <!-- ABOUT US SECTION ENDS -->
