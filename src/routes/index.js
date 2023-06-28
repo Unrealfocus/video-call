@@ -3,6 +3,7 @@ import Home from "../pages/home/Home.vue";
 import works from "../pages/works/works.vue";
 import AboutUs from "../pages/about/aboutUs.vue";
 import singup from "../pages/auth/signUp1.vue";
+import singup from "../pages/auth/signUp1.vue";
 import ContactUs from "../pages/contact/contactUs.vue";
 import Index from "../pages/dashboard/Index.vue";
 import dashboardLayout from "../components/layout/dashboardLayout.vue";
@@ -13,7 +14,6 @@ import Withdrawal from "../pages/dashboard/withdrawal.vue";
 import ManagePage from "../pages/dashboard/manage.vue";
 import TransactionPage from "../pages/dashboard/transaction.vue";
 import HelpPage from "../pages/dashboard/help.vue";
-import Test from "../pages/dashboard/test.vue";
 import More from "../pages/dashboard/more.vue";
 import Edit from "../pages/dashboard/edit.vue";
 
@@ -104,10 +104,6 @@ export const router = createRouter({
       component: signin,
     },
 
-    {
-      path: "/test",
-      component: Test,
-    },
     {
       path: "/create-bucket",
       component: CreateBucket,
