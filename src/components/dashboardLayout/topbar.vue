@@ -3,8 +3,7 @@
     <div class="w-[85%] md:w-[] mx-auto flex justify-between">
       <div class="w-2/3">
         <div
-          class="bg-[#F3F3F3] rounded-full p-[12px] md:flex hidden items-center space-x-[24px]"
-        >
+          class="bg-[#F3F3F3] rounded-full p-[12px] md:flex hidden items-center space-x-[24px]">
           <div class="">
             <img src="/smallCheck.svg" />
           </div>
@@ -12,8 +11,7 @@
             <input
               type="text"
               placeholder="Search"
-              class="bg-transparent outline-none font-[600] text-[16px]"
-            />
+              class="bg-transparent outline-none font-[600] text-[16px]" />
           </div>
         </div>
       </div>
@@ -21,8 +19,7 @@
         <div class="relative">
           <button
             @click="toggleDropdown"
-            class="p-2 bg-gray-200 rounded-full hover:bg-gray-300 focus:outline-none focus:bg-gray-300"
-          >
+            class="p-2 bg-gray-200 rounded-full hover:bg-gray-300 focus:outline-none focus:bg-gray-300">
             <span class="relative">
               <img src="/bell.svg" alt="" />
               <span
@@ -34,22 +31,26 @@
           </button>
           <div
             v-if="isDropdownOpen"
-            class="absolute right-0 z-10 w-64 mt-2 bg-white rounded-lg shadow-lg"
-          >
+            class="absolute right-0 z-10 w-64 mt-2 bg-white rounded-lg shadow-lg">
             <ul class="divide-y divide-gray-200">
               <li
                 v-for="notification in notifications"
                 :key="notification.id"
                 class="p-4 cursor-pointer hover:bg-gray-100"
-                @click="clearNotifications"
-              >
+                @click="clearNotifications">
                 <p>{{ notification.message }}</p>
               </li>
             </ul>
           </div>
         </div>
         <img src="/roundman.svg" alt="" />
-        <p class="text-base font-semibold font-inter">David Sampson</p>
+        <p class="text-base font-semibold font-inter">
+          {{
+            this.$store.state.user.first_name +
+            " " +
+            this.$store.state.user.last_name
+          }}
+        </p>
         <img src="/arrowdown.svg" alt="" />
       </div>
     </div>

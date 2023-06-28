@@ -62,7 +62,7 @@ export const router = createRouter({
           component: AccountSettings,
         },
         {
-          path: "dashboard",
+          path: "",
           component: Index,
         },
         {

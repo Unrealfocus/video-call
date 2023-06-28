@@ -3,23 +3,25 @@
     <main class="lg:w-[85%] mx-auto p-6 sm:p-6">
       <section class="section 1">
         <h1
-          class="pb-3 text-sm font-medium md:text-base md:font-bold font-poppins"
-        >
-          Hi David Sampson
+          class="pb-3 text-sm font-medium md:text-base md:font-bold font-poppins">
+          Hi
+          {{
+            this.$store.state.user.first_name +
+            " " +
+            this.$store.state.user.last_name
+          }}
         </h1>
         <div class="items-center justify-between block md:flex">
           <div class="flex">
             <p
-              class="pb-3 text-2xl font-bold md:text-3xl md:font-medium font-poppins"
-            >
+              class="pb-3 text-2xl font-bold md:text-3xl md:font-medium font-poppins">
               Welcome back 👋🏼
             </p>
             <img src="" alt="" />
           </div>
 
           <button
-            class="rounded-full bg-[#2A5E2A] border-[1px] text-[#fff] py-3 text-[14px] px-10 font-poppins font-bold text-base"
-          >
+            class="rounded-full bg-[#2A5E2A] border-[1px] text-[#fff] py-3 text-[14px] px-10 font-poppins font-bold text-base">
             <router-link to="/create-bucket"> Create a bucket</router-link>
           </button>
         </div>
@@ -27,25 +29,21 @@
 
       <section class="hidden mt-12 md:block section 2">
         <div
-          class="w-[1000px] h-[146.19px] top-277px left-33px rounded-[16.4px] p-[8.2px] bg-white gap-[8.2px]"
-        >
+          class="w-[1000px] h-[146.19px] top-277px left-33px rounded-[16.4px] p-[8.2px] bg-white gap-[8.2px]">
           <div class="flex cards">
             <div
-              class="w-[273.96px] h-Hug-[129.79px] top-[8.2px] left-[8.2px] p-[34px 14px]"
-            >
+              class="w-[273.96px] h-Hug-[129.79px] top-[8.2px] left-[8.2px] p-[34px 14px]">
               <div class="p-5">
                 <div class="text-[#999999] font-bold text-xs flex gap-2">
                   <img src="/naira.svg" class="-mt-1" alt="" />
                   Total Donation
                 </div>
                 <div
-                  class="flex gap-2 pt-2 text-2xl font-semibold font-poppins"
-                >
+                  class="flex gap-2 pt-2 text-2xl font-semibold font-poppins">
                   <img src="/money.svg" alt="" />
                   500,000.00
                   <div
-                    class="text-xs text-[#1E8D4B] rounded-lg bg-[#EAF9F0] py-2 px-5 justify-center flex"
-                  >
+                    class="text-xs text-[#1E8D4B] rounded-lg bg-[#EAF9F0] py-2 px-5 justify-center flex">
                     30%
                     <img src="/arrowup2.svg" alt="" />
                   </div>
@@ -53,8 +51,7 @@
               </div>
             </div>
             <div
-              class="w-[273.96px] h-Hug-[129.79px] top-[8.2px] left-[8.2px] p-[34px 14px] border-l-2 border-r-2 border-gray-300"
-            >
+              class="w-[273.96px] h-Hug-[129.79px] top-[8.2px] left-[8.2px] p-[34px 14px] border-l-2 border-r-2 border-gray-300">
               <div class="p-5">
                 <div class="text-[#999999] font-bold text-xs flex gap-2">
                   <img src="/naira.svg" class="-mt-1" alt="" />
@@ -77,21 +74,18 @@
               </div>
             </div>
             <div
-              class="w-[273.96px] h-Hug-[129.79px] top-[8.2px] left-[8.2px] p-[34px 14px] border-r-2"
-            >
+              class="w-[273.96px] h-Hug-[129.79px] top-[8.2px] left-[8.2px] p-[34px 14px] border-r-2">
               <div class="p-5">
                 <div class="text-[#999999] font-bold text-xs flex gap-2">
                   <img src="/naira.svg" class="-mt-1" alt="" />
                   Average Donation
                 </div>
                 <div
-                  class="flex gap-2 pt-2 text-2xl font-semibold font-poppins"
-                >
+                  class="flex gap-2 pt-2 text-2xl font-semibold font-poppins">
                   <img src="/money.svg" alt="" />
                   500,000.00
                   <div
-                    class="text-xs text-[#1E8D4B] rounded-lg bg-[#EAF9F0] py-2 px-5 justify-center flex"
-                  >
+                    class="text-xs text-[#1E8D4B] rounded-lg bg-[#EAF9F0] py-2 px-5 justify-center flex">
                     30%
                     <img src="/arrowup2.svg" alt="" />
                   </div>
@@ -99,8 +93,7 @@
               </div>
             </div>
             <div
-              class="w-[273.96px] h-Hug-[129.79px] top-[8.2px] left-[8.2px] p-[34px 14px]"
-            >
+              class="w-[273.96px] h-Hug-[129.79px] top-[8.2px] left-[8.2px] p-[34px 14px]">
               <div class="p-5">
                 <div class="text-[#999999] font-bold text-xs flex gap-2">
                   <img src="/naira.svg" class="-mt-1" alt="" />
@@ -121,8 +114,7 @@
           Recent Fund Bucket
         </p>
         <div
-          class="w-[1,000px] h-[339.71px] top-53px rounded-[15px] p-[40px] gap-[10px] bg-white"
-        >
+          class="w-[1,000px] h-[339.71px] top-53px rounded-[15px] p-[40px] gap-[10px] bg-white">
           <div class="p-2">
             <div class="text-3xl font-bold font-poppins">
               Community electricity support
@@ -143,8 +135,7 @@
               >
             </dl>
             <div
-              class="flex justify-between gap-1 pt-2 text-2xl font-semibold font-poppins"
-            >
+              class="flex justify-between gap-1 pt-2 text-2xl font-semibold font-poppins">
               <div class="flex py-5">
                 <img src="/money.svg" alt="" /> 500,000.00
               </div>
@@ -153,8 +144,7 @@
               </div>
             </div>
             <div
-              class="rounded-xl text-start py-2 px-3 border border-[#484848] w-[160px] text-base"
-            >
+              class="rounded-xl text-start py-2 px-3 border border-[#484848] w-[160px] text-base">
               Non-profit Charity
             </div>
           </div>
@@ -179,8 +169,7 @@
 
             <div class="flex justify-end pt-4">
               <div
-                class="w-[110px] text-center h-[40px] bg-white border border-[#295F2D] rounded-2xl py-2 px-3"
-              >
+                class="w-[110px] text-center h-[40px] bg-white border border-[#295F2D] rounded-2xl py-2 px-3">
                 Read here
               </div>
             </div>
@@ -201,15 +190,12 @@
                   <img
                     src="/community.svg"
                     class="object-cover object-center w-full h-44 rounded-2xl"
-                    alt=""
-                  />
+                    alt="" />
                   <button
                     type="button"
-                    class="flex items-center px-2 py-1 my-3 rounded-lg bg-appGreen100"
-                  >
+                    class="flex items-center px-2 py-1 my-3 rounded-lg bg-appGreen100">
                     <span
-                      class="text-sm font-bold shadow-md text-appGreen200 font-poppins shadow-appGreen100"
-                    >
+                      class="text-sm font-bold shadow-md text-appGreen200 font-poppins shadow-appGreen100">
                       Medical
                     </span>
                     <img src="/Vector.svg" alt="vector" class="px-2" />
@@ -241,34 +227,29 @@
                   <dl class="flex justify-between my-4">
                     <span class="flex">
                       <dt
-                        class="font-bold font-poppins text-xs mr-1 text-[#000000]"
-                      >
+                        class="font-bold font-poppins text-xs mr-1 text-[#000000]">
                         Raised:
                       </dt>
 
                       <dd
-                        class="font-medium font-poppins text-xs text-[#000000]"
-                      >
+                        class="font-medium font-poppins text-xs text-[#000000]">
                         50,000
                       </dd>
                     </span>
                     <span class="flex">
                       <dt
-                        class="font-bold font-poppins text-xs text-[#295F2D] mr-1"
-                      >
+                        class="font-bold font-poppins text-xs text-[#295F2D] mr-1">
                         Goals:
                       </dt>
                       <dd
-                        class="font-medium font-poppins text-xs text-[#295F2D]"
-                      >
+                        class="font-medium font-poppins text-xs text-[#295F2D]">
                         1,000,000
                       </dd>
                     </span>
                   </dl>
                   <button
                     class="bg-appGreen300 w-full rounded-full py-2 font-semibold font-poppins text-lg text-[#FFFFFF]"
-                    type="button"
-                  >
+                    type="button">
                     Donate
                   </button>
                 </figure>
