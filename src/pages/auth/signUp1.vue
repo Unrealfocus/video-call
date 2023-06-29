@@ -237,20 +237,13 @@ export default {
           </div>
         </div>
 
-        <div class="flex justify-between pt-16">
-          <div :class="[currentStep == 3 ? 'hidden' : '']" class="">
-            <button
-              @click="prevSlide()"
-              class="border-2 border-[#295F2D] text-[#295F2D] rounded-2xl px-[23px] py-[12px] font-[700] text-[16px]">
-              Back
-            </button>
-          </div>
+        <div class="justify-between pt-16">
           <div class="next-button">
             <div
               :class="[currentStep == 3 ? 'hidden' : '']"
-              @click="nextSlide()"
+              @click="submit()"
               class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl px-6">
-              {{ currentStep > 2 ? "Done" : "Next" }}
+              {{ loading == true ? "Loading..." : "Submit" }}
             </div>
           </div>
         </div>

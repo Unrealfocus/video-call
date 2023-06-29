@@ -27,7 +27,7 @@
         <div class="">
           <button
             class="hidden lg:block hover:bg-[#BDEED1] text-[#295F2D] px-[23px] py-[11px] border-2 border-[#295F2D] rounded-full">
-            <router-link v-if="!this.$store.state.user.user_id" to="/signUp"
+            <router-link v-if="!this.$store.state.user.user_id" to="/sign-in"
               >Sign in</router-link
             >
             <router-link v-if="this.$store.state.user.user_id" to="/dashboard"
