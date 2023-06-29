@@ -30,40 +30,6 @@
         </div>
 
         <div :class="[currentStep == 1 ? '' : 'hidden']" class="form">
-          <!-- <div class="">
-            <p class="text-[32px] font-[800] font-poppins">
-              Let’s Started with basis
-            </p>
-          </div> -->
-          <div class="space-y-[20px]">
-            <p class="font-[600] text-[18px]">Where do you Live?</p>
-            <div class="lg:flex lg:space-x-[10px]">
-              <div class="lg:w-1/2 border border-[#000] rounded-2xl p-3">
-                <select
-                  v-model="currentState"
-                  class="w-full bg-transparent border-none outline-none">
-                  <option>Select your State</option>
-                  <option
-                    :value="state"
-                    v-for="state in states"
-                    :key="state.name">
-                    {{ state.name }}
-                  </option>
-                </select>
-              </div>
-
-              <div
-                class="lg:w-1/2 border border-[#000] rounded-2xl p-3 mt-[20px] lg:mt-[0px]">
-                <select class="w-full bg-transparent border-none outline-none">
-                  <option selected>Select your city</option>
-                  <option v-for="item in currentState.cities" :key="item">
-                    {{ item }}
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
-
           <div class="py-[25px] space-y-[20px]">
             <p class="font-[600] text-[18px]">What are you funding for?</p>
 

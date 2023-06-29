@@ -1,59 +1,59 @@
 <script>
-import statesWithLGA from '../../assets/statesWithLGA'
+import statesWithLGA from "../../assets/statesWithLGA";
 export default {
-  name: 'signUp',
+  name: "signUp",
   data() {
     return {
       currentStep: 1,
 
-      forWho: '',
+      forWho: "",
       forWhoList: [
-        { icon: '', target: 'Yourself' },
-        { icon: '', target: 'A Friend' },
-        { icon: '', target: 'Charity' },
+        { icon: "", target: "Yourself" },
+        { icon: "", target: "A Friend" },
+        { icon: "", target: "Charity" },
       ],
       states: [],
-      activeState: '',
+      activeState: "",
       activeLGA: [],
-    }
+    };
   },
   created() {
     Object.keys(statesWithLGA).forEach((key) => {
-      this.states.push(key)
-    })
+      this.states.push(key);
+    });
   },
   methods: {
     setForWho(item) {
-      this.forWho = item
+      this.forWho = item;
     },
     nextSlide() {
       if (this.currentStep < 4) {
-        this.currentStep++
+        this.currentStep++;
       }
     },
     prevSlide() {
       if (this.currentStep > 1) {
-        this.currentStep--
+        this.currentStep--;
       }
     },
     LGAs() {
       Object.entries(statesWithLGA).forEach(([key, value]) => {
         if (key.toLowerCase() === this.activeState.toLowerCase()) {
-          this.activeLGA = value
+          this.activeLGA = value;
         }
-      })
+      });
     },
     handleStateChange(e) {
-      this.activeState = e.target.value
-      console.log(typeof statesWithLGA)
+      this.activeState = e.target.value;
+      console.log(typeof statesWithLGA);
     },
   },
   watch: {
     activeState() {
-      this.LGAs()
+      this.LGAs();
     },
   },
-}
+};
 </script>
 
 <template>
@@ -63,8 +63,7 @@ export default {
         <div :class="[currentStep == 1 ? '' : 'hidden']" class="form">
           <div>
             <h2
-              class="font-poppins text-lg md:text-xl lg:text-2xl font-bold text-appGreen400"
-            >
+              class="font-poppins text-lg md:text-xl lg:text-2xl font-bold text-appGreen400">
               What ‘s your name
             </h2>
             <label
@@ -79,16 +78,14 @@ export default {
                 name="firstName"
                 id="firstName"
                 autocomplete="given-name"
-                placeholder="First Name"
-              />
+                placeholder="First Name" />
               <input
                 class="app-input"
                 type="text"
                 name="lastName"
                 id="lastName"
                 autocomplete="family-name"
-                placeholder="Last Name"
-              />
+                placeholder="Last Name" />
             </div>
 
             <input
@@ -97,8 +94,7 @@ export default {
               name="password"
               id="password"
               autocomplete="new-password"
-              placeholder="Password"
-            />
+              placeholder="Password" />
 
             <input
               class="app-input"
@@ -106,8 +102,7 @@ export default {
               name="confirmPassword"
               id="confirmPassword"
               autocomplete="new-password"
-              placeholder="Confirm Password"
-            />
+              placeholder="Confirm Password" />
             <input
               class="app-input mt-4"
               type="email"
@@ -115,12 +110,10 @@ export default {
               id="email"
               autocomplete="email"
               placeholder="Email"
-              v-model="email"
-            />
+              v-model="email" />
           </div>
           <h3
-            class="my-5 font-poppins font-bold text-base md:text-lg lg:text-xl text-appGreen400"
-          >
+            class="my-5 font-poppins font-bold text-base md:text-lg lg:text-xl text-appGreen400">
             Where are you located?
           </h3>
 
@@ -130,14 +123,12 @@ export default {
               :onchange="handleStateChange"
               class="app-input"
               name="state"
-              id="state"
-            >
+              id="state">
               <option value="">Select your state</option>
               <option
                 v-for="(state, index) in states"
                 :key="index"
-                :value="state"
-              >
+                :value="state">
                 {{ state }}
               </option>
             </select>
@@ -148,8 +139,7 @@ export default {
               <option
                 v-for="(cities, index) in activeLGA"
                 :key="index"
-                :value="cities"
-              >
+                :value="cities">
                 {{ cities }}
               </option>
             </select>
@@ -160,8 +150,7 @@ export default {
               type="checkbox"
               class="w-5 h-5 rounded-full"
               name="terms"
-              id="terms"
-            />
+              id="terms" />
             <span class="block ml-2 text-[#999999] font-poppins text-sm">
               By accepting, I agree to comply with data regulations as outlined
               in the Puthand Privacy Policy, granting my consent for the
@@ -222,8 +211,7 @@ export default {
         <!-- success slide  -->
         <div
           :class="[currentStep == 3 ? '' : 'hidden']"
-          class="form space-y-[140px] py-[100px]"
-        >
+          class="form space-y-[140px] py-[100px]">
           <div class="flex justify-center items-center">
             <img class="" src="/bigCheck.svg" />
           </div>
@@ -232,11 +220,9 @@ export default {
               Successfully Completed
             </p>
             <div
-              class="flex justify-center rounded-full text-[#fff] py-3 text-[14px] px-10"
-            >
+              class="flex justify-center rounded-full text-[#fff] py-3 text-[14px] px-10">
               <button
-                class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl px-40"
-              >
+                class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl px-40">
                 Done
               </button>
             </div>
@@ -247,8 +233,7 @@ export default {
           <div :class="[currentStep == 3 ? 'hidden' : '']" class="">
             <button
               @click="prevSlide()"
-              class="border-2 border-[#295F2D] text-[#295F2D] rounded-2xl px-[23px] py-[12px] font-[700] text-[16px]"
-            >
+              class="border-2 border-[#295F2D] text-[#295F2D] rounded-2xl px-[23px] py-[12px] font-[700] text-[16px]">
               Back
             </button>
           </div>
@@ -256,9 +241,8 @@ export default {
             <div
               :class="[currentStep == 3 ? 'hidden' : '']"
               @click="nextSlide()"
-              class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl px-6"
-            >
-              {{ currentStep > 2 ? 'Done' : 'Next' }}
+              class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl px-6">
+              {{ currentStep > 2 ? "Done" : "Next" }}
             </div>
           </div>
         </div>
