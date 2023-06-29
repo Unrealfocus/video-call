@@ -50,6 +50,7 @@
         <img src="/basil_edit-outline.svg" alt="" />
         edit/settings
       </button>
+
       <div class="flex items-center gap-3">
         <div
           class="flex py-2 text-sm font-semibold text-left rounded-md font-poppins"

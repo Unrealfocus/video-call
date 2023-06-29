@@ -91,7 +91,7 @@ import Footer from "../../components/layout/footer.vue";
           class="gap-10 text-center bg-[#F8B83A] text-[#242424] py-4 px-10 flex w-[285px] mt-7 rounded-xl"
         >
           <div class="mt-2 text-base font-bold font-poppins">Send an email</div>
-          <img class="" src="arrow-right.svg" alt="" />
+          <img class="" src="/arrow-right.svg" alt="" />
         </button>
       </div>
       <Footer class=""></Footer>

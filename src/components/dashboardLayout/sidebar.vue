@@ -67,7 +67,7 @@ export default {
         {
           icon: "/category.svg",
           title: "Dashboard",
-          target: "/dashboard/dashboard",
+          target: "/dashboard",
         },
         {
           icon: "/setting3.svg",

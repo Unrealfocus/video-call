@@ -108,7 +108,7 @@ export default {
             <div
               class="flex justify-between bg-[#1877F2] md:w-[500px] w-full p-4 rounded-2xl px-5 py-3 mb-7"
             >
-              <img src="Vector(1).svg" alt="" />
+              <img src="/Vector(1).svg" alt="" />
               <div class="rounded-xl bg-white px-8 py-2 text-[#406EE5]">
                 Connect
               </div>
@@ -116,7 +116,7 @@ export default {
             <div
               class="flex justify-between bg-[#1877F2] w-full p-4 rounded-2xl md:w-[500px] px-5 py-3"
             >
-              <img src="Vector(2).svg" alt="" />
+              <img src="/Vector(2).svg" alt="" />
               <div class="rounded-xl bg-white px-8 py-2 text-[#406EE5]">
                 Connect
               </div>
