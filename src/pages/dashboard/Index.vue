@@ -19,11 +19,12 @@
             </p>
             <img src="" alt="" />
           </div>
-
-          <button
-            class="rounded-full bg-[#2A5E2A] border-[1px] text-[#fff] py-3 text-[14px] px-10 font-poppins font-bold text-base">
-            <router-link to="/create-bucket"> Create a bucket</router-link>
-          </button>
+          <router-link to="/create-bucket">
+            <button
+              class="rounded-full bg-[#2A5E2A] border-[1px] text-[#fff] py-3 text-[14px] px-10 font-poppins font-bold text-base">
+              Create a bucket
+            </button></router-link
+          >
         </div>
       </section>
 
@@ -247,11 +248,13 @@
                       </dd>
                     </span>
                   </dl>
-                  <button
-                    class="bg-appGreen300 w-full rounded-full py-2 font-semibold font-poppins text-lg text-[#FFFFFF]"
-                    type="button">
-                    Donate
-                  </button>
+                  <router-link to="/buckets">
+                    <button
+                      class="bg-appGreen300 w-full rounded-full py-2 font-semibold font-poppins text-lg text-[#FFFFFF]"
+                      type="button">
+                      Donate
+                    </button></router-link
+                  >
                 </figure>
               </li>
             </ul>
