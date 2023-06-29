@@ -41,7 +41,7 @@ export default {
   },
   methods: {},
   mounted() {
-    if (!this.$store.state.user.usdr_id) {
+    if (this.$store.state.user == {}) {
       return this.$router.push("/sign-in");
     }
   },

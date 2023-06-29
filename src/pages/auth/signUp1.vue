@@ -39,6 +39,15 @@ export default {
         })
         .then((res) => {
           this.loading = false;
+          //update user state
+          console.log("user", res.data.user);
+          console.log("token", res.data.token);
+          const payload = res.data;
+
+          this.$store.commit("updateUser", payload);
+
+          localStorage.setItem("@user", JSON.stringify(res.data));
+
           this.currentStep++;
         })
         .catch((err) => {
@@ -156,7 +165,10 @@ export default {
 
           <span class="flex gap-1 font-medium font-inter text-appGreen400"
             ><p>Got an account?</p>
-            <button class="underline text-appGreen200" type="button">
+            <button
+              @click="this.$router.push('/sign-in')"
+              class="underline text-appGreen200"
+              type="button">
               Sign In
             </button></span
           >

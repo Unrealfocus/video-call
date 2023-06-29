@@ -4,7 +4,7 @@ export default {
   name: "App",
 
   async mounted() {
-    let user = await localStorage.getItem("@user");
+    let user = localStorage.getItem("@user");
     user = JSON.parse(user);
     if (user) {
       this.$store.commit("updateUser", user);
@@ -16,9 +16,7 @@ export default {
           },
         })
         .then((res) => {})
-        .catch((err) => {
-          // this.$router.push("/");
-        });
+        .catch((err) => {});
     }
   },
 };

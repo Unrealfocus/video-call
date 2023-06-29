@@ -21,6 +21,15 @@ export default {
         })
         .then((res) => {
           this.loading = false;
+          //update user state
+          console.log("user", res.data.user);
+          console.log("token", res.data.token);
+          const payload = res.data;
+
+          this.$store.commit("updateUser", payload);
+
+          localStorage.setItem("@user", JSON.stringify(res.data));
+
           this.$router.push("/dashboard");
         })
         .catch((err) => {
@@ -73,16 +82,15 @@ export default {
           </div>
           <div>
             <span class="flex">
-              <input
-                type="checkbox"
-                class="w-5 h-5 rounded-full"
-                name="terms"
-                id="terms" />
-              <span class="block ml-2 text-[#999999] font-poppins text-sm">
-                By accepting, I agree to comply with data regulations as
-                outlined in the Puthand Privacy Policy, granting my consent for
-                the collection and processing of my personal data.
-              </span>
+              <span class="flex gap-1 font-medium font-inter text-appGreen400"
+                ><p>No account?</p>
+                <button
+                  @click="this.$router.push('/signup')"
+                  class="underline text-appGreen200"
+                  type="button">
+                  Sign Up
+                </button></span
+              >
             </span>
             <div class="mt-7">
               <div class="mx-auto">

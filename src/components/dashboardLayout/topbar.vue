@@ -5,7 +5,7 @@
         <div
           class="bg-[#F3F3F3] rounded-full p-[12px] md:flex hidden items-center space-x-[24px]">
           <div class="">
-            <img src="/smallCheck.svg" />
+            <img src="/clarity_search-line.svg" alt="" />
           </div>
           <div class="">
             <input
