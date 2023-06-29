@@ -9,6 +9,11 @@ export default {
   },
   data() {
     return {
+      firstName: this.$store.state.user.first_name,
+      lastName: this.$store.state.user.last_name,
+      email: this.$store.state.user.email,
+      newEmail: "",
+      confirmEmail: "",
       activeTab: 0,
       tabs: ["Profile Setting", "Notification", "Security Setting"],
       isActive1: false,
@@ -62,39 +67,22 @@ export default {
             <input
               class="app-input"
               type="text"
-              name="firstName"
-              id="firstName"
-              autocomplete="given-name"
+              v-model="firstName"
               placeholder="First Name" />
             <input
               class="app-input"
               type="text"
-              name="lastName"
-              id="lastName"
+              v-model="lastName"
               autocomplete="family-name"
               placeholder="Last Name" />
           </div>
           <input
             class="mt-4 app-input"
             type="email"
-            name="email"
-            id="email"
             autocomplete="email"
             placeholder="Email"
             v-model="email" />
-          <div>
-            <p class="py-4 font-poppins font-bold text-lg text-[#999999]">
-              Language
-            </p>
-            <input
-              class="mt-4 app-input"
-              type="email"
-              name="email"
-              id="email"
-              autocomplete="email"
-              placeholder="Email"
-              v-model="email" />
-          </div>
+          <div></div>
           <p class="py-5 font-poppins font-bold text-lg text-[#999999]">
             Connect Social media account
           </p>
@@ -302,12 +290,9 @@ export default {
             </p>
             <input
               class="mt-4 app-input"
-              type="email"
-              name="current email adresss"
-              id="current email address"
               autocomplete="email"
-              placeholder="PhelTakon@gmail.com"
-              v-model="email" />
+              disabled
+              :value="email" />
           </div>
 
           <div>
@@ -321,7 +306,7 @@ export default {
               id="new email address"
               autocomplete="email"
               placeholder="PhelTakon1234@gmail.com"
-              v-model="email" />
+              v-model="newEmail" />
           </div>
 
           <div>
@@ -335,7 +320,7 @@ export default {
               id="confirm new email address"
               autocomplete="email"
               placeholder="PhelTakon1234@gmail.com"
-              v-model="email" />
+              v-model="confirmEmail" />
           </div>
         </section>
         <section class="flex justify-center mt-20">
