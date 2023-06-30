@@ -75,12 +75,28 @@
             <div class="">
               <div class="w-full border-2 border-[#93939] rounded-2xl p-3">
                 <input
+                  type="number"
+                  v-model="goal"
                   class="bg-[#fff] w-full border-none bg-transparent outline-none rounded full" />
               </div>
               <p class="text-[#939393] text-[14px] font-[500]">
                 Please Know that transaction fees including credit and debit
                 charge are deducted from each donation.
               </p>
+            </div>
+          </div>
+          <div class="py-4 space-y-[20px]">
+            <p class="font-poppins font-[600] text-[18px]">
+              How much would you want you bucket to end?
+            </p>
+            <div class="">
+              <div class="w-full border-2 border-[#93939] rounded-2xl p-3">
+                <input
+                  type="date"
+                  v-model="endDate"
+                  :min="today"
+                  class="bg-[#fff] w-full border-none bg-transparent outline-none rounded full" />
+              </div>
             </div>
           </div>
           <div class="space-y-[20px]">
@@ -172,6 +188,9 @@ export default {
   data() {
     return {
       category: "choose your category",
+      today: "",
+      goal: 0,
+      endDate: "",
       Categories: [],
       currentStep: 1,
       states: states,
@@ -186,6 +205,8 @@ export default {
     };
   },
   async mounted() {
+    const today = new Date().toISOString().split("T")[0];
+    this.today = today;
     axios
       .get("https://backend.puthand.com/public/api/categories")
       .then((res) => {
