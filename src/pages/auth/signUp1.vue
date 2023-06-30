@@ -1,6 +1,5 @@
 <script>
 import statesWithLGA from "../../assets/statesWithLGA";
-
 import axios from "axios";
 export default {
   name: "signUp",
@@ -93,13 +92,14 @@ export default {
 </script>
 
 <template>
-  <section class="bg-[#B7B7B7] min-h-screen">
-    <div class="flex items-center justify-center">
-      <div class="bg-[#fff] w-[820px] rounded-lg px-[45px] py-[50px] m-36">
+  <section class="bg-[#B7B7B7] lg:h-screen">
+    <div class="flex items-center justify-center lg:h-screen">
+      <div class="bg-[#fff] w-[820px] rounded-lg px-[45px] py-[50px]">
         <div :class="[currentStep == 1 ? '' : 'hidden']" class="form">
           <div>
             <h2
-              class="text-lg font-bold font-poppins md:text-xl lg:text-2xl text-appGreen400">
+              class="text-lg font-bold font-poppins md:text-xl lg:text-2xl text-appGreen400"
+            >
               What ‘s your name
             </h2>
             <label
@@ -115,25 +115,29 @@ export default {
                 id="firstName"
                 autocomplete="given-name"
                 v-model="firstName"
-                placeholder="First Name" />
+                placeholder="First Name"
+              />
               <input
                 class="app-input"
                 type="text"
                 v-model="lastName"
-                placeholder="Last Name" />
+                placeholder="Last Name"
+              />
             </div>
 
             <input
               class="my-4 app-input"
               type="password"
               v-model="password"
-              placeholder="Password" />
+              placeholder="Password"
+            />
 
             <input
               class="app-input"
               type="password"
               v-model="confirmPassword"
-              placeholder="Confirm Password" />
+              placeholder="Confirm Password"
+            />
             <input
               class="mt-4 app-input"
               type="email"
@@ -141,13 +145,15 @@ export default {
               id="email"
               autocomplete="email"
               placeholder="Email"
-              v-model="email" />
+              v-model="email"
+            />
             <input
               class="mt-4 app-input"
               type="email"
               autocomplete="phone"
               placeholder="Phone Number"
-              v-model="phone" />
+              v-model="phone"
+            />
           </div>
 
           <span class="flex items-baseline mt-8">
@@ -155,7 +161,8 @@ export default {
               type="checkbox"
               class="w-5 h-5 rounded-full"
               name="terms"
-              id="terms" />
+              id="terms"
+            />
             <span class="block ml-2 text-[#999999] font-poppins text-sm">
               By accepting, I agree to comply with data regulations as outlined
               in the Puthand Privacy Policy, granting my consent for the
@@ -219,7 +226,8 @@ export default {
         <!-- success slide  -->
         <div
           :class="[currentStep == 3 ? '' : 'hidden']"
-          class="form space-y-[140px] py-[100px]">
+          class="form space-y-[140px] py-[100px]"
+        >
           <div class="flex items-center justify-center">
             <img class="" src="/bigCheck.svg" />
           </div>
@@ -228,9 +236,11 @@ export default {
               Successfully Completed
             </p>
             <div
-              class="flex justify-center rounded-full text-[#fff] py-3 text-[14px] px-10">
+              class="flex justify-center rounded-full text-[#fff] py-3 text-[14px] px-10"
+            >
               <button
-                class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl px-40">
+                class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl px-40"
+              >
                 Done
               </button>
             </div>
@@ -240,10 +250,18 @@ export default {
         <div class="justify-between pt-16">
           <div class="next-button">
             <div
+<<<<<<< HEAD
+              :class="[currentStep != 1 ? 'hidden' : '']"
+              @click="submit"
+              class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl px-6"
+            >
+              {{ loading == true ? "loading..." : "Sign Up" }}
+=======
               :class="[currentStep == 3 ? 'hidden' : '']"
               @click="submit()"
               class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl px-6">
               {{ loading == true ? "Loading..." : "Submit" }}
+>>>>>>> develop
             </div>
           </div>
         </div>

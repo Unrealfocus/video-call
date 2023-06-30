@@ -1,14 +1,6 @@
 <script setup>
 import Navbar from "../../components/layout/navabar_test.vue";
 import Footer from "../../components/layout/footer.vue";
-
-// export default {
-//   components: {},
-//   data() {},
-//   computed: {},
-
-//   methods: {},
-// }
 </script>
 
 <template>
@@ -16,7 +8,7 @@ import Footer from "../../components/layout/footer.vue";
     <Navbar />
     <!--Hero Section-->
     <section class="bg-[url('/Vector2.svg')]">
-      <section class="bg-[#F3F3F3] pb-16 relative">
+      <section class="bg-[#F3F3F3] pb-16 relative p-8">
         <section class="flex items-center justify-center">
           <p
             class="text-center font-poppins px-[41px] font-[800] md:leading-[56px] leading-[44px] text-[36px] sm:font-extrabold md:text-[66px] mt-28"
@@ -60,7 +52,7 @@ import Footer from "../../components/layout/footer.vue";
 
       <!-- How Put Hand Works -->
 
-      <section class="bg-[#FFF] pt-4 pb-10">
+      <section class="bg-[#FFF] pt-4 pb-10 p-8">
         <div class="w-[90%] xl:w-[1280px] mx-auto">
           <div class="">
             <p
@@ -151,10 +143,8 @@ import Footer from "../../components/layout/footer.vue";
         </div>
       </section>
 
-      <section class="bg-appGray100 font-poppins">
-        <div
-          class="w-[90%] xl:w-[1280px] lg:w-[1125px] mx-auto py-[64px] md:py-[67px] lg:py-[49px]"
-        >
+      <section class="p-8 bg-appGray100 font-poppins">
+        <div class="w-[100%] mx-auto py-[64px] md:py-[67px] lg:py-[49px]">
           <div
             class="content bg-[#FEF7D6] md:py-[110px] py-[20px] lg:py-[100px] px-[10px] lg:px-[34px] rounded-3xl md:flex"
           >
@@ -194,7 +184,7 @@ import Footer from "../../components/layout/footer.vue";
       </section>
 
       <section
-        class="container w-4/5 pt-4 pb-10 mx-auto bg-white md:w-5/6 lg:w-4/5"
+        class="container w-4/5 p-8 pt-4 pb-10 mx-auto bg-white md:w-5/6 lg:w-4/5"
       >
         <p class="justify-start pt-3 mb-8 text-4xl font-bold leading-10">
           DO YOU WANT TO PUT HAND FOR SOMEONE TODAY? 
@@ -279,7 +269,7 @@ import Footer from "../../components/layout/footer.vue";
         </ul>
       </section>
 
-      <section class="pt-4 pb-10 bg-appGray100 lg:relative">
+      <section class="p-8 pt-4 pb-10 bg-appGray100 lg:relative">
         <section class="items-center justify-center pb-10 mx-auto">
           <section
             class="bg-[#FEF4C3] p-9 w-[90%] md:w-2/3 mx-auto rounded-2xl inset-x-0 top-0 mt-6 space-y-5"
@@ -296,8 +286,12 @@ import Footer from "../../components/layout/footer.vue";
               trending
             </p>
 
-            <form @submit.prevent="submitForm" action="input">
-              <div class="relative flex">
+            <!-- <form
+              @submit.prevent="submitForm"
+              action="input"
+              class="border-2 h-[200px] relative"
+            >
+              <div class="relative flex border-2">
                 <div
                   class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
                 >
@@ -315,7 +309,24 @@ import Footer from "../../components/layout/footer.vue";
                   Submit
                 </button>
               </div>
-            </form>
+            </form> -->
+            <div class="relative">
+              <div class="absolute top-[0.9rem] left-3">
+                <img src="/sms.svg" alt="" />
+              </div>
+              <input
+                type="email"
+                id="email-address-icon"
+                class="bg-[#FFFFFF] rounded-lg block w-full pl-10 p-2.5 outline-none"
+                placeholder="Enter your email"
+              />
+              <button
+                class="inset-y-1 right-0 flex items-center px-5 text-[white] w-[90px] mr-2 bg-[#939393] rounded-lg h-[36px] lg:absolute mt-3 lg:mt-0"
+                @click="() => handleClick('Yooooo my nigga')"
+              >
+                Submit
+              </button>
+            </div>
           </section>
         </section>
         <Footer></Footer>
