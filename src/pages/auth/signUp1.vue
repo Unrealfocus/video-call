@@ -38,6 +38,15 @@ export default {
         })
         .then((res) => {
           this.loading = false;
+          //update user state
+          console.log("user", res.data.user);
+          console.log("token", res.data.token);
+          const payload = res.data;
+
+          this.$store.commit("updateUser", payload);
+
+          localStorage.setItem("@user", JSON.stringify(res.data));
+
           this.currentStep++;
         })
         .catch((err) => {
@@ -163,7 +172,10 @@ export default {
 
           <span class="flex gap-1 font-medium font-inter text-appGreen400"
             ><p>Got an account?</p>
-            <button class="underline text-appGreen200" type="button">
+            <button
+              @click="this.$router.push('/sign-in')"
+              class="underline text-appGreen200"
+              type="button">
               Sign In
             </button></span
           >
@@ -235,14 +247,21 @@ export default {
           </div>
         </div>
 
-        <div class="pt-16">
+        <div class="justify-between pt-16">
           <div class="next-button">
             <div
+<<<<<<< HEAD
               :class="[currentStep != 1 ? 'hidden' : '']"
               @click="submit"
               class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl px-6"
             >
               {{ loading == true ? "loading..." : "Sign Up" }}
+=======
+              :class="[currentStep == 3 ? 'hidden' : '']"
+              @click="submit()"
+              class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl px-6">
+              {{ loading == true ? "Loading..." : "Submit" }}
+>>>>>>> develop
             </div>
           </div>
         </div>
