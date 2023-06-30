@@ -1,7 +1,7 @@
 <template>
   <div class="bg-[#B7B7B7] lg:h-screen">
     <div class="flex items-center justify-center lg:h-screen">
-      <div class="bg-[#fff] w-[820px] rounded-lg px-[45px] py-[50px]">
+      <div class="bg-[#fff] w-[820px] rounded-lg px-[45px] py-[30px]">
         <div :class="[currentStep == 4 ? 'hidden' : '']" class="">
           <button
             @click="prevSlide()"
@@ -30,7 +30,7 @@
         </div>
 
         <div :class="[currentStep == 1 ? '' : 'hidden']" class="form">
-          <div class="py-[25px] space-y-[20px]">
+          <div class="space-y-[10px]">
             <p class="font-[600] text-[18px]">What are you funding for?</p>
 
             <div
@@ -63,12 +63,7 @@
 
         <!-- second slide  -->
         <div :class="[currentStep == 2 ? '' : 'hidden']" class="form">
-          <div class="">
-            <p class="text-[32px] font-[800] font-poppins">
-              what is your fundraising goal
-            </p>
-          </div>
-          <div class="py-4 space-y-[20px]">
+          <div class="space-y-[10px]">
             <p class="font-poppins font-[600] text-[18px]">
               How much would you like to raise?
             </p>
@@ -85,7 +80,7 @@
               </p>
             </div>
           </div>
-          <div class="py-4 space-y-[20px]">
+          <div class="py-2 space-y-[10px]">
             <p class="font-poppins font-[600] text-[18px]">
               How much would you want you bucket to end?
             </p>
@@ -99,11 +94,11 @@
               </div>
             </div>
           </div>
-          <div class="space-y-[20px]">
+          <div class="space-y-[10px]">
             <p class="font-poppins font-[600] text-[18px]">
               Who are you fundraising for?
             </p>
-            <div class="space-y-[30px]">
+            <div class="space-y-[10px]">
               <div
                 @click="setForWho(item.target)"
                 :class="[

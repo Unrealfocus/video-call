@@ -1,6 +1,5 @@
 <script>
 import statesWithLGA from "../../assets/statesWithLGA";
-
 import axios from "axios";
 export default {
   name: "signUp",
@@ -93,9 +92,9 @@ export default {
 </script>
 
 <template>
-  <section class="bg-[#B7B7B7] min-h-screen">
-    <div class="flex items-center justify-center">
-      <div class="bg-[#fff] w-[820px] rounded-lg px-[45px] py-[50px] m-36">
+  <section class="bg-[#B7B7B7] lg:h-screen">
+    <div class="flex items-center justify-center lg:h-screen">
+      <div class="bg-[#fff] w-[820px] rounded-lg px-[45px] py-[50px]">
         <div :class="[currentStep == 1 ? '' : 'hidden']" class="form">
           <div>
             <h2
@@ -240,10 +239,10 @@ export default {
         <div class="justify-between pt-16">
           <div class="next-button">
             <div
-              :class="[currentStep == 3 ? 'hidden' : '']"
-              @click="submit()"
+              :class="[currentStep != 1 ? 'hidden' : '']"
+              @click="submit"
               class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl px-6">
-              {{ loading == true ? "Loading..." : "Submit" }}
+              {{ loading == true ? "loading..." : "Sign Up" }}
             </div>
           </div>
         </div>
