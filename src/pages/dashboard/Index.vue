@@ -101,7 +101,7 @@
                   Total Fundraising Buckets
                 </div>
                 <div class="pt-2 text-2xl font-semibold font-poppins">
-                  50
+                  {{ myBuckets.length }}
                   <span class="text-xs font-medium font-poppins">Buckets</span>
                 </div>
               </div>
@@ -110,7 +110,7 @@
         </div>
       </section>
 
-      <section class="hidden section 3 md:block">
+      <section v-if="myBuckets.length > 0" class="hidden section 3 md:block">
         <p class="pt-9 pb-5 font-poppins font-semibold text-xl text-[#484848]">
           Recent Fund Bucket
         </p>
@@ -118,12 +118,10 @@
           class="w-[1,000px] h-[339.71px] top-53px rounded-[15px] p-[40px] gap-[10px] bg-white">
           <div class="p-2">
             <div class="text-3xl font-bold font-poppins">
-              Community electricity support
+              {{ recent.bucket.title }}
             </div>
             <div class="py-5 text-base font-medium font-poppins">
-              Lorem ipsum dolor sit amet, consectetur adipiscing nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat.
+              {{ recent.bucket.description }}
             </div>
             <dl class="flex">
               <div class="flex flex-1 bg-[#EAF9F0] rounded-full mr-3">
@@ -138,7 +136,7 @@
             <div
               class="flex justify-between gap-1 pt-2 text-2xl font-semibold font-poppins">
               <div class="flex py-5">
-                <img src="/money.svg" alt="" /> 500,000.00
+                <img src="/money.svg" alt="" /> {{ recent.donated }}
               </div>
               <div class="font-poppins font-medium text-xs text-[#939393]">
                 March 22th 2023
@@ -146,7 +144,7 @@
             </div>
             <div
               class="rounded-xl text-start py-2 px-3 border border-[#484848] w-[160px] text-base">
-              Non-profit Charity
+              {{ recent.category }}
             </div>
           </div>
         </div>
@@ -265,4 +263,38 @@
   </div>
 </template>
 
-<script setup></script>
+<script>
+import axios from "axios";
+
+export default {
+  data() {
+    return {
+      assets: "",
+      myBuckets: [],
+      recent: {},
+    };
+  },
+  async mounted() {
+    const app = import.meta.env.VITE_APP_ENGINE;
+    this.assets = import.meta.env.VITE_APP_ASSETS;
+
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + this.$store.state.token;
+    //get categories
+    await axios.get(app + "categories").then((res) => {
+      this.categories = res.data.data;
+    });
+
+    //get my buckets
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + this.$store.state.token;
+    await axios
+      .get(app + "my_bucket/" + this.$store.state.user.user_id)
+      .then((res) => {
+        this.myBuckets = res.data.data;
+      });
+    //set recent
+    this.recent = this.myBuckets[this.myBuckets.length - 1];
+  },
+};
+</script>

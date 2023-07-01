@@ -17,24 +17,28 @@
           </div>
         </div>
       </div>
+
       <div class="content-list">
         <div
           class="md:grid lg:grid-cols-4 grid-cols-2 grid-flow-row auto-rows-max gap-2">
           <div
-            v-for="item in 12"
+            v-for="item in buckets"
             class="bg-[#fff] m-2 rounded-2xl p-1 space-y-[10px]">
             <img
-              src="/community.svg"
-              class="h-44 w-full object-cover object-center rounded-2xl"
+              :src="assets + item.images[0].image_url"
+              class="h-[300px] w-full object-cover object-center rounded-2xl"
               alt="" />
             <p class="font-poppins font-[700] text-[18px] leading-[20px]">
-              Help david Community get support
+              {{ item.bucket.title }}
             </p>
-            <p class="font-poppins font-[800] text-[14px]">by David Sampson</p>
-            <p class="font-poppins font-[500] text-[12px]">
-              Jorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu
-              turpis molestie, dictum est a, mattis tellus...
+            <p class="font-poppins font-[800] text-[14px]">
+              by {{ item.author }}
             </p>
+            <div class="h-[55px] overflow-hidden">
+              <p class="font-poppins font-[500] text-[12px]">
+                {{ item.bucket.description }}
+              </p>
+            </div>
 
             <dl class="flex">
               <div class="flex flex-1 bg-[#EAF9F0] rounded-full mr-3">
@@ -42,13 +46,17 @@
               </div>
             </dl>
             <p class="font-poppins text-[14px] font-[500]">
-              <span class="font-[800]">Raised:</span>
-              N50,000
+              <span class="font-[800]">Goal:</span>
+              N{{ item.bucket.goal }}
             </p>
-            <div class="flex space-x-[6px] items-center">
+            <p class="font-poppins text-[14px] font-[500]">
+              <span class="font-[800]">Raised:</span>
+              N0
+            </p>
+            <!-- <div class="flex space-x-[6px] items-center">
               <img src="/location.svg" class="w-[20px] h-[20px]" />
               <p class="font-poppins text-[14px] font-[800]">Lagos</p>
-            </div>
+            </div> -->
             <div class="">
               <button
                 @click="singleBucket"
@@ -70,6 +78,7 @@
 </template>
 <script>
 import navabar_test from "../../components/layout/navabar_test.vue";
+import axios from "axios";
 export default {
   name: "SeeBuckets",
   components: {
@@ -77,12 +86,25 @@ export default {
   },
   data() {
     return {
-      categories: [
-        { id: 1, current: true, name: "Trending Now" },
-        { id: 2, current: false, name: "Medical" },
-        { id: 3, current: false, name: "Academic" },
-      ],
+      buckets: [],
+      categories: [],
+      assets: "",
     };
+  },
+  async mounted() {
+    const app = import.meta.env.VITE_APP_ENGINE;
+    this.assets = import.meta.env.VITE_APP_ASSETS;
+    //get categories
+    await axios.get(app + "categories").then((res) => {
+      this.categories = res.data.data;
+      console.log(this.categories);
+    });
+
+    //get buckets
+    await axios.get(app + "buckets").then((res) => {
+      this.buckets = res.data.data;
+      console.log(this.buckets);
+    });
   },
   methods: {
     singleBucket() {
