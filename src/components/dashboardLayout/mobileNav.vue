@@ -4,7 +4,8 @@
       :to="item.target"
       v-for="(item, index) in topLinks"
       :key="index"
-      class="flex flex-col items-center px-3 py-1">
+      class="flex flex-col items-center px-3 py-1"
+    >
       <img :src="item.icon" />
       <span>{{ item.title }}</span>
     </router-link>
@@ -48,11 +49,6 @@ export default {
           title: "More",
           target: "/dashboard/more",
         },
-        // {
-        //   icon: "/element-equal.svg",
-        //   title: "More",
-        //   target: "/dashboard/account-settings",
-        // },
       ],
     };
   },
