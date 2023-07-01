@@ -105,9 +105,13 @@ export default {
     });
 
     //get buckets
-    await axios.get(app + "buckets").then((res) => {
-      this.buckets = res.data.data;
-    });
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + this.$store.state.token;
+    await axios
+      .get(app + "my_bucket/" + this.$store.state.user.user_id)
+      .then((res) => {
+        this.buckets = res.data.data;
+      });
   },
   methods: {
     toggleSection(num) {
