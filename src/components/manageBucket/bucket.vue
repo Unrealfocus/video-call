@@ -2,13 +2,12 @@
   <div class="pt-12 mb-20">
     <section class="items-center justify-between md:flex sm:block">
       <p
-        class="mb-5 text-2xl font-bold md:text-3xl md:font-medium font-poppins"
-      >
+        class="mb-5 text-2xl font-bold md:text-3xl md:font-medium font-poppins">
         Manage your fundraiser
       </p>
       <button
-        class="rounded-full bg-[#2A5E2A] border-[1px] text-[#fff] py-3 text-[14px] px-10 font-poppins font-bold text-base"
-      >
+        @click="this.$router.push('/create-bucket')"
+        class="rounded-full bg-[#2A5E2A] border-[1px] text-[#fff] py-3 text-[14px] px-10 font-poppins font-bold text-base">
         Create a bucket
       </button>
     </section>
@@ -20,8 +19,7 @@
               <img
                 src="/community.svg"
                 class="object-cover object-center w-full h-44 rounded-2xl"
-                alt=""
-              />
+                alt="" />
 
               <p class="text-base font-semibold font-poppins">
                 Help david Community get support
@@ -50,8 +48,7 @@
               <dl class="justify-between">
                 <span class="flex">
                   <dt
-                    class="font-bold font-poppins text-xs mr-1 text-[#000000]"
-                  >
+                    class="font-bold font-poppins text-xs mr-1 text-[#000000]">
                     Raised:
                   </dt>
 
@@ -71,9 +68,8 @@
                 <button
                   class="flex text-left bg-appGreen300 rounded-md py-2 px-10 font-semibold font-poppins text-sm text-[#FFFFFF]"
                   type="button"
-                  @click="toggleSection"
-                >
-                  Donate
+                  @click="toggleSection">
+                  Manage
                 </button>
               </div>
             </figure>

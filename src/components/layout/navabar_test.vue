@@ -1,8 +1,10 @@
 <template>
   <section
-    class="flex"
+    class="flex shadow-aboutContainer"
     :class="[toggleNav == true ? 'bg-[#f9f9f9]' : 'bg-[#fff]']"
   >
+    <!-- class="flex"
+    :class="[toggleNav == true ? 'bg-[#f9f9f9]' : 'bg-[#fff]']" -->
     <header
       class="w-[90%] xl:w-[1280px] mx-auto flex items-center justify-between flex-wrap py-[20px]"
     >
@@ -13,23 +15,34 @@
       <div
         class="hidden lg:flex space-x-[40px] font-[500] text-[16px] font-poppins"
       >
-        <div class=""><router-link to="/">Home</router-link></div>
+        <div class="hover:font-[800]">
+          <router-link to="/">Home</router-link>
+        </div>
 
-        <div class="flex gap-1" @click="toggleDropdown">
+        <div class="flex gap-1 hover:font-[800]" @click="toggleDropdown">
           <p>Fundraiser Category</p>
           <img src="/arrow-down.svg" alt="" />
         </div>
 
-        <div class=""><router-link to="/works">How it works</router-link></div>
-        <div class=""><router-link to="/about-us">About us</router-link></div>
+        <div class="hover:font-[800]">
+          <router-link to="/works">How it works</router-link>
+        </div>
+        <div class="hover:font-[800]">
+          <router-link to="/about-us">About us</router-link>
+        </div>
       </div>
 
       <div class="flex space-x-[43px] font-poppins font-[700] items-center">
         <div class="">
           <button
-            class="hidden lg:block text-[#295F2D] px-[23px] py-[11px] border-2 border-[#295F2D] rounded-full"
+            class="hidden lg:block hover:bg-[#BDEED1] text-[#295F2D] px-[23px] py-[11px] border-2 border-[#295F2D] rounded-full"
           >
-            <router-link to="/sign-in">Sign in</router-link>
+            <router-link v-if="!this.$store.state.user.user_id" to="/sign-in"
+              >Sign in</router-link
+            >
+            <router-link v-if="this.$store.state.user.user_id" to="/dashboard"
+              >Dashboard</router-link
+            >
           </button>
         </div>
         <div class="">

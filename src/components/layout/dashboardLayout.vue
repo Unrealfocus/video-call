@@ -40,5 +40,10 @@ export default {
     return {};
   },
   methods: {},
+  mounted() {
+    if (this.$store.state.user == {}) {
+      return this.$router.push("/sign-in");
+    }
+  },
 };
 </script>

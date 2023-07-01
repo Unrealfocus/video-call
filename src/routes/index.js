@@ -13,7 +13,6 @@ import Withdrawal from "../pages/dashboard/withdrawal.vue";
 import ManagePage from "../pages/dashboard/manage.vue";
 import TransactionPage from "../pages/dashboard/transaction.vue";
 import HelpPage from "../pages/dashboard/help.vue";
-import Test from "../pages/dashboard/test.vue";
 import More from "../pages/dashboard/more.vue";
 import Edit from "../pages/dashboard/edit.vue";
 
@@ -104,10 +103,6 @@ export const router = createRouter({
       component: signin,
     },
 
-    {
-      path: "/test",
-      component: Test,
-    },
     {
       path: "/create-bucket",
       component: CreateBucket,

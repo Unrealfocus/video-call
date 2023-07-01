@@ -1,22 +1,22 @@
-import Vuex from 'vuex'
+import Vuex from "vuex";
 
 export default new Vuex.Store({
   state: {
     user: {},
-    token: '',
+    token: "",
   },
   mutations: {
     updateUser(state, payload) {
-      state.user = payload.user
-      state.token = payload.token
+      state.user = payload.user;
+      state.token = payload.token;
     },
     updateSelectedUser(state, payload) {
-      state.selectedUser = payload
+      state.selectedUser = payload;
     },
     updateSelectedSub(state, payload) {
-      state.selectedSub = payload
+      state.selectedSub = payload;
     },
   },
   actions: {},
   modules: {},
-})
+});
