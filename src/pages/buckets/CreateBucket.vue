@@ -59,6 +59,14 @@
                 rows="4"></textarea>
             </div>
           </div>
+          <div class="next-button py-[40px]">
+            <div
+              :class="[currentStep == 4 ? 'hidden' : '']"
+              @click="nextSlide()"
+              class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl mx-auto">
+              {{ currentStep > 2 ? "Complete Fundraising" : "Next" }}
+            </div>
+          </div>
         </div>
 
         <!-- second slide  -->
@@ -120,6 +128,13 @@
               </div>
             </div>
           </div>
+          <div class="next-button py-[40px]">
+            <div
+              @click="submit()"
+              class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl mx-auto">
+              {{ loading == true ? "Loading..." : "Proceed" }}
+            </div>
+          </div>
         </div>
 
         <!-- third slide  -->
@@ -161,15 +176,6 @@
             </div>
           </div>
         </div>
-
-        <div class="next-button py-[40px]">
-          <div
-            :class="[currentStep == 4 ? 'hidden' : '']"
-            @click="nextSlide()"
-            class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl mx-auto">
-            {{ currentStep > 2 ? "Complete Fundraising" : "Next" }}
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -182,6 +188,7 @@ export default {
   name: "CreateBucket",
   data() {
     return {
+      loading: false,
       category: "choose your category",
       today: "",
       goal: 0,
@@ -210,6 +217,24 @@ export default {
   },
 
   methods: {
+    async submit() {
+      this.loading = true;
+      const createBucket = import.meta.env.VITE_APP_ENGINE + "buckets";
+      axios
+        .post(
+          createBucket,
+          {
+            headers: {
+              Authorization: "Bearer " + this.$store.state.token,
+            },
+          },
+          {}
+        )
+        .then((res) => {
+          alert("here");
+        })
+        .catch();
+    },
     setState(state) {
       this.currentState = state;
     },
