@@ -1,6 +1,6 @@
 <template>
   <section
-    class="flex shadow-aboutContainer"
+    class="flex"
     :class="[toggleNav == true ? 'bg-[#f9f9f9]' : 'bg-[#fff]']"
   >
     <header
@@ -15,9 +15,11 @@
       >
         <div class=""><router-link to="/">Home</router-link></div>
 
-        <div class="">
-          <router-link to="/contact-us">Fundraiser Category</router-link>
+        <div class="flex gap-1" @click="toggleDropdown">
+          <p>Fundraiser Category</p>
+          <img src="/arrow-down.svg" alt="" />
         </div>
+
         <div class=""><router-link to="/works">How it works</router-link></div>
         <div class=""><router-link to="/about-us">About us</router-link></div>
       </div>
@@ -62,10 +64,10 @@
   >
     <div class="w-[90%] mx-auto">
       <div class="text-[16px] font-[500] font-poppins space-y-[30px]">
-        <p>Home</p>
-        <p>Fundraiser Category</p>
-        <p>How it works</p>
-        <p>About us</p>
+        <div><router-link to="/">Home</router-link></div>
+        <div><router-link to="#">Fundraiser Category</router-link></div>
+        <div><router-link to="/works">How it works</router-link></div>
+        <div><router-link to="/about-us">About us</router-link></div>
 
         <div class="py-[23px] space-y-[23px]">
           <div
@@ -82,6 +84,35 @@
       </div>
     </div>
   </div>
+  <div
+    v-if="isDropdownOpen"
+    class="inline-flex p-6 mt-2 bg-white shadow rounded-3xl h-[371px]"
+    x-transition:enter="transition ease-out duration-200"
+    x-transition:enter-start="opacity-0 transform scale-90"
+    x-transition:enter-end="opacity-100 transform scale-100"
+    x-transition:leave="transition ease-in duration-150"
+    x-transition:leave-start="opacity-100 transform scale-100"
+    x-transition:leave-end="opacity-0 transform scale-90"
+  >
+    <div class="z-10 flex gap-6">
+      <div>
+        <ul>
+          <li>medical</li>
+          <li>Non-profit</li>
+          <li>Emergency</li>
+          <li>Education</li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li>medical</li>
+          <li>Non-profit</li>
+          <li>Emergency</li>
+          <li>Education</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -90,11 +121,15 @@ export default {
   data() {
     return {
       toggleNav: false,
+      isDropdownOpen: false,
     };
   },
   methods: {
     navDrop() {
       this.toggleNav = !this.toggleNav;
+    },
+    toggleDropdown() {
+      this.isDropdownOpen = !this.isDropdownOpen;
     },
   },
 };

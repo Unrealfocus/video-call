@@ -1,6 +1,6 @@
 <template>
   <div>
-    <main class="lg:w-[85%] mx-auto p-6 sm:p-6">
+    <main class="mx-auto">
       <section class="section 1">
         <h1
           class="pb-3 text-sm font-medium md:text-base md:font-bold font-poppins"

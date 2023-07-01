@@ -27,7 +27,7 @@ export default {
         {
           icon: "/home-2.svg",
           title: "Home ",
-          target: "/dashboard/dashboard",
+          target: "/dashboard",
         },
         {
           icon: "/document-text.svg",
@@ -49,11 +49,6 @@ export default {
           title: "More",
           target: "/dashboard/more",
         },
-        // {
-        //   icon: "/element-equal.svg",
-        //   title: "More",
-        //   target: "/dashboard/account-settings",
-        // },
       ],
     };
   },

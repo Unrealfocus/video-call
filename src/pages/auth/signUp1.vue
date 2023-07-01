@@ -150,7 +150,7 @@ export default {
           <span class="flex items-baseline mt-8">
             <input
               type="checkbox"
-              class="w-5 h-5 rounded-full"
+              class="w-5 rounded-full"
               name="terms"
               id="terms"
             />

@@ -1,5 +1,5 @@
 <template>
-  <div class="p-6 pt-12 mb-20 sm:p-6">
+  <div class="pt-12 mb-20">
     <section class="items-center justify-between md:flex sm:block">
       <p
         class="mb-5 text-2xl font-bold md:text-3xl md:font-medium font-poppins"

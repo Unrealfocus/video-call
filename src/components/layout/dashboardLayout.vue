@@ -9,7 +9,7 @@
         <Topbar />
         <MobileDashboardHeader class="md:hidden" />
         <TabletDashboardHeader class="sm:hidden" />
-        <main class="lg:w-[85%] mx-auto">
+        <main class="p-5 mx-auto">
           <router-view> </router-view>
         </main>
         <div class="py-[50px]"></div>
