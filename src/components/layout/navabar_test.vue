@@ -86,7 +86,13 @@
           <div
             class="border-2 border-[#295F2D] rounded-full text-center py-[12px] text-[#295F2D] font-[700] font-poppins"
           >
-            Sign in
+            <router-link v-if="!this.$store.state.user.user_id" to="/sign-in"
+              >Sign in</router-link
+            >
+            <router-link v-if="this.$store.state.user.user_id" to="/dashboard"
+              >Dashboard</router-link
+            >
+            <!-- Sign in -->
           </div>
           <div
             class="bg-[#295F2D] rounded-full text-center py-[12px] text-white font-[700] font-poppins"
