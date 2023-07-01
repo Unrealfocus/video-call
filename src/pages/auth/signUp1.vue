@@ -41,7 +41,7 @@ export default {
           //update user state
           console.log("user", res.data.user);
           console.log("token", res.data.token);
-          const payload = res.data;
+          const payload = res.data.data;
 
           this.$store.commit("updateUser", payload);
 
@@ -239,10 +239,11 @@ export default {
         <div class="justify-between pt-16">
           <div class="next-button">
             <div
-              :class="[currentStep == 3 ? 'hidden' : '']"
+               :class="[currentStep == 3 ? 'hidden' : '']"
               @click="submit()"
               class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl px-6">
               {{ loading == true ? "Loading..." : "Submit" }}
+ 
             </div>
           </div>
         </div>
