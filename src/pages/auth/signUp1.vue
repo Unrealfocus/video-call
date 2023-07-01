@@ -152,7 +152,7 @@ export default {
           <span class="flex items-baseline mt-8">
             <input
               type="checkbox"
-              class="w-5 h-5 rounded-full"
+              class="w-5 rounded-full"
               name="terms"
               id="terms" />
             <span class="block ml-2 text-[#999999] font-poppins text-sm">
@@ -239,10 +239,11 @@ export default {
         <div class="justify-between pt-16">
           <div class="next-button">
             <div
-              :class="[currentStep != 1 ? 'hidden' : '']"
-              @click="submit"
+               :class="[currentStep == 3 ? 'hidden' : '']"
+              @click="submit()"
               class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl px-6">
-              {{ loading == true ? "loading..." : "Sign Up" }}
+              {{ loading == true ? "Loading..." : "Submit" }}
+ 
             </div>
           </div>
         </div>

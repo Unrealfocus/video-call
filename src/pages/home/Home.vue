@@ -1,6 +1,6 @@
 <script setup>
 import Navbar from "../../components/layout/navabar_test.vue";
-import Footer from "../../components/layout/footer.vue";
+import Footer from "../../components/layout/Footer.vue";
 </script>
 
 <template>
@@ -24,16 +24,26 @@ import Footer from "../../components/layout/footer.vue";
         </section>
 
         <div class="flex">
+<<<<<<< HEAD
           <div class="flex mx-auto">
             <router-link to="/signUp"
               ><button
                 class="gap-2 text-base font-bold font-poppins rounded-full bg-[#2A5E2A] border-[1px] border-[#fff] text-[#fff] py-3 text-[14px] px-10 m-3">
                 Let's Put Hands
               </button></router-link
+=======
+          <div class="mx-auto">
+            <button
+              @click="this.$router.push('/buckets')"
+              class="gap-2 text-base font-bold font-poppins rounded-full bg-[#2A5E2A] border-[1px] border-[#fff] text-[#fff] py-3 text-[14px] px-10 m-3"
+>>>>>>> develop
             >
+              Let's Put Hands
+            </button>
           </div>
         </div>
 
+<<<<<<< HEAD
         <img
           src="/Group53.svg"
           alt=""
@@ -43,6 +53,21 @@ import Footer from "../../components/layout/footer.vue";
           alt=""
           :draggable="false"
           class="absolute opacity-50 bottom-10" />
+=======
+        <section>
+          <img
+            src="/Group53.svg"
+            alt=""
+            class="items-center justify-center mx-auto -mt-8"
+          />
+          <img
+            src="/gradient.svg"
+            alt=""
+            :draggable="false"
+            class="absolute opacity-50 bottom-10"
+          />
+        </section>
+>>>>>>> develop
       </section>
 
       <!-- How Put Hand Works -->
@@ -129,11 +154,21 @@ import Footer from "../../components/layout/footer.vue";
       <section class="p-8 bg-appGray100 font-poppins">
         <div class="w-[100%] mx-auto py-[64px] md:py-[67px] lg:py-[49px]">
           <div
+<<<<<<< HEAD
             class="content bg-[#FEF7D6] md:py-[110px] py-[20px] lg:py-[100px] px-[10px] lg:px-[34px] rounded-3xl md:flex">
             <div class="text md:w-1/2">
               <p
                 class="md:w-2/3 font-[600] text-[28px] lg:text-[44px] leading-[36px] lg:leading-[48px] font-poppins">
                 Become a part of a community of our today.
+=======
+            class="content bg-[#FEF7D6] md:py-[110px] py-[20px] lg:py-[40px] px-[10px] lg:px-[34px] rounded-3xl md:flex"
+          >
+            <div class="text md:w-1/2">
+              <p
+                class="md:w-2/3 font-[600] text-[28px] lg:text-[44px] leading-[36px] lg:leading-[48px] font-poppins"
+              >
+                Become a part of our community today.
+>>>>>>> develop
               </p>
               <p class="pt-[16px] font-[500]">
                 Welcome to PutHand! A community of compassionate and dedicated
@@ -149,23 +184,37 @@ import Footer from "../../components/layout/footer.vue";
               <div class="py-[50px]">
                 <router-link to=""
                   ><button
+<<<<<<< HEAD
                     class="bg-[#295F2D] text-white px-[23px] py-[12px] rounded-full font-[700]">
+=======
+                    @click="this.$router.push('/buckets')"
+                    class="bg-[#295F2D] text-white px-[23px] py-[12px] rounded-full font-[700]"
+                  >
+>>>>>>> develop
                     Let's Put Hands
                   </button></router-link
                 >
               </div>
             </div>
-            <div class="image md:w-1/2">
-              <img src="/hands.svg" class="hidden md:block" />
-              <img src="/handsMobile.svg" class="md:hidden" />
+            <div class="flex items-center justify-center image md:w-1/2">
+              <img src="/hands2.svg" class="hidden md:block" />
+              <img src="/hands2mobile.svg" class="md:hidden" />
             </div>
           </div>
         </div>
       </section>
 
       <section
+<<<<<<< HEAD
         class="container w-4/5 p-8 pt-4 pb-10 mx-auto bg-white md:w-5/6 lg:w-4/5">
         <p class="justify-start pt-3 mb-8 text-4xl font-bold leading-10">
+=======
+        class="container p-8 pt-4 pb-10 mx-auto bg-white md:w-5/6 lg:w-4/5"
+      >
+        <p
+          class="justify-start pt-3 mb-8 text-3xl font-extrabold leading-10 font-poppins md:text-4xl"
+        >
+>>>>>>> develop
           DO YOU WANT TO PUT HAND FOR SOMEONE TODAY? 
         </p>
         <p class="mb-4 text-base font-medium leading-4 font-poppins">
@@ -290,8 +339,10 @@ import Footer from "../../components/layout/footer.vue";
                 class="bg-[#FFFFFF] rounded-lg block w-full pl-10 p-2.5 outline-none"
                 placeholder="Enter your email" />
               <button
-                class="inset-y-1 right-0 flex items-center px-5 text-[white] w-[90px] mr-2 bg-[#939393] rounded-lg h-[36px] lg:absolute mt-3 lg:mt-0"
-                @click="() => handleClick('Yooooo my nigga')">
+                class="inset-y-1 right-0 flex md:mx-0 mx-auto items-center px-5 text-[white] w-[90px] md:mr-2 bg-[#939393] rounded-lg h-[36px] lg:absolute mt-3 lg:mt-0"
+                @submit.prevent="submitForm"
+                action="input"
+              >
                 Submit
               </button>
             </div>

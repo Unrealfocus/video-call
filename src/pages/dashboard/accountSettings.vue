@@ -41,7 +41,8 @@ export default {
 <template>
   <div>
     <section
-      class="md:flex hidden bg-white pt-3 pb-5 px-8 w-[100%] rounded-full items-center justify-between mt-20 mb-20">
+      class="md:flex hidden bg-white pt-3 pb-5 px-8 w-[100%] rounded-full items-center justify-between mt-20 mb-20"
+    >
       <div
         v-for="(tab, index) in tabs"
         :key="index"
@@ -52,7 +53,8 @@ export default {
             'text-appGreen300 cursor-pointer': activeTab !== index,
           },
         ]"
-        @click="changeTab(index)">
+        @click="changeTab(index)"
+      >
         {{ tab }}
       </div>
     </section>
@@ -68,54 +70,44 @@ export default {
               class="app-input"
               type="text"
               v-model="firstName"
-              placeholder="First Name" />
+              placeholder="First Name"
+            />
             <input
               class="app-input"
               type="text"
               v-model="lastName"
               autocomplete="family-name"
-              placeholder="Last Name" />
+              placeholder="Last Name"
+            />
           </div>
           <input
             class="mt-4 app-input"
             type="email"
-            autocomplete="email"
             placeholder="Email"
-            v-model="email" />
+            v-model="email"
+          />
           <div></div>
           <p class="py-5 font-poppins font-bold text-lg text-[#999999]">
             Connect Social media account
           </p>
           <div>
             <div
-              class="flex justify-between bg-[#1877F2] md:w-[500px] w-full p-4 rounded-2xl px-5 py-3 mb-7">
+              class="flex justify-between bg-[#1877F2] md:w-[500px] w-full p-4 rounded-2xl px-5 py-3 mb-7"
+            >
               <img src="/Vector(1).svg" alt="" />
               <div class="rounded-xl bg-white px-8 py-2 text-[#406EE5]">
                 Connect
               </div>
             </div>
             <div
-              class="flex justify-between bg-[#1877F2] w-full p-4 rounded-2xl md:w-[500px] px-5 py-3">
+              class="flex justify-between bg-[#1877F2] w-full p-4 rounded-2xl md:w-[500px] px-5 py-3"
+            >
               <img src="/Vector(2).svg" alt="" />
               <div class="rounded-xl bg-white px-8 py-2 text-[#406EE5]">
                 Connect
               </div>
             </div>
           </div>
-
-          <section class="flex items-center justify-between py-14">
-            <div class="font-poppins font-medium text-sm text-[#999999]">
-              <p>
-                <span class="text-lg font-bold">
-                  Deleting your account will
-                </span>
-                <br />
-                Remove all of your activity will campaign and you will no longer
-                be able <br />
-                to sign in with this account
-              </p>
-            </div>
-          </section>
         </section>
       </div>
 
@@ -133,12 +125,15 @@ export default {
                 type="checkbox"
                 class="sr-only"
                 :checked="isActive1"
-                @change="toggleSwitch(1)" />
+                @change="toggleSwitch(1)"
+              />
               <div
-                class="w-12 h-8 transition-colors duration-300 ease-in-out bg-gray-300 rounded-full shadow-inner"></div>
+                class="w-12 h-8 transition-colors duration-300 ease-in-out bg-gray-300 rounded-full shadow-inner"
+              ></div>
               <div
                 class="absolute top-0 left-0 transition-transform duration-300 ease-in-out transform translate-x-0 translate-y-1 bg-white rounded-full shadow w-7 h-7"
-                :class="{ 'translate-x-6 bg-green-500': isActive1 }">
+                :class="{ 'translate-x-6 bg-green-500': isActive1 }"
+              >
                 <svg
                   class="w-6 h-6 m-auto text-white"
                   fill="none"
@@ -148,12 +143,14 @@ export default {
                   }"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg">
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
+                    d="M5 13l4 4L19 7"
+                  ></path>
                 </svg>
               </div>
             </div>
@@ -170,12 +167,15 @@ export default {
                 type="checkbox"
                 class="sr-only"
                 :checked="isActive2"
-                @change="toggleSwitch(2)" />
+                @change="toggleSwitch(2)"
+              />
               <div
-                class="w-12 h-8 transition-colors duration-300 ease-in-out bg-gray-300 rounded-full shadow-inner"></div>
+                class="w-12 h-8 transition-colors duration-300 ease-in-out bg-gray-300 rounded-full shadow-inner"
+              ></div>
               <div
                 class="absolute top-0 left-0 transition-transform duration-300 ease-in-out transform translate-x-0 translate-y-1 bg-white rounded-full shadow w-7 h-7"
-                :class="{ 'translate-x-6 bg-green-500': isActive2 }">
+                :class="{ 'translate-x-6 bg-green-500': isActive2 }"
+              >
                 <svg
                   class="w-6 h-6 m-auto text-white"
                   fill="none"
@@ -185,12 +185,14 @@ export default {
                   }"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg">
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
+                    d="M5 13l4 4L19 7"
+                  ></path>
                 </svg>
               </div>
             </div>
@@ -207,12 +209,15 @@ export default {
                 type="checkbox"
                 class="sr-only"
                 :checked="isActive3"
-                @change="toggleSwitch(3)" />
+                @change="toggleSwitch(3)"
+              />
               <div
-                class="w-12 h-8 transition-colors duration-300 ease-in-out bg-gray-300 rounded-full shadow-inner"></div>
+                class="w-12 h-8 transition-colors duration-300 ease-in-out bg-gray-300 rounded-full shadow-inner"
+              ></div>
               <div
                 class="absolute top-0 left-0 transition-transform duration-300 ease-in-out transform translate-x-0 translate-y-1 bg-white rounded-full shadow w-7 h-7"
-                :class="{ 'translate-x-6 bg-green-500': isActive3 }">
+                :class="{ 'translate-x-6 bg-green-500': isActive3 }"
+              >
                 <svg
                   class="w-6 h-6 m-auto text-white"
                   fill="none"
@@ -222,12 +227,14 @@ export default {
                   }"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg">
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
+                    d="M5 13l4 4L19 7"
+                  ></path>
                 </svg>
               </div>
             </div>
@@ -235,7 +242,8 @@ export default {
         </section>
         <section class="flex justify-center mt-20">
           <button
-            class="px-20 py-3 text-base font-semibold text-white rounded-xl bg-appGreen200 font-poppins">
+            class="px-20 py-3 text-base font-semibold text-white rounded-xl bg-appGreen200 font-poppins"
+          >
             Save Changes
           </button>
         </section>
@@ -254,7 +262,8 @@ export default {
               type="password"
               name="current password"
               id="current password"
-              placeholder="thedesignerofficial1@gmail.com" />
+              placeholder="thedesignerofficial1@gmail.com"
+            />
           </div>
 
           <div>
@@ -264,7 +273,8 @@ export default {
               type="password"
               name="new password"
               id="new password"
-              placeholder="!Fav90800000000" />
+              placeholder="!Fav90800000000"
+            />
           </div>
 
           <div>
@@ -276,7 +286,8 @@ export default {
               type="password"
               name="confirm new password"
               id="confirm new password"
-              placeholder="************" />
+              placeholder="************"
+            />
           </div>
         </section>
         <section class="pt-10">
@@ -292,7 +303,8 @@ export default {
               class="mt-4 app-input"
               autocomplete="email"
               disabled
-              :value="email" />
+              :value="email"
+            />
           </div>
 
           <div>
@@ -306,7 +318,8 @@ export default {
               id="new email address"
               autocomplete="email"
               placeholder="PhelTakon1234@gmail.com"
-              v-model="newEmail" />
+              v-model="newEmail"
+            />
           </div>
 
           <div>
@@ -320,12 +333,14 @@ export default {
               id="confirm new email address"
               autocomplete="email"
               placeholder="PhelTakon1234@gmail.com"
-              v-model="confirmEmail" />
+              v-model="confirmEmail"
+            />
           </div>
         </section>
         <section class="flex justify-center mt-20">
           <button
-            class="px-20 py-3 text-base font-semibold text-white rounded-xl bg-appGreen200 font-poppins">
+            class="px-20 py-3 text-base font-semibold text-white rounded-xl bg-appGreen200 font-poppins"
+          >
             Save Changes
           </button>
         </section>
