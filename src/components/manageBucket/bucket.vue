@@ -13,25 +13,24 @@
     </section>
     <section class="mt-10">
       <ul class="grid grid-cols-1 gap-10 md:grid-cols-3">
-        <li v-for="num in 6" class="">
+        <li v-for="num in buckets" class="">
           <div class="bg-white rounded-2xl">
             <figure class="px-5 py-5 rounded-2xl">
               <img
-                src="/community.svg"
+                :src="assets + num.images[0].image_url"
                 class="object-cover object-center w-full h-44 rounded-2xl"
                 alt="" />
 
               <p class="text-base font-semibold font-poppins">
-                Help david Community get support
+                {{ num.bucket.title }}
               </p>
 
               <p class="font-poppins font-extrabold text-xs text-[#939393]">
-                by David Sampson
+                by {{ num.author }}
               </p>
 
               <p class="mb-2 text-sm font-medium font-poppins">
-                Jorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                eu turpis molestie, dictum est a, mattis tellus.
+                {{ num.bucket.description }}
               </p>
 
               <dl class="flex">
@@ -49,26 +48,32 @@
                 <span class="flex">
                   <dt
                     class="font-bold font-poppins text-xs mr-1 text-[#000000]">
+                    Goal:
+                  </dt>
+
+                  <dd class="font-medium font-poppins text-xs text-[#000000]">
+                    {{ num.bucket.goal }}
+                  </dd>
+                </span>
+              </dl>
+              <dl class="justify-between">
+                <span class="flex">
+                  <dt
+                    class="font-bold font-poppins text-xs mr-1 text-[#000000]">
                     Raised:
                   </dt>
 
                   <dd class="font-medium font-poppins text-xs text-[#000000]">
-                    50,000
+                    {{ num.donated }}
                   </dd>
                 </span>
               </dl>
-              <div class="flex">
-                <img src="/location.svg" alt="" />
-                <span class="font-poppins font-extrabold text-xs text-[#000000]"
-                  >Lagos</span
-                >
-              </div>
 
               <div class="flex justify-end pt-4">
                 <button
                   class="flex text-left bg-appGreen300 rounded-md py-2 px-10 font-semibold font-poppins text-sm text-[#FFFFFF]"
                   type="button"
-                  @click="toggleSection">
+                  @click="toggleSection(num)">
                   Manage
                 </button>
               </div>
@@ -81,12 +86,32 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "bucket",
   emits: ["single-bucket"],
+  data() {
+    return {
+      buckets: [],
+      categories: [],
+    };
+  },
+  async mounted() {
+    const app = import.meta.env.VITE_APP_ENGINE;
+    this.assets = import.meta.env.VITE_APP_ASSETS;
+    //get categories
+    await axios.get(app + "categories").then((res) => {
+      this.categories = res.data.data;
+    });
+
+    //get buckets
+    await axios.get(app + "buckets").then((res) => {
+      this.buckets = res.data.data;
+    });
+  },
   methods: {
-    toggleSection() {
-      this.$emit("single-bucket");
+    toggleSection(num) {
+      this.$emit("singleBucket", num);
     },
   },
 };

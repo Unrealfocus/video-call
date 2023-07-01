@@ -54,10 +54,7 @@ export const router = createRouter({
       path: "/account-settings",
       component: AccountSettings,
     },
-    // {
-    //   path: "/donations",
-    //   component: DonationsPage,
-    // },
+
     {
       path: "/contact-us",
       component: ContactUs,

@@ -241,7 +241,7 @@ export default {
       await axios
         .post(createBucket, {
           category_id: this.category,
-          goal: toString(this.goal),
+          goal: this.goal,
           user_id: this.$store.state.user.user_id,
           end_date: this.endDate,
           title: this.title,
@@ -268,6 +268,7 @@ export default {
       const uploadLink =
         import.meta.env.VITE_APP_ENGINE + "upload_bucket_image";
       const data = new FormData();
+
       if (this.imageFile) {
         data.append("image", this.imageFile);
         data.append("bucket_id", this.bucket_id);
