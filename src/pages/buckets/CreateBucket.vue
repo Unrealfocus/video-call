@@ -1,7 +1,7 @@
 <template>
   <div class="bg-[#B7B7B7] lg:h-screen">
     <div class="flex items-center justify-center lg:h-screen">
-      <div class="bg-[#fff] w-[820px] rounded-lg px-[45px] py-[50px]">
+      <div class="bg-[#fff] w-[820px] rounded-lg px-[45px] py-[30px]">
         <div :class="[currentStep == 4 ? 'hidden' : '']" class="">
           <button
             @click="prevSlide()"
@@ -30,7 +30,7 @@
         </div>
 
         <div :class="[currentStep == 1 ? '' : 'hidden']" class="form">
-          <div class="py-[25px] space-y-[20px]">
+          <div class="space-y-[10px]">
             <p class="font-[600] text-[18px]">What are you funding for?</p>
 
             <div
@@ -39,7 +39,7 @@
                 v-model="category"
                 class="w-full bg-transparent border-none outline-none">
                 <option selected>Choose Category</option>
-                <option v-for="cat in Categories" :value="cat">
+                <option v-for="cat in Categories" :value="cat.category_id">
                   {{ cat.name }}
                 </option>
               </select>
@@ -48,6 +48,7 @@
           <div class="space-y-[20px] py-5">
             <p class="font-[600] text-[18px]">Give your fundraiser a title?</p>
             <input
+              v-model="title"
               class="border w-full border-[#000] rounded-2xl p-3"
               placeholder="Ex. Help my friend complete his school feee" />
           </div>
@@ -55,26 +56,32 @@
             <p class="font-[600] text-[18px]">Tell your story</p>
             <div class="border rounded-2xl w-full border-[#000] p-3">
               <textarea
+                v-model="description"
                 class="w-full bg-transparent border-none outline-none"
                 rows="4"></textarea>
+            </div>
+          </div>
+          <div class="next-button py-[40px]">
+            <div
+              :class="[currentStep == 4 ? 'hidden' : '']"
+              @click="nextSlide()"
+              class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl mx-auto">
+              {{ currentStep > 2 ? "Complete Fundraising" : "Next" }}
             </div>
           </div>
         </div>
 
         <!-- second slide  -->
         <div :class="[currentStep == 2 ? '' : 'hidden']" class="form">
-          <div class="">
-            <p class="text-[32px] font-[800] font-poppins">
-              what is your fundraising goal
-            </p>
-          </div>
-          <div class="py-4 space-y-[20px]">
+          <div class="space-y-[10px]">
             <p class="font-poppins font-[600] text-[18px]">
               How much would you like to raise?
             </p>
             <div class="">
               <div class="w-full border-2 border-[#93939] rounded-2xl p-3">
                 <input
+                  type="number"
+                  v-model="goal"
                   class="bg-[#fff] w-full border-none bg-transparent outline-none rounded full" />
               </div>
               <p class="text-[#939393] text-[14px] font-[500]">
@@ -83,11 +90,25 @@
               </p>
             </div>
           </div>
-          <div class="space-y-[20px]">
+          <div class="py-2 space-y-[10px]">
+            <p class="font-poppins font-[600] text-[18px]">
+              How much would you want you bucket to end?
+            </p>
+            <div class="">
+              <div class="w-full border-2 border-[#93939] rounded-2xl p-3">
+                <input
+                  type="date"
+                  v-model="endDate"
+                  :min="today"
+                  class="bg-[#fff] w-full border-none bg-transparent outline-none rounded full" />
+              </div>
+            </div>
+          </div>
+          <div class="space-y-[10px]">
             <p class="font-poppins font-[600] text-[18px]">
               Who are you fundraising for?
             </p>
-            <div class="space-y-[30px]">
+            <div class="space-y-[10px]">
               <div
                 @click="setForWho(item.target)"
                 :class="[
@@ -109,6 +130,13 @@
               </div>
             </div>
           </div>
+          <div class="next-button py-[40px]">
+            <div
+              @click="submit()"
+              class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl mx-auto">
+              {{ loading == true ? "Loading..." : "Proceed" }}
+            </div>
+          </div>
         </div>
 
         <!-- third slide  -->
@@ -121,13 +149,27 @@
           <div
             class="flex justify-center items-center w-full rounded-2xl bg-[#F3F3F3] h-[300px]">
             <div class="space-y-[8px]">
-              <div class="flex items-center justify-center w-full cursor-none">
-                <img class="" src="/image.svg" />
+              <div class="flex items-center justify-center w-full">
+                <label for="postFile">
+                  <img src="/image.svg" />
+                </label>
+                <input
+                  type="file"
+                  id="postFile"
+                  @change="chooseImage"
+                  class="hidden" />
               </div>
               <p
                 class="text-[#939393] font-[500] text-[16px] font-poppins cursor-pointer">
-                Upload image here
+                {{ imageFile.name ? imageFile.name : "Upload image here" }}
               </p>
+            </div>
+          </div>
+          <div class="next-button py-[40px]">
+            <div
+              @click="upload()"
+              class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl mx-auto">
+              {{ loading == true ? "Loading..." : "Upload" }}
             </div>
           </div>
         </div>
@@ -143,20 +185,13 @@
             <p class="text-center font-poppins font-[700] text-[24px]">
               Successfully Completed
             </p>
+
             <div
               :class="[currentStep == 4 ? '' : 'hidden']"
+              @click="this.$router.push('/dashboard')"
               class="bg-[#295F2D] cursor-pointer text-center font-[700] font-poppins px-[90px] py-[11px] text-[#fff] rounded-2xl mx-auto">
               Done
             </div>
-          </div>
-        </div>
-
-        <div class="next-button py-[40px]">
-          <div
-            :class="[currentStep == 4 ? 'hidden' : '']"
-            @click="nextSlide()"
-            class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl mx-auto">
-            {{ currentStep > 2 ? "Complete Fundraising" : "Next" }}
           </div>
         </div>
       </div>
@@ -164,19 +199,23 @@
   </div>
 </template>
 <script>
-import states from "../../data/states.js";
 import axios from "axios";
 
 export default {
   name: "CreateBucket",
   data() {
     return {
+      loading: false,
       category: "choose your category",
+      today: "",
+      goal: 0,
+      endDate: "",
+      description: "",
+      title: "",
       Categories: [],
       currentStep: 1,
-      states: states,
-      currentState: "select your state",
-      currentCity: "",
+      imageFile: [],
+      bucket_id: "",
       forWho: "",
       forWhoList: [
         { icon: "", target: "Yourself" },
@@ -186,19 +225,75 @@ export default {
     };
   },
   async mounted() {
-    axios
-      .get("https://backend.puthand.com/public/api/categories")
-      .then((res) => {
-        this.Categories = res.data.data;
-      });
+    const today = new Date().toISOString().split("T")[0];
+    this.today = today;
+    const getCategories = import.meta.env.VITE_APP_ENGINE + "categories";
+    axios.get(getCategories).then((res) => {
+      this.Categories = res.data.data;
+    });
   },
-
   methods: {
-    setState(state) {
-      this.currentState = state;
+    async submit() {
+      this.loading = true;
+      const createBucket = import.meta.env.VITE_APP_ENGINE + "buckets";
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + this.$store.state.token;
+      await axios
+        .post(createBucket, {
+          category_id: this.category,
+          goal: toString(this.goal),
+          user_id: this.$store.state.user.user_id,
+          end_date: this.endDate,
+          title: this.title,
+          description: this.description,
+        })
+        .then((res) => {
+          this.loading = false;
+          this.bucket_id = res.data.bucket_id;
+          this.currentStep++;
+        })
+        .catch((err) => {
+          this.loading = false;
+          let error = err.response.data.message;
+          swal(error, {
+            icon: "error",
+            buttons: false,
+            timer: 3000,
+            class: "font-poppins font-[700] text-[300px]",
+          });
+        });
     },
-    setCity(city) {
-      this.currentCity = city;
+    async upload() {
+      this.loading = true;
+      const uploadLink =
+        import.meta.env.VITE_APP_ENGINE + "upload_bucket_image";
+      const data = new FormData();
+      if (this.imageFile) {
+        data.append("image", this.imageFile);
+        data.append("bucket_id", this.bucket_id);
+      }
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + this.$store.state.token;
+      axios.defaults.headers.common["Content-Type"] = "multipart/form-data";
+      await axios
+        .post(uploadLink, data)
+        .then((res) => {
+          this.loading = false;
+          this.currentStep++;
+        })
+        .catch((err) => {
+          this.loading = false;
+          let error = err.response.data.message;
+          swal(error, {
+            icon: "error",
+            buttons: false,
+            timer: 3000,
+            class: "font-poppins font-[700] text-[300px]",
+          });
+        });
+    },
+    chooseImage(e) {
+      this.imageFile = e.target.files[0];
     },
     setForWho(item) {
       this.forWho = item;
