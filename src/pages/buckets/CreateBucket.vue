@@ -167,7 +167,7 @@
           </div>
           <div class="next-button py-[40px]">
             <div
-              @click="submit()"
+              @click="upload()"
               class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl mx-auto">
               {{ loading == true ? "Loading..." : "Upload" }}
             </div>
@@ -185,8 +185,10 @@
             <p class="text-center font-poppins font-[700] text-[24px]">
               Successfully Completed
             </p>
+
             <div
               :class="[currentStep == 4 ? '' : 'hidden']"
+              @click="this.$router.push('/dashboard')"
               class="bg-[#295F2D] cursor-pointer text-center font-[700] font-poppins px-[90px] py-[11px] text-[#fff] rounded-2xl mx-auto">
               Done
             </div>
@@ -211,7 +213,7 @@ export default {
       description: "",
       title: "",
       Categories: [],
-      currentStep: 3,
+      currentStep: 1,
       imageFile: [],
       bucket_id: "",
       forWho: "",
@@ -230,15 +232,12 @@ export default {
       this.Categories = res.data.data;
     });
   },
-
   methods: {
     async submit() {
       this.loading = true;
       const createBucket = import.meta.env.VITE_APP_ENGINE + "buckets";
-
       axios.defaults.headers.common["Authorization"] =
         "Bearer " + this.$store.state.token;
-
       await axios
         .post(createBucket, {
           category_id: this.category,
@@ -248,6 +247,36 @@ export default {
           title: this.title,
           description: this.description,
         })
+        .then((res) => {
+          this.loading = false;
+          this.bucket_id = res.data.bucket_id;
+          this.currentStep++;
+        })
+        .catch((err) => {
+          this.loading = false;
+          let error = err.response.data.message;
+          swal(error, {
+            icon: "error",
+            buttons: false,
+            timer: 3000,
+            class: "font-poppins font-[700] text-[300px]",
+          });
+        });
+    },
+    async upload() {
+      this.loading = true;
+      const uploadLink =
+        import.meta.env.VITE_APP_ENGINE + "upload_bucket_image";
+      const data = new FormData();
+      if (this.imageFile) {
+        data.append("image", this.imageFile);
+        data.append("bucket_id", this.bucket_id);
+      }
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + this.$store.state.token;
+      axios.defaults.headers.common["Content-Type"] = "multipart/form-data";
+      await axios
+        .post(uploadLink, data)
         .then((res) => {
           this.loading = false;
           this.currentStep++;
@@ -263,15 +292,8 @@ export default {
           });
         });
     },
-    async upload() {},
     chooseImage(e) {
       this.imageFile = e.target.files[0];
-    },
-    setState(state) {
-      this.currentState = state;
-    },
-    setCity(city) {
-      this.currentCity = city;
     },
     setForWho(item) {
       this.forWho = item;

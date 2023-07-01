@@ -41,7 +41,7 @@ export default {
           //update user state
           console.log("user", res.data.user);
           console.log("token", res.data.token);
-          const payload = res.data;
+          const payload = res.data.data;
 
           this.$store.commit("updateUser", payload);
 
