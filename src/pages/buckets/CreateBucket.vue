@@ -39,7 +39,7 @@
                 v-model="category"
                 class="w-full bg-transparent border-none outline-none">
                 <option selected>Choose Category</option>
-                <option v-for="cat in Categories" :value="cat">
+                <option v-for="cat in Categories" :value="cat.category_id">
                   {{ cat.name }}
                 </option>
               </select>
@@ -48,6 +48,7 @@
           <div class="space-y-[20px] py-5">
             <p class="font-[600] text-[18px]">Give your fundraiser a title?</p>
             <input
+              v-model="title"
               class="border w-full border-[#000] rounded-2xl p-3"
               placeholder="Ex. Help my friend complete his school feee" />
           </div>
@@ -55,6 +56,7 @@
             <p class="font-[600] text-[18px]">Tell your story</p>
             <div class="border rounded-2xl w-full border-[#000] p-3">
               <textarea
+                v-model="description"
                 class="w-full bg-transparent border-none outline-none"
                 rows="4"></textarea>
             </div>
@@ -147,13 +149,27 @@
           <div
             class="flex justify-center items-center w-full rounded-2xl bg-[#F3F3F3] h-[300px]">
             <div class="space-y-[8px]">
-              <div class="flex items-center justify-center w-full cursor-none">
-                <img class="" src="/image.svg" />
+              <div class="flex items-center justify-center w-full">
+                <label for="postFile">
+                  <img src="/image.svg" />
+                </label>
+                <input
+                  type="file"
+                  id="postFile"
+                  @change="chooseImage"
+                  class="hidden" />
               </div>
               <p
                 class="text-[#939393] font-[500] text-[16px] font-poppins cursor-pointer">
-                Upload image here
+                {{ imageFile.name ? imageFile.name : "Upload image here" }}
               </p>
+            </div>
+          </div>
+          <div class="next-button py-[40px]">
+            <div
+              @click="submit()"
+              class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl mx-auto">
+              {{ loading == true ? "Loading..." : "Upload" }}
             </div>
           </div>
         </div>
@@ -181,7 +197,6 @@
   </div>
 </template>
 <script>
-import states from "../../data/states.js";
 import axios from "axios";
 
 export default {
@@ -193,11 +208,12 @@ export default {
       today: "",
       goal: 0,
       endDate: "",
+      description: "",
+      title: "",
       Categories: [],
-      currentStep: 1,
-      states: states,
-      currentState: "select your state",
-      currentCity: "",
+      currentStep: 3,
+      imageFile: [],
+      bucket_id: "",
       forWho: "",
       forWhoList: [
         { icon: "", target: "Yourself" },
@@ -209,31 +225,47 @@ export default {
   async mounted() {
     const today = new Date().toISOString().split("T")[0];
     this.today = today;
-    axios
-      .get("https://backend.puthand.com/public/api/categories")
-      .then((res) => {
-        this.Categories = res.data.data;
-      });
+    const getCategories = import.meta.env.VITE_APP_ENGINE + "categories";
+    axios.get(getCategories).then((res) => {
+      this.Categories = res.data.data;
+    });
   },
 
   methods: {
     async submit() {
       this.loading = true;
       const createBucket = import.meta.env.VITE_APP_ENGINE + "buckets";
-      axios
-        .post(
-          createBucket,
-          {
-            headers: {
-              Authorization: "Bearer " + this.$store.state.token,
-            },
-          },
-          {}
-        )
-        .then((res) => {
-          alert("here");
+
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + this.$store.state.token;
+
+      await axios
+        .post(createBucket, {
+          category_id: this.category,
+          goal: toString(this.goal),
+          user_id: this.$store.state.user.user_id,
+          end_date: this.endDate,
+          title: this.title,
+          description: this.description,
         })
-        .catch();
+        .then((res) => {
+          this.loading = false;
+          this.currentStep++;
+        })
+        .catch((err) => {
+          this.loading = false;
+          let error = err.response.data.message;
+          swal(error, {
+            icon: "error",
+            buttons: false,
+            timer: 3000,
+            class: "font-poppins font-[700] text-[300px]",
+          });
+        });
+    },
+    async upload() {},
+    chooseImage(e) {
+      this.imageFile = e.target.files[0];
     },
     setState(state) {
       this.currentState = state;
