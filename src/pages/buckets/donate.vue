@@ -283,7 +283,7 @@ export default {
 
       var handler = PaystackPop.setup({
         key: import.meta.env.VITE_PAYSTACK_KEY,
-
+        firstname: this.name,
         email: this.email,
 
         amount: parseInt(this.amount + this.tip) * 100,
@@ -291,7 +291,7 @@ export default {
         currency: "NGN", // Use GHS for Ghana Cedis or USD for US Dollars
 
         metadata: {
-          bucket_id: this.$route.params.id,
+          custom_fields: [{ bucket_id: this.$route.params.id }],
         },
 
         callback: function (response) {
