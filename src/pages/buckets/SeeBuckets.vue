@@ -53,11 +53,11 @@
             </dl>
             <p class="font-poppins text-[14px] font-[500]">
               <span class="font-[800]">Goal:</span>
-              N{{ item.bucket.goal }}
+              ₦{{ item.bucket.goal }}
             </p>
             <p class="font-poppins text-[14px] font-[500]">
               <span class="font-[800]">Raised:</span>
-              N0
+              ₦0
             </p>
             <!-- <div class="flex space-x-[6px] items-center">
               <img src="/location.svg" class="w-[20px] h-[20px]" />

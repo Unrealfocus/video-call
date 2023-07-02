@@ -59,6 +59,7 @@
                 v-model="description"
                 class="w-full bg-transparent border-none outline-none"
                 rows="4"></textarea>
+              {{ description.length }}/150
             </div>
           </div>
           <div class="next-button py-[40px]">
@@ -234,6 +235,16 @@ export default {
   },
   methods: {
     async submit() {
+      //check if description
+      if (this.description.length < 150) {
+        swal("Description should not be less than 150 letters", {
+          icon: "error",
+          buttons: false,
+          timer: 3000,
+          class: "font-poppins font-[700] text-[300px]",
+        });
+        return;
+      }
       this.loading = true;
       const createBucket = import.meta.env.VITE_APP_ENGINE + "buckets";
       axios.defaults.headers.common["Authorization"] =
