@@ -197,12 +197,14 @@ export default {
               <br />
               folder.
             </p>
-            <p class="my-5 text-base font-medium font-poppins">
+            <!-- <p class="my-5 text-base font-medium font-poppins">
               Still can’t find the email? No problem.
-            </p>
+            </p> -->
 
-            <button class="px-20 py-3 text-white bg-appGreen200 rounded-2xl">
-              Resend Verification email
+            <button
+              @click="this.$router.push('/dashboard')"
+              class="px-20 py-3 text-white bg-appGreen200 rounded-2xl">
+              My Dashboard
             </button>
 
             <span
@@ -239,11 +241,10 @@ export default {
         <div class="justify-between pt-16">
           <div class="next-button">
             <div
-               :class="[currentStep == 3 ? 'hidden' : '']"
+              :class="[currentStep !== 1 ? 'hidden' : '']"
               @click="submit()"
               class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl px-6">
               {{ loading == true ? "Loading..." : "Submit" }}
- 
             </div>
           </div>
         </div>
