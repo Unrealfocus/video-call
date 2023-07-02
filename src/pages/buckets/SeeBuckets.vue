@@ -2,6 +2,12 @@
   <div class="bg-[#fafafa]">
     <navabar_test />
     <div
+      v-if="loading == true"
+      class="loading w-full h-screen flex justify-center items-center">
+      <img src="/logo1.svg" class="animate-bounce" />
+    </div>
+    <div
+      v-if="loading == false"
       class="w-[90%] xl:w-[1280px] lg:w-[1125px] mx-auto py-[64px] md:py-[67px] lg:py-[49px]">
       <div class="serch-filter flex justify-center">
         <!-- filter by categories  -->
@@ -59,7 +65,7 @@
             </div> -->
             <div class="">
               <button
-                @click="singleBucket"
+                @click="singleBucket(item)"
                 class="bg-[#295F2D] py-[8px] w-full text-white rounded-2xl font-poppins font-[600] text-[20px]">
                 Donate
               </button>
@@ -86,12 +92,14 @@ export default {
   },
   data() {
     return {
+      loading: false,
       buckets: [],
       categories: [],
       assets: "",
     };
   },
   async mounted() {
+    this.loading = true;
     const app = import.meta.env.VITE_APP_ENGINE;
     this.assets = import.meta.env.VITE_APP_ASSETS;
     //get categories
@@ -105,10 +113,11 @@ export default {
       this.buckets = res.data.data;
       console.log(this.buckets);
     });
+    this.loading = false;
   },
   methods: {
-    singleBucket() {
-      this.$router.push("/bucket");
+    singleBucket(item) {
+      this.$router.push("/bucket/" + item.bucket.bucket_id);
     },
     toggleCategory(item) {
       let arr = [];

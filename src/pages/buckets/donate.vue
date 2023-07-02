@@ -269,6 +269,10 @@ export default {
 
         currency: "NGN", // Use GHS for Ghana Cedis or USD for US Dollars
 
+        metadata: {
+          bucket_id: this.$route.params.id,
+        },
+
         callback: function (response) {
           //this happens after the payment is completed successfully
 

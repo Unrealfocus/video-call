@@ -1,29 +1,119 @@
+<script>
+import axios from "axios";
+import navabar_test from "../../components/layout/navabar_test.vue";
+export default {
+  name: "SeeBuckets",
+  components: {
+    navabar_test,
+  },
+  data() {
+    return {
+      bucket: {},
+      loading: false,
+      assets: "",
+    };
+  },
+  async created() {
+    this.loading = true;
+
+    const app = import.meta.env.VITE_APP_ENGINE;
+    this.assets = import.meta.env.VITE_APP_ASSETS;
+
+    //get buckets
+    await axios.get(app + "bucket/" + this.$route.params.id).then((res) => {
+      this.bucket = res.data.data;
+      console.log(this.bucket);
+    });
+    this.bgImage =
+      "bg-[url('" + this.assets + this.bucket.images[0].image_url + "')]";
+    this.loading = false;
+  },
+  methods: {},
+};
+</script>
+
 <template>
   <div class="bg-[#fafafa]">
     <navabar_test />
     <div
+      v-if="loading == true"
+      class="loading w-full h-screen flex justify-center items-center">
+      <img src="/logo1.svg" class="animate-bounce" />
+    </div>
+
+    <div
+      v-if="loading == false"
       class="w-[90%] xl:w-[1280px] lg:w-[1125px] mx-auto py-[64px] md:py-[67px] lg:py-[49px]">
       <div class="title md:w-[60%]">
         <p class="font-[800] text-[32px] font-poppins">
-          Support my community from NEPA Issues for 10years.
+          {{ bucket.bucket.title }}
         </p>
         <button
           class="tag bg-[#BDEED1] text-[#022D19] font-[700] text-[15px] p-[7px] rounded-lg flex items-center">
-          <p>Emergnecy</p>
+          <p>{{ bucket.category }}</p>
           <img src="/Vector.svg" alt="vector" class="px-2" />
         </button>
         <div class="author flex space-x-[12px]">
-          <p class="text-[#939393] font-[500]">Created by David Sampson</p>
-          <div class="flex space-x-[6px] items-center">
-            <img src="/location.svg" class="w-[20px] h-[20px]" />
-            <p class="font-poppins text-[14px] font-[800]">Lagos</p>
-          </div>
+          <p class="text-[#939393] font-[500]">
+            Created by {{ bucket.author }}
+          </p>
         </div>
       </div>
       <div class="">
         <div class="flex space-x-[20px]">
-          <div class="md:w-[70%]">
-            <img src="/donateLarge.svg" class="w-full" />
+          <div class="w-full">
+            <div class="lg:flex justify-between space-x-[10px]">
+              <div
+                class="lg:w-[68%] bg-[#000] w-full flex justify-center items-center">
+                <img
+                  :src="assets + bucket.images[0].image_url"
+                  class="h-[500px]" />
+              </div>
+              <div class="lg:w-[30%]">
+                <div
+                  class="card lg:shadow-lg rounded-2xl lg:p-[30px] space-y-[10px]">
+                  <p class="text-[#939393] text-[14px] font-poppins font-[700]">
+                    Goal amount
+                  </p>
+                  <p class="font-poppins font-[700] text-[32px]">
+                    ₦{{ bucket.bucket.goal }}
+                  </p>
+
+                  <dl class="flex">
+                    <div class="flex flex-1 bg-[#EAF9F0] rounded-full mr-3">
+                      <span
+                        class="bg-[#f6a609] w-[60%] rounded-full py-[8px]" />
+                    </div>
+                  </dl>
+                  <p class="text-[#939393] font-poppins text-[12px]">
+                    Total Raised is ₦50,000
+                  </p>
+
+                  <div class="">
+                    <button
+                      @click="
+                        this.$router.push('/donate/' + bucket.bucket.bucket_id)
+                      "
+                      class="w-full py-[9px] bg-[#295F2D] font-[700] text-white rounded-xl font-poppins">
+                      Donate Now
+                    </button>
+                  </div>
+                  <div class="flex justify-between py-[24px]">
+                    <div class="justify-center text-[10px] font-[700]">
+                      <div class="flex justify-center">
+                        <img src="/donations.svg" />
+                      </div>
+                      10 donations
+                    </div>
+                    <button
+                      class="border border-[#295F2D] text-[16px] font-[700] py-[9px] px-[30px] text-[#295F2D] rounded-xl flex items-center space-x-[4px]">
+                      <p>share</p>
+                      <img src="/share.svg" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="">
               <div class="">
                 <p class="font-poppins text-[#333333] font-[700] text-[20px]">
@@ -32,20 +122,7 @@
               </div>
               <div class="">
                 <p class="font-poppins">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                  exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                  consequat. Duis aute irure dolor inLorem ipsum dolor sit amet,
-                  consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                  ut labore et labo Read more nim veniam, quis nostrud
-                  exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                  consequat. Duis aute irure dolor inLorem ipsum dolor sit amet,
-                  consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                  ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                  ea commodo consequat. Duis aute irure dolor in
+                  {{ bucket.bucket.description }}
                 </p>
 
                 <div class="">
@@ -54,7 +131,7 @@
                     Comments
                   </p>
 
-                  <div class="space-y-[20px]">
+                  <div v-if="bucket.comments.length > 0" class="space-y-[20px]">
                     <div
                       class="comments flex space-x-[10px] items-center"
                       v-for="num in 5">
@@ -72,46 +149,9 @@
                       </p> -->
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="w-[30%]">
-            <div class="card shadow-lg rounded-2xl p-[30px]">
-              <p>Goal amount</p>
-              <p>N500,000.00</p>
-
-              <dl class="flex">
-                <div class="flex flex-1 bg-[#EAF9F0] rounded-full mr-3">
-                  <span class="bg-[#2AC769] w-[60%] rounded-full py-[8px]" />
-                </div>
-              </dl>
-              <p>Total Raised is ₦50,000</p>
-
-              <div class="">
-                <button
-                  @click="this.$router.push('/donate')"
-                  class="w-full bg-[#295F2D] text-white rounded-2xl font-poppins">
-                  Donate Now
-                </button>
-              </div>
-              <div class="flex justify-between">
-                <button>share</button>
-                <button>share</button>
-              </div>
-
-              <div class="border w-full"></div>
-              <div class="">
-                <p>Organizer</p>
-                <div class="flex">
-                  <div class="image"></div>
-                  <div class="user">
-                    <p>name</p>
-                    <p>location</p>
+                  <div v-if="bucket.comments.length == 0">
+                    This bucket has no comments yet
                   </div>
-                </div>
-                <div class="flex justify-center">
-                  <button>contact</button>
                 </div>
               </div>
             </div>
@@ -121,16 +161,3 @@
     </div>
   </div>
 </template>
-<script>
-import navabar_test from "../../components/layout/navabar_test.vue";
-export default {
-  name: "SeeBuckets",
-  components: {
-    navabar_test,
-  },
-  data() {
-    return {};
-  },
-  methods: {},
-};
-</script>
