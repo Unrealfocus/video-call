@@ -8,6 +8,7 @@ import Index from "../pages/dashboard/Index.vue";
 import dashboardLayout from "../components/layout/dashboardLayout.vue";
 import signin from "../pages/auth/login.vue";
 import AccountSettings from "../pages/dashboard/accountSettings.vue";
+import SecuritySettings from "../pages/dashboard/securitySettings.vue";
 // import DonationsPage from "../pages/dashboard/donation.vue";
 import Withdrawal from "../pages/dashboard/withdrawal.vue";
 import ManagePage from "../pages/dashboard/manage.vue";
@@ -54,10 +55,6 @@ export const router = createRouter({
       path: "/account-settings",
       component: AccountSettings,
     },
-    // {
-    //   path: "/donations",
-    //   component: DonationsPage,
-    // },
     {
       path: "/contact-us",
       component: ContactUs,
@@ -74,6 +71,10 @@ export const router = createRouter({
         {
           path: "account-settings",
           component: AccountSettings,
+        },
+        {
+          path: "security-settings",
+          component: SecuritySettings,
         },
         {
           path: "",

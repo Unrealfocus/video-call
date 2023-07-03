@@ -108,6 +108,13 @@ export default {
               </div>
             </div>
           </div>
+          <section class="flex justify-center mt-20">
+            <button
+              class="px-20 py-3 text-base font-semibold text-white rounded-xl bg-appGreen200 font-poppins md:hidden sm:block"
+            >
+              Save Changes
+            </button>
+          </section>
         </section>
       </div>
 
@@ -248,6 +255,7 @@ export default {
           </button>
         </section>
       </div>
+
       <div v-show="activeTab === 2">
         <section>
           <p class="text-xl font-semibold font-poppins text-[#C8C8C8]">

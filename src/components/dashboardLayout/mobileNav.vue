@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex justify-between bg-white w-[390px] py-5">
+  <nav class="flex justify-between bg-white w-[400px] py-5 px-3 items-center">
     <router-link
       :to="item.target"
       v-for="(item, index) in topLinks"
@@ -14,7 +14,7 @@
 
 <style scoped>
 a.router-link-active {
-  @apply bg-[#EAEFEA] rounded-lg text-[#295F2D];
+  @apply bg-[#EAEFEA] rounded-lg px-2 text-[#295F2D];
 }
 </style>
 

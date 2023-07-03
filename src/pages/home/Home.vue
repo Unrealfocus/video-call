@@ -83,7 +83,7 @@ import Footer from "../../components/layout/footer.vue";
             class="grid-flow-row grid-cols-2 gap-2 md:grid lg:grid-cols-4 auto-rows-max"
           >
             <div
-              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover"
+              class="group/item m-2 rounded-lg relative bg-[#F3F3F3] bg-cover hover:text-[#F8B83A] hover:bg-[#2A5E2A] transition-all duration-300"
             >
               <div class="py-[46px]">
                 <div class="w-full">
@@ -97,7 +97,7 @@ import Footer from "../../components/layout/footer.vue";
               </div>
             </div>
             <div
-              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover"
+              class="group/item m-2 rounded-lg relative bg-[#F3F3F3] bg-cover hover:text-[#F8B83A] hover:bg-[#2A5E2A] transition-all duration-300"
             >
               <div class="py-[46px]">
                 <div class="w-full">
@@ -111,7 +111,7 @@ import Footer from "../../components/layout/footer.vue";
               </div>
             </div>
             <div
-              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover"
+              class="group/item m-2 rounded-lg relative bg-[#F3F3F3] bg-cover hover:text-[#F8B83A] hover:bg-[#2A5E2A] transition-all duration-300"
             >
               <div class="py-[46px]">
                 <div class="w-full">
@@ -125,7 +125,7 @@ import Footer from "../../components/layout/footer.vue";
               </div>
             </div>
             <div
-              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover"
+              class="group/item m-2 rounded-lg relative bg-[#F3F3F3] bg-cover hover:text-[#F8B83A] hover:bg-[#2A5E2A] transition-all duration-300"
             >
               <div class="py-[46px]">
                 <div class="w-full">
