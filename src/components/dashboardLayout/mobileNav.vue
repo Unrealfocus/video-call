@@ -42,7 +42,7 @@ export default {
         {
           icon: "/card-pos.svg",
           title: "Donation",
-          target: "/dashboard/donations",
+          target: "/buckets",
         },
         {
           icon: "/element-equal.svg",

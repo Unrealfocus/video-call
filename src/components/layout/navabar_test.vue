@@ -19,9 +19,38 @@
           <router-link to="/">Home</router-link>
         </div>
 
-        <div class="flex gap-1 hover:font-[800]" @click="toggleDropdown">
-          <p>Fundraiser Category</p>
-          <img src="/arrow-down.svg" alt="" />
+        <div>
+          <button
+            class="flex gap-1 hover:font-[800] cursor-pointer"
+            @click="toggleDropdown"
+          >
+            <p>Fundraiser Category</p>
+            <img src="/arrow-down.svg" alt="" />
+          </button>
+          <div
+            v-if="isDropdownOpen"
+            class="absolute z-10 inline-flex p-6 mt-10 bg-white shadow rounded-3xl position"
+          >
+            <div class="z-10 flex gap-36">
+              <div>
+                <ul class="gap-6">
+                  <li v-for="category in categories" :key="category">
+                    {{ category }}
+                  </li>
+                </ul>
+                <div class="mt-5 bg-[#F3F3F3] text-center rounded-lg">
+                  <button>see all</button>
+                </div>
+              </div>
+              <div>
+                <ul>
+                  <li v-for="category in categories" :key="category">
+                    {{ category }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="hover:font-[800]">
@@ -103,35 +132,6 @@
       </div>
     </div>
   </div>
-  <div
-    v-if="isDropdownOpen"
-    class="inline-flex p-6 mt-2 bg-white shadow rounded-3xl h-[371px]"
-    x-transition:enter="transition ease-out duration-200"
-    x-transition:enter-start="opacity-0 transform scale-90"
-    x-transition:enter-end="opacity-100 transform scale-100"
-    x-transition:leave="transition ease-in duration-150"
-    x-transition:leave-start="opacity-100 transform scale-100"
-    x-transition:leave-end="opacity-0 transform scale-90"
-  >
-    <div class="z-10 flex gap-6">
-      <div>
-        <ul>
-          <li>medical</li>
-          <li>Non-profit</li>
-          <li>Emergency</li>
-          <li>Education</li>
-        </ul>
-      </div>
-      <div>
-        <ul>
-          <li>medical</li>
-          <li>Non-profit</li>
-          <li>Emergency</li>
-          <li>Education</li>
-        </ul>
-      </div>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -141,6 +141,7 @@ export default {
     return {
       toggleNav: false,
       isDropdownOpen: false,
+      categories: ["medical", "non-profit", "emergency", "education"],
     };
   },
   methods: {
