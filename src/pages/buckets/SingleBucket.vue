@@ -67,7 +67,7 @@ export default {
                 class="lg:w-[68%] bg-[#000] w-full flex justify-center items-center">
                 <img
                   :src="assets + bucket.images[0].image_url"
-                  class="h-[500px]" />
+                  class="lg:h-[500px] w-full" />
               </div>
               <div class="lg:w-[30%]">
                 <div
@@ -114,13 +114,13 @@ export default {
                 </div>
               </div>
             </div>
-            <div class="">
+            <div class=" ">
               <div class="">
                 <p class="font-poppins text-[#333333] font-[700] text-[20px]">
                   Full Story
                 </p>
               </div>
-              <div class="">
+              <div class=" ">
                 <p class="font-poppins">
                   {{ bucket.bucket.description }}
                 </p>

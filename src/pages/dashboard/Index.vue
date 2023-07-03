@@ -165,10 +165,11 @@
               How to improve your Fundraising by 80%
             </p>
             <p class="font-poppins font-normal text-[#F9F9F9] text-lg">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              Ask for Donations. Don’t be afraid to reach out and ask people to
+              donate. Ask friends, family, neighbors, and even strangers for
+              support. Also Show Gratitude. Lots of it. Express your gratitude
+              to your supporters. Send thank you emails or personalized cards to
+              show them that you appreciate their help.
             </p>
 
             <div class="flex justify-end pt-4">
@@ -189,10 +190,10 @@
           <!-- flex overflow-x-scroll gap-7 no-scrollbar -->
           <div class="mt-10">
             <ul class="grid grid-cols-1 md:grid-cols-3 gap-7">
-              <li v-for="num in 3" class="">
+              <li v-for="item in buckets" class="">
                 <figure class="px-5 py-5 bg-white rounded-2xl">
                   <img
-                    src="/community.svg"
+                    :src="assets + item.images[0].image_url"
                     class="object-cover object-center w-full h-44 rounded-2xl"
                     alt="" />
                   <button
@@ -200,21 +201,16 @@
                     class="flex items-center px-2 py-1 my-3 rounded-lg bg-appGreen100">
                     <span
                       class="text-sm font-bold shadow-md text-appGreen200 font-poppins shadow-appGreen100">
-                      Medical
+                      {{ item.category }}
                     </span>
                     <img src="/Vector.svg" alt="vector" class="px-2" />
                   </button>
                   <p class="text-base font-semibold font-poppins">
-                    Adeola Potts-Johnson is organizing this fundraiser on behalf
-                    of Girls.
+                    {{ item.bucket.title }}
                   </p>
 
                   <p class="mt-5 mb-2 text-sm font-medium font-poppins">
-                    Jorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Etiam eu turpis molestie, dictum est a, mattis tellus. Sed
-                    dignissim, metus nec fringilla accumsan, risus sem
-                    sollicitudin lacus, ut interdum tellus elit sed risus.
-                    Maecenas eget condimentum velit.
+                    {{ item.bucket.description }}
                   </p>
 
                   <dl class="flex">
@@ -237,7 +233,7 @@
 
                       <dd
                         class="font-medium font-poppins text-xs text-[#000000]">
-                        50,000
+                        {{ item.donated }}
                       </dd>
                     </span>
                     <span class="flex">
@@ -247,17 +243,19 @@
                       </dt>
                       <dd
                         class="font-medium font-poppins text-xs text-[#295F2D]">
-                        1,000,000
+                        {{ item.bucket.goal }}
                       </dd>
                     </span>
                   </dl>
-                  <router-link to="/buckets">
-                    <button
-                      class="bg-appGreen300 w-full rounded-full py-2 font-semibold font-poppins text-lg text-[#FFFFFF]"
-                      type="button">
-                      Donate
-                    </button></router-link
-                  >
+
+                  <button
+                    @click="
+                      this.$router.push('/bucket/' + item.bucket.bucket_id)
+                    "
+                    class="bg-appGreen300 w-full rounded-full py-2 font-semibold font-poppins text-lg text-[#FFFFFF]"
+                    type="button">
+                    Donate
+                  </button>
                 </figure>
               </li>
             </ul>
@@ -291,6 +289,10 @@ export default {
     //get categories
     await axios.get(app + "categories").then((res) => {
       this.categories = res.data.data;
+    });
+
+    await axios.get(app + "buckets").then((res) => {
+      this.buckets = res.data.data;
     });
 
     //get my buckets
