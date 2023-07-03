@@ -1,5 +1,10 @@
 <template>
-  <div class="pt-12 mb-20">
+  <div
+    v-if="loading == true"
+    class="loading w-full h-screen flex justify-center items-center">
+    <img src="/logo1.svg" class="animate-bounce" />
+  </div>
+  <div v-if="loading == false" class="pt-12 mb-20 lg:w-[85%] mx-auto">
     <section class="items-center justify-between md:flex sm:block">
       <p
         class="mb-5 text-2xl font-bold md:text-3xl md:font-medium font-poppins">
@@ -94,9 +99,11 @@ export default {
     return {
       buckets: [],
       categories: [],
+      loading: false,
     };
   },
   async mounted() {
+    this.loading = true;
     const app = import.meta.env.VITE_APP_ENGINE;
     this.assets = import.meta.env.VITE_APP_ASSETS;
     //get categories
@@ -112,6 +119,7 @@ export default {
       .then((res) => {
         this.buckets = res.data.data;
       });
+    this.loading = false;
   },
   methods: {
     toggleSection(num) {

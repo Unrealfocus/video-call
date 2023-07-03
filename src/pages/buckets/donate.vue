@@ -309,6 +309,9 @@ export default {
           );
 
           //call backend and confirm the transaction
+
+          //redirect to dashboard
+          this.$router.push("/dashboard");
         },
 
         onClose: function () {

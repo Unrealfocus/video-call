@@ -190,7 +190,6 @@
             <p class="text-center font-poppins font-[700] text-[24px]">
               Successfully Completed
             </p>
-
             <div
               :class="[currentStep == 4 ? '' : 'hidden']"
               @click="this.$router.push('/dashboard')"
@@ -320,6 +319,9 @@ export default {
       }
     },
     prevSlide() {
+      if (this.currentStep == 1) {
+        this.$router.push("/dashboard");
+      }
       if (this.currentStep > 1) {
         this.currentStep--;
       }

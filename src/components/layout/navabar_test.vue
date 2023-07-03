@@ -7,7 +7,9 @@
     <header
       class="w-[90%] xl:w-[1280px] mx-auto flex items-center justify-between flex-wrap py-[20px]">
       <div class="flex items-center mr-6 text-white flex-no-shrink">
-        <img src="/logo1.svg" alt="logo" />
+        <Router-link to="/">
+          <img src="/logo1.svg" alt="logo" />
+        </Router-link>
       </div>
       <!-- center block  -->
       <div
