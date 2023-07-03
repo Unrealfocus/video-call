@@ -33,8 +33,6 @@
         <div class="">
           <button
             class="hidden lg:block hover:bg-[#BDEED1] text-[#295F2D] px-[23px] py-[11px] border-2 border-[#295F2D] rounded-full">
-            class="hidden lg:block hover:bg-[#BDEED1] text-[#295F2D] px-[23px]
-            py-[11px] border-2 border-[#295F2D] rounded-full">
             <router-link v-if="!this.$store.state.user.user_id" to="/sign-in"
               >Sign in</router-link
             >
@@ -48,8 +46,7 @@
             @click="this.$router.push('/buckets')"
             :class="[toggleNav == true ? 'md:hidden' : '']"
             class="hidden md:block bg-[#295F2D] rounded-full px-[23px] py-[11px] text-white">
-            class="hidden md:block bg-[#295F2D] rounded-full px-[23px] py-[11px]
-            text-white"> Let's Put Hands
+            Let's Put Hands
           </button>
         </div>
         <div
