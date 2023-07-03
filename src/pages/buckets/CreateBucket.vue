@@ -59,8 +59,11 @@
                 v-model="description"
                 class="w-full bg-transparent border-none outline-none"
                 rows="4"></textarea>
-              {{ description.length }}/150
+              {{ description.length }}
             </div>
+            <p class="text-[10px]">
+              Description should not be less than 150 letters*
+            </p>
           </div>
           <div class="next-button py-[40px]">
             <div
@@ -83,6 +86,7 @@
                 <input
                   type="number"
                   v-model="goal"
+                  placeholder="50000"
                   class="bg-[#fff] w-full border-none bg-transparent outline-none rounded full" />
               </div>
               <p class="text-[#939393] text-[14px] font-[500]">
@@ -209,7 +213,7 @@ export default {
       loading: false,
       category: "choose your category",
       today: "",
-      goal: 0,
+      goal: "",
       endDate: "",
       description: "",
       title: "",

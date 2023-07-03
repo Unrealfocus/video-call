@@ -33,6 +33,8 @@
         <div class="">
           <button
             class="hidden lg:block hover:bg-[#BDEED1] text-[#295F2D] px-[23px] py-[11px] border-2 border-[#295F2D] rounded-full">
+            class="hidden lg:block hover:bg-[#BDEED1] text-[#295F2D] px-[23px]
+            py-[11px] border-2 border-[#295F2D] rounded-full">
             <router-link v-if="!this.$store.state.user.user_id" to="/sign-in"
               >Sign in</router-link
             >
@@ -46,19 +48,21 @@
             @click="this.$router.push('/buckets')"
             :class="[toggleNav == true ? 'md:hidden' : '']"
             class="hidden md:block bg-[#295F2D] rounded-full px-[23px] py-[11px] text-white">
-            Let's Put Hands
+            class="hidden md:block bg-[#295F2D] rounded-full px-[23px] py-[11px]
+            text-white"> Let's Put Hands
           </button>
         </div>
         <div
           @click="navDrop"
           class="lg:hidden"
           :class="[toggleNav == true ? 'hidden' : '']">
+          :class="[toggleNav == true ? 'hidden' : '']">
           <img src="/ham.svg" />
         </div>
         <div
           @click="navDrop"
           :class="[toggleNav == true ? ' ' : 'hidden']"
-          class="lg:hidden font-[500] text-[14px] bg-[#e9e9e9] px-[20px] py-[10px] rounded-full">
+          class="lg:hidden font-[500] text-[14px] bg-[#e9e9e9] px-[12px] py-[10px] rounded-full">
           close x
         </div>
       </div>
