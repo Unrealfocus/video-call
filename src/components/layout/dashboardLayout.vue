@@ -26,6 +26,7 @@ import Topbar from "../../components/dashboardLayout/topbar.vue";
 import MobileNav from "../../components/dashboardLayout/mobileNav.vue";
 import MobileDashboardHeader from "../dashboardLayout/mobileDashboardHeader.vue";
 import TabletDashboardHeader from "../dashboardLayout/tabletDashboardHeader.vue";
+import axios from "axios";
 
 export default {
   name: "index",
@@ -40,10 +41,26 @@ export default {
     return {};
   },
   methods: {},
-  mounted() {
+  async mounted() {
     if (this.$store.state.user == {}) {
       return this.$router.push("/sign-in");
     }
+    //check if user auth is still valid
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + this.$store.state.token;
+    await axios
+      .get(createBucket, {
+        category_id: this.category,
+        goal: this.goal,
+        user_id: this.$store.state.user.user_id,
+        end_date: this.endDate,
+        title: this.title,
+        description: this.description,
+      })
+      .then((res) => {})
+      .catch((err) => {
+        return this.$router.push("/sign-in");
+      });
   },
 };
 </script>

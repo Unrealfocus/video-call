@@ -1,4 +1,5 @@
 <template>
+  import { RouterLink } from 'vue-router';
   <section
     class="flex shadow-aboutContainer"
     :class="[toggleNav == true ? 'bg-[#f9f9f9]' : 'bg-[#fff]']">
@@ -7,7 +8,9 @@
     <header
       class="w-[90%] xl:w-[1280px] mx-auto flex items-center justify-between flex-wrap py-[20px]">
       <div class="flex items-center mr-6 text-white flex-no-shrink">
-        <img src="/logo1.svg" alt="logo" />
+        <Router-link to="/">
+          <img src="/logo1.svg" alt="logo" />
+        </Router-link>
       </div>
       <!-- center block  -->
       <div
@@ -141,5 +144,6 @@ export default {
       this.isDropdownOpen = !this.isDropdownOpen;
     },
   },
+  components: { RouterLink },
 };
 </script>
