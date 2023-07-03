@@ -56,7 +56,6 @@
           @click="navDrop"
           class="lg:hidden"
           :class="[toggleNav == true ? 'hidden' : '']">
-          :class="[toggleNav == true ? 'hidden' : '']">
           <img src="/ham.svg" />
         </div>
         <div
