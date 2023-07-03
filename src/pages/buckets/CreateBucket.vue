@@ -59,7 +59,11 @@
                 v-model="description"
                 class="w-full bg-transparent border-none outline-none"
                 rows="4"></textarea>
+              {{ description.length }}
             </div>
+            <p class="text-[10px]">
+              Description should not be less than 150 letters*
+            </p>
           </div>
           <div class="next-button py-[40px]">
             <div
@@ -82,6 +86,7 @@
                 <input
                   type="number"
                   v-model="goal"
+                  placeholder="50000"
                   class="bg-[#fff] w-full border-none bg-transparent outline-none rounded full" />
               </div>
               <p class="text-[#939393] text-[14px] font-[500]">
@@ -185,7 +190,6 @@
             <p class="text-center font-poppins font-[700] text-[24px]">
               Successfully Completed
             </p>
-
             <div
               :class="[currentStep == 4 ? '' : 'hidden']"
               @click="this.$router.push('/dashboard')"
@@ -208,7 +212,7 @@ export default {
       loading: false,
       category: "choose your category",
       today: "",
-      goal: 0,
+      goal: "",
       endDate: "",
       description: "",
       title: "",
@@ -234,6 +238,16 @@ export default {
   },
   methods: {
     async submit() {
+      //check if description
+      if (this.description.length < 150) {
+        swal("Description should not be less than 150 letters", {
+          icon: "error",
+          buttons: false,
+          timer: 3000,
+          class: "font-poppins font-[700] text-[300px]",
+        });
+        return;
+      }
       this.loading = true;
       const createBucket = import.meta.env.VITE_APP_ENGINE + "buckets";
       axios.defaults.headers.common["Authorization"] =
@@ -241,7 +255,7 @@ export default {
       await axios
         .post(createBucket, {
           category_id: this.category,
-          goal: toString(this.goal),
+          goal: this.goal,
           user_id: this.$store.state.user.user_id,
           end_date: this.endDate,
           title: this.title,
@@ -268,6 +282,7 @@ export default {
       const uploadLink =
         import.meta.env.VITE_APP_ENGINE + "upload_bucket_image";
       const data = new FormData();
+
       if (this.imageFile) {
         data.append("image", this.imageFile);
         data.append("bucket_id", this.bucket_id);
@@ -304,6 +319,9 @@ export default {
       }
     },
     prevSlide() {
+      if (this.currentStep == 1) {
+        this.$router.push("/dashboard");
+      }
       if (this.currentStep > 1) {
         this.currentStep--;
       }
