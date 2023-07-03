@@ -87,7 +87,7 @@
           </div>
           <div
             class="bg-[#295F2D] rounded-full text-center py-[12px] text-white font-[700] font-poppins">
-            Let's Put Hands
+            <router-link to="/buckets"> Let's Put Hands </router-link>
           </div>
         </div>
       </div>
