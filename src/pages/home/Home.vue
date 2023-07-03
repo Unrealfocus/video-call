@@ -39,7 +39,7 @@ export default {
       <img src="/logo1.svg" class="animate-bounce" />
     </div>
     <section v-if="loading == false" class="bg-[url('/Vector2.svg')]">
-      <section class="bg-[#F3F3F3] pb-16 relative p-8">
+      <section class="bg-[#F3F3F3] pb-16 relative">
         <section class="flex items-center justify-center">
           <p
             class="text-center font-poppins px-[41px] font-[800] md:leading-[56px] leading-[44px] text-[36px] sm:font-extrabold md:text-[66px] mt-28">

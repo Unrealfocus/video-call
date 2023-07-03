@@ -15,7 +15,7 @@
             <div class="rounded-2xl md:w-[30%]">
               <img
                 :src="assets + bucket.images[0].image_url"
-                class="md:w-[200px]"
+                class="md:w-[150px]"
                 alt="" />
             </div>
             <div class="">
@@ -195,8 +195,7 @@
               <button
                 v-if="currentPage === 3"
                 @click="payWithPaystack"
-                :class="[complete == false ? 'bg-[#939393]' : 'bg-[#295F2D]']"
-                class="w-full text-white rounded-2xl py-[12px] font-poppins font-[600]">
+                class="w-full text-white rounded-2xl py-[12px] font-poppins font-[600] bg-[#295F2D]">
                 Donate Now
               </button>
               <div v-if="currentPage !== 3" class="flex justify-between">
@@ -234,8 +233,8 @@ export default {
     return {
       currentPage: 1,
       complete: false,
-      amount: 0,
-      tip: 0,
+      amount: "",
+      tip: "",
       total: 0,
       email: "",
       name: "",
