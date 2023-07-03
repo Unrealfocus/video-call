@@ -144,6 +144,5 @@ export default {
       this.isDropdownOpen = !this.isDropdownOpen;
     },
   },
-  components: { RouterLink },
 };
 </script>

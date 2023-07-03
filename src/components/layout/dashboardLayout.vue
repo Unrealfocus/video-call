@@ -46,19 +46,24 @@ export default {
       return this.$router.push("/sign-in");
     }
     //check if user auth is still valid
+    const app =
+      import.meta.env.VITE_APP_ENGINE +
+      "user/" +
+      this.$store.state.user.user_id;
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + this.$store.state.token;
     await axios
-      .get(createBucket, {
-        category_id: this.category,
-        goal: this.goal,
-        user_id: this.$store.state.user.user_id,
-        end_date: this.endDate,
-        title: this.title,
-        description: this.description,
-      })
+      .get(app)
       .then((res) => {})
       .catch((err) => {
+        let error = err.response.data.message;
+
+        swal(error, {
+          icon: "error",
+          buttons: false,
+          timer: 3000,
+          class: "font-poppins font-[700] text-[300px]",
+        });
         return this.$router.push("/sign-in");
       });
   },

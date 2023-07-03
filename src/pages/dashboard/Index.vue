@@ -1,6 +1,11 @@
 <template>
   <div>
-    <main class="mx-auto">
+    <div
+      v-if="loading == true"
+      class="loading w-full h-screen flex justify-center items-center">
+      <img src="/logo1.svg" class="animate-bounce" />
+    </div>
+    <main v-if="loading == false" class="lg:w-[85%] mx-auto">
       <section class="section 1">
         <h1
           class="pb-3 text-sm font-medium md:text-base md:font-bold font-poppins">
@@ -271,10 +276,13 @@ export default {
     return {
       assets: "",
       myBuckets: [],
+      buckets: [],
       recent: {},
+      loading: false,
     };
   },
-  async mounted() {
+  async created() {
+    this.loading = true;
     const app = import.meta.env.VITE_APP_ENGINE;
     this.assets = import.meta.env.VITE_APP_ASSETS;
 
@@ -295,6 +303,7 @@ export default {
       });
     //set recent
     this.recent = this.myBuckets[this.myBuckets.length - 1];
+    this.loading = false;
   },
 };
 </script>
