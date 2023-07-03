@@ -1,5 +1,4 @@
 <template>
-  import { RouterLink } from 'vue-router';
   <section
     class="flex shadow-aboutContainer"
     :class="[toggleNav == true ? 'bg-[#f9f9f9]' : 'bg-[#fff]']">

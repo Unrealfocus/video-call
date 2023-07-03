@@ -2,7 +2,9 @@
   <div class="relative">
     <header
       class="fixed w-full bg-[#fff] py-[10px] flex items-center justify-between px-5">
-      <img src="/logo1.svg" class="w-24" alt="puthand logo" />
+      <router-link to="/">
+        <img src="/logo1.svg" class="w-24" alt="puthand logo" />
+      </router-link>
       <div class="flex items-center gap-5">
         <div class="relative">
           <button
