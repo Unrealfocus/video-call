@@ -99,6 +99,7 @@
         {{ tab }}
       </div>
     </section>
+ 
     <div v-show="activeTab === 0">
       <div class="flex">
         <p class="font-medium md:text-2xl font-poppins text-[#484848]">
@@ -125,54 +126,76 @@
           <textarea
             class="w-full bg-transparent border-none outline-none"
             rows="4"></textarea>
+ 
         </div>
-      </div>
 
-      <div class="pt-5"><p>Add a Photos</p></div>
-      single
-      <div class="pt-10"></div>
+         <div class="pt-5"><p>Add a Photos</p></div>
 
-      <div>
-        <p class="text-lg font-semibold font-poppins text-[#484848]">
-          Share Update
-        </p>
-        <div class="flex items-center gap-2 pt-3">
-          <label class="inline-flex items-center">
-            <input
-              type="checkbox"
-              class="w-5 h-5 text-indigo-600 transition duration-150 ease-in-out form-checkbox"
-              :checked="checked"
-              @change="toggle" />
-          </label>
-          <p class="text-sm font-medium font-poppins text-[#999999]">
-            Fundraiser page default
+        <div class="pt-10"></div>
+
+        <div>
+          <p class="text-lg font-semibold font-poppins text-[#484848]">
+            Share Update
+ 
           </p>
+          <div class="flex items-center gap-2 pt-3">
+            <label class="inline-flex items-center">
+              <input
+                type="checkbox"
+                class="w-5 h-5 text-indigo-600 transition duration-150 ease-in-out form-checkbox"
+                :checked="checked"
+                @change="toggle"
+              />
+            </label>
+            <p class="text-sm font-medium font-poppins text-[#999999]">
+              Fundraiser page default
+            </p>
+          </div>
+          <div class="flex items-center gap-2 pt-3">
+            <label class="inline-flex items-center">
+              <input
+                type="checkbox"
+                class="w-5 h-5 text-indigo-600 transition duration-150 ease-in-out form-checkbox"
+                :checked="checked"
+                @change="toggle"
+              />
+            </label>
+            <p class="text-sm font-medium font-poppins text-[#999999]">
+              Email donors
+            </p>
+          </div>
         </div>
-        <div class="flex items-center gap-2 pt-3">
-          <label class="inline-flex items-center">
-            <input
-              type="checkbox"
-              class="w-5 h-5 text-indigo-600 transition duration-150 ease-in-out form-checkbox"
-              :checked="checked"
-              @change="toggle" />
-          </label>
-          <p class="text-sm font-medium font-poppins text-[#999999]">
-            Email donors
-          </p>
-        </div>
-      </div>
 
-      <div class="flex items-center justify-between pt-7">
-        <button
-          class="px-20 py-2 text-base font-semibold text-white bg-appGreen200 rounded-xl font-poppins">
-          Save Changes
-        </button>
-        <button
-          class="px-20 py-2 border border-[#295F2D] rounded-xl text-[#295F2D] text-base font-poppins font-semibold">
-          Cancel Changes
-        </button>
+
+        <div class="flex items-center justify-between pt-7">
+          <button
+            class="px-20 py-2 text-base font-semibold text-white bg-appGreen200 rounded-xl font-poppins"
+          >
+            Save Changes
+          </button>
+ 
+        </div>
       </div>
     </div>
+
+ 
+    <div class="flex">
+      <p class="font-medium md:text-2xl font-poppins text-[#484848]">
+        <span class="font-bold text-black"
+          >Get your first Donation by sharing Sharing</span
+        >
+        <br />
+        your fundraiser regularly with your friends for the most success and ask
+        <br />
+        friends to donate and share.
+      </p>
+ 
+    </div>
+    <button
+      class="px-20 py-4 mt-5 text-white rounded-lg md:px-28 bg-appGreen200"
+    >
+      Share Fundraiser
+    </button>
   </div>
 </template>
 

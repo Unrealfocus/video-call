@@ -1,5 +1,6 @@
 <script>
 import Navbar from "../../components/layout/navabar_test.vue";
+ 
 import Footer from "../../components/layout/Footer.vue";
 import axios from "axios";
 
@@ -27,6 +28,7 @@ export default {
     });
   },
 };
+ 
 </script>
 
 <template>
@@ -42,14 +44,20 @@ export default {
       <section class="bg-[#F3F3F3] pb-16 relative">
         <section class="flex items-center justify-center">
           <p
-            class="text-center font-poppins px-[41px] font-[800] md:leading-[56px] leading-[44px] text-[36px] sm:font-extrabold md:text-[66px] mt-28">
-            MAKE SOMEONE SMILE <br />
-            TODAY- PUT HAND IN THEIR <br />
+ 
+            class="text-center font-poppins md:px-[41px] md:font-[800] md:leading-[56px] leading-[44px] text-[36px] font-bold md:text-[66px] mt-10 md:mt-28"
+          >
+            MAKE SOMEONE SMILE <br class="hidden md:block" />
+            TODAY- PUT HAND IN THEIR <br class="hidden md:block" />
+ 
             BUCKET. 
           </p>
         </section>
         <section
-          class="flex text-center justify-center my-7 font-poppins md:font-medium md:text-base leading-6 sm:items-center text-[14px] font-[500] px-[41px]">
+ 
+          class="flex text-center justify-center my-7 font-poppins md:font-medium md:text-base leading-6 items-center text-[14px] font-[500] md:px-[41px]"
+        >
+
           Build a dream bucket and invite friends and families, strangers to
           donate. 
         </section>
@@ -65,15 +73,30 @@ export default {
         </div>
 
         <section>
-          <img
-            src="/Group53.svg"
-            alt=""
-            class="items-center justify-center mx-auto -mt-8" />
-          <img
-            src="/gradient.svg"
-            alt=""
-            :draggable="false"
-            class="absolute opacity-50 bottom-10" />
+ 
+          <div class="hidden lg:block">
+            <img
+              src="/Group53.svg"
+              alt=""
+              class="items-center justify-center mx-auto -mt-8"
+            />
+            <img
+              src="/gradient.svg"
+              alt=""
+              :draggable="false"
+              class="absolute opacity-50 bottom-10"
+            />
+          </div>
+          <div class="-mt-14 md:hidden">
+            <img src="/Group6.svg" alt="" />
+            <img
+              src="/gradient2.svg"
+              alt=""
+              :draggable="false"
+              class="absolute opacity-50 bottom-10"
+            />
+          </div>
+ 
         </section>
       </section>
 
@@ -83,7 +106,10 @@ export default {
         <div class="w-[90%] xl:w-[1280px] mx-auto">
           <div class="">
             <p
-              class="font-[800] text-[26px] lg:text-[52px] font-poppins text-[#242424]">
+ 
+              class="md:font-[800] font-[700] text-[20px] md:text-[52px] font-poppins text-[#242424]"
+            >
+ 
               IT’S NOT ROCKET SCIENCE
             </p>
             <p
@@ -162,7 +188,10 @@ export default {
         <div
           class="w-[90%] xl:w-[1280px] mx-auto py-[64px] md:py-[67px] lg:py-[49px]">
           <div
-            class="content bg-[#FEF7D6] md:py-[110px] py-[20px] lg:py-[40px] px-[10px] lg:px-[34px] rounded-3xl md:flex">
+ 
+            class="content bg-[#FEF7D6] md:py-[110px] py-[20px] lg:py-[40px] px-[10px] lg:px-[34px] rounded-3xl md:flex items-center"
+          >
+ 
             <div class="text md:w-1/2">
               <p
                 class="md:w-2/3 font-[600] text-[28px] lg:text-[44px] leading-[36px] lg:leading-[48px] font-poppins">

@@ -61,10 +61,10 @@
   >
     <div class="w-[90%] mx-auto">
       <div class="text-[16px] font-[500] font-poppins space-y-[30px]">
-        <p>Home</p>
-        <p>Fundraiser Category</p>
-        <p>How it works</p>
-        <p>About us</p>
+        <div><router-link to="/">Home</router-link></div>
+        <div><router-link to="#">Fundraiser Category</router-link></div>
+        <div><router-link to="/works">How it works</router-link></div>
+        <div><router-link to="/about-us">About us</router-link></div>
 
         <div class="py-[23px] space-y-[23px]">
           <div
