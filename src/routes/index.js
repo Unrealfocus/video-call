@@ -54,10 +54,7 @@ export const router = createRouter({
       path: "/account-settings",
       component: AccountSettings,
     },
-    // {
-    //   path: "/donations",
-    //   component: DonationsPage,
-    // },
+
     {
       path: "/contact-us",
       component: ContactUs,
@@ -112,11 +109,11 @@ export const router = createRouter({
       component: SeeBuckets,
     },
     {
-      path: "/bucket",
+      path: "/bucket/:id",
       component: SingleBucket,
     },
     {
-      path: "/donate",
+      path: "/donate/:id",
       component: donate,
     },
   ],

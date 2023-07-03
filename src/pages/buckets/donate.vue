@@ -3,21 +3,27 @@
     <div class="flex lg:h-screen items-center justify-center">
       <div
         class="bg-[#fff] w-[820px] rounded-lg px-[12px] md:px-[45px] py-[50px]">
-        <div class="">
+        <div class="py-[10px]">
           <button
-            @click="this.$router.push('/bucket')"
-            class="border-2 border-[#295F2D] text-[#295F2D] rounded-2xl px-[23px] py-[12px] font-[700] text-[16px]">
+            @click="this.$router.push('/bucket/' + bucket.bucket.bucket_id)"
+            class="border-2 font-poppins text-[#242424] rounded-2xl px-[23px] py-[12px] font-[700] text-[16px]">
             Back to fund raiser
           </button>
         </div>
         <div class="steps py-[30px]">
           <div class="md:flex items-center space-x-[20px]">
             <div class="rounded-2xl md:w-[30%]">
-              <img src="/donateLarge.svg" alt="" />
+              <img
+                :src="assets + bucket.images[0].image_url"
+                class="md:w-[150px]"
+                alt="" />
             </div>
             <div class="">
               <p class="text-[20px] font-[700] text-[#161616] font-poppins">
-                you’re supporting David community with NEPA Light
+                {{ bucket.bucket.title }}
+              </p>
+              <p class="font-poppins">
+                Your donation will benefit {{ bucket.author }}
               </p>
             </div>
           </div>
@@ -189,8 +195,7 @@
               <button
                 v-if="currentPage === 3"
                 @click="payWithPaystack"
-                :class="[complete == false ? 'bg-[#939393]' : 'bg-[#295F2D]']"
-                class="w-full text-white rounded-2xl py-[12px] font-poppins font-[600]">
+                class="w-full text-white rounded-2xl py-[12px] font-poppins font-[600] bg-[#295F2D]">
                 Donate Now
               </button>
               <div v-if="currentPage !== 3" class="flex justify-between">
@@ -220,6 +225,7 @@
 </template>
 <script>
 import swal from "sweetalert";
+import axios from "axios";
 export default {
   name: "donate",
   components: {},
@@ -227,16 +233,30 @@ export default {
     return {
       currentPage: 1,
       complete: false,
-      amount: 0,
-      tip: 0,
+      amount: "",
+      tip: "",
       total: 0,
       email: "",
       name: "",
       phone: "",
       error: true,
+      bucket: "",
+      assets: "",
     };
   },
+  async created() {
+    this.loading = true;
 
+    const app = import.meta.env.VITE_APP_ENGINE;
+    this.assets = import.meta.env.VITE_APP_ASSETS;
+
+    //get buckets
+    await axios.get(app + "bucket/" + this.$route.params.id).then((res) => {
+      this.bucket = res.data.data;
+      console.log(this.bucket);
+    });
+    this.loading = false;
+  },
   methods: {
     nextSlide() {
       this.currentPage++;
@@ -262,12 +282,16 @@ export default {
 
       var handler = PaystackPop.setup({
         key: import.meta.env.VITE_PAYSTACK_KEY,
-
+        firstname: this.name,
         email: this.email,
 
         amount: parseInt(this.amount + this.tip) * 100,
 
         currency: "NGN", // Use GHS for Ghana Cedis or USD for US Dollars
+
+        metadata: {
+          custom_fields: [{ bucket_id: this.$route.params.id }],
+        },
 
         callback: function (response) {
           //this happens after the payment is completed successfully
@@ -285,6 +309,9 @@ export default {
           );
 
           //call backend and confirm the transaction
+
+          //redirect to dashboard
+          this.$router.push("/dashboard");
         },
 
         onClose: function () {

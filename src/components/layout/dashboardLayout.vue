@@ -26,6 +26,7 @@ import Topbar from "../../components/dashboardLayout/topbar.vue";
 import MobileNav from "../../components/dashboardLayout/mobileNav.vue";
 import MobileDashboardHeader from "../dashboardLayout/mobileDashboardHeader.vue";
 import TabletDashboardHeader from "../dashboardLayout/tabletDashboardHeader.vue";
+import axios from "axios";
 
 export default {
   name: "index",
@@ -40,10 +41,31 @@ export default {
     return {};
   },
   methods: {},
-  mounted() {
+  async mounted() {
     if (this.$store.state.user == {}) {
       return this.$router.push("/sign-in");
     }
+    //check if user auth is still valid
+    const app =
+      import.meta.env.VITE_APP_ENGINE +
+      "user/" +
+      this.$store.state.user.user_id;
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + this.$store.state.token;
+    await axios
+      .get(app)
+      .then((res) => {})
+      .catch((err) => {
+        let error = err.response.data.message;
+
+        swal(error, {
+          icon: "error",
+          buttons: false,
+          timer: 3000,
+          class: "font-poppins font-[700] text-[300px]",
+        });
+        return this.$router.push("/sign-in");
+      });
   },
 };
 </script>

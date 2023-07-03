@@ -43,7 +43,13 @@
             </ul>
           </div>
         </div>
-        <img src="/roundman.svg" alt="" />
+        <!-- <img src="/roundman.svg" alt="" /> -->
+        <div class="bg-[#295F2D] p-2 rounded-full">
+          <p class="text-[#fff] font-[700] font-poppins">
+            {{ this.$store.state.user.first_name.charAt(0)
+            }}{{ this.$store.state.user.last_name.charAt(0) }}
+          </p>
+        </div>
         <p class="text-base font-semibold font-inter">
           {{
             this.$store.state.user.first_name +

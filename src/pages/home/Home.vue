@@ -1,26 +1,63 @@
-<script setup>
+<script>
 import Navbar from "../../components/layout/navabar_test.vue";
-import Footer from "../../components/layout/footer.vue";
+ 
+import Footer from "../../components/layout/Footer.vue";
+import axios from "axios";
+
+export default {
+  name: "Home",
+  components: {
+    Footer,
+    Navbar,
+  },
+  data() {
+    return {
+      buckets: [],
+      assets: "",
+      loading: false,
+    };
+  },
+  async mounted() {
+    this.loading = true;
+    this.assets = import.meta.env.VITE_APP_ASSETS;
+    const app = import.meta.env.VITE_APP_ENGINE + "buckets";
+    await axios.get(app).then((res) => {
+      this.buckets = res.data.data;
+
+      this.loading = false;
+    });
+  },
+};
+ 
 </script>
 
 <template>
   <section>
     <Navbar />
     <!--Hero Section-->
-    <section class="bg-[url('/Vector2.svg')]">
-      <section class="bg-[#F3F3F3] pb-16 relative p-8">
+    <div
+      v-if="loading == true"
+      class="loading w-full h-screen flex justify-center items-center">
+      <img src="/logo1.svg" class="animate-bounce" />
+    </div>
+    <section v-if="loading == false" class="bg-[url('/Vector2.svg')]">
+      <section class="bg-[#F3F3F3] pb-16 relative">
         <section class="flex items-center justify-center">
           <p
+ 
             class="text-center font-poppins md:px-[41px] md:font-[800] md:leading-[56px] leading-[44px] text-[36px] font-bold md:text-[66px] mt-10 md:mt-28"
           >
             MAKE SOMEONE SMILE <br class="hidden md:block" />
             TODAY- PUT HAND IN THEIR <br class="hidden md:block" />
+ 
             BUCKET. 
           </p>
         </section>
         <section
+ 
           class="flex text-center justify-center my-7 font-poppins md:font-medium md:text-base leading-6 items-center text-[14px] font-[500] md:px-[41px]"
         >
+
           Build a dream bucket and invite friends and families, strangers to
           donate. 
         </section>
@@ -29,14 +66,14 @@ import Footer from "../../components/layout/footer.vue";
           <div class="mx-auto">
             <button
               @click="this.$router.push('/buckets')"
-              class="gap-2 text-base font-bold font-poppins rounded-full bg-[#2A5E2A] border-[1px] border-[#fff] text-[#fff] py-3 text-[14px] px-10 m-3"
-            >
+              class="gap-2 text-base font-bold font-poppins rounded-full bg-[#2A5E2A] border-[1px] border-[#fff] text-[#fff] py-3 text-[14px] px-10 m-3">
               Let's Put Hands
             </button>
           </div>
         </div>
 
         <section>
+ 
           <div class="hidden lg:block">
             <img
               src="/Group53.svg"
@@ -59,6 +96,7 @@ import Footer from "../../components/layout/footer.vue";
               class="absolute opacity-50 bottom-10"
             />
           </div>
+ 
         </section>
       </section>
 
@@ -68,71 +106,63 @@ import Footer from "../../components/layout/footer.vue";
         <div class="w-[90%] xl:w-[1280px] mx-auto">
           <div class="">
             <p
+ 
               class="md:font-[800] font-[700] text-[20px] md:text-[52px] font-poppins text-[#242424]"
             >
+ 
               IT’S NOT ROCKET SCIENCE
             </p>
             <p
-              class="font-[500] text-[16px] font-poppins py-[20px] lg:py-[54px] text-[#484848]"
-            >
+              class="font-[500] text-[16px] font-poppins py-[20px] lg:py-[54px] text-[#484848]">
               it takes less than five minutes
             </p>
           </div>
           <!-- cards  -->
           <div
-            class="grid-flow-row grid-cols-2 gap-2 md:grid lg:grid-cols-4 auto-rows-max"
-          >
+            class="grid-flow-row grid-cols-2 gap-2 md:grid lg:grid-cols-4 auto-rows-max">
             <div
-              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover"
-            >
+              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover">
               <div class="py-[46px]">
                 <div class="w-full">
                   <img src="/handStar.svg" class="mx-auto" />
                   <p
-                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]"
-                  >
+                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]">
                     Create an account
                   </p>
                 </div>
               </div>
             </div>
             <div
-              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover"
-            >
+              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover">
               <div class="py-[46px]">
                 <div class="w-full">
                   <img src="/Icon02.svg" class="mx-auto" />
                   <p
-                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]"
-                  >
+                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]">
                     Register attendance
                   </p>
                 </div>
               </div>
             </div>
             <div
-              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover"
-            >
+              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover">
               <div class="py-[46px]">
                 <div class="w-full">
                   <img src="/Icon01.svg" class="mx-auto" />
                   <p
-                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]"
-                  >
+                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]">
                     Tell the class why you created a bucket
                   </p>
                 </div>
               </div>
             </div>
             <div
-              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover"
-            >
+              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover">
               <div class="py-[46px]">
                 <div class="w-full">
                   <img src="/Icon03.svg" class="mx-auto" />
                   <p
-                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]"
-                  >
+                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]">
                     share the story with everyone
                   </p>
                 </div>
@@ -141,8 +171,7 @@ import Footer from "../../components/layout/footer.vue";
           </div>
           <!-- bottom texts  -->
           <div
-            class="text-[#484848] font-[400] font-poppins text-[18px] py-[40px]"
-          >
+            class="text-[#484848] font-[400] font-poppins text-[18px] py-[40px]">
             <p>
               As soon as the campaign is live, share it with family and friends
               and strangers. Donors can contribute to the bucket using their
@@ -155,15 +184,17 @@ import Footer from "../../components/layout/footer.vue";
         </div>
       </section>
 
-      <section class="p-8 bg-appGray100 font-poppins">
-        <div class="w-[100%] mx-auto py-[64px] md:py-[67px] lg:py-[49px]">
+      <section class="bg-appGray100 font-poppins">
+        <div
+          class="w-[90%] xl:w-[1280px] mx-auto py-[64px] md:py-[67px] lg:py-[49px]">
           <div
+ 
             class="content bg-[#FEF7D6] md:py-[110px] py-[20px] lg:py-[40px] px-[10px] lg:px-[34px] rounded-3xl md:flex items-center"
           >
+ 
             <div class="text md:w-1/2">
               <p
-                class="md:w-2/3 font-[600] text-[28px] lg:text-[44px] leading-[36px] lg:leading-[48px] font-poppins"
-              >
+                class="md:w-2/3 font-[600] text-[28px] lg:text-[44px] leading-[36px] lg:leading-[48px] font-poppins">
                 Become a part of our community today.
               </p>
               <p class="pt-[16px] font-[500]">
@@ -180,9 +211,7 @@ import Footer from "../../components/layout/footer.vue";
               <div class="py-[50px]">
                 <router-link to=""
                   ><button
-                    @click="this.$router.push('/buckets')"
-                    class="bg-[#295F2D] text-white px-[23px] py-[12px] rounded-full font-[700]"
-                  >
+                    class="bg-[#295F2D] text-white px-[23px] py-[12px] rounded-full font-[700]">
                     Let's Put Hands
                   </button></router-link
                 >
@@ -197,11 +226,9 @@ import Footer from "../../components/layout/footer.vue";
       </section>
 
       <section
-        class="container p-8 pt-4 pb-10 mx-auto bg-white md:w-5/6 lg:w-4/5"
-      >
+        class="container p-8 pt-4 pb-10 mx-auto bg-white md:w-5/6 lg:w-4/5">
         <p
-          class="justify-start pt-3 mb-8 text-3xl font-extrabold leading-10 font-poppins md:text-4xl"
-        >
+          class="justify-start pt-3 mb-8 text-3xl font-extrabold leading-10 font-poppins md:text-4xl">
           DO YOU WANT TO PUT HAND FOR SOMEONE TODAY? 
         </p>
         <p class="mb-4 text-base font-medium leading-4 font-poppins">
@@ -209,37 +236,33 @@ import Footer from "../../components/layout/footer.vue";
           face: 
         </p>
         <ul class="flex overflow-x-scroll gap-7 no-scrollbar">
-          <li v-for="num in 10" class="flex-shrink-0 w-72">
+          <li v-for="item in buckets" class="flex-shrink-0 w-72">
             <figure>
               <img
-                src="/community.svg"
+                :src="assets + item.images[0].image_url"
                 class="object-cover object-center w-full h-44 rounded-2xl"
-                alt=""
-              />
+                alt="" />
               <button
                 type="button"
-                class="flex items-center px-2 py-1 my-3 rounded-lg bg-appGreen100"
-              >
+                class="flex items-center px-2 py-1 my-3 rounded-lg bg-appGreen100">
                 <span
-                  class="text-sm font-bold shadow-md text-appGreen200 font-poppins shadow-appGreen100"
-                >
-                  Medical
+                  class="text-sm font-bold shadow-md text-appGreen200 font-poppins shadow-appGreen100">
+                  {{ item.category }}
                 </span>
                 <img src="/Vector.svg" alt="vector" class="px-2" />
               </button>
-              <p class="text-base font-semibold font-poppins">
-                Adeola Potts-Johnson is organizing this fundraiser on behalf of
-                Girls.
-              </p>
+              <div class="h-[45px] overflow-hidden">
+                <p class="text-base font-semibold font-poppins">
+                  {{ item.bucket.title }}
+                </p>
+              </div>
+              <div class="h-[155px] overflow-hidden">
+                <p class="mt-5 mb-2 text-sm font-medium font-poppins">
+                  {{ item.bucket.description }}
+                </p>
+              </div>
 
-              <p class="mt-5 mb-2 text-sm font-medium font-poppins">
-                Jorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                eu turpis molestie, dictum est a, mattis tellus. Sed dignissim,
-                metus nec fringilla accumsan, risus sem sollicitudin lacus, ut
-                interdum tellus elit sed risus. Maecenas eget condimentum velit.
-              </p>
-
-              <dl class="flex">
+              <dl class="flex py-[10px]">
                 <div class="flex flex-1 mr-3 rounded-full bg-appGray100">
                   <span class="bg-yellow-500 w-[60%] rounded-full" />
                 </div>
@@ -253,30 +276,28 @@ import Footer from "../../components/layout/footer.vue";
               <dl class="flex justify-between my-4">
                 <span class="flex">
                   <dt
-                    class="font-bold font-poppins text-xs mr-1 text-[#000000]"
-                  >
+                    class="font-bold font-poppins text-xs mr-1 text-[#000000]">
                     Raised:
                   </dt>
 
                   <dd class="font-medium font-poppins text-xs text-[#000000]">
-                    50,000
+                    ₦{{ item.donated }}
                   </dd>
                 </span>
                 <span class="flex">
                   <dt
-                    class="font-bold font-poppins text-xs text-[#295F2D] mr-1"
-                  >
-                    Goals:
+                    class="font-bold font-poppins text-xs text-[#295F2D] mr-1">
+                    Goal:
                   </dt>
                   <dd class="font-medium font-poppins text-xs text-[#295F2D]">
-                    1,000,000
+                    ₦{{ item.bucket.goal }}
                   </dd>
                 </span>
               </dl>
               <button
+                @click="this.$router.push('/bucket/' + item.bucket.bucket_id)"
                 class="bg-appGreen300 w-full rounded-full py-2 font-semibold font-poppins text-lg text-[#FFFFFF]"
-                type="button"
-              >
+                type="button">
                 Donate
               </button>
             </figure>
@@ -287,16 +308,13 @@ import Footer from "../../components/layout/footer.vue";
       <section class="p-8 pt-4 pb-10 bg-appGray100 lg:relative">
         <section class="items-center justify-center pb-10 mx-auto">
           <section
-            class="bg-[#FEF4C3] p-9 w-[90%] md:w-2/3 mx-auto rounded-2xl inset-x-0 top-0 mt-6 space-y-5"
-          >
+            class="bg-[#FEF4C3] p-9 w-[90%] md:w-2/3 mx-auto rounded-2xl inset-x-0 top-0 mt-6 space-y-5">
             <p
-              class="text-center font-poppins font-extrabold text-3xl text-[#333333]"
-            >
+              class="text-center font-poppins font-extrabold text-3xl text-[#333333]">
               We Would Like To Send You Emails
             </p>
             <p
-              class="text-center font-poppins font-normal text-base text-[#242424] pt-2"
-            >
+              class="text-center font-poppins font-normal text-base text-[#242424] pt-2">
               Sign up to our newsletters to know what we are up to and what’
               trending
             </p>
@@ -333,13 +351,11 @@ import Footer from "../../components/layout/footer.vue";
                 type="email"
                 id="email-address-icon"
                 class="bg-[#FFFFFF] rounded-lg block w-full pl-10 p-2.5 outline-none"
-                placeholder="Enter your email"
-              />
+                placeholder="Enter your email" />
               <button
                 class="inset-y-1 right-0 flex md:mx-0 mx-auto items-center px-5 text-[white] w-[90px] md:mr-2 bg-[#939393] rounded-lg h-[36px] lg:absolute mt-3 lg:mt-0"
                 @submit.prevent="submitForm"
-                action="input"
-              >
+                action="input">
                 Submit
               </button>
             </div>

@@ -1,6 +1,11 @@
 <template>
   <div>
-    <main class="mx-auto">
+    <div
+      v-if="loading == true"
+      class="loading w-full h-screen flex justify-center items-center">
+      <img src="/logo1.svg" class="animate-bounce" />
+    </div>
+    <main v-if="loading == false" class="lg:w-[85%] mx-auto">
       <section class="section 1">
         <h1
           class="pb-3 text-sm font-medium md:text-base md:font-bold font-poppins"
@@ -82,7 +87,7 @@
                   Total Fundraising Buckets
                 </div>
                 <div class="pt-2 text-2xl font-semibold font-poppins">
-                  50
+                  {{ myBuckets.length }}
                   <span class="text-xs font-medium font-poppins">Buckets</span>
                 </div>
               </div>
@@ -91,7 +96,7 @@
         </div>
       </section>
 
-      <section class="hidden section 3 md:block">
+      <section v-if="myBuckets.length > 0" class="hidden section 3 md:block">
         <p class="pt-9 pb-5 font-poppins font-semibold text-xl text-[#484848]">
           Recent Fund Bucket
         </p>
@@ -100,12 +105,10 @@
         >
           <div class="p-2">
             <div class="text-3xl font-bold font-poppins">
-              Community electricity support
+              {{ recent.bucket.title }}
             </div>
             <div class="py-5 text-base font-medium font-poppins">
-              Lorem ipsum dolor sit amet, consectetur adipiscing nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat.
+              {{ recent.bucket.description }}
             </div>
             <dl class="flex">
               <div class="flex flex-1 bg-[#EAF9F0] rounded-full mr-3">
@@ -121,16 +124,17 @@
               class="flex justify-between gap-1 pt-2 text-2xl font-semibold font-poppins"
             >
               <div class="flex py-5">
-                <img src="/money.svg" alt="" /> 500,000.00
+                <img src="/money.svg" alt="" /> {{ recent.donated }}
               </div>
               <div class="font-poppins font-medium text-xs text-[#939393]">
                 March 22th 2023
               </div>
             </div>
             <div
-              class="rounded-xl text-start py-2 px-3 border border-[#484848] w-[160px] text-base"
-            >
-              Non-profit Charity
+ 
+              class="rounded-xl text-start py-2 px-3 border border-[#484848] w-[160px] text-base">
+              {{ recent.category }}
+
             </div>
           </div>
         </div>
@@ -146,10 +150,11 @@
               How to improve your Fundraising by 80%
             </p>
             <p class="font-poppins font-normal text-[#F9F9F9] text-lg">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              Ask for Donations. Don’t be afraid to reach out and ask people to
+              donate. Ask friends, family, neighbors, and even strangers for
+              support. Also Show Gratitude. Lots of it. Express your gratitude
+              to your supporters. Send thank you emails or personalized cards to
+              show them that you appreciate their help.
             </p>
 
             <div class="flex justify-end pt-4">
@@ -171,10 +176,10 @@
           <!-- flex overflow-x-scroll gap-7 no-scrollbar -->
           <div class="mt-10">
             <ul class="grid grid-cols-1 md:grid-cols-3 gap-7">
-              <li v-for="num in 3" class="">
+              <li v-for="item in buckets" class="">
                 <figure class="px-5 py-5 bg-white rounded-2xl">
                   <img
-                    src="/community.svg"
+                    :src="assets + item.images[0].image_url"
                     class="object-cover object-center w-full h-44 rounded-2xl"
                     alt=""
                   />
@@ -183,23 +188,19 @@
                     class="flex items-center px-2 py-1 my-3 rounded-lg bg-appGreen100"
                   >
                     <span
-                      class="text-sm font-bold shadow-md text-appGreen200 font-poppins shadow-appGreen100"
-                    >
-                      Medical
+ 
+                      class="text-sm font-bold shadow-md text-appGreen200 font-poppins shadow-appGreen100">
+                      {{ item.category }}
+
                     </span>
                     <img src="/Vector.svg" alt="vector" class="px-2" />
                   </button>
                   <p class="text-base font-semibold font-poppins">
-                    Adeola Potts-Johnson is organizing this fundraiser on behalf
-                    of Girls.
+                    {{ item.bucket.title }}
                   </p>
 
                   <p class="mt-5 mb-2 text-sm font-medium font-poppins">
-                    Jorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Etiam eu turpis molestie, dictum est a, mattis tellus. Sed
-                    dignissim, metus nec fringilla accumsan, risus sem
-                    sollicitudin lacus, ut interdum tellus elit sed risus.
-                    Maecenas eget condimentum velit.
+                    {{ item.bucket.description }}
                   </p>
 
                   <dl class="flex">
@@ -222,9 +223,10 @@
                       </dt>
 
                       <dd
-                        class="font-medium font-poppins text-xs text-[#000000]"
-                      >
-                        50,000
+ 
+                        class="font-medium font-poppins text-xs text-[#000000]">
+                        {{ item.donated }}
+ 
                       </dd>
                     </span>
                     <span class="flex">
@@ -234,20 +236,22 @@
                         Goals:
                       </dt>
                       <dd
-                        class="font-medium font-poppins text-xs text-[#295F2D]"
-                      >
-                        1,000,000
+ 
+                        class="font-medium font-poppins text-xs text-[#295F2D]">
+                        {{ item.bucket.goal }}
                       </dd>
                     </span>
                   </dl>
-                  <router-link to="/buckets">
-                    <button
-                      class="bg-appGreen300 w-full rounded-full py-2 font-semibold font-poppins text-lg text-[#FFFFFF]"
-                      type="button"
-                    >
-                      Donate
-                    </button></router-link
-                  >
+
+                  <button
+                    @click="
+                      this.$router.push('/bucket/' + item.bucket.bucket_id)
+                    "
+                    class="bg-appGreen300 w-full rounded-full py-2 font-semibold font-poppins text-lg text-[#FFFFFF]"
+                    type="button">
+                    Donate
+                  </button>
+
                 </figure>
               </li>
             </ul>
@@ -258,4 +262,46 @@
   </div>
 </template>
 
-<script setup></script>
+<script>
+import axios from "axios";
+
+export default {
+  data() {
+    return {
+      assets: "",
+      myBuckets: [],
+      buckets: [],
+      recent: {},
+      loading: false,
+    };
+  },
+  async created() {
+    this.loading = true;
+    const app = import.meta.env.VITE_APP_ENGINE;
+    this.assets = import.meta.env.VITE_APP_ASSETS;
+
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + this.$store.state.token;
+    //get categories
+    await axios.get(app + "categories").then((res) => {
+      this.categories = res.data.data;
+    });
+
+    await axios.get(app + "buckets").then((res) => {
+      this.buckets = res.data.data;
+    });
+
+    //get my buckets
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + this.$store.state.token;
+    await axios
+      .get(app + "my_bucket/" + this.$store.state.user.user_id)
+      .then((res) => {
+        this.myBuckets = res.data.data;
+      });
+    //set recent
+    this.recent = this.myBuckets[this.myBuckets.length - 1];
+    this.loading = false;
+  },
+};
+</script>
