@@ -67,6 +67,7 @@
                 </div>
               </div>
             </div>
+
             <div
               class="w-[273.96px] h-Hug-[129.79px] top-[8.2px] left-[8.2px] p-[34px 14px] border-r-2">
               <div class="p-5">

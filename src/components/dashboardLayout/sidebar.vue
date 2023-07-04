@@ -26,7 +26,8 @@
       <div class="w-full rounded-xl">
         <div v-for="item in topLinks" class="w-[97%] rounded">
           <div
-            class="flex w-[80%] mx-auto space-x-[22px] py-[20px] cursor-pointer">
+            class="flex w-[80%] mx-auto space-x-[22px] py-[20px] cursor-pointer"
+          >
             <img class="" :src="item.icon" />
             <router-link :to="item.target"
               ><p class="text-[#484848] font-poppins font-[600] text-[18px]">
@@ -43,7 +44,8 @@
       <div v-for="item in downLinks" class="w-full rounded-xl">
         <div class="w-[97%] rounded">
           <div
-            class="flex w-[80%] mx-auto space-x-[22px] py-[20px] cursor-pointer">
+            class="flex w-[80%] mx-auto space-x-[22px] py-[20px] cursor-pointer"
+          >
             <img class="" :src="item.icon" />
 
             <p class="text-[#484848] font-poppins font-[600] text-[18px]">
@@ -80,7 +82,7 @@ export default {
         {
           icon: "/la_donate.svg",
           title: "Donation",
-          target: "/donations",
+          target: "/buckets",
         },
         {
           icon: "/setting2.svg",
