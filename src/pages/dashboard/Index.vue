@@ -47,12 +47,7 @@
                 <div
                   class="flex gap-2 pt-2 text-2xl font-semibold font-poppins">
                   <img src="/money.svg" alt="" />
-                  500,000.00
-                  <div
-                    class="text-xs text-[#1E8D4B] rounded-lg bg-[#EAF9F0] py-2 px-5 justify-center flex">
-                    30%
-                    <img src="/arrowup2.svg" alt="" />
-                  </div>
+                  {{ donated }}
                 </div>
               </div>
             </div>
@@ -61,21 +56,14 @@
               <div class="p-5">
                 <div class="text-[#999999] font-bold text-xs flex gap-2">
                   <img src="/naira.svg" class="-mt-1" alt="" />
-                  Total Fundraisers
+                  Total donors
                 </div>
 
                 <div class="pt-2 text-2xl font-semibold font-poppins">
-                  500
+                  {{ donors }}
                   <span class="text-xs font-medium leading-4 font-poppins"
                     >Persons</span
                   >
-
-                  <!-- <div
-                      class="text-xs text-[#1E8D4B] rounded-lg bg-[#FFEDED] py-2 px-5 justify-center flex"
-                    >
-                      30%
-                      <img src="/arrowup2.svg" alt="" />
-                    </div> -->
                 </div>
               </div>
             </div>
@@ -84,17 +72,12 @@
               <div class="p-5">
                 <div class="text-[#999999] font-bold text-xs flex gap-2">
                   <img src="/naira.svg" class="-mt-1" alt="" />
-                  Average Donation
+                  Total Goal
                 </div>
                 <div
                   class="flex gap-2 pt-2 text-2xl font-semibold font-poppins">
                   <img src="/money.svg" alt="" />
-                  500,000.00
-                  <div
-                    class="text-xs text-[#1E8D4B] rounded-lg bg-[#EAF9F0] py-2 px-5 justify-center flex">
-                    30%
-                    <img src="/arrowup2.svg" alt="" />
-                  </div>
+                  {{ goal }}
                 </div>
               </div>
             </div>
@@ -130,12 +113,14 @@
             </div>
             <dl class="flex">
               <div class="flex flex-1 bg-[#EAF9F0] rounded-full mr-3">
-                <span class="bg-[#26B560] w-[30%] rounded-full" />
+                <span
+                  :class="'w-[' + recent.percentage + '%]'"
+                  class="bg-[#26B560] rounded-full" />
               </div>
               <data
                 value="60"
                 class="font-poppins font-medium text-sm text-[#000000]"
-                >60%</data
+                >{{ recent.percentage }}%</data
               >
             </dl>
             <div
@@ -215,12 +200,14 @@
 
                   <dl class="flex">
                     <div class="flex flex-1 mr-3 rounded-full bg-appGray100">
-                      <span class="bg-yellow-500 w-[60%] rounded-full" />
+                      <span
+                        :class="'w-[' + item.percentage + '%]'"
+                        class="bg-yellow-500 rounded-full" />
                     </div>
                     <data
                       value="60"
                       class="font-poppins font-medium text-sm text-[#000000]"
-                      >60%</data
+                      >{{ item.percentage }}%</data
                     >
                   </dl>
 
@@ -277,6 +264,9 @@ export default {
       buckets: [],
       recent: {},
       loading: false,
+      donors: 0,
+      donated: 0,
+      goal: 0,
     };
   },
   async created() {
@@ -293,15 +283,42 @@ export default {
 
     await axios.get(app + "buckets").then((res) => {
       this.buckets = res.data.data;
+      this.buckets.forEach((item) => {
+        let percentage = Math.floor((item.donated / item.bucket.goal) * 100);
+        if (Number.isInteger(percentage / 10)) {
+          item.percentage = percentage.toString();
+        } else {
+          while (Number.isInteger(percentage / 10) == false) {
+            percentage--;
+          }
+
+          item.percentage = percentage.toString();
+        }
+      });
     });
 
     //get my buckets
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + this.$store.state.token;
     await axios
-      .get(app + "my_bucket/" + this.$store.state.user.user_id)
+      .get(app + "my_buckets/" + this.$store.state.user.user_id)
       .then((res) => {
         this.myBuckets = res.data.data;
+        this.myBuckets.forEach((item) => {
+          let percentage = Math.floor((item.donated / item.bucket.goal) * 100);
+          if (Number.isInteger(percentage / 10)) {
+            item.percentage = percentage.toString();
+          } else {
+            while (Number.isInteger(percentage / 10) == false) {
+              percentage--;
+            }
+
+            item.percentage = percentage.toString();
+          }
+          this.donors += item.donor_count;
+          this.donated += item.donated;
+          this.goal += parseInt(item.bucket.goal);
+        });
       });
     //set recent
     this.recent = this.myBuckets[this.myBuckets.length - 1];

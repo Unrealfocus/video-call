@@ -40,7 +40,9 @@
 
               <dl class="flex">
                 <div class="flex flex-1 mr-3 rounded-full bg-[#EAF9F0]">
-                  <span class="bg-[#F6A609] w-[60%] rounded-full" />
+                  <span
+                    :class="'w-[' + num.percentage + '%]'"
+                    class="bg-[#F6A609] rounded-full" />
                 </div>
                 <data
                   value="60"
@@ -115,9 +117,21 @@ export default {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + this.$store.state.token;
     await axios
-      .get(app + "my_bucket/" + this.$store.state.user.user_id)
+      .get(app + "my_buckets/" + this.$store.state.user.user_id)
       .then((res) => {
         this.buckets = res.data.data;
+        this.buckets.forEach((item) => {
+          let percentage = Math.floor((item.donated / item.bucket.goal) * 100);
+          if (Number.isInteger(percentage / 10)) {
+            item.percentage = percentage.toString();
+          } else {
+            while (Number.isInteger(percentage / 10) == false) {
+              percentage--;
+            }
+
+            item.percentage = percentage.toString();
+          }
+        });
       });
     this.loading = false;
   },

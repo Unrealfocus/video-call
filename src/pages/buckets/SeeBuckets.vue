@@ -48,16 +48,18 @@
 
             <dl class="flex">
               <div class="flex flex-1 bg-[#EAF9F0] rounded-full mr-3">
-                <span class="bg-[#2AC769] w-[60%] rounded-full py-[8px]" />
+                <span
+                  :class="'w-[' + item.percentage + '%]'"
+                  class="bg-[#f6a609] w-[60%] rounded-full py-[8px]" />
               </div>
+              <p>{{ item.percentage }}%</p>
             </dl>
             <p class="font-poppins text-[14px] font-[500]">
-              <span class="font-[800]">Goal:</span>
-              ₦{{ item.bucket.goal }}
+              <span class="font-[800]">Goal:</span> ₦{{ item.bucket.goal }}
             </p>
             <p class="font-poppins text-[14px] font-[500]">
               <span class="font-[800]">Raised:</span>
-              ₦0
+              ₦ {{ item.donated }}
             </p>
             <!-- <div class="flex space-x-[6px] items-center">
               <img src="/location.svg" class="w-[20px] h-[20px]" />
@@ -111,9 +113,23 @@ export default {
     //get buckets
     await axios.get(app + "buckets").then((res) => {
       this.buckets = res.data.data;
+
       console.log(this.buckets);
     });
     this.loading = false;
+
+    this.buckets.forEach((item) => {
+      let percentage = Math.floor((item.donated / item.bucket.goal) * 100);
+      if (Number.isInteger(percentage / 10)) {
+        item.percentage = percentage.toString();
+      } else {
+        while (Number.isInteger(percentage / 10) == false) {
+          percentage--;
+        }
+
+        item.percentage = percentage.toString();
+      }
+    });
   },
   methods: {
     singleBucket(item) {

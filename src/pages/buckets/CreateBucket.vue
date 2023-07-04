@@ -86,7 +86,7 @@
                 <input
                   type="number"
                   v-model="goal"
-                  placeholder="50000"
+                  placeholder="e.g 50000"
                   class="bg-[#fff] w-full border-none bg-transparent outline-none rounded full" />
               </div>
               <p class="text-[#939393] text-[14px] font-[500]">
@@ -97,7 +97,7 @@
           </div>
           <div class="py-2 space-y-[10px]">
             <p class="font-poppins font-[600] text-[18px]">
-              How much would you want you bucket to end?
+              When would you want you bucket to end?
             </p>
             <div class="">
               <div class="w-full border-2 border-[#93939] rounded-2xl p-3">

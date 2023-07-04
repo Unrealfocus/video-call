@@ -11,6 +11,7 @@ export default {
       bucket: {},
       loading: false,
       assets: "",
+      percentage: "",
     };
   },
   async created() {
@@ -22,7 +23,19 @@ export default {
     //get buckets
     await axios.get(app + "bucket/" + this.$route.params.id).then((res) => {
       this.bucket = res.data.data;
-      console.log(this.bucket);
+
+      let percentage = Math.floor(
+        (this.bucket.donated / this.bucket.bucket.goal) * 100
+      );
+      if (Number.isInteger(percentage / 10)) {
+        this.percentage = percentage.toString();
+      } else {
+        while (Number.isInteger(percentage / 10) == false) {
+          percentage--;
+        }
+
+        this.percentage = percentage.toString();
+      }
     });
     this.bgImage =
       "bg-[url('" + this.assets + this.bucket.images[0].image_url + "')]";
@@ -82,11 +95,12 @@ export default {
                   <dl class="flex">
                     <div class="flex flex-1 bg-[#EAF9F0] rounded-full mr-3">
                       <span
-                        class="bg-[#f6a609] w-[60%] rounded-full py-[8px]" />
+                        :class="'w-[' + percentage.toString() + '%]'"
+                        class="bg-[#f6a609] rounded-full py-[8px]" />
                     </div>
                   </dl>
                   <p class="text-[#939393] font-poppins text-[12px]">
-                    Total Raised is ₦50,000
+                    Total Raised is ₦{{ bucket.donated }}
                   </p>
 
                   <div class="">
@@ -103,7 +117,7 @@ export default {
                       <div class="flex justify-center">
                         <img src="/donations.svg" />
                       </div>
-                      10 donations
+                      {{ bucket.donor_count }} donations
                     </div>
                     <button
                       class="border border-[#295F2D] text-[16px] font-[700] py-[9px] px-[30px] text-[#295F2D] rounded-xl flex items-center space-x-[4px]">
