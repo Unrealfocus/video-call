@@ -182,7 +182,12 @@
                 <div class="w-full py-3">
                   <div class="flex items-center space-x-[10px]">
                     <div class="cursor-pointer">
-                      <div class="w-[20px] h-[20px] border rounded"></div>
+                      <div
+                        @click="hide_donor = !hide_donor"
+                        :class="[
+                          hide_donor == false ? 'border' : 'bg-blue-300',
+                        ]"
+                        class="w-[20px] h-[20px] border rounded"></div>
                     </div>
                     <p class="font-poppins font-[500] text-[#999999]">
                       Don’t display my name publicly on campaign
@@ -242,6 +247,7 @@ export default {
       error: true,
       bucket: "",
       assets: "",
+      hide_donor: false,
     };
   },
   async created() {
@@ -290,7 +296,14 @@ export default {
         currency: "NGN", // Use GHS for Ghana Cedis or USD for US Dollars
 
         metadata: {
-          custom_fields: [{ bucket_id: this.$route.params.id }],
+          custom_fields: [
+            {
+              bucket_id: this.$route.params.id,
+              amount: this.amount,
+              tip: this.tip,
+              hide_donor: true,
+            },
+          ],
         },
 
         callback: function (response) {
