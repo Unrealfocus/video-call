@@ -203,7 +203,7 @@ export default {
                 community.
               </p>
               <div class="py-[50px]">
-                <router-link to=""
+                <router-link to="/buckets"
                   ><button
                     class="bg-[#295F2D] text-white px-[23px] py-[12px] rounded-full font-[700]">
                     Let's Put Hands
