@@ -1,5 +1,10 @@
 <template>
-  <div class="bg-[#B7B7B7] lg:h-screen">
+  <div
+    v-if="loading == true"
+    class="loading w-full h-screen flex justify-center items-center">
+    <img src="/logo1.svg" class="animate-bounce" />
+  </div>
+  <div v-if="loading == false" class="bg-[#B7B7B7] lg:h-screen">
     <div class="flex lg:h-screen items-center justify-center">
       <div
         class="bg-[#fff] w-[820px] rounded-lg px-[12px] md:px-[45px] py-[50px]">
@@ -142,8 +147,9 @@
                 </div>
               </div>
               <div class="">
-                <p class="text-[#242424] text-[18px] font-[600] font-poppins">
-                  Your donation
+                <p
+                  class="text-[#242424] text-[18px] font-[600] font-poppins py-2">
+                  Overview
                 </p>
                 <div class="w-full border-t-2 border-b-2 border-[#000] py-3">
                   <div class="flex justify-between">
@@ -182,7 +188,12 @@
                 <div class="w-full py-3">
                   <div class="flex items-center space-x-[10px]">
                     <div class="cursor-pointer">
-                      <div class="w-[20px] h-[20px] border rounded"></div>
+                      <div
+                        @click="hide_donor = !hide_donor"
+                        :class="[
+                          hide_donor == false ? 'border' : 'bg-blue-300',
+                        ]"
+                        class="w-[20px] h-[20px] border rounded"></div>
                     </div>
                     <p class="font-poppins font-[500] text-[#999999]">
                       Don’t display my name publicly on campaign
@@ -213,9 +224,9 @@
             </div>
 
             <div class="">
-              <p class="text-center text-[#999999]">
+              <!-- <p class="text-center text-[#999999]">
                 By continue, you agree with Puthand terms and Privacy Policy.
-              </p>
+              </p> -->
             </div>
           </div>
         </div>
@@ -231,6 +242,7 @@ export default {
   components: {},
   data() {
     return {
+      loading: false,
       currentPage: 1,
       complete: false,
       amount: "",
@@ -242,6 +254,7 @@ export default {
       error: true,
       bucket: "",
       assets: "",
+      hide_donor: false,
     };
   },
   async created() {
@@ -290,7 +303,14 @@ export default {
         currency: "NGN", // Use GHS for Ghana Cedis or USD for US Dollars
 
         metadata: {
-          custom_fields: [{ bucket_id: this.$route.params.id }],
+          custom_fields: [
+            {
+              bucket_id: this.$route.params.id,
+              amount: this.amount,
+              tip: this.tip,
+              hide_donor: true,
+            },
+          ],
         },
 
         callback: function (response) {
@@ -298,7 +318,6 @@ export default {
 
           var reference = response.reference;
 
-          alert("Payment complete! Reference: " + reference);
           swal(
             "Yay! your donation has been recieved with love. Please feel free to tell others about my need :) Thank you.",
             {
@@ -311,7 +330,7 @@ export default {
           //call backend and confirm the transaction
 
           //redirect to dashboard
-          this.$router.push("/dashboard");
+          // this.$router.push("/dashboard");
         },
 
         onClose: function () {
@@ -325,6 +344,7 @@ export default {
       });
 
       handler.openIframe();
+      this.$router.push("/bucket/" + this.$route.params.id);
     },
   },
 };
