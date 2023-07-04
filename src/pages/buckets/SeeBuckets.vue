@@ -50,7 +50,7 @@
               <div class="flex flex-1 bg-[#EAF9F0] rounded-full mr-3">
                 <span
                   :class="'w-[' + item.percentage + '%]'"
-                  class="bg-[#f6a609] w-[60%] rounded-full py-[8px]" />
+                  class="bg-[#f6a609] rounded-full py-[8px]" />
               </div>
               <p>{{ item.percentage }}%</p>
             </dl>
