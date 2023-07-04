@@ -38,14 +38,17 @@ export default {
 
   <main class="bg-[##ffffff] mt-10">
     <section
-      class="w-[90%] xl:w-[1280px] mb-10 mx-auto grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-5 items-center ]">
-      <section class="md:mt-20 py-10">
+      class="w-[90%] xl:w-[1280px] mb-10 mx-auto grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-5 items-center ]"
+    >
+      <section class="py-10 md:mt-20">
         <h1
-          class="bg-appGreen100 text-appGreen200 py-2 px-4 flex w-max rounded-xl font-bold font-poppins">
+          class="flex px-4 py-2 font-bold bg-appGreen100 text-appGreen200 w-max rounded-xl font-poppins"
+        >
           How it works
         </h1>
         <h2
-          class="my-12 font-poppins font-extrabold text-4xl md:text-5xl lg:text-6xl mt-4">
+          class="my-12 mt-4 text-4xl font-extrabold font-poppins md:text-5xl lg:text-6xl"
+        >
           A place for <br />
 
           <span class="flex mt-3">
@@ -54,7 +57,8 @@ export default {
                 <div
                   :key="currentWord"
                   class="animate-word animate-bounce"
-                  v-slide-y-transition>
+                  v-slide-y-transition
+                >
                   <span
                     :style="`color: ${currentWordColor}; animation: bounce 0.5s infinite`"
                     >{{ currentWord }}</span
@@ -66,9 +70,18 @@ export default {
         </h2>
         <button
           type="button"
-          class="flex gap-2 rounded-full bg-[#2A5E2A] border-[1px] border-[#fff] text-[#fff] py-3 text-[14px] px-10 m-3">
+          class="flex gap-2 rounded-full bg-[#2A5E2A] border-[1px] border-[#fff] text-[#fff] py-3 text-[14px] px-10 m-3"
+        >
           <img src="/puthand.svg" alt="" />
-          <span class="font-poppins font-bold text-base">Let's Put Hands</span>
+          <!-- <span class="text-base font-bold font-poppins">Let's Put Hands</span> -->
+          <router-link to=""
+            ><button
+              @click="this.$router.push('/buckets')"
+              class="text-base font-bold font-poppins"
+            >
+              Let's Put Hands
+            </button></router-link
+          >
         </button>
       </section>
       <figure class="relative">
@@ -80,20 +93,24 @@ export default {
         <div class="w-[90%] xl:w-[1280px] mx-auto">
           <div class="">
             <p
-              class="font-[800] text-[26px] lg:text-[52px] font-poppins text-[#242424]">
+              class="font-[800] text-[26px] lg:text-[52px] font-poppins text-[#242424]"
+            >
               How PutHand Works
             </p>
             <p
-              class="font-[500] text-[16px] font-poppins py-[20px] lg:py-[54px] text-[#484848]">
+              class="font-[500] text-[16px] font-poppins py-[20px] lg:py-[54px] text-[#484848]"
+            >
               To create a bucket for people to PutHand, here is a step by step
               easy process that won’t stress you.
             </p>
           </div>
           <!-- cards  -->
           <div
-            class="md:grid lg:grid-cols-4 grid-cols-2 grid-flow-row auto-rows-max gap-2">
+            class="grid-flow-row grid-cols-2 gap-2 md:grid lg:grid-cols-4 auto-rows-max"
+          >
             <div
-              class="group/item m-2 rounded-lg relative bg-[#F3F3F3] bg-cover hover:bg-green-500 transition-all duration-300">
+              class="group/item m-2 rounded-lg relative bg-[#F3F3F3] bg-cover hover:text-[#F8B83A] hover:bg-[#2A5E2A] transition-all duration-300"
+            >
               <div class="py-[46px]">
                 <div class="w-full">
                   <img src="/handStar.svg" class="mx-auto" />
@@ -104,12 +121,14 @@ export default {
               </div>
             </div>
             <div
-              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover">
+              class="group/item m-2 rounded-lg relative bg-[#F3F3F3] bg-cover hover:text-[#F8B83A] hover:bg-[#2A5E2A] transition-all duration-300"
+            >
               <div class="py-[46px]">
                 <div class="w-full">
                   <img src="/Icon02.svg" class="mx-auto" />
                   <p
-                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]">
+                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]"
+                  >
                     Register attendance
                   </p>
                 </div>
@@ -117,23 +136,28 @@ export default {
             </div>
 
             <div
-              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover">
+              class="group/item m-2 rounded-lg relative bg-[#F3F3F3] bg-cover hover:text-[#F8B83A] hover:bg-[#2A5E2A] transition-all duration-300"
+            >
               <div class="py-[46px]">
                 <div class="w-full">
                   <img src="/Icon01.svg" class="mx-auto" />
                   <p
-                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]">
+                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]"
+                  >
                     Tell the class why you created a bucket
                   </p>
                 </div>
               </div>
             </div>
-            <div class="group/item bg-[#F3F3F3] m-2 rounded-lg relative">
+            <div
+              class="group/item m-2 rounded-lg relative bg-[#F3F3F3] bg-cover hover:text-[#F8B83A] hover:bg-[#2A5E2A] transition-all duration-300"
+            >
               <div class="py-[46px]">
                 <div class="w-full">
                   <img src="/Icon03.svg" class="mx-auto" />
                   <p
-                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]">
+                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]"
+                  >
                     share the story with everyone
                   </p>
                 </div>
@@ -142,7 +166,8 @@ export default {
           </div>
           <!-- bottom texts  -->
           <div
-            class="text-[#484848] font-[400] font-poppins text-[18px] py-[40px]">
+            class="text-[#484848] font-[400] font-poppins text-[18px] py-[40px]"
+          >
             <p>
               As soon as the campaign is live, share it with family and friends
               and strangers. Donors can contribute to the bucket using their

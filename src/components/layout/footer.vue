@@ -50,7 +50,10 @@ export default {
       </div>
       <div class="">
         <ul class="flex gap-5 mt-20">
-          <a href=""><img src="/facebook.svg" alt="facebook" /></a>
+          <a
+            href="https://www.facebook.com/profile.php?id=100093105743171&mibextid=LQQJ4d"
+            ><img src="/facebook.svg" alt="facebook"
+          /></a>
           <a
             href="https://instagram.com/puthand_nigeria?igshid=MzRlODBiNWFlZA=="
             ><img src="/instagram.svg" alt="instagram"
