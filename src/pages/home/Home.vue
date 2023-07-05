@@ -23,18 +23,7 @@ export default {
     const app = import.meta.env.VITE_APP_ENGINE + "buckets";
     await axios.get(app).then((res) => {
       this.buckets = res.data.data;
-      this.buckets.forEach((item) => {
-        let percentage = Math.floor((item.donated / item.bucket.goal) * 100);
-        if (Number.isInteger(percentage / 10)) {
-          item.percentage = percentage.toString();
-        } else {
-          while (Number.isInteger(percentage / 10) == false) {
-            percentage--;
-          }
 
-          item.percentage = percentage.toString();
-        }
-      });
       this.loading = false;
     });
   },
@@ -258,14 +247,12 @@ export default {
 
               <dl class="flex py-[10px]">
                 <div class="flex flex-1 mr-3 rounded-full bg-appGray100">
-                  <span
-                    :class="'w-[' + item.percentage + '%]'"
-                    class="bg-yellow-500 rounded-full" />
+                  <span class="bg-yellow-500 w-[50%] rounded-full" />
                 </div>
                 <data
                   value="60"
                   class="font-poppins font-medium text-sm text-[#000000]"
-                  >{{ item.percentage }}%</data
+                  >50%</data
                 >
               </dl>
 
