@@ -192,11 +192,19 @@
                     <img src="/Vector.svg" alt="vector" class="px-2" />
                   </button>
                   <p class="text-base font-semibold font-poppins">
-                    {{ item.bucket.title }}
+                    {{
+                      item.bucket.title.length > 22
+                        ? item.bucket.title.slice(0, 22) + "..."
+                        : item.bucket.title
+                    }}
                   </p>
 
                   <p class="mt-5 mb-2 text-sm font-medium font-poppins">
-                    {{ item.bucket.description }}
+                    {{
+                      item.bucket.description.length > 150
+                        ? item.bucket.description.slice(0, 150) + "..."
+                        : item.bucket.description
+                    }}
                   </p>
 
                   <dl class="flex">
