@@ -60,7 +60,7 @@ export const router = createRouter({
       component: ContactUs,
     },
     {
-      path: "/withdrawal",
+      path: "/withdrawal/:id",
       component: Withdrawal,
     },
 

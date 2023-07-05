@@ -21,15 +21,13 @@
         <div>
           <button
             class="flex gap-1 hover:font-[800] cursor-pointer"
-            @click="toggleDropdown"
-          >
+            @click="toggleDropdown">
             <p>Fundraiser Category</p>
             <img src="/arrow-down.svg" alt="" />
           </button>
           <div
             v-if="isDropdownOpen"
-            class="absolute z-10 inline-flex p-6 mt-10 bg-white shadow rounded-3xl position"
-          >
+            class="absolute z-10 inline-flex p-6 mt-10 bg-white shadow rounded-3xl position">
             <div class="z-10 flex gap-36">
               <div>
                 <ul class="gap-6">
@@ -68,8 +66,8 @@
               >Sign in</router-link
             >
             <router-link v-if="this.$store.state.user.user_id" to="/dashboard"
-              >Dashboard</router-link
-            >
+              >Dashboard
+            </router-link>
           </button>
         </div>
         <div class="">
@@ -112,8 +110,8 @@
               >Sign in</router-link
             >
             <router-link v-if="this.$store.state.user.user_id" to="/dashboard"
-              >Dashboard</router-link
-            >
+              >Dashboard
+            </router-link>
             <!-- Sign in -->
           </div>
 
@@ -125,7 +123,6 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
