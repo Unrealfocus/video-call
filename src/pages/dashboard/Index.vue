@@ -104,7 +104,7 @@
           Recent Fund Bucket
         </p>
         <div
-          class="w-[1,000px] h-[339.71px] top-53px rounded-[15px] p-[40px] gap-[10px] bg-white">
+          class="w-[full] top-53px rounded-[15px] p-[40px] gap-[10px] bg-white">
           <div class="p-2">
             <div class="text-3xl font-bold font-poppins">
               {{ recent.bucket.title }}

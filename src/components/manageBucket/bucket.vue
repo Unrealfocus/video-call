@@ -47,7 +47,7 @@
                 <data
                   value="60"
                   class="font-poppins font-medium text-sm text-[#000000]"
-                  >60%</data
+                  >{{ num.percentage }}%</data
                 >
               </dl>
 
