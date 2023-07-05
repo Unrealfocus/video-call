@@ -247,7 +247,9 @@ export default {
 
               <dl class="flex py-[10px]">
                 <div class="flex flex-1 mr-3 rounded-full bg-appGray100">
-                  <span class="bg-yellow-500 w-[50%] rounded-full" />
+                  <span
+                    :class="'w-[' + item.percentage + '%]'"
+                    class="bg-yellow-500 rounded-full" />
                 </div>
                 <data
                   value="60"
