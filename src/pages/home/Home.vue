@@ -252,7 +252,7 @@ export default {
                 <data
                   value="60"
                   class="font-poppins font-medium text-sm text-[#000000]"
-                  >50%</data
+                  >{{ item.goal_percent }}%</data
                 >
               </dl>
 
