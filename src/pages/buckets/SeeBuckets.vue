@@ -35,14 +35,22 @@
               class="h-[300px] w-full object-cover object-center rounded-2xl"
               alt="" />
             <p class="font-poppins font-[700] text-[18px] leading-[20px]">
-              {{ item.bucket.title }}
+              {{
+                item.bucket.title.length > 24
+                  ? item.bucket.title.slice(0, 24) + "..."
+                  : item.bucket.title
+              }}
             </p>
             <p class="font-poppins font-[800] text-[14px]">
               by {{ item.author }}
             </p>
-            <div class="h-[55px] overflow-hidden">
+            <div class=" ">
               <p class="font-poppins font-[500] text-[12px]">
-                {{ item.bucket.description }}
+                {{
+                  item.bucket.description.length > 150
+                    ? item.bucket.description.slice(0, 150) + "..."
+                    : item.bucket.description
+                }}
               </p>
             </div>
 
