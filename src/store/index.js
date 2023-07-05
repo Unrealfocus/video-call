@@ -20,6 +20,10 @@ export default new Vuex.Store({
     updateSelectedSub(state, payload) {
       state.selectedSub = payload;
     },
+    logout(state) {
+      state.user = {};
+      state.token = "";
+    },
   },
   actions: {},
   modules: {},

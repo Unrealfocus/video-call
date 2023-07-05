@@ -27,7 +27,7 @@
         <span class="bg-[#F6A609] w-[60%] rounded-full" />
       </div>
       <data value="60" class="font-poppins font-medium text-sm text-[#000000]"
-        >60%</data
+        >{{ buck.goal_percent ? buck.goal_percent : 0 }}%</data
       >
     </dl>
     <P
@@ -40,34 +40,31 @@
         <button @click="toggleNext">toggle page 3</button>
       </div>
 
-      <button
-        class="flex text-left gap-2 items-center bg-appGreen300 rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#FFFFFF] mt-5"
-        type="button"
-        @click="toogleSection">
-        <img src="/basil_edit-outline.svg" alt="" />
-        edit/settings
-      </button>
-
-      <div class="flex items-center gap-3">
-        <div
-          class="flex py-2 text-sm font-semibold text-left rounded-md font-poppins">
-          Preview fundraiser
+      <div class="md:flex items-center space-x-[10px] space-y-[10px] py-[20px]">
+        <button
+          class="flex gap-2 items-center bg-appGreen300 rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#FFFFFF]"
+          type="button"
+          @click="toogleSection">
+          <img src="/basil_edit-outline.svg" alt="" />
+          edit/settings
+        </button>
+        <div class="text-sm font-semibold rounded-md font-poppins">
+          <p class="">Preview fundraiser</p>
         </div>
 
-        <router-link to="/withdrawal"
-          ><button
-            class="flex items-center gap-2 text-left bg-[#EAF9F0] rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#295F2D] mt-5">
-            <img src="/uil_money-withdraw.svg" alt="" />
-            withdrawal
-          </button></router-link
-        >
+        <button
+          @click="withdraw(buck.donated, buck.bucket.bucket_id)"
+          class="flex items-center gap-2 text-left bg-[#EAF9F0] rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#295F2D]">
+          <img src="/uil_money-withdraw.svg" alt="" />
+          withdrawal
+        </button>
       </div>
     </div>
 
-    <div class="pt-9">
+    <div class="">
       <img
         :src="assets + buck.images[0].image_url"
-        class="object-cover object-center h-[300px] rounded-2xl"
+        class="rounded-2xl lg:h-[500px]"
         alt="" />
     </div>
 
@@ -100,7 +97,7 @@
       </div>
     </section>
 
-    <div v-show="activeTab === 0">
+    <div v-show="activeTab == 0">
       <div class="flex">
         <p class="font-medium md:text-2xl font-poppins text-[#484848]">
           <span class="font-bold text-black"
@@ -117,7 +114,7 @@
         Share Fundraiser
       </button>
     </div>
-    <div v-show="activeTab === 1">
+    <div v-show="activeTab == 1">
       <div class="space-y-[20px]">
         <p class="text-lg font-semibold font-poppins text-[#484848]">
           Write a new update
@@ -170,22 +167,6 @@
         </div>
       </div>
     </div>
-
-    <div class="flex">
-      <p class="font-medium md:text-2xl font-poppins text-[#484848]">
-        <span class="font-bold text-black"
-          >Get your first Donation by sharing Sharing</span
-        >
-        <br />
-        your fundraiser regularly with your friends for the most success and ask
-        <br />
-        friends to donate and share.
-      </p>
-    </div>
-    <button
-      class="px-20 py-4 mt-5 text-white rounded-lg md:px-28 bg-appGreen200">
-      Share Fundraiser
-    </button>
   </div>
 </template>
 
@@ -211,6 +192,21 @@ export default {
     this.assets = import.meta.env.VITE_APP_ASSETS;
   },
   methods: {
+    withdraw(donated, bucket_id) {
+      let payload = {
+        donated: donated,
+        bucket_id: bucket_id,
+      };
+      payload = JSON.stringify(payload);
+      donated > 999
+        ? this.$router.push("/withdrawal/" + payload)
+        : swal("You need to raise above N1,000 before you can withdraw", {
+            icon: "error",
+            buttons: false,
+            timer: 3000,
+            class: "font-poppins font-[700] text-[300px]",
+          });
+    },
     toggleNext(num) {
       this.manageCount++;
       this.buck = num;

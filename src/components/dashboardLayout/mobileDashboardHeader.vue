@@ -40,8 +40,15 @@
         /> -->
         <div class="bg-[#295F2D] p-2 rounded-full">
           <p class="text-[#fff] font-[700] font-poppins">
-            {{ this.$store.state.user.first_name.charAt(0)
-            }}{{ this.$store.state.user.last_name.charAt(0) }}
+            {{
+              this.$store.state.user.first_name
+                ? this.$store.state.user.first_name.charAt(0)
+                : ""
+            }}{{
+              this.$store.state.user.last_name
+                ? this.$store.state.user.last_name.charAt(0)
+                : ""
+            }}
           </p>
         </div>
       </div>
