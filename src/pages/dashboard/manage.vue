@@ -2,7 +2,7 @@
   <div v-if="manageCount == 1" class="">
     <bucket @singleBucket="toggleNext" />
   </div>
-  <div v-if="manageCount == 2" class="p-10">
+  <div v-if="manageCount == 2" class="lg:w-[85%] mx-auto">
     <!-- px-10 pt-5 pb-10 mt-5 bg-white rounded-2xl -->
     <button
       @click="togglePrev"
