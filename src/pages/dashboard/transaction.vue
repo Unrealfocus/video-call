@@ -1,30 +1,29 @@
 <template>
-  <main>
+  <main class="w-[85%] mx-auto">
+    <p class="pt-20 pb-12 text-3xl font-semibold font-poppins">
+      Transaction History
+    </p>
+    <div class="">
+      <p>Oops! You don't have any yet</p>
+    </div>
     <div class="hidden lg:block">
-      <p class="pt-20 pb-12 text-3xl font-semibold font-poppins">
-        Transaction History
-      </p>
-
-      <div class="relative flex flex-col w-2/3 sm:flex-row ml-9">
+      <div class="hidden relative flex flex-col w-2/3 sm:flex-row ml-9">
         <div
-          class="absolute inset-y-0 left-0 flex items-center gap-5 pl-3 pointer-events-none"
-        >
+          class="absolute inset-y-0 left-0 flex items-center gap-5 pl-3 pointer-events-none">
           <img src="/clarity_search-line.svg" alt="" />
         </div>
         <input
           type="email"
           id="email-address-icon"
           class="bg-white rounded-full block w-full sm:w-auto py-5 pl-10 p-2.5"
-          placeholder="Searching for any donation"
-        />
+          placeholder="Searching for any donation" />
         <button
-          class="mt-4 sm:mt-0 sm:ml-2 flex items-center px-5 text-white bg-[#295F2D] rounded-full"
-        >
+          class="mt-4 sm:mt-0 sm:ml-2 flex items-center px-5 text-white bg-[#295F2D] rounded-full">
           Search
         </button>
       </div>
 
-      <section class="w-full pt-3 pb-10 bg-white mt-9 rounded-3xl">
+      <section class="hidden w-full pt-3 pb-10 bg-white mt-9 rounded-3xl">
         <div>
           <table class="w-5/6 rounded-lg bg-[#C8C8C852]">
             <thead>
@@ -153,7 +152,8 @@
         </div>
       </section>
 
-      <div class="flex flex-col items-center justify-between mt-4 sm:flex-row">
+      <div
+        class="hidden flex flex-col items-center justify-between mt-4 sm:flex-row">
         <p class="text-center">Page: {{ currentPage }}</p>
 
         <div class="flex justify-center mt-4 sm:justify-end">
@@ -161,21 +161,18 @@
             @click="goToPreviousPage"
             :disabled="currentPage === 1"
             class="flex items-center text-gray-700"
-            :class="{ 'opacity-50 cursor-not-allowed': currentPage === 1 }"
-          >
+            :class="{ 'opacity-50 cursor-not-allowed': currentPage === 1 }">
             <svg
               class="w-4 h-4 mr-1"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
+              stroke="currentColor">
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="2"
-                d="M15 19l-7-7 7-7"
-              />
+                d="M15 19l-7-7 7-7" />
             </svg>
             <span>Previous</span>
           </button>
@@ -188,8 +185,7 @@
                 class="px-4 py-2 mr-2 text-gray-700 bg-gray-200 rounded-md"
                 :class="{
                   'opacity-50 cursor-not-allowed': pageNumber === currentPage,
-                }"
-              >
+                }">
                 {{ pageNumber }}
               </button>
             </li>
@@ -201,48 +197,42 @@
             class="flex items-center text-gray-700"
             :class="{
               'opacity-50 cursor-not-allowed': currentPage === totalPages,
-            }"
-          >
+            }">
             <span>Next</span>
             <svg
               class="w-4 h-4 ml-1"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
+              stroke="currentColor">
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="2"
-                d="M9 5l7 7-7 7"
-              />
+                d="M9 5l7 7-7 7" />
             </svg>
           </button>
         </div>
       </div>
     </div>
 
-    <section class="lg:hidden">
+    <section class="hidden">
       <section class="">
         <p class="my-10 text-xl font-semibold font-poppins text-[#484848]">
           History
         </p>
         <div
-          class="border-[#999999] border pt-3 pb-5 p-8 rounded-3xl w-[100%] md:w-[100%] mb-5"
-        >
+          class="border-[#999999] border pt-3 pb-5 p-8 rounded-3xl w-[100%] md:w-[100%] mb-5">
           <p class="mb-8 text-[#484848] text-sm font-semibold">Today</p>
           <div class="flex gap-5 md:gap-44 mb-9">
             <div
-              class="overflow-hidden text-base font-medium text-ellipsis whitespace-nowrap font-poppins"
-            >
+              class="overflow-hidden text-base font-medium text-ellipsis whitespace-nowrap font-poppins">
               Help My Community with NEPA light
               <p class="font-bold font-poppins text-base text-[#999999]">
                 Withdraw
               </p>
               <p
-                class="text-[#674604] bg-[#FEF6E6] rounded-full px-4 w-[100px] font-poppins font-medium text-sm"
-              >
+                class="text-[#674604] bg-[#FEF6E6] rounded-full px-4 w-[100px] font-poppins font-medium text-sm">
                 ...Pending
               </p>
             </div>
@@ -256,15 +246,13 @@
 
           <div class="flex gap-5 md:gap-44">
             <div
-              class="overflow-hidden text-base font-medium text-ellipsis whitespace-nowrap font-poppins"
-            >
+              class="overflow-hidden text-base font-medium text-ellipsis whitespace-nowrap font-poppins">
               Help My Community with NEPA light
               <p class="font-bold font-poppins text-base text-[#999999]">
                 Donations
               </p>
               <p
-                class="text-[#12542C] bg-[#EAF9F0] rounded-full px-4 w-[100px] font-poppins font-medium text-sm"
-              >
+                class="text-[#12542C] bg-[#EAF9F0] rounded-full px-4 w-[100px] font-poppins font-medium text-sm">
                 paid
               </p>
             </div>
@@ -278,20 +266,17 @@
         </div>
 
         <div
-          class="border-[#999999] border pt-3 pb-5 p-8 rounded-3xl w-[100%] md:w-[100%] mb-5"
-        >
+          class="border-[#999999] border pt-3 pb-5 p-8 rounded-3xl w-[100%] md:w-[100%] mb-5">
           <p class="mb-8 text-[#484848] text-sm font-semibold">Today</p>
           <div class="flex gap-5 md:gap-48 mb-9">
             <div
-              class="overflow-hidden text-base font-medium text-ellipsis whitespace-nowrap font-poppins"
-            >
+              class="overflow-hidden text-base font-medium text-ellipsis whitespace-nowrap font-poppins">
               Help My Community with NEPA light
               <p class="font-bold font-poppins text-base text-[#999999]">
                 Withdraw
               </p>
               <p
-                class="text-[#674604] bg-[#FEF6E6] rounded-full px-4 w-[100px] font-poppins font-medium text-sm"
-              >
+                class="text-[#674604] bg-[#FEF6E6] rounded-full px-4 w-[100px] font-poppins font-medium text-sm">
                 ...Pending
               </p>
             </div>
@@ -304,15 +289,13 @@
           </div>
           <div class="flex gap-5 md:gap-48">
             <div
-              class="overflow-hidden text-base font-medium text-ellipsis whitespace-nowrap font-poppins"
-            >
+              class="overflow-hidden text-base font-medium text-ellipsis whitespace-nowrap font-poppins">
               Help My Community with NEPA light
               <p class="font-bold font-poppins text-base text-[#999999]">
                 Donations
               </p>
               <p
-                class="text-[#12542C] bg-[#EAF9F0] rounded-full px-4 w-[100px] font-poppins font-medium text-sm"
-              >
+                class="text-[#12542C] bg-[#EAF9F0] rounded-full px-4 w-[100px] font-poppins font-medium text-sm">
                 paid
               </p>
             </div>
