@@ -198,6 +198,9 @@
                         : item.bucket.title
                     }}
                   </p>
+                  <p class="text-base font-[400] font-poppins">
+                    {{ item.author }}
+                  </p>
 
                   <p class="mt-5 mb-2 text-sm font-medium font-poppins">
                     {{

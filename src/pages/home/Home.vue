@@ -234,12 +234,12 @@ export default {
                 </span>
                 <img src="/Vector.svg" alt="vector" class="px-2" />
               </button>
-              <div class="h-[45px] overflow-hidden">
+              <div class=" ">
                 <p class="text-base font-semibold font-poppins">
                   {{ item.bucket.title }}
                 </p>
               </div>
-              <div class="h-[155px] overflow-hidden">
+              <div class=" ">
                 <p class="mt-5 mb-2 text-sm font-medium font-poppins">
                   {{ item.bucket.description }}
                 </p>
