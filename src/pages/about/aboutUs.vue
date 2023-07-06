@@ -117,7 +117,7 @@ const images = ref([
         <section class="bg-appGray100 font-poppins">
           <div class="w-[100%] mx-auto py-[64px] md:py-[67px] lg:py-[49px]">
             <div
-              class="content bg-[#FEF7D6] md:py-[110px] py-[20px] lg:py-[40px] px-[10px] lg:px-[34px] rounded-3xl md:flex"
+              class="content bg-[#FEF7D6] md:py-[110px] py-[20px] lg:py-[40px] px-[10px] lg:px-[34px] rounded-3xl md:flex items-center"
             >
               <div class="text md:w-1/2">
                 <p
