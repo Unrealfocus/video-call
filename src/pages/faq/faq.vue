@@ -1,7 +1,7 @@
 <script>
 import Navbar from "../../components/layout/navabar_test.vue";
 
-import Footer from "../../components/layout/Footer.vue";
+import Footer from "../../components/layout/footer.vue";
 export default {
   name: "index",
   components: {
@@ -73,13 +73,13 @@ export default {
       <section class="relative">
         <section>
           <div class="hidden lg:block">
-            <img src="FAQ1.svg" alt="faq" class="w-full" />
+            <img src="faq1.svg" alt="faq" class="w-full" />
           </div>
           <div class="hidden lg:hidden md:block">
-            <img src="FAQ2.svg" alt="faq" class="w-full" />
+            <img src="faq2.svg" alt="faq" class="w-full" />
           </div>
           <div class="md:hidden">
-            <img src="FAQ3.svg" alt="faq" class="w-full" />
+            <img src="faq3.svg" alt="faq" class="w-full" />
           </div>
         </section>
 
@@ -87,8 +87,11 @@ export default {
           class="absolute top-0 left-0 flex flex-col items-center justify-center w-full h-full"
         >
           <!-- Add your search bar here -->
-          <p class="pb-5 text-6xl font-extrabold text-white font-inter">
-            How can we help you
+          <p
+            class="items-center pb-5 text-4xl font-semibold text-center text-white md:text-6xl md:font-extrabold font-inter"
+          >
+            How can we help <br class="md:hidden" />
+            you
           </p>
           <div class="relative flex items-center">
             <div class="absolute left-0">
@@ -97,17 +100,19 @@ export default {
             <input
               type="search"
               placeholder="Search..."
-              class="w-[620px] rounded-full py-2 px-8 outline-none"
+              class="md:w-[620px] w-[310px] rounded-full py-2 px-8 outline-none"
             />
           </div>
         </div>
       </section>
 
       <section class="p-8 bg-[#F9F9F9]">
-        <p class="text-4xl font-semibold font-poppins text-[#000000]">
+        <p
+          class="md:text-4xl text-2xl font-semibold font-poppins text-[#000000]"
+        >
           Frequently Asked Questions (FAQs)
         </p>
-        <ul class="p-10">
+        <ul class="md:pt-5 md:p-10 pt-7">
           <li
             v-for="item in faqs"
             :key="item.id"

@@ -31,7 +31,11 @@ export default {
             Why Puthands
           </li>
           <li class="pb-2 text-sm font-medium font-poppins" to="">About</li>
-          <li class="pb-2 text-sm font-medium font-poppins" to="">FAQ</li>
+          <router-link to="/faq"
+            ><li class="pb-2 text-sm font-medium font-poppins">
+              FAQ
+            </li></router-link
+          >
         </ul>
       </section>
     </section>

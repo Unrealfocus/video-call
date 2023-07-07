@@ -33,7 +33,7 @@
         </div>
       </router-link>
       <hr />
-      <router-link to="/dashboard/faq">
+      <router-link to="/faq">
         <div
           class="flex items-center gap-5 pb-3 mx-auto text-base font-medium pt-9 font-poppins"
         >
