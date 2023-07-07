@@ -141,6 +141,10 @@ export default {
     await axios.get(getCategories).then((res) => {
       this.categories = res.data.data;
     });
+
+    await axios.get(getCategories).then((res) => {
+      this.categories = res.data.data;
+    });
   },
   methods: {
     navDrop() {

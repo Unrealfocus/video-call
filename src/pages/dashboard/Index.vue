@@ -263,6 +263,7 @@
       </section>
     </main>
   </div>
+  {{ notifications }}
 </template>
 
 <script>
@@ -279,6 +280,7 @@ export default {
       donors: 0,
       donated: 0,
       goal: 0,
+      notifications: [],
     };
   },
   async created() {
@@ -334,6 +336,7 @@ export default {
       });
     //set recent
     this.recent = this.myBuckets[this.myBuckets.length - 1];
+
     this.loading = false;
   },
 };
