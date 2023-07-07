@@ -247,12 +247,21 @@ export default {
               </button>
               <div class=" ">
                 <p class="text-base font-semibold font-poppins">
-                  {{ item.bucket.title }}
+                  {{
+                    item.bucket.title.length > 24
+                      ? item.bucket.title.slice(0, 24) + "..."
+                      : item.bucket.title
+                  }}
                 </p>
+                <p class="text-[10px]">by {{ item.author }}</p>
               </div>
               <div class=" ">
                 <p class="mt-5 mb-2 text-sm font-medium font-poppins">
-                  {{ item.bucket.description }}
+                  {{
+                    item.bucket.description.length > 150
+                      ? item.bucket.description.slice(0, 150) + "..."
+                      : item.bucket.description
+                  }}
                 </p>
               </div>
 

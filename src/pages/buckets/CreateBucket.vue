@@ -14,7 +14,7 @@
           :class="[currentStep == 4 ? 'hidden' : '']"
           class="steps py-[30px]">
           <p class="font-[700] text-[18px] font-poppins pb-[10px]">
-            Steps {{ currentStep }}
+            Step {{ currentStep }}
           </p>
           <div class="bars flex space-x-[8px]">
             <div
