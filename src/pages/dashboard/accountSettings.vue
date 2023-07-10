@@ -15,7 +15,7 @@ export default {
       newEmail: "",
       confirmEmail: "",
       activeTab: 0,
-      tabs: ["Profile Setting", "Notification", "Security Setting"],
+      tabs: ["Profile Setting", "Security Setting"],
       isActive1: false,
       isActive2: false,
       isActive3: false,
@@ -41,7 +41,7 @@ export default {
 <template>
   <div>
     <section
-      class="md:flex hidden bg-white pt-3 pb-5 px-8 w-[100%] rounded-full items-center justify-between mt-20 mb-20"
+      class="items-center hidden px-8 pt-3 pb-5 mt-20 mb-20 bg-white rounded-full md:flex"
     >
       <div
         v-for="(tab, index) in tabs"
@@ -118,7 +118,7 @@ export default {
         </section>
       </div>
 
-      <div v-show="activeTab === 1">
+      <!-- <div v-show="activeTab === 1">
         <p class="font-poppins font-semibold text-4xl text-[#484848]">
           Notification
         </p>
@@ -254,9 +254,9 @@ export default {
             Save Changes
           </button>
         </section>
-      </div>
+      </div> -->
 
-      <div v-show="activeTab === 2">
+      <div v-show="activeTab === 1">
         <section>
           <p class="text-xl font-semibold font-poppins text-[#C8C8C8]">
             Password Setting
