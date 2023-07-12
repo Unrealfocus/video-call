@@ -149,40 +149,45 @@ export default {
           </li>
         </ul>
       </section>
-      <section class="p-8">
+
+      <section class="bg-appGray100 font-poppins">
         <div
-          class="content bg-[#FEF7D6] md:py-[110px] py-[20px] lg:py-[40px] px-[10px] lg:px-[34px] rounded-3xl md:flex items-center"
+          class="w-[90%] xl:w-[1280px] mx-auto py-[64px] md:py-[67px] lg:py-[49px]"
         >
-          <div class="text md:w-1/2">
-            <p
-              class="md:w-2/3 font-[600] text-[28px] lg:text-[44px] leading-[36px] lg:leading-[48px] font-poppins"
-            >
-              Become a part of our community today.
-            </p>
-            <p class="pt-[16px] font-[500]">
-              Welcome to PutHand! A community of compassionate and dedicated
-              individuals will attend to you shortly. Our mission is simple and
-              you are invited to join our network of donors, fundraisers, and
-              supporters. As a member, you have the power to transform lives,
-              support meaningful projects, and put a smile on people’s faces. It
-              doesn’t matter what you are passionate about, there’s someone for
-              everyone. <br /><br />Start your journey with PutHand and become a
-              catalyst for change. Welcome to the PutHand community.
-            </p>
-            <div class="md:py-[120px] py-12">
-              <router-link to=""
-                ><button
-                  @click="this.$router.push('/buckets')"
-                  class="bg-[#295F2D] text-white px-[23px] py-[12px] rounded-full font-[700]"
-                >
-                  Let's Put Hands
-                </button></router-link
+          <div
+            class="content bg-[#FEF7D6] md:py-[110px] py-[20px] lg:py-[40px] px-[10px] lg:px-[34px] rounded-3xl md:flex items-center"
+          >
+            <div class="text md:w-1/2">
+              <p
+                class="md:w-2/3 font-[600] text-[28px] lg:text-[44px] leading-[36px] lg:leading-[48px] font-poppins"
               >
+                Become a part of our community today.
+              </p>
+              <p class="pt-[16px] font-[500]">
+                Welcome to PutHand! A community of compassionate and dedicated
+                individuals will attend to you shortly. Our mission is simple
+                and you are invited to join our network of donors, fundraisers,
+                and supporters. As a member, you have the power to transform
+                lives, support meaningful projects, and put a smile on people’s
+                faces. It doesn’t matter what you are passionate about, there’s
+                someone for everyone. <br /><br />Start your journey with
+                PutHand and become a catalyst for change. Welcome to the PutHand
+                community.
+              </p>
+              <div class="py-[50px]">
+                <router-link to="/buckets"
+                  ><button
+                    class="bg-[#295F2D] text-white px-[23px] py-[12px] rounded-full font-[700]"
+                  >
+                    Let's Put Hands
+                  </button></router-link
+                >
+              </div>
             </div>
-          </div>
-          <div class="flex items-center justify-center image md:w-1/2">
-            <img src="/hands2.svg" class="hidden md:block" />
-            <img src="/hands2mobile.svg" class="md:hidden" />
+            <div class="flex items-center justify-center image md:w-1/2">
+              <img src="/hands2.svg" class="hidden md:block" />
+              <img src="/hands2mobile.svg" class="md:hidden" />
+            </div>
           </div>
         </div>
       </section>

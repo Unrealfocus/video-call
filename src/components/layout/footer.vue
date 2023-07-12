@@ -24,13 +24,21 @@ export default {
         </ul>
         <ul>
           <p class="pb-2 text-base font-semibold font-poppins">Learn</p>
-          <li class="pb-2 text-sm font-medium font-poppins" to="">
-            How Puthands
-          </li>
-          <li class="pb-2 text-sm font-medium font-poppins" to="">
-            Why Puthands
-          </li>
-          <li class="pb-2 text-sm font-medium font-poppins" to="">About</li>
+          <router-link to="/works"
+            ><li class="pb-2 text-sm font-medium font-poppins" to="">
+              How Puthand works
+            </li></router-link
+          >
+          <router-link to="/about-us"
+            ><li class="pb-2 text-sm font-medium font-poppins" to="">
+              About
+            </li></router-link
+          >
+          <router-link to="/contact-us"
+            ><li class="pb-2 text-sm font-medium font-poppins" to="">
+              Contact
+            </li></router-link
+          >
           <router-link to="/faq"
             ><li class="pb-2 text-sm font-medium font-poppins">
               FAQ
