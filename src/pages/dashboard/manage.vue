@@ -7,7 +7,7 @@
     <div class="flex justify-between">
       <button
         @click="togglePrev"
-        class="flex items-center px-4 py-4 text-base font-bold border border-[#333333] rounded-full font-poppins"
+        class="flex items-center px-4 py-3 text-base font-bold border border-[#333333] rounded-full font-poppins gap-3"
       >
         <img src="/arrow-left.svg" alt="" />
         Back for fundraiser
@@ -29,14 +29,18 @@
         >
           <ul class="">
             <li class="px-4 py-2 cursor-pointer hover:bg-gray-100">
-              <button>Pause Bucket</button>
-            </li>
-            <li class="px-4 py-2 cursor-pointer hover:bg-gray-100">
-              <button>Delete Bucket</button>
+              <button class="text-base font-medium font-poppins">
+                Pause Bucket
+              </button>
             </li>
             <div>
               <li class="px-4 py-2 cursor-pointer hover:bg-gray-100">
-                <button @click="showConfirmationModal">Close Bucket</button>
+                <button
+                  @click="showConfirmationModal"
+                  class="text-base font-medium font-poppins"
+                >
+                  Close Bucket
+                </button>
               </li>
               <div
                 v-if="showModal"
@@ -61,9 +65,18 @@
                   </div>
                 </div>
               </div>
+              <div
+                v-if="showSuccess"
+                class="fixed top-0 left-0 w-full py-2 text-center text-white bg-green-500"
+              >
+                <!-- <p>Bucket successfully closed</p> -->
+                <p :class="alertClass">{{ alert.message }}</p>
+              </div>
             </div>
             <li class="px-4 py-2 cursor-pointer hover:bg-gray-100">
-              <button>Stop Receiving Donations</button>
+              <button class="text-base font-medium font-poppins">
+                Stop Receiving Donations
+              </button>
             </li>
           </ul>
         </div>
@@ -265,11 +278,25 @@
 
 <script>
 import bucket from "../../components/manageBucket/bucket.vue";
+import { updateAlert } from "../../utils/alert";
+import { mapState } from "vuex";
+
 export default {
   name: "manage",
   emits: ["edit"],
   components: {
     bucket,
+  },
+  computed: {
+    ...mapState(["alert"]),
+    alertClass() {
+      return {
+        "text-white": this.alert.type !== "warning",
+        "bg-green-500": this.alert.type === "success",
+        "bg-red-500": this.alert.type === "error",
+        "bg-yellow-500": this.alert.type === "warning",
+      };
+    },
   },
   data() {
     return {
@@ -280,6 +307,7 @@ export default {
       tabs: ["Donator", "Bucket Updates"],
       dropdownOpen: false,
       showModal: false,
+      showSuccess: false,
     };
   },
   mounted() {
@@ -291,6 +319,7 @@ export default {
       this.manageCount++;
       this.buck = num;
     },
+
     changeTab(index) {
       this.activeTab = index;
     },
@@ -312,6 +341,11 @@ export default {
     closeBucket() {
       // Perform the close bucket action here
       this.showModal = false;
+      this.showSuccess = true;
+      updateAlert("success", "", "Bucket successfully closed");
+      setTimeout(() => {
+        this.showSuccess = false;
+      }, 1000);
     },
   },
 };

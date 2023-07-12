@@ -29,7 +29,7 @@ const images = ref([
   <main class="mt-5">
     <!-- HERO SECTION STARTS -->
     <section
-      class="grid items-center grid-cols-1 gap-5 p-8 mx-auto md:grid-cols-2"
+      class="grid items-center grid-cols-1 gap-5 p-8 md:grid-cols-2 w-[100%] xl:w-[1380px] mx-auto"
     >
       <section class="py-10 md:mt-20">
         <h1
@@ -59,7 +59,7 @@ const images = ref([
 
     <!-- ABOUT US SECTION STARTS -->
     <section class="bg-[#F3F3F3] pt-4 pb-10">
-      <section class="p-8 mx-auto">
+      <section class="p-8 w-[90%] xl:w-[1280px] mx-auto">
         <!-- TODO ADD THE Clash Grotesk FONT HERE -->
         <h2
           class="font-[800] lg:text-4xl md:text-[52px] text-[36px] text-center pt-10"
@@ -110,12 +110,13 @@ const images = ref([
             </ul>
           </article>
           <div class="flex items-center justify-center md:w-1/2">
-            <img src="/together.svg" class="w-full rounded-2xl" alt="" />
+            <img src="/together.svg" class="w-full h-full rounded-2xl" alt="" />
           </div>
         </div>
-
         <section class="bg-appGray100 font-poppins">
-          <div class="w-[100%] mx-auto py-[64px] md:py-[67px] lg:py-[49px]">
+          <div
+            class="w-[90%] xl:w-[1280px] mx-auto py-[64px] md:py-[67px] lg:py-[49px]"
+          >
             <div
               class="content bg-[#FEF7D6] md:py-[110px] py-[20px] lg:py-[40px] px-[10px] lg:px-[34px] rounded-3xl md:flex items-center"
             >
@@ -136,10 +137,9 @@ const images = ref([
                   your journey with PutHand and become a catalyst for change.
                   Welcome to the PutHand community.
                 </p>
-                <div class="md:py-[120px] py-12">
-                  <router-link to=""
+                <div class="py-[50px]">
+                  <router-link to="/buckets"
                     ><button
-                      @click="this.$router.push('/buckets')"
                       class="bg-[#295F2D] text-white px-[23px] py-[12px] rounded-full font-[700]"
                     >
                       Let's Put Hands

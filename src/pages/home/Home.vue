@@ -98,7 +98,7 @@ export default {
 
       <!-- How Put Hand Works -->
 
-      <section class="bg-[#FFF] pt-4 pb-10 p-8">
+      <section class="bg-[#FFF] pt-4 pb-10">
         <div class="w-[90%] xl:w-[1280px] mx-auto">
           <div class="">
             <p
@@ -189,8 +189,10 @@ export default {
         </div>
       </section>
 
-      <section class="p-8 bg-appGray100 font-poppins">
-        <div class="">
+      <section class="bg-appGray100 font-poppins">
+        <div
+          class="w-[90%] xl:w-[1280px] mx-auto py-[64px] md:py-[67px] lg:py-[49px]"
+        >
           <div
             class="content bg-[#FEF7D6] md:py-[110px] py-[20px] lg:py-[40px] px-[10px] lg:px-[34px] rounded-3xl md:flex items-center"
           >

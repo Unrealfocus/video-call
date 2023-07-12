@@ -5,6 +5,12 @@ export default new Vuex.Store({
     user: {},
     token: "",
     bucket: {},
+    alert:{
+      active: false,
+      type: "",
+      comment: "error, success, warning", // error, success, warning
+      message: "",
+    },
   },
   mutations: {
     manageBucket(state, payload) {
@@ -19,6 +25,15 @@ export default new Vuex.Store({
     },
     updateSelectedSub(state, payload) {
       state.selectedSub = payload;
+    },
+    showAlert(state, payload) {
+      state.alert.active = true;
+      state.alert.type = payload.type || "";
+      state.alert.comment = payload.comment || "";
+      state.alert.message = payload.message || "";
+    },
+    hideAlert(state) {
+      state.alert.active = false;
     },
   },
   actions: {},
