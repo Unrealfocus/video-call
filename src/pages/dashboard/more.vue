@@ -33,12 +33,7 @@
       <hr />
       <router-link to="/faq">
         <div
-<<<<<<< HEAD
-          class="flex items-center gap-5 pb-3 mx-auto text-base font-medium pt-9 font-poppins"
-        >
-=======
           class="flex items-center pb-3 gap-5 mx-auto text-base font-medium pt-9 font-poppins">
->>>>>>> develop
           <img src="/setting2.svg" alt="" />
           <span> FAQ </span>
         </div>

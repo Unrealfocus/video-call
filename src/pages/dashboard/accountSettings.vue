@@ -41,12 +41,7 @@ export default {
 <template>
   <div class="lg:w-[85%] mx-auto">
     <section
-<<<<<<< HEAD
-      class="items-center hidden px-8 pt-3 pb-5 mt-20 mb-20 bg-white rounded-full md:flex"
-    >
-=======
       class="md:flex hidden bg-white pt-3 pb-5 px-8 w-[100%] rounded-full items-center justify-between mt-20 mb-20">
->>>>>>> develop
       <div
         v-for="(tab, index) in tabs"
         :key="index"

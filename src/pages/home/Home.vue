@@ -9,58 +9,53 @@ export default {
   components: {
     Footer,
     Navbar,
-    DonationCard
-},
+    DonationCard,
+  },
   data() {
     return {
       buckets: [],
       assets: "",
       loading: false,
-<<<<<<< HEAD
       email: "",
-=======
-      email: '',
       show: false,
-      message:'',
->>>>>>> develop
+      message: "",
     };
   },
   methods: {
-   async submitForm() {
-    const formData = {
+    async submitForm() {
+      const formData = {
         email_address: this.email,
-        status: 'subscribed',
+        status: "subscribed",
       };
 
-    
-    // await axios.post(
-    //     `https://${this.mailchimpInstance}.api.mailchimp.com/3.0/lists/${this.listUniqueId}/members`,
-    //     formData,
-    //     {
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //         Authorization: `apikey ${this.mailchimpApiKey}`,
-    //       },
-    //     }
-    //   )
-    //   .then(response => {
-    //       console.log('Successfully subscribed user:', response.data);
-    //       // Handle success, e.g., show a success message
-    //     })
-    //     .catch(error => {
-    //       console.error('Failed to subscribe user:', error);
-    //       // Handle error, e.g., show an error message
-    //     });
+      // await axios.post(
+      //     `https://${this.mailchimpInstance}.api.mailchimp.com/3.0/lists/${this.listUniqueId}/members`,
+      //     formData,
+      //     {
+      //       headers: {
+      //         'Content-Type': 'application/json',
+      //         Authorization: `apikey ${this.mailchimpApiKey}`,
+      //       },
+      //     }
+      //   )
+      //   .then(response => {
+      //       console.log('Successfully subscribed user:', response.data);
+      //       // Handle success, e.g., show a success message
+      //     })
+      //     .catch(error => {
+      //       console.error('Failed to subscribe user:', error);
+      //       // Handle error, e.g., show an error message
+      //     });
 
-        this.email = '';
-        this.show=true;
-        setTimeout(() => {
-            this.show = false;
-          }, 5000);    
+      this.email = "";
+      this.show = true;
+      setTimeout(() => {
+        this.show = false;
+      }, 5000);
     },
     hideAlert() {
-          this.show = false;
-        }
+      this.show = false;
+    },
   },
   async mounted() {
     this.loading = true;
@@ -97,30 +92,43 @@ export default {
   <section>
     <Navbar />
     <!--Hero Section-->
-    <div v-if="show" class="bg-white border-l-4 border-green-500 rounded-b text-teal-900 px-4 py-3 shadow-md rounded-lg fixed top-0 right-0 z-40 opacity-100" role="alert">
-    <div class="flex">
-      <div class="py-1 pr-1">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-check-circle-fill h-6 w-6" viewBox="0 0 16 16" id="IconChangeColor"> <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" id="mainIconPathAttribute" fill="green"></path> </svg>
+    <div
+      v-if="show"
+      class="bg-white border-l-4 border-green-500 rounded-b text-teal-900 px-4 py-3 shadow-md rounded-lg fixed top-0 right-0 z-40 opacity-100"
+      role="alert">
+      <div class="flex">
+        <div class="py-1 pr-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            class="bi bi-check-circle-fill h-6 w-6"
+            viewBox="0 0 16 16"
+            id="IconChangeColor">
+            <path
+              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+              id="mainIconPathAttribute"
+              fill="green"></path>
+          </svg>
+        </div>
+        <div>
+          <p class="font-bold">Thank you</p>
+          <p class="text-sm">You have Register successfully.</p>
+        </div>
+        <div class="relative top-0 right-0">
+          <button @click="hideAlert" class="close-btn">&times;</button>
+        </div>
       </div>
-      <div>
-        <p class="font-bold">Thank you</p>
-        <p class="text-sm">You have Register successfully.</p>
-      </div>
-      <div class="relative top-0 right-0"><button @click="hideAlert" class="close-btn">&times;</button></div>
     </div>
-  </div>
     <div
       v-if="loading == true"
-      class="flex items-center justify-center w-full h-screen loading"
-    >
+      class="flex items-center justify-center w-full h-screen loading">
       <img src="/logo1.svg" class="animate-bounce" />
     </div>
     <section v-if="loading == false" class="bg-[url('/Vector2.svg')]">
       <section class="bg-[#F3F3F3] pb-16 relative">
         <section class="flex items-center justify-center">
           <p
-            class="text-center font-poppins md:px-[41px] md:font-[800] md:leading-[56px] leading-[44px] text-[36px] font-bold md:text-[66px] mt-10 md:mt-28"
-          >
+            class="text-center font-poppins md:px-[41px] md:font-[800] md:leading-[56px] leading-[44px] text-[36px] font-bold md:text-[66px] mt-10 md:mt-28">
             MAKE SOMEONE SMILE <br class="hidden md:block" />
             TODAY- PUT HAND IN THEIR <br class="hidden md:block" />
 
@@ -128,8 +136,7 @@ export default {
           </p>
         </section>
         <section
-          class="flex text-center justify-center my-7 font-poppins md:font-medium md:text-base leading-6 items-center text-[14px] font-[500] md:px-[41px]"
-        >
+          class="flex text-center justify-center my-7 font-poppins md:font-medium md:text-base leading-6 items-center text-[14px] font-[500] md:px-[41px]">
           Build a dream bucket and invite friends and families, strangers to
           donate. 
         </section>
@@ -138,8 +145,7 @@ export default {
           <div class="mx-auto">
             <button
               @click="this.$router.push('/buckets')"
-              class="gap-2 text-base font-bold font-poppins rounded-full bg-[#2A5E2A] border-[1px] border-[#fff] text-[#fff] py-3 text-[14px] px-10 m-3"
-            >
+              class="gap-2 text-base font-bold font-poppins rounded-full bg-[#2A5E2A] border-[1px] border-[#fff] text-[#fff] py-3 text-[14px] px-10 m-3">
               Let's Put Hands
             </button>
           </div>
@@ -150,14 +156,12 @@ export default {
             <img
               src="/Group53.svg"
               alt=""
-              class="items-center justify-center mx-auto -mt-8"
-            />
+              class="items-center justify-center mx-auto -mt-8" />
             <img
               src="/gradient.svg"
               alt=""
               :draggable="false"
-              class="absolute opacity-50 bottom-10"
-            />
+              class="absolute opacity-50 bottom-10" />
           </div>
           <div class="-mt-14 md:hidden">
             <img src="/Group6.svg" alt="" />
@@ -165,8 +169,7 @@ export default {
               src="/gradient2.svg"
               alt=""
               :draggable="false"
-              class="absolute opacity-50 bottom-10"
-            />
+              class="absolute opacity-50 bottom-10" />
           </div>
         </section>
       </section>
@@ -177,71 +180,60 @@ export default {
         <div class="w-[90%] xl:w-[1280px] mx-auto">
           <div class="">
             <p
-              class="md:font-[800] font-[700] text-[20px] md:text-[52px] font-poppins text-[#242424]"
-            >
+              class="md:font-[800] font-[700] text-[20px] md:text-[52px] font-poppins text-[#242424]">
               IT’S NOT ROCKET SCIENCE
             </p>
             <p
-              class="font-[500] text-[16px] font-poppins py-[20px] lg:py-[54px] text-[#484848]"
-            >
+              class="font-[500] text-[16px] font-poppins py-[20px] lg:py-[54px] text-[#484848]">
               it takes less than five minutes
             </p>
           </div>
           <!-- cards  -->
           <div
-            class="grid-flow-row grid-cols-2 gap-2 md:grid lg:grid-cols-4 auto-rows-max"
-          >
+            class="grid-flow-row grid-cols-2 gap-2 md:grid lg:grid-cols-4 auto-rows-max">
             <div
-              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover"
-            >
+              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover">
               <div class="py-[46px]">
                 <div class="w-full">
                   <img src="/handStar.svg" class="mx-auto" />
                   <p
-                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]"
-                  >
+                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]">
                     Create an account
                   </p>
                 </div>
               </div>
             </div>
             <div
-              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover"
-            >
+              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover">
               <div class="py-[46px]">
                 <div class="w-full">
                   <img src="/Icon02.svg" class="mx-auto" />
                   <p
-                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]"
-                  >
+                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]">
                     Register attendance
                   </p>
                 </div>
               </div>
             </div>
             <div
-              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover"
-            >
+              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover">
               <div class="py-[46px]">
                 <div class="w-full">
                   <img src="/Icon01.svg" class="mx-auto" />
                   <p
-                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]"
-                  >
+                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]">
                     Tell the class why you created a bucket
                   </p>
                 </div>
               </div>
             </div>
             <div
-              class="group/item m-2 rounded-lg relative bg-[#F3F3F3] bg-cover hover:text-[#F8B83A] hover:bg-[#2A5E2A] transition-all duration-300"
-            >
+              class="group/item m-2 rounded-lg relative bg-[#F3F3F3] bg-cover hover:text-[#F8B83A] hover:bg-[#2A5E2A] transition-all duration-300">
               <div class="py-[46px]">
                 <div class="w-full">
                   <img src="/Icon03.svg" class="mx-auto" />
                   <p
-                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]"
-                  >
+                    class="w-[80%] mx-auto text-center font-[600] font-poppins text-[18px]">
                     share the story with everyone
                   </p>
                 </div>
@@ -250,8 +242,7 @@ export default {
           </div>
           <!-- bottom texts  -->
           <div
-            class="text-[#484848] font-[400] font-poppins text-[18px] py-[40px]"
-          >
+            class="text-[#484848] font-[400] font-poppins text-[18px] py-[40px]">
             <p>
               As soon as the campaign is live, share it with family and friends
               and strangers. Donors can contribute to the bucket using their
@@ -266,15 +257,12 @@ export default {
 
       <section class="bg-appGray100 font-poppins">
         <div
-          class="w-[90%] xl:w-[1280px] mx-auto py-[64px] md:py-[67px] lg:py-[49px]"
-        >
+          class="w-[90%] xl:w-[1280px] mx-auto py-[64px] md:py-[67px] lg:py-[49px]">
           <div
-            class="content bg-[#FEF7D6] md:py-[110px] py-[20px] lg:py-[40px] px-[10px] lg:px-[34px] rounded-3xl md:flex items-center"
-          >
+            class="content bg-[#FEF7D6] md:py-[110px] py-[20px] lg:py-[40px] px-[10px] lg:px-[34px] rounded-3xl md:flex items-center">
             <div class="text md:w-1/2">
               <p
-                class="md:w-2/3 font-[600] text-[28px] lg:text-[44px] leading-[36px] lg:leading-[48px] font-poppins"
-              >
+                class="md:w-2/3 font-[600] text-[28px] lg:text-[44px] leading-[36px] lg:leading-[48px] font-poppins">
                 Become a part of our community today.
               </p>
               <p class="pt-[16px] font-[500]">
@@ -291,8 +279,7 @@ export default {
               <div class="py-[50px]">
                 <router-link to="/buckets"
                   ><button
-                    class="bg-[#295F2D] text-white px-[23px] py-[12px] rounded-full font-[700]"
-                  >
+                    class="bg-[#295F2D] text-white px-[23px] py-[12px] rounded-full font-[700]">
                     Let's Put Hands
                   </button></router-link
                 >
@@ -307,167 +294,63 @@ export default {
       </section>
 
       <section
-        class="container p-8 pt-4 pb-10 mx-auto bg-white md:w-5/6 lg:w-4/5"
-      >
+        class="container p-8 pt-4 pb-10 mx-auto bg-white md:w-5/6 lg:w-4/5">
         <p
-          class="justify-start pt-3 mb-8 text-3xl font-extrabold leading-10 font-poppins md:text-4xl"
-        >
+          class="justify-start pt-3 mb-8 text-3xl font-extrabold leading-10 font-poppins md:text-4xl">
           DO YOU WANT TO PUT HAND FOR SOMEONE TODAY? 
         </p>
         <p class="mb-4 text-base font-medium leading-4 font-poppins">
           Here are some campaigns you can donate and put a smile on someone’s
           face: 
         </p>
-<<<<<<< HEAD
-        <ul class="flex overflow-x-scroll gap-7 no-scrollbar">
-          <li v-for="item in buckets" class="flex-shrink-0 w-72">
-            <figure>
-              <img
-                :src="assets + item.images[0].image_url"
-                class="object-cover object-center w-full h-44 rounded-2xl"
-                alt=""
-              />
-              <button
-                type="button"
-                class="flex items-center px-2 py-1 my-3 rounded-lg bg-appGreen100"
-              >
-                <span
-                  class="text-sm font-bold shadow-md text-appGreen200 font-poppins shadow-appGreen100"
-                >
-                  {{ item.category }}
-                </span>
-                <img src="/Vector.svg" alt="vector" class="px-2" />
-              </button>
-              <div class="h-[45px] overflow-hidden">
-                <p class="text-base font-semibold font-poppins">
-                  {{ item.bucket.title }}
-                </p>
-              </div>
-              <div class="h-[155px] overflow-hidden">
-                <p class="mt-5 mb-2 text-sm font-medium font-poppins">
-                  {{ item.bucket.description }}
-                </p>
-              </div>
 
-              <dl class="flex py-[10px]">
-                <div class="flex flex-1 mr-3 rounded-full bg-appGray100">
-                  <span
-                    :class="'w-[' + item.percentage + '%]'"
-                    class="bg-yellow-500 rounded-full"
-                  />
-                </div>
-                <data
-                  value="60"
-                  class="font-poppins font-medium text-sm text-[#000000]"
-                  >{{ item.goal_percent }}%</data
-                >
-              </dl>
-
-              <dl class="flex justify-between my-4">
-                <span class="flex">
-                  <dt
-                    class="font-bold font-poppins text-xs mr-1 text-[#000000]"
-                  >
-                    Raised:
-                  </dt>
-
-                  <dd class="font-medium font-poppins text-xs text-[#000000]">
-                    ₦{{ item.donated }}
-                  </dd>
-                </span>
-                <span class="flex">
-                  <dt
-                    class="font-bold font-poppins text-xs text-[#295F2D] mr-1"
-                  >
-                    Goal:
-                  </dt>
-                  <dd class="font-medium font-poppins text-xs text-[#295F2D]">
-                    ₦{{ item.bucket.goal }}
-                  </dd>
-                </span>
-              </dl>
-              <button
-                @click="this.$router.push('/bucket/' + item.bucket.bucket_id)"
-                class="bg-appGreen300 w-full rounded-full py-2 font-semibold font-poppins text-lg text-[#FFFFFF]"
-                type="button"
-              >
-                Donate
-              </button>
-            </figure>
-          </li>
-=======
-        <ul  class="md:grid lg:grid-cols-4 grid-cols-2 grid-flow-row auto-rows-max flex overflow-x-scroll gap-10 no-scrollbar">
-         <DonationCard v-for="item in buckets"
-          :key="item.id"
-          :item="item"
-          :assets="assets"
-          />
->>>>>>> develop
+        <ul
+          class="md:grid lg:grid-cols-4 grid-cols-2 grid-flow-row auto-rows-max flex overflow-x-scroll gap-10 no-scrollbar">
+          <DonationCard
+            v-for="item in buckets"
+            :key="item.id"
+            :item="item"
+            :assets="assets" />
         </ul>
       </section>
 
       <section class="p-8 pt-4 pb-10 bg-appGray100 lg:relative">
         <section class="items-center justify-center pb-10 mx-auto">
           <section
-            class="bg-[#FEF4C3] p-9 w-[90%] md:w-2/3 mx-auto rounded-2xl inset-x-0 top-0 mt-6 space-y-5"
-          >
+            class="bg-[#FEF4C3] p-9 w-[90%] md:w-2/3 mx-auto rounded-2xl inset-x-0 top-0 mt-6 space-y-5">
             <p
-              class="text-center font-poppins font-extrabold text-3xl text-[#333333]"
-            >
+              class="text-center font-poppins font-extrabold text-3xl text-[#333333]">
               We Would Like To Send You Emails
             </p>
             <p
-              class="text-center font-poppins font-normal text-base text-[#242424] pt-2"
-            >
+              class="text-center font-poppins font-normal text-base text-[#242424] pt-2">
               Sign up to our newsletters to know what we are up to and what’
               trending
             </p>
-<<<<<<< HEAD
-            <div class="relative">
-              <div class="absolute top-[0.9rem] left-3">
-                <img src="/sms.svg" alt="" />
-              </div>
-              <input
-                type="email"
-                id="email-address-icon"
-                class="bg-[#FFFFFF] rounded-lg block w-full pl-10 p-2.5 outline-none"
-                placeholder="Enter your email"
-              />
-              <button
-                class="inset-y-1 right-0 flex md:mx-0 mx-auto items-center px-5 text-[white] w-[90px] md:mr-2 bg-[#939393] rounded-lg h-[36px] lg:absolute mt-3 lg:mt-0"
-                @submit.prevent="submitForm"
-                action="input"
-              >
-                Submit
-              </button>
-            </div>
-          </section>
-=======
-            
 
-         
-          <form @submit.prevent="submitForm">
-                <div class="relative" id="email">
-                  <div class="absolute top-[0.9rem] left-3">
-                    <img src="/sms.svg" alt="" />
-                  </div>
-                  <input type="hidden" name="u" value="0e139eebd98f0154312029341">
-                  <input
-                    type="email"
-                    id="email-address-icon"
-                    class="bg-[#FFFFFF] rounded-lg block w-full pl-10 p-2.5 outline-none"
-                    v-model="email"
-                    placeholder="Enter your email" />
-                  <button
-                    class="inset-y-1 right-0 flex md:mx-0 mx-auto items-center px-5 text-[white] w-[90px] md:mr-2 bg-[#939393] rounded-lg h-[36px] lg:absolute mt-3 lg:mt-0 hover:bg-green-500"
-                  
-                    action="input">
-                    Submit
-                  </button>
+            <form @submit.prevent="submitForm">
+              <div class="relative" id="email">
+                <div class="absolute top-[0.9rem] left-3">
+                  <img src="/sms.svg" alt="" />
                 </div>
-              </form>
-              </section>
->>>>>>> develop
+                <input
+                  type="hidden"
+                  name="u"
+                  value="0e139eebd98f0154312029341" />
+                <input
+                  type="email"
+                  id="email-address-icon"
+                  class="bg-[#FFFFFF] rounded-lg block w-full pl-10 p-2.5 outline-none"
+                  v-model="email"
+                  placeholder="Enter your email" />
+                <button
+                  class="inset-y-1 right-0 flex md:mx-0 mx-auto items-center px-5 text-[white] w-[90px] md:mr-2 bg-[#939393] rounded-lg h-[36px] lg:absolute mt-3 lg:mt-0 hover:bg-green-500"
+                  action="input">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </section>
         </section>
         <Footer></Footer>
       </section>
