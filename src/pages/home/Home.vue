@@ -67,14 +67,17 @@ export default {
           donate. 
         </section>
 
-        <div class="flex">
-          <div class="mx-auto">
-            <button
-              @click="this.$router.push('/buckets')"
-              class="gap-2 text-base font-bold font-poppins rounded-full bg-[#2A5E2A] border-[1px] border-[#fff] text-[#fff] py-3 text-[14px] px-10 m-3">
-              Let's Put Hands
-            </button>
-          </div>
+        <div class="flex justify-center">
+          <button
+            @click="this.$router.push('/buckets')"
+            class="gap-2 text-base font-bold font-poppins rounded-full bg-[#2A5E2A] border-[1px] border-[#fff] text-[#fff] md:py-3 px-[12px] py-[8px] text-[14px] md:text-[14px] md:px-10 m-3">
+            Let's Put Hands
+          </button>
+          <button
+            @click="this.$router.push('/signup')"
+            class="gap-2 text-base font-bold font-poppins rounded-full bg-[#fff] border-[1px] border-[#2A5E2A] text-[#2A5E2A] md:py-3 text-[14px] px-[12px] md:px-10 m-3">
+            Create Account
+          </button>
         </div>
 
         <section>
