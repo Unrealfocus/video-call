@@ -24,7 +24,7 @@
     </section>
     <dl class="flex pt-4">
       <div class="flex flex-1 mr-3 rounded-full bg-[#EAF9F0]">
-        <span class="bg-[#F6A609] w-[60%] rounded-full" />
+        <span class="bg-[#F6A609] rounded-full" />
       </div>
       <data value="60" class="font-poppins font-medium text-sm text-[#000000]"
         >{{ buck.goal_percent ? buck.goal_percent : 0 }}%</data
