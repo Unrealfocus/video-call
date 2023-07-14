@@ -3,6 +3,7 @@ import Navbar from "../../components/layout/navabar_test.vue";
 import Footer from "../../components/layout/Footer.vue";
 import axios from "axios";
 import DonationCard from "../../components/cards/donationCard.vue";
+import homepage from "../../hooks/homepage.js";
 
 export default {
   name: "Home",
@@ -22,30 +23,11 @@ export default {
     };
   },
   methods: {
-    async submitForm() {
+    async submitForm(email) {
       const formData = {
         email_address: this.email,
         status: "subscribed",
       };
-
-      // await axios.post(
-      //     `https://${this.mailchimpInstance}.api.mailchimp.com/3.0/lists/${this.listUniqueId}/members`,
-      //     formData,
-      //     {
-      //       headers: {
-      //         'Content-Type': 'application/json',
-      //         Authorization: `apikey ${this.mailchimpApiKey}`,
-      //       },
-      //     }
-      //   )
-      //   .then(response => {
-      //       console.log('Successfully subscribed user:', response.data);
-      //       // Handle success, e.g., show a success message
-      //     })
-      //     .catch(error => {
-      //       console.error('Failed to subscribe user:', error);
-      //       // Handle error, e.g., show an error message
-      //     });
 
       this.email = "";
       this.show = true;
@@ -65,25 +47,6 @@ export default {
       this.buckets = res.data.data;
       this.loading = false;
     });
-  },
-  methods: {
-    submitForm() {
-      axios
-        .post(
-          "https://puthand.us21.list-manage.com/subscribe/post?u=0e139eebd98f0154312029341&amp;id=65eadc3f56&amp;f_id=007258e1f0",
-          {
-            email: this.email,
-          }
-        )
-        .then((response) => {
-          this.success = "Data saved successfully";
-          this.response = JSON.stringify(response, null, 2);
-        })
-        .catch((error) => {
-          this.response = "Error: " + error.response.status;
-        });
-      this.email = "";
-    },
   },
 };
 </script>
@@ -328,7 +291,7 @@ export default {
               trending
             </p>
 
-            <form @submit.prevent="submitForm">
+            <form @submit.prevent="submitNewsletterForm">
               <div class="relative" id="email">
                 <div class="absolute top-[0.9rem] left-3">
                   <img src="/sms.svg" alt="" />
