@@ -40,59 +40,66 @@ import Footer from "../../components/layout/footer.vue";
     </section>
     <section class="pt-4 pb-12 bg-appGray100 lg:relative">
       <!-- md:py-[110px]  lg:py-[100px]     -->
-      <div class="bg-[white] pt-4 pb-10 px-[10px] lg:px-[34px] rounded-3xl">
-        <div class="pt-20 text-5xl font-extrabold font-poppins">
-          Send us an Instant <br />
-          Message!
-        </div>
 
-        <div class="flex flex-col gap-5 mt-10 mb-5 lg:flex-row">
-          <input
-            class="app-input"
-            type="text"
-            name="firstName"
-            id="firstName"
-            autocomplete="given-name"
-            placeholder="First Name"
-          />
-          <input
-            class="app-input"
-            type="text"
-            name="lastName"
-            id="lastName"
-            autocomplete="family-name"
-            placeholder="Last Name"
-          />
-        </div>
-        <label>
-          <span class="mb-3 text-base font-semibold font-poppins">
-            Phone Number</span
-          >
-          <input
-            class="mb-5 app-input"
-            type="text"
-            name="phoneNumber"
-            id="phoneNumber"
-            autocomplete="phoneNumber"
-            placeholder="phoneNumber"
-          />
-        </label>
-        <div class="space-y-[20px]">
-          <p class="font-[600] text-[18px]">Tell us your Story</p>
-          <div class="border rounded-2xl w-full border-[#000] p-3">
-            <textarea
-              class="w-full bg-transparent border-none outline-none"
-              rows="4"
-            ></textarea>
+      <div
+        class="bg-[white] pt-4 pb-10 mb-10 px-[10px] lg:px-[34px] rounded-3xl"
+      >
+        <div class="w-[90%] xl:w-[1280px] mx-auto">
+          <div class="pt-20 text-5xl font-extrabold font-poppins">
+            Send us an Instant <br />
+            Message!
           </div>
-        </div>
 
-        <button
-          class="gap-10 text-center bg-[#F8B83A] text-[#242424] py-4 px-10 flex w-[285px] mt-7 rounded-xl"
-        >
-          <div class="mt-2 text-base font-bold font-poppins">Send an email</div>
-          <img class="" src="/arrow-right.svg" alt="" />
-        </button>
+          <div class="flex flex-col gap-5 mt-10 mb-5 lg:flex-row">
+            <input
+              class="app-input"
+              type="text"
+              name="firstName"
+              id="firstName"
+              autocomplete="given-name"
+              placeholder="First Name"
+            />
+            <input
+              class="app-input"
+              type="text"
+              name="lastName"
+              id="lastName"
+              autocomplete="family-name"
+              placeholder="Last Name"
+            />
+          </div>
+          <label>
+            <span class="mb-3 text-base font-semibold font-poppins">
+              Phone Number</span
+            >
+            <input
+              class="mb-5 app-input"
+              type="text"
+              name="phoneNumber"
+              id="phoneNumber"
+              autocomplete="phoneNumber"
+              placeholder="phoneNumber"
+            />
+          </label>
+          <div class="space-y-[20px]">
+            <p class="font-[600] text-[18px]">Tell us your Story</p>
+            <div class="border rounded-2xl w-full border-[#000] p-3">
+              <textarea
+                class="w-full bg-transparent border-none outline-none"
+                rows="4"
+              ></textarea>
+            </div>
+          </div>
+
+          <button
+            class="gap-10 text-center bg-[#F8B83A] text-[#242424] py-4 px-10 flex w-[285px] mt-7 rounded-xl"
+          >
+            <div class="mt-2 text-base font-bold font-poppins">
+              Send an email
+            </div>
+            <img class="" src="/arrow-right.svg" alt="" />
+          </button>
+        </div>
       </div>
       <Footer class=""></Footer>
     </section>

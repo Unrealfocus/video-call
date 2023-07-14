@@ -31,7 +31,7 @@
         </div>
       </router-link>
       <hr />
-      <router-link to="/">
+      <router-link to="/faq">
         <div
           class="flex items-center pb-3 gap-5 mx-auto text-base font-medium pt-9 font-poppins">
           <img src="/setting2.svg" alt="" />

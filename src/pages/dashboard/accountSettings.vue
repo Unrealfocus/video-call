@@ -15,7 +15,7 @@ export default {
       newEmail: "",
       confirmEmail: "",
       activeTab: 0,
-      tabs: ["Profile Setting", "Notification", "Security Setting"],
+      tabs: ["Profile Setting", "Security Setting"],
       isActive1: false,
       isActive2: false,
       isActive3: false,
@@ -127,7 +127,7 @@ export default {
         </section>
       </div>
 
-      <div v-show="activeTab === 1">
+      <!-- <div v-show="activeTab === 1">
         <p class="font-poppins font-semibold text-4xl text-[#484848]">
           Notification
         </p>
@@ -247,9 +247,9 @@ export default {
             Save Changes
           </button>
         </section>
-      </div>
+      </div> -->
 
-      <div v-show="activeTab === 2">
+      <div v-show="activeTab === 1">
         <section>
           <p class="text-xl font-semibold font-poppins text-[#C8C8C8]">
             Password Setting
