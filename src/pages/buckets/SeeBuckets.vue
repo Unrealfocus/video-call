@@ -26,53 +26,12 @@
 
       <div class="content-list">
         <div
-          class="md:grid lg:grid-cols-4 grid-cols-2 grid-flow-row auto-rows-max gap-2">
-          <div
-            v-for="item in buckets"
-            class="bg-[#fff] m-2 rounded-2xl p-1 space-y-[10px]">
-            <img
-              :src="assets + item.images[0].image_url"
-              class="h-[300px] w-full object-cover object-center rounded-2xl"
-              alt="" />
-            <p class="font-poppins font-[700] text-[18px] leading-[20px]">
-              {{ item.bucket.title }}
-            </p>
-            <p class="font-poppins font-[800] text-[14px]">
-              by {{ item.author }}
-            </p>
-            <div class="h-[55px] overflow-hidden">
-              <p class="font-poppins font-[500] text-[12px]">
-                {{ item.bucket.description }}
-              </p>
-            </div>
-
-            <dl class="flex">
-              <div class="flex flex-1 bg-[#EAF9F0] rounded-full mr-3">
-                <span
-                  :class="'w-[' + item.percentage + '%]'"
-                  class="bg-[#f6a609] rounded-full py-[8px]" />
-              </div>
-              <p>{{ item.percentage }}%</p>
-            </dl>
-            <p class="font-poppins text-[14px] font-[500]">
-              <span class="font-[800]">Goal:</span> ₦{{ item.bucket.goal }}
-            </p>
-            <p class="font-poppins text-[14px] font-[500]">
-              <span class="font-[800]">Raised:</span>
-              ₦ {{ item.donated }}
-            </p>
-            <!-- <div class="flex space-x-[6px] items-center">
-              <img src="/location.svg" class="w-[20px] h-[20px]" />
-              <p class="font-poppins text-[14px] font-[800]">Lagos</p>
-            </div> -->
-            <div class="">
-              <button
-                @click="singleBucket(item)"
-                class="bg-[#295F2D] py-[8px] w-full text-white rounded-2xl font-poppins font-[600] text-[20px]">
-                Donate
-              </button>
-            </div>
-          </div>
+          class="md:grid lg:grid-cols-4 grid-cols-2 grid-flow-row auto-rows-max gap-10">
+         <DonationCard v-for="item in buckets"
+          :key="item.id"
+          :item="item"
+          :assets="assets"
+          />
         </div>
       </div>
       <div class="flex justify-center py-52">
@@ -86,11 +45,13 @@
 </template>
 <script>
 import navabar_test from "../../components/layout/navabar_test.vue";
+import DonationCard from "../../components/cards/donationCard.vue";
 import axios from "axios";
 export default {
   name: "SeeBuckets",
   components: {
     navabar_test,
+    DonationCard
   },
   data() {
     return {
@@ -132,9 +93,9 @@ export default {
     });
   },
   methods: {
-    singleBucket(item) {
-      this.$router.push("/bucket/" + item.bucket.bucket_id);
-    },
+    // singleBucket(item) {
+    //   this.$router.push("/bucket/" + item.bucket.bucket_id);
+    // },
     toggleCategory(item) {
       let arr = [];
       this.categories.forEach((i) => {

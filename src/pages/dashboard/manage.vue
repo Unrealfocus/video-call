@@ -94,7 +94,7 @@
         <span class="bg-[#F6A609] rounded-full" />
       </div>
       <data value="60" class="font-poppins font-medium text-sm text-[#000000]"
-        >60%</data
+        >{{ buck.goal_percent ? buck.goal_percent : 0 }}%</data
       >
     </dl>
     <P
@@ -107,6 +107,7 @@
         <button @click="toggleNext">toggle page 3</button>
       </div>
 
+<<<<<<< HEAD
       <button
         class="flex text-left gap-2 items-center bg-appGreen300 rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#FFFFFF] mt-5"
         type="button"
@@ -131,15 +132,40 @@
             withdrawal
           </button></router-link
         >
+=======
+      <div class="md:flex items-center space-x-[10px] space-y-[10px] py-[20px]">
+        <button
+          class="flex gap-2 items-center bg-appGreen300 rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#FFFFFF]"
+          type="button"
+          @click="toogleSection">
+          <img src="/basil_edit-outline.svg" alt="" />
+          edit/settings
+        </button>
+        <div class="text-sm font-semibold rounded-md font-poppins">
+          <p class="">Preview fundraiser</p>
+        </div>
+
+        <button
+          @click="withdraw(buck.donated, buck.bucket.bucket_id)"
+          class="flex items-center gap-2 text-left bg-[#EAF9F0] rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#295F2D]">
+          <img src="/uil_money-withdraw.svg" alt="" />
+          withdrawal
+        </button>
+>>>>>>> develop
       </div>
     </div>
 
-    <div class="pt-9">
+    <div class="">
       <img
         :src="assets + buck.images[0].image_url"
+<<<<<<< HEAD
         class="object-cover object-center h-[300px] rounded-2xl"
         alt=""
       />
+=======
+        class="rounded-2xl lg:h-[500px]"
+        alt="" />
+>>>>>>> develop
     </div>
 
     <section class="">
@@ -174,8 +200,13 @@
       </div>
     </section>
 
+<<<<<<< HEAD
     <div v-show="activeTab === 0">
       <!-- <div class="flex">
+=======
+    <div v-show="activeTab == 0">
+      <div class="flex">
+>>>>>>> develop
         <p class="font-medium md:text-2xl font-poppins text-[#484848]">
           <span class="font-bold text-black"
             >Get your first Donation by sharing Sharing</span
@@ -192,8 +223,13 @@
         Share Fundraiser
       </button> -->
     </div>
+<<<<<<< HEAD
     <div v-show="activeTab === 1">
       <div class="space-y-[20px] pb-5">
+=======
+    <div v-show="activeTab == 1">
+      <div class="space-y-[20px]">
+>>>>>>> develop
         <p class="text-lg font-semibold font-poppins text-[#484848]">
           Write a new update
         </p>
@@ -249,6 +285,7 @@
         </div>
       </div>
     </div>
+<<<<<<< HEAD
 
     <div class="flex">
       <p class="font-medium md:text-2xl font-poppins text-[#484848]">
@@ -266,6 +303,8 @@
     >
       Share Fundraiser
     </button>
+=======
+>>>>>>> develop
   </div>
 </template>
 
@@ -303,6 +342,21 @@ export default {
     this.assets = import.meta.env.VITE_APP_ASSETS;
   },
   methods: {
+    withdraw(donated, bucket_id) {
+      let payload = {
+        donated: donated,
+        bucket_id: bucket_id,
+      };
+      payload = JSON.stringify(payload);
+      donated > 999
+        ? this.$router.push("/withdrawal/" + payload)
+        : swal("You need to raise above N1,000 before you can withdraw", {
+            icon: "error",
+            buttons: false,
+            timer: 3000,
+            class: "font-poppins font-[700] text-[300px]",
+          });
+    },
     toggleNext(num) {
       this.manageCount++;
       this.buck = num;

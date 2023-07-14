@@ -5,8 +5,7 @@
         <div :class="[currentStep == 3 ? 'hidden' : '']" class="">
           <button
             @click="prevSlide()"
-            class="border-2 border-[#295F2D] text-[#295F2D] rounded-2xl px-[23px] py-[12px] font-[700] text-[16px]"
-          >
+            class="border-2 border-[#295F2D] text-[#295F2D] rounded-2xl px-[23px] py-[12px] font-[700] text-[16px]">
             Back
           </button>
         </div>
@@ -17,10 +16,9 @@
             Total raised from this donation (fee)
           </p>
           <figure
-            class="flex items-center gap-2 pb-12 text-4xl font-extrabold font-poppins"
-          >
+            class="flex items-center gap-2 pb-12 text-4xl font-extrabold font-poppins">
             <img src="/Naria-Icon.svg" alt="" />
-            500,000
+            {{ amount }}
           </figure>
 
           <div>
@@ -59,8 +57,7 @@
             <div class="border border-[#000] rounded-2xl p-3">
               <select
                 v-model="currentBank"
-                class="w-full bg-transparent border-none outline-none"
-              >
+                class="w-full bg-transparent border-none outline-none">
                 <option>Select your Bank</option>
                 <option :value="bank" v-for="bank in nigeriaBanks" :key="bank">
                   {{ bank }}
@@ -78,8 +75,7 @@
               id="account number"
               placeholder="123456789"
               v-model="accountnumber"
-              @input="handleInputChange"
-            />
+              @input="handleInputChange" />
           </div>
           <div>
             <p class="text-base font-semibold font-poppins">Account Names</p>
@@ -89,8 +85,7 @@
               name="account name "
               id="account name"
               placeholder="Anietie David Sampson"
-              v-model="accountname"
-            />
+              v-model="accountname" />
           </div>
 
           <div class="flex gap-2 pt-3">
@@ -99,8 +94,7 @@
                 type="checkbox"
                 class="w-5 h-5 text-indigo-600 transition duration-150 ease-in-out form-checkbox"
                 :checked="checked"
-                @change="toggle"
-              />
+                @change="toggle" />
             </label>
             <p class="text-sm font-medium font-poppins text-[#999999]">
               By accepting, I agree to comply with data regulations as outlined
@@ -120,19 +114,16 @@
 
           <div>
             <p
-              class="flex justify-center mx-auto font-extrabold sm:text-2xl md:text-3xl font-poppins"
-            >
+              class="flex justify-center mx-auto font-extrabold sm:text-2xl md:text-3xl font-poppins">
               Your Withdrawal request
             </p>
 
             <span
-              class="flex justify-center pb-5 mx-auto font-extrabold sm:text-2xl md:text-3xl font-poppins"
-            >
+              class="flex justify-center pb-5 mx-auto font-extrabold sm:text-2xl md:text-3xl font-poppins">
               has been submitted</span
             >
             <p
-              class="flex justify-center mx-auto text-sm md:text-base font-medium font-poppins text-[#242424]"
-            >
+              class="flex justify-center mx-auto text-sm md:text-base font-medium font-poppins text-[#242424]">
               you can track your withdrawal on your
               <br class="flex justify-center md:hidden sm:justify-center" />
               transaction history
@@ -141,8 +132,7 @@
             <div>
               <p class="text-lg font-bold my-7 font-poppins">Bank Details</p>
               <div
-                class="flex justify-between my-4 text-base font-medium font-poppins"
-              >
+                class="flex justify-between my-4 text-base font-medium font-poppins">
                 <p>Select Bank</p>
                 <div class="flex items-center">
                   <!-- <p>GT Bank</p> -->
@@ -150,26 +140,22 @@
                 </div>
               </div>
               <div
-                class="flex justify-between text-base font-medium font-poppins"
-              >
+                class="flex justify-between text-base font-medium font-poppins">
                 <p>Accoun Number</p>
                 <p>{{ accountnumber }}</p>
               </div>
               <div
-                class="flex justify-between my-4 text-base font-medium font-poppins"
-              >
+                class="flex justify-between my-4 text-base font-medium font-poppins">
                 <p>Account Holder Name</p>
                 <p>{{ accountname }}</p>
               </div>
               <div
-                class="flex justify-between text-base font-medium font-poppins"
-              >
+                class="flex justify-between text-base font-medium font-poppins">
                 <p>Amount Withdrawal</p>
-                <p class="text-base font-bold">₦500,000</p>
+                <p class="text-base font-bold">₦{{ amount }}</p>
               </div>
               <div
-                class="flex justify-between my-4 text-base font-medium font-poppins"
-              >
+                class="flex justify-between my-4 text-base font-medium font-poppins">
                 <p>Processed On</p>
                 <p class="text-base font-bold">Feb 2, 2023. 03:55pm</p>
               </div>
@@ -181,8 +167,8 @@
               </p> -->
             <div
               :class="[currentStep == 3 ? '' : 'hidden']"
-              class="bg-[#295F2D] cursor-pointer text-center font-[700] font-poppins px-[90px] py-[11px] text-[#fff] rounded-2xl mx-auto"
-            >
+              @click="this.$router.push('/dashboard/manage')"
+              class="bg-[#295F2D] cursor-pointer text-center font-[700] font-poppins px-[90px] py-[11px] text-[#fff] rounded-2xl mx-auto">
               Close
             </div>
           </div>
@@ -192,8 +178,7 @@
           <div
             :class="[currentStep == 3 ? 'hidden' : '']"
             @click="nextSlide()"
-            class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl mx-auto"
-          >
+            class="bg-[#295F2D] text-center cursor-pointer font-[700] font-poppins py-[11px] text-[#fff] rounded-2xl mx-auto">
             {{ currentStep > 1 ? "Complete withdrawals" : "Make withdrawal" }}
           </div>
         </div>
@@ -213,7 +198,14 @@ export default {
       currentStep: 1,
       nigeriaBanks: banks,
       currentBank: "select you bank",
+      amount: 0,
+      bucket_id: "",
     };
+  },
+  created() {
+    let payload = JSON.parse(this.$route.params.id);
+    this.amount = payload.donated;
+    this.bucket_id = payload.bucket_id;
   },
   methods: {
     nextSlide() {

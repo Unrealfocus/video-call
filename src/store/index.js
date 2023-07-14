@@ -26,6 +26,7 @@ export default new Vuex.Store({
     updateSelectedSub(state, payload) {
       state.selectedSub = payload;
     },
+<<<<<<< HEAD
     showAlert(state, payload) {
       state.alert.active = true;
       state.alert.type = payload.type || "";
@@ -34,6 +35,11 @@ export default new Vuex.Store({
     },
     hideAlert(state) {
       state.alert.active = false;
+=======
+    logout(state) {
+      state.user = {};
+      state.token = "";
+>>>>>>> develop
     },
   },
   actions: {},

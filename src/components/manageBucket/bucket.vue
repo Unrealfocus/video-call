@@ -20,14 +20,18 @@
       <ul class="grid grid-cols-1 gap-10 md:grid-cols-3">
         <li v-for="num in buckets" class="">
           <div class="bg-white rounded-2xl">
-            <figure class="px-5 py-5 rounded-2xl">
+            <figure class="px-5 py-5 rounded-2xl space-y-[10px]">
               <img
                 :src="assets + num.images[0].image_url"
                 class="object-cover object-center w-full h-44 rounded-2xl"
                 alt="" />
 
               <p class="text-base font-semibold font-poppins">
-                {{ num.bucket.title }}
+                {{
+                  num.bucket.title.length > 150
+                    ? num.bucket.title.slice(0, 150) + "..."
+                    : num.bucket.title
+                }}
               </p>
 
               <p class="font-poppins font-extrabold text-xs text-[#939393]">
@@ -35,7 +39,11 @@
               </p>
 
               <p class="mb-2 text-sm font-medium font-poppins">
-                {{ num.bucket.description }}
+                {{
+                  num.bucket.description.length > 150
+                    ? num.bucket.description.slice(0, 150) + "..."
+                    : num.bucket.description
+                }}
               </p>
 
               <dl class="flex">
