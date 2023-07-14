@@ -15,6 +15,7 @@ export default {
       buckets: [],
       assets: "",
       loading: false,
+      email: "",
     };
   },
   async mounted() {
@@ -26,6 +27,25 @@ export default {
 
       this.loading = false;
     });
+  },
+  methods: {
+    submitForm() {
+      axios
+        .post(
+          "https://puthand.us21.list-manage.com/subscribe/post?u=0e139eebd98f0154312029341&amp;id=65eadc3f56&amp;f_id=007258e1f0",
+          {
+            email: this.email,
+          }
+        )
+        .then((response) => {
+          this.success = "Data saved successfully";
+          this.response = JSON.stringify(response, null, 2);
+        })
+        .catch((error) => {
+          this.response = "Error: " + error.response.status;
+        });
+      this.email = "";
+    },
   },
 };
 </script>
@@ -338,31 +358,6 @@ export default {
               Sign up to our newsletters to know what we are up to and what’
               trending
             </p>
-
-            <!-- <form
-              @submit.prevent="submitForm"
-              action="input"
-              class="border-2 h-[200px] relative"
-            >
-              <div class="relative flex border-2">
-                <div
-                  class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
-                >
-                  <img src="/sms.svg" alt="" />
-                </div>
-                <input
-                  type="email"
-                  id="email-address-icon"
-                  class="bg-[#FFFFFF] rounded-lg block w-full pl-10 p-2.5"
-                  placeholder="Enter your email"
-                />
-                <button
-                  class="absolute inset-y-1 right-0 flex items-center px-5 text-[white] w-[90px] mr-2 pointer-events-none bg-[#939393] rounded-lg"
-                >
-                  Submit
-                </button>
-              </div>
-            </form> -->
             <div class="relative">
               <div class="absolute top-[0.9rem] left-3">
                 <img src="/sms.svg" alt="" />

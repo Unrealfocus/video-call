@@ -65,13 +65,6 @@
                   </div>
                 </div>
               </div>
-              <div
-                v-if="showSuccess"
-                class="fixed top-0 left-0 w-full py-2 text-center text-white bg-green-500"
-              >
-                <!-- <p>Bucket successfully closed</p> -->
-                <p :class="alertClass">{{ alert.message }}</p>
-              </div>
             </div>
             <li class="px-4 py-2 cursor-pointer hover:bg-gray-100">
               <button class="text-base font-medium font-poppins">
@@ -87,7 +80,7 @@
       {{ buck.bucket.title }}
     </div>
 
-    <p class="pt-10 text-[#939393]">Created {{ buck.bucket.created_at }}</p>
+    <p class="pt-10 text-[#939393]">Created {{ formattedCreatedAt }}</p>
 
     <section class="pt-5">
       <div
@@ -278,24 +271,19 @@
 
 <script>
 import bucket from "../../components/manageBucket/bucket.vue";
-import { updateAlert } from "../../utils/alert";
-import { mapState } from "vuex";
+import moment from "moment";
 
 export default {
   name: "manage",
   emits: ["edit"],
   components: {
     bucket,
+    moment,
   },
   computed: {
-    ...mapState(["alert"]),
-    alertClass() {
-      return {
-        "text-white": this.alert.type !== "warning",
-        "bg-green-500": this.alert.type === "success",
-        "bg-red-500": this.alert.type === "error",
-        "bg-yellow-500": this.alert.type === "warning",
-      };
+    formattedCreatedAt() {
+      const createdAt = moment(this.buck.bucket.created_at);
+      return createdAt.fromNow(); // Example: "3 days ago"
     },
   },
   data() {
@@ -342,10 +330,10 @@ export default {
       // Perform the close bucket action here
       this.showModal = false;
       this.showSuccess = true;
-      updateAlert("success", "", "Bucket successfully closed");
-      setTimeout(() => {
-        this.showSuccess = false;
-      }, 1000);
+      // updateAlert("success", "", "Bucket successfully closed");
+      // setTimeout(() => {
+      //   this.showSuccess = false;
+      // }, 1000);
     },
   },
 };

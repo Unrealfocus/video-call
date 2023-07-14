@@ -5,7 +5,7 @@
       class="fixed top-0 left-0 w-full py-2 text-center text-white bg-green-500"
     >
       <!-- <p>Bucket successfully closed</p> -->
-      <p :class="alertClass">{{ this.$store.state.alert.message }}</p>
+      <!-- <p :class="alertClass">{{ this.$store.state.alert.message }}</p> -->
     </div>
     <div class="w-[85%] md:w-[] mx-auto flex justify-between">
       <div class="w-2/3">
@@ -73,11 +73,24 @@
       </div>
     </div>
   </div>
+  <div
+    v-if="showSuccess"
+    class="fixed top-0 left-0 w-full py-2 text-center text-white bg-green-500"
+  >
+    <p :class="alertClass">{{ alert.message }}</p>
+  </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
+import { updateAlert } from "../../utils/alert";
+import manage from "../../pages/dashboard/manage.vue";
+
 export default {
   name: "Topbar",
+  components: {
+    manage,
+  },
   data() {
     return {
       activeTab: 0,
@@ -89,23 +102,23 @@ export default {
         { id: 2, message: "Notification 2" },
         { id: 3, message: "Notification 3" },
         { id: 4, message: "Notification 4" },
-        { id: 5, message: "Notification 5" },
-        { id: 6, message: "Notification 6" },
-        { id: 7, message: "Notification 7" },
-        { id: 8, message: "Notification 8" },
-        { id: 9, message: "Notification 9" },
-        { id: 10, message: "Notification 10" },
-        { id: 11, message: "Notification 11" },
-        { id: 12, message: "Notification 12" },
-        { id: 13, message: "Notification 13" },
-        { id: 14, message: "Notification 14" },
-        { id: 15, message: "Notification 15" },
       ],
+      showModal: false,
+      showSuccess: false,
     };
   },
   computed: {
     unreadCount() {
       return this.notifications.length;
+    },
+    ...mapState(["alert"]),
+    alertClass() {
+      return {
+        "text-white": this.alert.type !== "warning",
+        "bg-green-500": this.alert.type === "success",
+        "bg-red-500": this.alert.type === "error",
+        "bg-yellow-500": this.alert.type === "warning",
+      };
     },
   },
   methods: {
@@ -120,6 +133,21 @@ export default {
     },
     clearNotifications() {
       this.notifications = [];
+    },
+    showConfirmationModal() {
+      this.showModal = true;
+    },
+    cancelClose() {
+      this.showModal = false;
+    },
+    closeBucket() {
+      // Perform the close bucket action here
+      this.showModal = false;
+      this.showSuccess = true;
+      updateAlert("success", "", "Bucket successfully closed");
+      setTimeout(() => {
+        this.showSuccess = false;
+      }, 1000);
     },
   },
 };
