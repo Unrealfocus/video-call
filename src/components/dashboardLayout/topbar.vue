@@ -120,8 +120,8 @@ export default {
     await axios
       .get(app + "notifications/" + this.$store.state.user.user_id)
       .then((res) => {
-        this.notifications = res.data.data;
-        console.log(this.notifications);
+        // this.notifications = res.data.data;
+        // console.log(this.notifications);
       })
       .catch();
   },

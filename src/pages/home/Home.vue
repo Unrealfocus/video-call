@@ -84,6 +84,33 @@ export default {
       </div>
     </div>
     <div
+      v-if="show"
+      class="bg-white border-l-4 border-green-500 rounded-b text-teal-900 px-4 py-3 shadow-md rounded-lg fixed top-0 right-0 z-40 opacity-100"
+      role="alert">
+      <div class="flex">
+        <div class="py-1 pr-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            class="bi bi-check-circle-fill h-6 w-6"
+            viewBox="0 0 16 16"
+            id="IconChangeColor">
+            <path
+              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+              id="mainIconPathAttribute"
+              fill="green"></path>
+          </svg>
+        </div>
+        <div>
+          <p class="font-bold">Thank you</p>
+          <p class="text-sm">You have Register successfully.</p>
+        </div>
+        <div class="relative top-0 right-0">
+          <button @click="hideAlert" class="close-btn">&times;</button>
+        </div>
+      </div>
+    </div>
+    <div
       v-if="loading == true"
       class="flex items-center justify-center w-full h-screen loading">
       <img src="/logo1.svg" class="animate-bounce" />
@@ -105,14 +132,17 @@ export default {
           donate. 
         </section>
 
-        <div class="flex">
-          <div class="mx-auto">
-            <button
-              @click="this.$router.push('/buckets')"
-              class="gap-2 text-base font-bold font-poppins rounded-full bg-[#2A5E2A] border-[1px] border-[#fff] text-[#fff] py-3 text-[14px] px-10 m-3">
-              Let's Put Hands
-            </button>
-          </div>
+        <div class="flex justify-center">
+          <button
+            @click="this.$router.push('/buckets')"
+            class="gap-2 text-base font-bold font-poppins rounded-full bg-[#2A5E2A] border-[1px] border-[#fff] text-[#fff] md:py-3 px-[12px] py-[8px] text-[14px] md:text-[14px] md:px-10 m-3">
+            Let's Put Hands
+          </button>
+          <button
+            @click="this.$router.push('/signup')"
+            class="gap-2 text-base font-bold font-poppins rounded-full bg-[#fff] border-[1px] border-[#2A5E2A] text-[#2A5E2A] md:py-3 text-[14px] px-[12px] md:px-10 m-3">
+            Create Account
+          </button>
         </div>
 
         <section>
