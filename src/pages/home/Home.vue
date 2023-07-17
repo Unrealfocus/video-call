@@ -3,6 +3,7 @@ import Navbar from "../../components/layout/navabar_test.vue";
 import Footer from "../../components/layout/Footer.vue";
 import axios from "axios";
 import DonationCard from "../../components/cards/donationCard.vue";
+import Newsletter from "../../components/cards/newsletter.vue";
 
 export default {
   name: "Home",
@@ -10,6 +11,7 @@ export default {
     Footer,
     Navbar,
     DonationCard,
+    Newsletter,
   },
   data() {
     return {
@@ -22,30 +24,11 @@ export default {
     };
   },
   methods: {
-    async submitForm() {
+    async submitForm(email) {
       const formData = {
         email_address: this.email,
         status: "subscribed",
       };
-
-      // await axios.post(
-      //     `https://${this.mailchimpInstance}.api.mailchimp.com/3.0/lists/${this.listUniqueId}/members`,
-      //     formData,
-      //     {
-      //       headers: {
-      //         'Content-Type': 'application/json',
-      //         Authorization: `apikey ${this.mailchimpApiKey}`,
-      //       },
-      //     }
-      //   )
-      //   .then(response => {
-      //       console.log('Successfully subscribed user:', response.data);
-      //       // Handle success, e.g., show a success message
-      //     })
-      //     .catch(error => {
-      //       console.error('Failed to subscribe user:', error);
-      //       // Handle error, e.g., show an error message
-      //     });
 
       this.email = "";
       this.show = true;
@@ -73,6 +56,33 @@ export default {
   <section>
     <Navbar />
     <!--Hero Section-->
+    <div
+      v-if="show"
+      class="bg-white border-l-4 border-green-500 rounded-b text-teal-900 px-4 py-3 shadow-md rounded-lg fixed top-0 right-0 z-40 opacity-100"
+      role="alert">
+      <div class="flex">
+        <div class="py-1 pr-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            class="bi bi-check-circle-fill h-6 w-6"
+            viewBox="0 0 16 16"
+            id="IconChangeColor">
+            <path
+              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+              id="mainIconPathAttribute"
+              fill="green"></path>
+          </svg>
+        </div>
+        <div>
+          <p class="font-bold">Thank you</p>
+          <p class="text-sm">You have Register successfully.</p>
+        </div>
+        <div class="relative top-0 right-0">
+          <button @click="hideAlert" class="close-btn">&times;</button>
+        </div>
+      </div>
+    </div>
     <div
       v-if="show"
       class="bg-white border-l-4 border-green-500 rounded-b text-teal-900 px-4 py-3 shadow-md rounded-lg fixed top-0 right-0 z-40 opacity-100"
@@ -160,7 +170,7 @@ export default {
 
       <!-- How Put Hand Works -->
 
-      <section class="bg-[#FFF] pt-4 pb-10 p-8">
+      <section class="bg-[#FFF] pt-4 pb-10">
         <div class="w-[90%] xl:w-[1280px] mx-auto">
           <div class="">
             <p
@@ -287,56 +297,20 @@ export default {
           Here are some campaigns you can donate and put a smile on someone’s
           face: 
         </p>
+
         <ul
           class="md:grid lg:grid-cols-4 grid-cols-2 grid-flow-row auto-rows-max flex overflow-x-scroll gap-10 no-scrollbar">
-          <!-- <DonationCard v-for="item in buckets"
-          :key="item.id"
-          :item="item"
-          :assets="assets"
-          /> -->
+          <DonationCard
+            v-for="item in buckets"
+            :key="item.id"
+            :item="item"
+            :assets="assets" />
         </ul>
       </section>
-
-      <section class="p-8 pt-4 pb-10 bg-appGray100 lg:relative">
-        <section class="items-center justify-center pb-10 mx-auto">
-          <section
-            class="bg-[#FEF4C3] p-9 w-[90%] md:w-2/3 mx-auto rounded-2xl inset-x-0 top-0 mt-6 space-y-5">
-            <p
-              class="text-center font-poppins font-extrabold text-3xl text-[#333333]">
-              We Would Like To Send You Emails
-            </p>
-            <p
-              class="text-center font-poppins font-normal text-base text-[#242424] pt-2">
-              Sign up to our newsletters to know what we are up to and what’
-              trending
-            </p>
-
-            <form @submit.prevent="submitForm">
-              <div class="relative" id="email">
-                <div class="absolute top-[0.9rem] left-3">
-                  <img src="/sms.svg" alt="" />
-                </div>
-                <input
-                  type="hidden"
-                  name="u"
-                  value="0e139eebd98f0154312029341" />
-                <input
-                  type="email"
-                  id="email-address-icon"
-                  class="bg-[#FFFFFF] rounded-lg block w-full pl-10 p-2.5 outline-none"
-                  v-model="email"
-                  placeholder="Enter your email" />
-                <button
-                  class="inset-y-1 right-0 flex md:mx-0 mx-auto items-center px-5 text-[white] w-[90px] md:mr-2 bg-[#939393] rounded-lg h-[36px] lg:absolute mt-3 lg:mt-0 hover:bg-green-500"
-                  action="input">
-                  Submit
-                </button>
-              </div>
-            </form>
-          </section>
-        </section>
-        <Footer></Footer>
-      </section>
+      <!-- newsletter  -->
+      <Newsletter />
+      <!-- footer  -->
+      <Footer />
     </section>
   </section>
 </template>
