@@ -16,6 +16,7 @@ import TransactionPage from "../pages/dashboard/transaction.vue";
 import HelpPage from "../pages/dashboard/help.vue";
 import More from "../pages/dashboard/more.vue";
 import Edit from "../pages/dashboard/edit.vue";
+import FAQ from "../pages/faq/faq.vue"
 
 //all things buckets
 import CreateBucket from "../pages/buckets/CreateBucket.vue";
@@ -97,12 +98,17 @@ export const router = createRouter({
           path: "more",
           component: More,
         },
+       
       ],
     },
     {
       path: "/sign-in",
       component: signin,
     },
+    {
+      path:"/faq", 
+      component:FAQ
+  },
 
     {
       path: "/create-bucket",

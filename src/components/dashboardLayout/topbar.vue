@@ -1,9 +1,17 @@
 <template>
   <div class="hidden lg:block top-bar w-full bg-[#fff] py-[21px]">
+    <div
+      v-if="showSuccess"
+      class="fixed top-0 left-0 w-full py-2 text-center text-white bg-green-500"
+    >
+      <!-- <p>Bucket successfully closed</p> -->
+      <!-- <p :class="alertClass">{{ this.$store.state.alert.message }}</p> -->
+    </div>
     <div class="w-[85%] md:w-[] mx-auto flex justify-between">
       <div class="w-2/3">
         <div
-          class="bg-[#F3F3F3] rounded-full p-[12px] md:flex hidden items-center space-x-[24px]">
+          class="bg-[#F3F3F3] rounded-full p-[12px] md:flex hidden items-center space-x-[24px]"
+        >
           <div class="">
             <img src="/clarity_search-line.svg" alt="" />
           </div>
@@ -11,7 +19,8 @@
             <input
               type="text"
               placeholder="Search"
-              class="bg-transparent outline-none font-[600] text-[16px]" />
+              class="bg-transparent outline-none font-[600] text-[16px]"
+            />
           </div>
         </div>
       </div>
@@ -19,7 +28,8 @@
         <div class="relative">
           <button
             @click="toggleDropdown"
-            class="p-2 bg-gray-200 rounded-full hover:bg-gray-300 focus:outline-none focus:bg-gray-300">
+            class="p-2 bg-gray-200 rounded-full hover:bg-gray-300 focus:outline-none focus:bg-gray-300"
+          >
             <span class="relative">
               <img src="/bell.svg" alt="" />
               <span
@@ -31,12 +41,14 @@
           </button>
           <div
             v-if="isDropdownOpen"
-            class="absolute right-0 z-10 w-64 mt-2 bg-white rounded-lg shadow-lg">
+            class="absolute right-0 z-10 w-64 mt-2 bg-white rounded-lg shadow-lg"
+          >
             <ul class="divide-y divide-gray-200">
               <li
                 v-for="notification in notifications"
                 class="p-4 cursor-pointer hover:bg-gray-100"
-                @click="clearNotifications">
+                @click="clearNotifications"
+              >
                 <p>{{ notification.message }}</p>
               </li>
             </ul>
@@ -68,12 +80,28 @@
       </div>
     </div>
   </div>
+  <div
+    v-if="showSuccess"
+    class="fixed top-0 left-0 w-full py-2 text-center text-white bg-green-500"
+  >
+    <p :class="alertClass">{{ alert.message }}</p>
+  </div>
 </template>
 
 <script>
+ 
 import axios from "axios";
+ 
+import { mapState } from "vuex";
+import { updateAlert } from "../../utils/alert";
+import manage from "../../pages/dashboard/manage.vue";
+
+ 
 export default {
   name: "Topbar",
+  components: {
+    manage,
+  },
   data() {
     return {
       activeTab: 0,
@@ -81,6 +109,7 @@ export default {
       isActive: false,
       isDropdownOpen: false,
       notifications: [],
+ 
     };
   },
   async mounted() {
@@ -105,6 +134,15 @@ export default {
     unreadCount() {
       return this.notifications.length;
     },
+    ...mapState(["alert"]),
+    alertClass() {
+      return {
+        "text-white": this.alert.type !== "warning",
+        "bg-green-500": this.alert.type === "success",
+        "bg-red-500": this.alert.type === "error",
+        "bg-yellow-500": this.alert.type === "warning",
+      };
+    },
   },
   methods: {
     changeTab(index) {
@@ -118,6 +156,21 @@ export default {
     },
     clearNotifications() {
       this.notifications = [];
+    },
+    showConfirmationModal() {
+      this.showModal = true;
+    },
+    cancelClose() {
+      this.showModal = false;
+    },
+    closeBucket() {
+      // Perform the close bucket action here
+      this.showModal = false;
+      this.showSuccess = true;
+      updateAlert("success", "", "Bucket successfully closed");
+      setTimeout(() => {
+        this.showSuccess = false;
+      }, 1000);
     },
   },
 };

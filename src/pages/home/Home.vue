@@ -1,21 +1,44 @@
 <script>
 import Navbar from "../../components/layout/navabar_test.vue";
-
 import Footer from "../../components/layout/Footer.vue";
 import axios from "axios";
+import DonationCard from "../../components/cards/donationCard.vue";
+import Newsletter from "../../components/cards/newsletter.vue";
 
 export default {
   name: "Home",
   components: {
     Footer,
     Navbar,
+    DonationCard,
+    Newsletter,
   },
   data() {
     return {
       buckets: [],
       assets: "",
       loading: false,
+      email: "",
+      show: false,
+      message: "",
     };
+  },
+  methods: {
+    async submitForm(email) {
+      const formData = {
+        email_address: this.email,
+        status: "subscribed",
+      };
+
+      this.email = "";
+      this.show = true;
+      setTimeout(() => {
+        this.show = false;
+      }, 5000);
+    },
+    hideAlert() {
+      this.show = false;
+    },
   },
   async mounted() {
     this.loading = true;
@@ -23,18 +46,6 @@ export default {
     const app = import.meta.env.VITE_APP_ENGINE + "buckets";
     await axios.get(app).then((res) => {
       this.buckets = res.data.data;
-      this.buckets.forEach((item) => {
-        let percentage = Math.floor((item.donated / item.bucket.goal) * 100);
-        if (Number.isInteger(percentage / 10)) {
-          item.percentage = percentage.toString();
-        } else {
-          while (Number.isInteger(percentage / 10) == false) {
-            percentage--;
-          }
-
-          item.percentage = percentage.toString();
-        }
-      });
       this.loading = false;
     });
   },
@@ -45,6 +56,33 @@ export default {
   <section>
     <Navbar />
     <!--Hero Section-->
+    <div
+      v-if="show"
+      class="bg-white border-l-4 border-green-500 rounded-b text-teal-900 px-4 py-3 shadow-md rounded-lg fixed top-0 right-0 z-40 opacity-100"
+      role="alert">
+      <div class="flex">
+        <div class="py-1 pr-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            class="bi bi-check-circle-fill h-6 w-6"
+            viewBox="0 0 16 16"
+            id="IconChangeColor">
+            <path
+              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+              id="mainIconPathAttribute"
+              fill="green"></path>
+          </svg>
+        </div>
+        <div>
+          <p class="font-bold">Thank you</p>
+          <p class="text-sm">You have Register successfully.</p>
+        </div>
+        <div class="relative top-0 right-0">
+          <button @click="hideAlert" class="close-btn">&times;</button>
+        </div>
+      </div>
+    </div>
     <div
       v-if="loading == true"
       class="flex items-center justify-center w-full h-screen loading">
@@ -102,7 +140,7 @@ export default {
 
       <!-- How Put Hand Works -->
 
-      <section class="bg-[#FFF] pt-4 pb-10 p-8">
+      <section class="bg-[#FFF] pt-4 pb-10">
         <div class="w-[90%] xl:w-[1280px] mx-auto">
           <div class="">
             <p
@@ -203,7 +241,7 @@ export default {
                 community.
               </p>
               <div class="py-[50px]">
-                <router-link to=""
+                <router-link to="/buckets"
                   ><button
                     class="bg-[#295F2D] text-white px-[23px] py-[12px] rounded-full font-[700]">
                     Let's Put Hands
@@ -229,145 +267,20 @@ export default {
           Here are some campaigns you can donate and put a smile on someone’s
           face: 
         </p>
-        <ul class="flex overflow-x-scroll gap-7 no-scrollbar">
-          <li v-for="item in buckets" class="flex-shrink-0 w-72">
-            <figure>
-              <img
-                :src="assets + item.images[0].image_url"
-                class="object-cover object-center w-full h-44 rounded-2xl"
-                alt="" />
-              <button
-                type="button"
-                class="flex items-center px-2 py-1 my-3 rounded-lg bg-appGreen100">
-                <span
-                  class="text-sm font-bold shadow-md text-appGreen200 font-poppins shadow-appGreen100">
-                  {{ item.category }}
-                </span>
-                <img src="/Vector.svg" alt="vector" class="px-2" />
-              </button>
-              <div class=" ">
-                <p class="text-base font-semibold font-poppins">
-                  {{
-                    item.bucket.title.length > 24
-                      ? item.bucket.title.slice(0, 24) + "..."
-                      : item.bucket.title
-                  }}
-                </p>
-                <p class="text-[10px]">by {{ item.author }}</p>
-              </div>
-              <div class=" ">
-                <p class="mt-5 mb-2 text-sm font-medium font-poppins">
-                  {{
-                    item.bucket.description.length > 150
-                      ? item.bucket.description.slice(0, 150) + "..."
-                      : item.bucket.description
-                  }}
-                </p>
-              </div>
 
-              <dl class="flex py-[10px]">
-                <div class="flex flex-1 mr-3 rounded-full bg-appGray100">
-                  <span
-                    :class="'w-[' + item.percentage + '%]'"
-                    class="bg-yellow-500 w-[60%] rounded-full" />
-                </div>
-                <data
-                  value="60"
-                  class="font-poppins font-medium text-sm text-[#000000]"
-                  >{{ item.percentage }}%</data
-                >
-              </dl>
-
-              <dl class="flex justify-between my-4">
-                <span class="flex">
-                  <dt
-                    class="font-bold font-poppins text-xs mr-1 text-[#000000]">
-                    Raised:
-                  </dt>
-
-                  <dd class="font-medium font-poppins text-xs text-[#000000]">
-                    ₦{{ item.donated }}
-                  </dd>
-                </span>
-                <span class="flex">
-                  <dt
-                    class="font-bold font-poppins text-xs text-[#295F2D] mr-1">
-                    Goal:
-                  </dt>
-                  <dd class="font-medium font-poppins text-xs text-[#295F2D]">
-                    ₦{{ item.bucket.goal }}
-                  </dd>
-                </span>
-              </dl>
-              <button
-                @click="this.$router.push('/bucket/' + item.bucket.bucket_id)"
-                class="bg-appGreen300 w-full rounded-full py-2 font-semibold font-poppins text-lg text-[#FFFFFF]"
-                type="button">
-                Donate
-              </button>
-            </figure>
-          </li>
+        <ul
+          class="md:grid lg:grid-cols-4 grid-cols-2 grid-flow-row auto-rows-max flex overflow-x-scroll gap-10 no-scrollbar">
+          <DonationCard
+            v-for="item in buckets"
+            :key="item.id"
+            :item="item"
+            :assets="assets" />
         </ul>
       </section>
-
-      <section class="p-8 pt-4 pb-10 bg-appGray100 lg:relative">
-        <section class="items-center justify-center pb-10 mx-auto">
-          <section
-            class="bg-[#FEF4C3] p-9 w-[90%] md:w-2/3 mx-auto rounded-2xl inset-x-0 top-0 mt-6 space-y-5">
-            <p
-              class="text-center font-poppins font-extrabold text-3xl text-[#333333]">
-              We Would Like To Send You Emails
-            </p>
-            <p
-              class="text-center font-poppins font-normal text-base text-[#242424] pt-2">
-              Sign up to our newsletters to know what we are up to and what’
-              trending
-            </p>
-
-            <!-- <form
-              @submit.prevent="submitForm"
-              action="input"
-              class="border-2 h-[200px] relative"
-            >
-              <div class="relative flex border-2">
-                <div
-                  class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
-                >
-                  <img src="/sms.svg" alt="" />
-                </div>
-                <input
-                  type="email"
-                  id="email-address-icon"
-                  class="bg-[#FFFFFF] rounded-lg block w-full pl-10 p-2.5"
-                  placeholder="Enter your email"
-                />
-                <button
-                  class="absolute inset-y-1 right-0 flex items-center px-5 text-[white] w-[90px] mr-2 pointer-events-none bg-[#939393] rounded-lg"
-                >
-                  Submit
-                </button>
-              </div>
-            </form> -->
-            <div class="relative">
-              <div class="absolute top-[0.9rem] left-3">
-                <img src="/sms.svg" alt="" />
-              </div>
-              <input
-                type="email"
-                id="email-address-icon"
-                class="bg-[#FFFFFF] rounded-lg block w-full pl-10 p-2.5 outline-none"
-                placeholder="Enter your email" />
-              <button
-                class="inset-y-1 right-0 flex md:mx-0 mx-auto items-center px-5 text-[white] w-[90px] md:mr-2 bg-[#939393] rounded-lg h-[36px] lg:absolute mt-3 lg:mt-0"
-                @submit.prevent="submitForm"
-                action="input">
-                Submit
-              </button>
-            </div>
-          </section>
-        </section>
-        <Footer></Footer>
-      </section>
+      <!-- newsletter  -->
+      <Newsletter />
+      <!-- footer  -->
+      <Footer />
     </section>
   </section>
 </template>
