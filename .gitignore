@@ -27,3 +27,4 @@ dist-ssr
 *.sln
 yarn.lock
 *.sw?
+.env
