@@ -9,54 +9,53 @@ export default {
   components: {
     Footer,
     Navbar,
-    DonationCard
-},
+    DonationCard,
+  },
   data() {
     return {
       buckets: [],
       assets: "",
       loading: false,
-      email: '',
+      email: "",
       show: false,
-      message:'',
+      message: "",
     };
   },
   methods: {
-   async submitForm() {
-    const formData = {
+    async submitForm() {
+      const formData = {
         email_address: this.email,
-        status: 'subscribed',
+        status: "subscribed",
       };
 
-    
-    // await axios.post(
-    //     `https://${this.mailchimpInstance}.api.mailchimp.com/3.0/lists/${this.listUniqueId}/members`,
-    //     formData,
-    //     {
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //         Authorization: `apikey ${this.mailchimpApiKey}`,
-    //       },
-    //     }
-    //   )
-    //   .then(response => {
-    //       console.log('Successfully subscribed user:', response.data);
-    //       // Handle success, e.g., show a success message
-    //     })
-    //     .catch(error => {
-    //       console.error('Failed to subscribe user:', error);
-    //       // Handle error, e.g., show an error message
-    //     });
+      // await axios.post(
+      //     `https://${this.mailchimpInstance}.api.mailchimp.com/3.0/lists/${this.listUniqueId}/members`,
+      //     formData,
+      //     {
+      //       headers: {
+      //         'Content-Type': 'application/json',
+      //         Authorization: `apikey ${this.mailchimpApiKey}`,
+      //       },
+      //     }
+      //   )
+      //   .then(response => {
+      //       console.log('Successfully subscribed user:', response.data);
+      //       // Handle success, e.g., show a success message
+      //     })
+      //     .catch(error => {
+      //       console.error('Failed to subscribe user:', error);
+      //       // Handle error, e.g., show an error message
+      //     });
 
-        this.email = '';
-        this.show=true;
-        setTimeout(() => {
-            this.show = false;
-          }, 5000);    
+      this.email = "";
+      this.show = true;
+      setTimeout(() => {
+        this.show = false;
+      }, 5000);
     },
     hideAlert() {
-          this.show = false;
-        }
+      this.show = false;
+    },
   },
   async mounted() {
     this.loading = true;
@@ -74,18 +73,33 @@ export default {
   <section>
     <Navbar />
     <!--Hero Section-->
-    <div v-if="show" class="bg-white border-l-4 border-green-500 rounded-b text-teal-900 px-4 py-3 shadow-md rounded-lg fixed top-0 right-0 z-40 opacity-100" role="alert">
-    <div class="flex">
-      <div class="py-1 pr-1">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-check-circle-fill h-6 w-6" viewBox="0 0 16 16" id="IconChangeColor"> <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" id="mainIconPathAttribute" fill="green"></path> </svg>
+    <div
+      v-if="show"
+      class="bg-white border-l-4 border-green-500 rounded-b text-teal-900 px-4 py-3 shadow-md rounded-lg fixed top-0 right-0 z-40 opacity-100"
+      role="alert">
+      <div class="flex">
+        <div class="py-1 pr-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            class="bi bi-check-circle-fill h-6 w-6"
+            viewBox="0 0 16 16"
+            id="IconChangeColor">
+            <path
+              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+              id="mainIconPathAttribute"
+              fill="green"></path>
+          </svg>
+        </div>
+        <div>
+          <p class="font-bold">Thank you</p>
+          <p class="text-sm">You have Register successfully.</p>
+        </div>
+        <div class="relative top-0 right-0">
+          <button @click="hideAlert" class="close-btn">&times;</button>
+        </div>
       </div>
-      <div>
-        <p class="font-bold">Thank you</p>
-        <p class="text-sm">You have Register successfully.</p>
-      </div>
-      <div class="relative top-0 right-0"><button @click="hideAlert" class="close-btn">&times;</button></div>
     </div>
-  </div>
     <div
       v-if="loading == true"
       class="flex items-center justify-center w-full h-screen loading">
@@ -273,12 +287,13 @@ export default {
           Here are some campaigns you can donate and put a smile on someone’s
           face: 
         </p>
-        <ul  class="md:grid lg:grid-cols-4 grid-cols-2 grid-flow-row auto-rows-max flex overflow-x-scroll gap-10 no-scrollbar">
-         <DonationCard v-for="item in buckets"
+        <ul
+          class="md:grid lg:grid-cols-4 grid-cols-2 grid-flow-row auto-rows-max flex overflow-x-scroll gap-10 no-scrollbar">
+          <!-- <DonationCard v-for="item in buckets"
           :key="item.id"
           :item="item"
           :assets="assets"
-          />
+          /> -->
         </ul>
       </section>
 
@@ -295,30 +310,30 @@ export default {
               Sign up to our newsletters to know what we are up to and what’
               trending
             </p>
-            
 
-         
-          <form @submit.prevent="submitForm">
-                <div class="relative" id="email">
-                  <div class="absolute top-[0.9rem] left-3">
-                    <img src="/sms.svg" alt="" />
-                  </div>
-                  <input type="hidden" name="u" value="0e139eebd98f0154312029341">
-                  <input
-                    type="email"
-                    id="email-address-icon"
-                    class="bg-[#FFFFFF] rounded-lg block w-full pl-10 p-2.5 outline-none"
-                    v-model="email"
-                    placeholder="Enter your email" />
-                  <button
-                    class="inset-y-1 right-0 flex md:mx-0 mx-auto items-center px-5 text-[white] w-[90px] md:mr-2 bg-[#939393] rounded-lg h-[36px] lg:absolute mt-3 lg:mt-0 hover:bg-green-500"
-                  
-                    action="input">
-                    Submit
-                  </button>
+            <form @submit.prevent="submitForm">
+              <div class="relative" id="email">
+                <div class="absolute top-[0.9rem] left-3">
+                  <img src="/sms.svg" alt="" />
                 </div>
-              </form>
-              </section>
+                <input
+                  type="hidden"
+                  name="u"
+                  value="0e139eebd98f0154312029341" />
+                <input
+                  type="email"
+                  id="email-address-icon"
+                  class="bg-[#FFFFFF] rounded-lg block w-full pl-10 p-2.5 outline-none"
+                  v-model="email"
+                  placeholder="Enter your email" />
+                <button
+                  class="inset-y-1 right-0 flex md:mx-0 mx-auto items-center px-5 text-[white] w-[90px] md:mr-2 bg-[#939393] rounded-lg h-[36px] lg:absolute mt-3 lg:mt-0 hover:bg-green-500"
+                  action="input">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </section>
         </section>
         <Footer></Footer>
       </section>
