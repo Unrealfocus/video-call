@@ -33,19 +33,16 @@
                 <div>
                   <ul class="gap-6">
                     <li v-for="category in categories" :key="category">
-                      {{ category }}
+                      <router-link to="/buckets">
+                        {{ category.name }}
+                      </router-link>
                     </li>
                   </ul>
                   <div class="mt-5 bg-[#F3F3F3] text-center rounded-lg">
-                    <button>see all</button>
+                    <router-link to="/buckets">
+                      <button>see all</button>
+                    </router-link>
                   </div>
-                </div>
-                <div>
-                  <ul>
-                    <li v-for="category in categories" :key="category">
-                      {{ category }}
-                    </li>
-                  </ul>
                 </div>
               </div>
             </div>
@@ -129,14 +126,25 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "navbar_test",
   data() {
     return {
       toggleNav: false,
       isDropdownOpen: false,
-      categories: ["medical", "non-profit", "emergency", "education"],
+      categories: [],
     };
+  },
+  async mounted() {
+    const getCategories = import.meta.env.VITE_APP_ENGINE + "categories";
+    await axios.get(getCategories).then((res) => {
+      this.categories = res.data.data;
+    });
+
+    await axios.get(getCategories).then((res) => {
+      this.categories = res.data.data;
+    });
   },
   methods: {
     navDrop() {

@@ -46,7 +46,6 @@
             <ul class="divide-y divide-gray-200">
               <li
                 v-for="notification in notifications"
-                :key="notification.id"
                 class="p-4 cursor-pointer hover:bg-gray-100"
                 @click="clearNotifications"
               >
@@ -55,6 +54,7 @@
             </ul>
           </div>
         </div>
+
         <!-- <img src="/roundman.svg" alt="" /> -->
         <div class="bg-[#295F2D] p-2 rounded-full">
           <p class="text-[#fff] font-[700] font-poppins">
@@ -89,10 +89,14 @@
 </template>
 
 <script>
+ 
+import axios from "axios";
+ 
 import { mapState } from "vuex";
 import { updateAlert } from "../../utils/alert";
 import manage from "../../pages/dashboard/manage.vue";
 
+ 
 export default {
   name: "Topbar",
   components: {
@@ -104,17 +108,24 @@ export default {
       tabs: ["Profile Setting", "Notification", "Security Setting"],
       isActive: false,
       isDropdownOpen: false,
-      notifications: [
-        { id: 1, message: "Notification 1" },
-        { id: 2, message: "Notification 2" },
-        { id: 3, message: "Notification 3" },
-        { id: 4, message: "Notification 4" },
-      ],
-      showModal: false,
-      showSuccess: false,
+      notifications: [],
+ 
     };
   },
-  created() {
+  async mounted() {
+    //get notifications
+    const app = import.meta.env.VITE_APP_ENGINE;
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + this.$store.state.token;
+    await axios
+      .get(app + "notifications/" + this.$store.state.user.user_id)
+      .then((res) => {
+        this.notifications = res.data.data;
+        console.log(this.notifications);
+      })
+      .catch();
+  },
+  async created() {
     if (!this.$store.state.user.first_name) {
       this.$router.push("/sign-in");
     }
