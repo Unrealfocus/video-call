@@ -58,14 +58,14 @@ export default {
     <!--Hero Section-->
     <div
       v-if="show"
-      class="bg-white border-l-4 border-green-500 rounded-b text-teal-900 px-4 py-3 shadow-md rounded-lg fixed top-0 right-0 z-40 opacity-100"
+      class="fixed top-0 right-0 z-40 px-4 py-3 text-teal-900 bg-white border-l-4 border-green-500 rounded-lg rounded-b shadow-md opacity-100"
       role="alert">
       <div class="flex">
         <div class="py-1 pr-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
-            class="bi bi-check-circle-fill h-6 w-6"
+            class="w-6 h-6 bi bi-check-circle-fill"
             viewBox="0 0 16 16"
             id="IconChangeColor">
             <path
@@ -269,7 +269,7 @@ export default {
         </p>
 
         <ul
-          class="md:grid lg:grid-cols-4 grid-cols-2 grid-flow-row auto-rows-max flex overflow-x-scroll gap-10 no-scrollbar">
+          class="flex grid-flow-row grid-cols-2 gap-10 overflow-x-scroll md:grid lg:grid-cols-4 auto-rows-max no-scrollbar">
           <DonationCard
             v-for="item in buckets"
             :key="item.id"

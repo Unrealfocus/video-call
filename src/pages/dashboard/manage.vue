@@ -7,14 +7,16 @@
     <div class="flex justify-between">
       <button
         @click="togglePrev"
-        class="flex items-center px-4 py-3 text-base font-bold border border-[#333333] rounded-full font-poppins gap-3">
+        class="flex items-center px-4 py-3 text-base font-bold border border-[#333333] rounded-full font-poppins gap-3"
+      >
         <img src="/arrow-left.svg" alt="" />
         Back for fundraiser
       </button>
       <div class="relative">
         <button
           @click="toggleDropdown"
-          class="flex items-center justify-center p-2">
+          class="flex items-center justify-center p-2"
+        >
           <div class="flex flex-col items-center">
             <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
             <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
@@ -23,7 +25,8 @@
         </button>
         <div
           v-if="dropdownOpen"
-          class="absolute right-0 py-10 mt-2 bg-white border border-gray-300 shadow w-[250px] rounded-3xl gap-">
+          class="absolute right-0 py-10 mt-2 bg-white border border-gray-300 shadow w-[250px] rounded-3xl gap-"
+        >
           <ul class="">
             <li class="px-4 py-2 cursor-pointer hover:bg-gray-100">
               <button class="text-base font-medium font-poppins">
@@ -34,25 +37,29 @@
               <li class="px-4 py-2 cursor-pointer hover:bg-gray-100">
                 <button
                   @click="showConfirmationModal"
-                  class="text-base font-medium font-poppins">
+                  class="text-base font-medium font-poppins"
+                >
                   Close Bucket
                 </button>
               </li>
               <div
                 v-if="showModal"
-                class="fixed top-0 left-0 flex items-center justify-center w-screen h-screen bg-gray-800 bg-opacity-50">
+                class="fixed top-0 left-0 flex items-center justify-center w-screen h-screen bg-gray-800 bg-opacity-50"
+              >
                 <div class="p-6 bg-white rounded shadow">
                   <h3 class="text-lg font-semibold">Confirmation</h3>
                   <p>Are you sure you want to close this bucket?</p>
                   <div class="flex justify-end mt-4">
                     <button
                       @click="cancelClose"
-                      class="px-4 py-2 text-gray-500">
+                      class="px-4 py-2 text-gray-500"
+                    >
                       Cancel
                     </button>
                     <button
                       @click="closeBucket"
-                      class="px-4 py-2 ml-2 text-white bg-red-500">
+                      class="px-4 py-2 ml-2 text-white bg-red-500"
+                    >
                       Confirm
                     </button>
                   </div>
@@ -77,7 +84,8 @@
 
     <section class="pt-5">
       <div
-        class="flex font-semibold font-poppins bg-[#C8C8C8] rounded-md py-2 px-5 w-[200px]">
+        class="flex font-semibold font-poppins bg-[#C8C8C8] rounded-md py-2 px-5 w-[200px]"
+      >
         Days:30days left
       </div>
     </section>
@@ -94,39 +102,44 @@
       >Total Raised is <span> <img src="/money.svg" alt="" /></span>
       <span class="text-black">{{ buck.donated }}</span></P
     >
-    <div class="items-center lg:flex sm:block">
+    <div class="items-center sm:block">
       <div v-if="manageCount == 3" class="">
         <button @click="toggleNext">toggle page 3</button>
       </div>
 
-      <button
-        class="flex text-left gap-2 items-center bg-appGreen300 rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#FFFFFF] mt-5"
-        type="button"
-        @click="toogleSection">
-        <img src="/basil_edit-outline.svg" alt="" />
-        edit/settings
-      </button>
+      <div>
+        <div class="flex items-center gap-3 pb-5">
+          <button
+            class="flex text-left gap-2 items-center bg-appGreen300 rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#FFFFFF] mt-5"
+            type="button"
+            @click="toogleSection"
+          >
+            <img src="/basil_edit-outline.svg" alt="" />
+            edit/settings
+          </button>
+          <div
+            class="flex py-2 text-sm font-semibold text-left rounded-md font-poppins"
+          >
+            Preview fundraiser
+          </div>
 
-      <div class="flex items-center gap-3">
-        <div
-          class="flex py-2 text-sm font-semibold text-left rounded-md font-poppins">
-          Preview fundraiser
+          <router-link to="/withdrawal"
+            ><button
+              class="flex items-center gap-2 text-left bg-[#EAF9F0] rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#295F2D] mt-5"
+            >
+              <img src="/uil_money-withdraw.svg" alt="" />
+              withdrawal
+            </button></router-link
+          >
         </div>
-
-        <router-link to="/withdrawal"
-          ><button
-            class="flex items-center gap-2 text-left bg-[#EAF9F0] rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#295F2D] mt-5">
-            <img src="/uil_money-withdraw.svg" alt="" />
-            withdrawal
-          </button></router-link
-        >
       </div>
 
       <div class="">
         <img
           :src="assets + buck.images[0].image_url"
           class="rounded-2xl lg:h-[500px]"
-          alt="" />
+          alt=""
+        />
       </div>
 
       <section class="">
@@ -138,11 +151,29 @@
             impressive 60%?"
           </p>
           <button
-            class="px-16 py-2 text-[#295F2D] border-[#295F2D] border rounded-xl">
+            @click="showConfirmationModal1"
+            class="px-16 py-2 text-[#295F2D] border-[#295F2D] border rounded-xl"
+          >
             share
           </button>
         </div>
       </section>
+      <div
+        v-if="showModal1"
+        class="fixed top-0 left-0 flex items-center justify-center w-screen h-screen bg-gray-800 bg-opacity-50"
+      >
+        <div class="p-5 bg-white shadow rounded-3xl w-[40%] h-[38%]">
+          <div class="p-8">
+            <h3 class="text-3xl font-bold font-poppins">By Sharing</h3>
+            <p class="pt-5 text-base font-medium font-poppins">
+              Sharing fundraisers on social media can increase your donations by
+              up to 8 times.
+            </p>
+            <div class="border rounded-3xl py-10 mt-10 border-[#484848]"></div>
+          </div>
+        </div>
+      </div>
+
       <section class="flex items-center mt-20 mb-20">
         <div
           v-for="(tab, index) in tabs"
@@ -154,7 +185,8 @@
               'text-appGreen300 cursor-pointer': activeTab !== index,
             },
           ]"
-          @click="changeTab(index)">
+          @click="changeTab(index)"
+        >
           {{ tab }}
         </div>
       </section>
@@ -186,7 +218,8 @@
           <div class="border rounded-2xl w-full border-[#000] p-3">
             <textarea
               class="w-full bg-transparent border-none outline-none"
-              rows="4"></textarea>
+              rows="4"
+            ></textarea>
           </div>
 
           <div class="pt-5"><p>Add a Photos</p></div>
@@ -194,16 +227,19 @@
           <div class="pt-10"></div>
 
           <div>
-            <p class="text-lg font-semibold font-poppins text-[#484848]">
+            <button
+              class="text-lg font-semibold font-buttonoppins text-[#484848]"
+            >
               Share Update
-            </p>
+            </button>
             <div class="flex items-center gap-2 pt-3">
               <label class="inline-flex items-center">
                 <input
                   type="checkbox"
                   class="w-5 h-5 text-indigo-600 transition duration-150 ease-in-out form-checkbox"
                   :checked="checked"
-                  @change="toggle" />
+                  @change="toggle"
+                />
               </label>
               <p class="text-sm font-medium font-poppins text-[#999999]">
                 Fundraiser page default
@@ -215,7 +251,8 @@
                   type="checkbox"
                   class="w-5 h-5 text-indigo-600 transition duration-150 ease-in-out form-checkbox"
                   :checked="checked"
-                  @change="toggle" />
+                  @change="toggle"
+                />
               </label>
               <p class="text-sm font-medium font-poppins text-[#999999]">
                 Email donors
@@ -225,7 +262,8 @@
 
           <div class="flex items-center justify-between pt-7">
             <button
-              class="px-20 py-2 text-base font-semibold text-white bg-appGreen200 rounded-xl font-poppins">
+              class="px-20 py-2 text-base font-semibold text-white bg-appGreen200 rounded-xl font-poppins"
+            >
               Save Changes
             </button>
           </div>
@@ -261,6 +299,7 @@ export default {
       tabs: ["Donator", "Bucket Updates"],
       dropdownOpen: false,
       showModal: false,
+      showModal1: false,
       showSuccess: false,
     };
   },
@@ -303,6 +342,9 @@ export default {
     },
     showConfirmationModal() {
       this.showModal = true;
+    },
+    showConfirmationModal1() {
+      this.showModal1 = true;
     },
     cancelClose() {
       this.showModal = false;

@@ -5,7 +5,7 @@
       class="fixed top-0 left-0 w-full py-2 text-center text-white bg-green-500"
     >
       <!-- <p>Bucket successfully closed</p> -->
-      <!-- <p :class="alertClass">{{ this.$store.state.alert.message }}</p> -->
+      <p :class="alertClass">{{ this.$store.state.alert.message }}</p>
     </div>
     <div class="w-[85%] md:w-[] mx-auto flex justify-between">
       <div class="w-2/3">
