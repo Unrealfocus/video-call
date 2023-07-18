@@ -175,7 +175,7 @@
             <div class="relative">
               <div class="border rounded-3xl py-8 mt-10 border-[#484848]">
                 <p>
-                  ID: <span>{{ $route.params.id }}</span>
+                  ID: <span>{{ this.$route.params.id }}</span>
                 </p>
                 <button
                   @click="copyLink"
@@ -379,7 +379,7 @@
 <script>
 import bucket from "../../components/manageBucket/bucket.vue";
 import moment from "moment";
-// import SingleBucket from "../pages/buckets/SingleBucket.vue";
+import SingleBucket from "../buckets/SingleBucket.vue";
 
 export default {
   name: "manage",
@@ -387,7 +387,7 @@ export default {
   components: {
     bucket,
     moment,
-    // SingleBucket,
+    SingleBucket,
   },
   computed: {
     formattedCreatedAt() {
