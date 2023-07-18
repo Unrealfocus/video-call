@@ -175,10 +175,10 @@
             <div class="relative">
               <div class="border rounded-3xl py-8 mt-10 border-[#484848]">
                 <p>
-                  ID: <span>{{ this.$route.params.id }}</span>
+                  <span>{{ concatenatedUrl }}</span>
                 </p>
                 <button
-                  @click="copyLink"
+                  @click="copyLinkAndCloseModal"
                   class="inset-y-2 right-0 flex md:mx-0 mx-auto items-center justify-center px-5 py-6 text-[white] w-[90px] md:mr-2 bg-[#295F2D] rounded-3xl h-[36px] lg:absolute mt-3 lg:mt-0"
                   action="input"
                 >
@@ -394,6 +394,18 @@ export default {
       const createdAt = moment(this.buck.bucket.created_at);
       return createdAt.fromNow(); // Example: "3 days ago"
     },
+    concatenatedUrl() {
+      const origin = window.location.origin;
+      let id = "";
+
+      if (this.condition) {
+        id = "b069062426bad64c3d4b3f10cedbf99f"; // ID for condition being true
+      } else {
+        id = "another_id"; // ID for condition being false
+      }
+
+      return `${origin}/bucket/${id}`;
+    },
   },
   data() {
     return {
@@ -410,6 +422,7 @@ export default {
       showSuccess: false,
       showCopyFeedback: false,
       copyButtonLabel: "Copy",
+      condition: true,
     };
   },
   mounted() {
@@ -466,8 +479,8 @@ export default {
         reader.readAsDataURL(file);
       }
     },
-    copyLink() {
-      const linkText = this.$route.params.id;
+    copyLinkAndCloseModal() {
+      const linkText = this.concatenatedUrl;
       navigator.clipboard
         .writeText(linkText)
         .then(() => {
@@ -478,6 +491,7 @@ export default {
             this.showCopyFeedback = false;
             this.copyButtonLabel = "Copy";
           }, 2000);
+          this.showModal1 = false; // Close the modal
         })
         .catch((error) => {
           console.error("Failed to copy link:", error);
