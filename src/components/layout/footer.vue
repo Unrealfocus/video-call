@@ -1,13 +1,13 @@
-<script>
+<!-- <script>
 export default {
   name: "footer",
 };
-</script>
+</script> -->
 
 <template>
   <footer class="pt-3 pb-5 mx-3 bg-bgDarkerGreen px-14 rounded-3xl">
     <section
-      class="container grid mx-auto my-3 lg:grid-cols-2 sm:grid-cols-1 lg:items-center lg:mt-20 sm:mt-20"
+      class="container grid justify-center mx-auto my-3 lg:grid-cols-2 sm:grid-cols-1 lg:items-center lg:mt-20 sm:mt-20"
     >
       <div class="">
         <img src="/Logo.svg" alt="logo" class="mb-5" />
@@ -15,12 +15,23 @@ export default {
       <section class="lg:flex sm:block gap-10 text-[#fff]">
         <ul class="mb-5">
           <p class="pb-2 text-base font-semibold font-poppins">Fundraise for</p>
-          <li class="pb-2 text-sm font-medium font-poppins" to="">Medical</li>
+          <ul class="gap-6">
+            <li
+              v-for="category in categories"
+              :key="category"
+              class="pb-2 text-sm font-medium font-poppins"
+            >
+              <router-link to="/buckets">
+                {{ category.name }}
+              </router-link>
+            </li>
+          </ul>
+          <!-- <li class="pb-2 text-sm font-medium font-poppins" to="">Medical</li>
           <li class="pb-2 text-sm font-medium font-poppins" to="">Emergency</li>
           <li class="pb-2 text-sm font-medium font-poppins" to="">Education</li>
           <li class="pb-2 text-sm font-medium font-poppins" to="">
             Non-profit
-          </li>
+          </li> -->
         </ul>
         <ul>
           <p class="pb-2 text-base font-semibold font-poppins">Learn</p>
@@ -78,3 +89,33 @@ export default {
     </div>
   </footer>
 </template>
+
+<script>
+import axios from "axios";
+export default {
+  name: "footer",
+  data() {
+    return {
+      categories: [],
+    };
+  },
+  async mounted() {
+    const getCategories = import.meta.env.VITE_APP_ENGINE + "categories";
+    await axios.get(getCategories).then((res) => {
+      this.categories = res.data.data;
+    });
+
+    await axios.get(getCategories).then((res) => {
+      this.categories = res.data.data;
+    });
+  },
+  methods: {
+    navDrop() {
+      this.toggleNav = !this.toggleNav;
+    },
+    toggleDropdown() {
+      this.isDropdownOpen = !this.isDropdownOpen;
+    },
+  },
+};
+</script>

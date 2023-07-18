@@ -162,14 +162,36 @@
         v-if="showModal1"
         class="fixed top-0 left-0 flex items-center justify-center w-screen h-screen bg-gray-800 bg-opacity-50"
       >
-        <div class="p-5 bg-white shadow rounded-3xl w-[40%] h-[38%]">
+        <div
+          ref="modalContainer"
+          class="p-5 bg-white shadow rounded-3xl w-[40%] h-[38%] modal-container"
+        >
           <div class="p-8">
             <h3 class="text-3xl font-bold font-poppins">By Sharing</h3>
             <p class="pt-5 text-base font-medium font-poppins">
               Sharing fundraisers on social media can increase your donations by
               up to 8 times.
             </p>
-            <div class="border rounded-3xl py-10 mt-10 border-[#484848]"></div>
+            <div class="relative">
+              <div class="border rounded-3xl py-8 mt-10 border-[#484848]">
+                <p>
+                  ID: <span>{{ $route.params.id }}</span>
+                </p>
+                <button
+                  @click="copyLink"
+                  class="inset-y-2 right-0 flex md:mx-0 mx-auto items-center justify-center px-5 py-6 text-[white] w-[90px] md:mr-2 bg-[#295F2D] rounded-3xl h-[36px] lg:absolute mt-3 lg:mt-0"
+                  action="input"
+                >
+                  {{ copyButtonLabel }}
+                </button>
+                <div
+                  v-if="showCopyFeedback"
+                  class="mt-2 text-sm text-green-500"
+                >
+                  Link copied!
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -222,7 +244,83 @@
             ></textarea>
           </div>
 
-          <div class="pt-5"><p>Add a Photos</p></div>
+          <p class="text-lg font-semibold font-poppins text-[#484848]">
+            Add a Photo
+          </p>
+          <div class="flex gap-5">
+            <div class="border-[#000] border rounded-3xl">
+              <div class="space-y-[10px]">
+                <div class="flex items-center justify-center w-full py-10">
+                  <label for="postFile1">
+                    <img :src="imageUrls[0]" />
+                    <p
+                      class="text-[#939393] font-[500] text-[16px] font-poppins cursor-pointer"
+                    >
+                      {{
+                        imageFileNames[0]
+                          ? imageFileNames[0]
+                          : "Drag or upload your images here"
+                      }}
+                    </p>
+                  </label>
+                  <input
+                    type="file"
+                    id="postFile1"
+                    @change="chooseImage(0)"
+                    class="hidden"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="border-[#000] border rounded-3xl">
+              <div class="space-y-[10px]">
+                <div class="flex items-center justify-center w-full py-10">
+                  <label for="postFile2">
+                    <img :src="imageUrls[1]" />
+                    <p
+                      class="text-[#939393] font-[500] text-[16px] font-poppins cursor-pointer"
+                    >
+                      {{
+                        imageFileNames[1]
+                          ? imageFileNames[1]
+                          : "Drag or upload your images here"
+                      }}
+                    </p>
+                  </label>
+                  <input
+                    type="file"
+                    id="postFile2"
+                    @change="chooseImage(1)"
+                    class="hidden"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="border-[#000] border rounded-3xl">
+              <div class="space-y-[10px]">
+                <div class="flex items-center justify-center w-full py-10">
+                  <label for="postFile3">
+                    <img :src="imageUrls[2]" />
+                    <p
+                      class="text-[#939393] font-[500] text-[16px] font-poppins cursor-pointer"
+                    >
+                      {{
+                        imageFileNames[2]
+                          ? imageFileNames[2]
+                          : "Drag or upload your images here"
+                      }}
+                    </p>
+                  </label>
+                  <input
+                    type="file"
+                    id="postFile3"
+                    @change="chooseImage(2)"
+                    class="hidden"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div class="pt-10"></div>
 
@@ -266,6 +364,11 @@
             >
               Save Changes
             </button>
+            <button
+              class="px-20 py-2 text-base font-semibold text-[#295F2D] border border-[#295F2D] rounded-xl font-poppins"
+            >
+              Cancel Changes
+            </button>
           </div>
         </div>
       </div>
@@ -276,6 +379,7 @@
 <script>
 import bucket from "../../components/manageBucket/bucket.vue";
 import moment from "moment";
+// import SingleBucket from "../pages/buckets/SingleBucket.vue";
 
 export default {
   name: "manage",
@@ -283,6 +387,7 @@ export default {
   components: {
     bucket,
     moment,
+    // SingleBucket,
   },
   computed: {
     formattedCreatedAt() {
@@ -295,19 +400,89 @@ export default {
       buck: {},
       assets: "",
       manageCount: 1,
+      imageFileNames: ["", "", ""], // Array to hold the filenames of the selected images
+      imageUrls: ["", "", ""], // Array to hold the URLs of the selected images
       activeTab: 0,
       tabs: ["Donator", "Bucket Updates"],
       dropdownOpen: false,
       showModal: false,
       showModal1: false,
       showSuccess: false,
+      showCopyFeedback: false,
+      copyButtonLabel: "Copy",
     };
   },
   mounted() {
     this.bucket = this.$store.state.bucket;
     this.assets = import.meta.env.VITE_APP_ASSETS;
+    // this.$nextTick(() => {
+    //   window.addEventListener("click", this.handleClickOutside);
+    // });
+  },
+  beforeUnmount() {
+    window.removeEventListener("click", this.handleClickOutside);
   },
   methods: {
+    async upload() {
+      this.loading = true;
+      const uploadLink =
+        import.meta.env.VITE_APP_ENGINE + "upload_bucket_image";
+      const data = new FormData();
+
+      if (this.imageFile) {
+        data.append("image", this.imageFile);
+        data.append("bucket_id", this.bucket_id);
+      }
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + this.$store.state.token;
+      axios.defaults.headers.common["Content-Type"] = "multipart/form-data";
+      await axios
+        .post(uploadLink, data)
+        .then((res) => {
+          this.loading = false;
+          this.currentStep++;
+        })
+        .catch((err) => {
+          this.loading = false;
+          let error = err.response.data.message;
+          swal(error, {
+            icon: "error",
+            buttons: false,
+            timer: 3000,
+            class: "font-poppins font-[700] text-[300px]",
+          });
+        });
+    },
+    chooseImage(index) {
+      const file = event.target.files[0];
+      if (file) {
+        this.imageFileNames[index] = file.name;
+
+        // Read the file and generate a URL for the preview
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.imageUrls[index] = reader.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    },
+    copyLink() {
+      const linkText = this.$route.params.id;
+      navigator.clipboard
+        .writeText(linkText)
+        .then(() => {
+          console.log("Link copied to clipboard!");
+          this.showCopyFeedback = true;
+          this.copyButtonLabel = "Copied!";
+          setTimeout(() => {
+            this.showCopyFeedback = false;
+            this.copyButtonLabel = "Copy";
+          }, 2000);
+        })
+        .catch((error) => {
+          console.error("Failed to copy link:", error);
+        });
+    },
     withdraw(donated, bucket_id) {
       let payload = {
         donated: donated,
