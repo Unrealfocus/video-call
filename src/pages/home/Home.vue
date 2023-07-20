@@ -132,7 +132,7 @@ export default {
           donate. 
         </section>
 
-        <div class="flex justify-center">
+        <div class="flex justify-center z-50 relative">
           <button
             @click="this.$router.push('/buckets')"
             class="gap-2 text-base font-bold font-poppins rounded-full bg-[#2A5E2A] border-[1px] border-[#fff] text-[#fff] md:py-3 px-[12px] py-[8px] text-[14px] md:text-[14px] md:px-10 m-3">
@@ -145,7 +145,7 @@ export default {
           </button>
         </div>
 
-        <section>
+        <div class="relative">
           <div class="hidden lg:block">
             <img
               src="/Group53.svg"
@@ -158,14 +158,14 @@ export default {
               class="absolute opacity-50 bottom-10" />
           </div>
           <div class="-mt-14 md:hidden">
-            <img src="/Group6.svg" alt="" />
+            <img src="/Group6.svg" class="-z-50" alt="" />
             <img
               src="/gradient2.svg"
               alt=""
               :draggable="false"
               class="absolute opacity-50 bottom-10" />
           </div>
-        </section>
+        </div>
       </section>
 
       <!-- How Put Hand Works -->
