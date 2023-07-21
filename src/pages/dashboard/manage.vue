@@ -175,7 +175,7 @@
             <div class="relative">
               <div class="border rounded-3xl py-8 mt-10 border-[#484848]">
                 <p>
-                  <span>{{ concatenatedUrl }}</span>
+                  ID: <span>{{ concatenatedUrl }}</span>
                 </p>
                 <button
                   @click="copyLinkAndCloseModal"
@@ -396,19 +396,12 @@ export default {
     },
     concatenatedUrl() {
       const origin = window.location.origin;
-      let id = "";
-
-      if (this.condition) {
-        id = "b069062426bad64c3d4b3f10cedbf99f"; // ID for condition being true
-      } else {
-        id = "another_id"; // ID for condition being false
-      }
-
-      return `${origin}/bucket/${id}`;
+      return `${origin}/bucket/${this.id}`;
     },
   },
   data() {
     return {
+      id: "",
       buck: {},
       assets: "",
       manageCount: 1,
@@ -428,9 +421,6 @@ export default {
   mounted() {
     this.bucket = this.$store.state.bucket;
     this.assets = import.meta.env.VITE_APP_ASSETS;
-    // this.$nextTick(() => {
-    //   window.addEventListener("click", this.handleClickOutside);
-    // });
   },
   beforeUnmount() {
     window.removeEventListener("click", this.handleClickOutside);
@@ -480,7 +470,8 @@ export default {
       }
     },
     copyLinkAndCloseModal() {
-      const linkText = this.concatenatedUrl;
+      this.concatenatedUrl = id; // Set the current ID based on the parameter
+      const linkText = this.currentUrl;
       navigator.clipboard
         .writeText(linkText)
         .then(() => {
@@ -539,13 +530,8 @@ export default {
       this.showModal = false;
     },
     closeBucket() {
-      // Perform the close bucket action here
       this.showModal = false;
       this.showSuccess = true;
-      // updateAlert("success", "", "Bucket successfully closed");
-      // setTimeout(() => {
-      //   this.showSuccess = false;
-      // }, 1000);
     },
   },
 };

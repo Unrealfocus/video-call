@@ -35,10 +35,7 @@ export const router = createRouter({
       path: "/about-us",
       component: AboutUs,
     },
-    {
-      path: "/edit",
-      component: Edit,
-    },
+   
     {
       path: "/works",
       component: works,
@@ -98,12 +95,19 @@ export const router = createRouter({
           path: "more",
           component: More,
         },
-       
+        {
+          path: "edit",
+          component: Edit,
+        },
       ],
     },
     {
       path: "/sign-in",
       component: signin,
+    },
+    {
+      path: "/edit",
+      component: Edit,
     },
     {
       path:"/faq", 
