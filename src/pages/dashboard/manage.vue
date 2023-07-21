@@ -7,16 +7,14 @@
     <div class="flex justify-between">
       <button
         @click="togglePrev"
-        class="flex items-center px-4 py-3 text-base font-bold border border-[#333333] rounded-full font-poppins gap-3"
-      >
+        class="flex items-center px-4 py-3 text-base font-bold border border-[#333333] rounded-full font-poppins gap-3">
         <img src="/arrow-left.svg" alt="" />
         Back for fundraiser
       </button>
       <div class="relative">
         <button
           @click="toggleDropdown"
-          class="flex items-center justify-center p-2"
-        >
+          class="flex items-center justify-center p-2">
           <div class="flex flex-col items-center">
             <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
             <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
@@ -25,8 +23,7 @@
         </button>
         <div
           v-if="dropdownOpen"
-          class="absolute right-0 py-10 mt-2 bg-white border border-gray-300 shadow w-[250px] rounded-3xl gap-"
-        >
+          class="absolute right-0 py-10 mt-2 bg-white border border-gray-300 shadow w-[250px] rounded-3xl gap-">
           <ul class="">
             <li class="px-4 py-2 cursor-pointer hover:bg-gray-100">
               <button class="text-base font-medium font-poppins">
@@ -37,29 +34,25 @@
               <li class="px-4 py-2 cursor-pointer hover:bg-gray-100">
                 <button
                   @click="showConfirmationModal"
-                  class="text-base font-medium font-poppins"
-                >
+                  class="text-base font-medium font-poppins">
                   Close Bucket
                 </button>
               </li>
               <div
                 v-if="showModal"
-                class="fixed top-0 left-0 flex items-center justify-center w-screen h-screen bg-gray-800 bg-opacity-50"
-              >
+                class="fixed top-0 left-0 flex items-center justify-center w-screen h-screen bg-gray-800 bg-opacity-50">
                 <div class="p-6 bg-white rounded shadow">
                   <h3 class="text-lg font-semibold">Confirmation</h3>
                   <p>Are you sure you want to close this bucket?</p>
                   <div class="flex justify-end mt-4">
                     <button
                       @click="cancelClose"
-                      class="px-4 py-2 text-gray-500"
-                    >
+                      class="px-4 py-2 text-gray-500">
                       Cancel
                     </button>
                     <button
                       @click="closeBucket"
-                      class="px-4 py-2 ml-2 text-white bg-red-500"
-                    >
+                      class="px-4 py-2 ml-2 text-white bg-red-500">
                       Confirm
                     </button>
                   </div>
@@ -84,8 +77,7 @@
 
     <section class="pt-5">
       <div
-        class="flex font-semibold font-poppins bg-[#C8C8C8] rounded-md py-2 px-5 w-[200px]"
-      >
+        class="flex font-semibold font-poppins bg-[#C8C8C8] rounded-md py-2 px-5 w-[200px]">
         Days:30days left
       </div>
     </section>
@@ -112,21 +104,18 @@
           <button
             class="flex text-left gap-2 items-center bg-appGreen300 rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#FFFFFF] mt-5"
             type="button"
-            @click="toogleSection"
-          >
+            @click="toogleSection">
             <img src="/basil_edit-outline.svg" alt="" />
             edit/settings
           </button>
           <div
-            class="flex py-2 text-sm font-semibold text-left rounded-md font-poppins"
-          >
+            class="flex py-2 text-sm font-semibold text-left rounded-md font-poppins">
             Preview fundraiser
           </div>
 
           <router-link to="/withdrawal"
             ><button
-              class="flex items-center gap-2 text-left bg-[#EAF9F0] rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#295F2D] mt-5"
-            >
+              class="flex items-center gap-2 text-left bg-[#EAF9F0] rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#295F2D] mt-5">
               <img src="/uil_money-withdraw.svg" alt="" />
               withdrawal
             </button></router-link
@@ -138,8 +127,7 @@
         <img
           :src="assets + buck.images[0].image_url"
           class="rounded-2xl lg:h-[500px]"
-          alt=""
-        />
+          alt="" />
       </div>
 
       <section class="">
@@ -152,20 +140,17 @@
           </p>
           <button
             @click="showConfirmationModal1"
-            class="px-16 py-2 text-[#295F2D] border-[#295F2D] border rounded-xl"
-          >
+            class="px-16 py-2 text-[#295F2D] border-[#295F2D] border rounded-xl">
             share
           </button>
         </div>
       </section>
       <div
         v-if="showModal1"
-        class="fixed top-0 left-0 flex items-center justify-center w-screen h-screen bg-gray-800 bg-opacity-50"
-      >
+        class="fixed top-0 left-0 flex items-center justify-center w-screen h-screen bg-gray-800 bg-opacity-50">
         <div
           ref="modalContainer"
-          class="p-5 bg-white shadow rounded-3xl w-[40%] h-[38%] modal-container"
-        >
+          class="p-5 bg-white shadow rounded-3xl w-[40%] h-[38%] modal-container">
           <div class="p-8">
             <h3 class="text-3xl font-bold font-poppins">By Sharing</h3>
             <p class="pt-5 text-base font-medium font-poppins">
@@ -180,14 +165,12 @@
                 <button
                   @click="copyLinkAndCloseModal"
                   class="inset-y-2 right-0 flex md:mx-0 mx-auto items-center justify-center px-5 py-6 text-[white] w-[90px] md:mr-2 bg-[#295F2D] rounded-3xl h-[36px] lg:absolute mt-3 lg:mt-0"
-                  action="input"
-                >
+                  action="input">
                   {{ copyButtonLabel }}
                 </button>
                 <div
                   v-if="showCopyFeedback"
-                  class="mt-2 text-sm text-green-500"
-                >
+                  class="mt-2 text-sm text-green-500">
                   Link copied!
                 </div>
               </div>
@@ -207,8 +190,7 @@
               'text-appGreen300 cursor-pointer': activeTab !== index,
             },
           ]"
-          @click="changeTab(index)"
-        >
+          @click="changeTab(index)">
           {{ tab }}
         </div>
       </section>
@@ -240,8 +222,7 @@
           <div class="border rounded-2xl w-full border-[#000] p-3">
             <textarea
               class="w-full bg-transparent border-none outline-none"
-              rows="4"
-            ></textarea>
+              rows="4"></textarea>
           </div>
 
           <p class="text-lg font-semibold font-poppins text-[#484848]">
@@ -254,8 +235,7 @@
                   <label for="postFile1">
                     <img :src="imageUrls[0]" />
                     <p
-                      class="text-[#939393] font-[500] text-[16px] font-poppins cursor-pointer"
-                    >
+                      class="text-[#939393] font-[500] text-[16px] font-poppins cursor-pointer">
                       {{
                         imageFileNames[0]
                           ? imageFileNames[0]
@@ -267,8 +247,7 @@
                     type="file"
                     id="postFile1"
                     @change="chooseImage(0)"
-                    class="hidden"
-                  />
+                    class="hidden" />
                 </div>
               </div>
             </div>
@@ -278,8 +257,7 @@
                   <label for="postFile2">
                     <img :src="imageUrls[1]" />
                     <p
-                      class="text-[#939393] font-[500] text-[16px] font-poppins cursor-pointer"
-                    >
+                      class="text-[#939393] font-[500] text-[16px] font-poppins cursor-pointer">
                       {{
                         imageFileNames[1]
                           ? imageFileNames[1]
@@ -291,8 +269,7 @@
                     type="file"
                     id="postFile2"
                     @change="chooseImage(1)"
-                    class="hidden"
-                  />
+                    class="hidden" />
                 </div>
               </div>
             </div>
@@ -302,8 +279,7 @@
                   <label for="postFile3">
                     <img :src="imageUrls[2]" />
                     <p
-                      class="text-[#939393] font-[500] text-[16px] font-poppins cursor-pointer"
-                    >
+                      class="text-[#939393] font-[500] text-[16px] font-poppins cursor-pointer">
                       {{
                         imageFileNames[2]
                           ? imageFileNames[2]
@@ -315,8 +291,7 @@
                     type="file"
                     id="postFile3"
                     @change="chooseImage(2)"
-                    class="hidden"
-                  />
+                    class="hidden" />
                 </div>
               </div>
             </div>
@@ -326,8 +301,7 @@
 
           <div>
             <button
-              class="text-lg font-semibold font-buttonoppins text-[#484848]"
-            >
+              class="text-lg font-semibold font-buttonoppins text-[#484848]">
               Share Update
             </button>
             <div class="flex items-center gap-2 pt-3">
@@ -336,8 +310,7 @@
                   type="checkbox"
                   class="w-5 h-5 text-indigo-600 transition duration-150 ease-in-out form-checkbox"
                   :checked="checked"
-                  @change="toggle"
-                />
+                  @change="toggle" />
               </label>
               <p class="text-sm font-medium font-poppins text-[#999999]">
                 Fundraiser page default
@@ -349,8 +322,7 @@
                   type="checkbox"
                   class="w-5 h-5 text-indigo-600 transition duration-150 ease-in-out form-checkbox"
                   :checked="checked"
-                  @change="toggle"
-                />
+                  @change="toggle" />
               </label>
               <p class="text-sm font-medium font-poppins text-[#999999]">
                 Email donors
@@ -360,13 +332,11 @@
 
           <div class="flex items-center justify-between pt-7">
             <button
-              class="px-20 py-2 text-base font-semibold text-white bg-appGreen200 rounded-xl font-poppins"
-            >
+              class="px-20 py-2 text-base font-semibold text-white bg-appGreen200 rounded-xl font-poppins">
               Save Changes
             </button>
             <button
-              class="px-20 py-2 text-base font-semibold text-[#295F2D] border border-[#295F2D] rounded-xl font-poppins"
-            >
+              class="px-20 py-2 text-base font-semibold text-[#295F2D] border border-[#295F2D] rounded-xl font-poppins">
               Cancel Changes
             </button>
           </div>
@@ -515,7 +485,10 @@ export default {
       this.manageCount--;
     },
     toogleSection() {
-      this.$emit("edit");
+      // this.$emit("edit");
+      let param = JSON.stringify(this.buck.bucket);
+
+      this.$router.push("/dashboard/edit/" + param);
     },
     toggleDropdown() {
       this.dropdownOpen = !this.dropdownOpen;
