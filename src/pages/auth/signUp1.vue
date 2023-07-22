@@ -95,7 +95,7 @@ export default {
   <section class="bg-[#B7B7B7] lg:h-screen">
     <div class="flex items-center justify-center lg:h-screen">
       <div
-        class="bg-[#fff] w-[820px] rounded-lg px-[10px] md:px-[45px] md:py-[50px]">
+        class="bg-[#fff] w-[820px] md:rounded-lg px-[10px] md:px-[45px] md:py-[50px]">
         <div :class="[currentStep == 1 ? '' : 'hidden']" class="form">
           <div>
             <label
