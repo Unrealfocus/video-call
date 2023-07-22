@@ -94,13 +94,10 @@ export default {
 <template>
   <section class="bg-[#B7B7B7] lg:h-screen">
     <div class="flex items-center justify-center lg:h-screen">
-      <div class="bg-[#fff] w-[820px] rounded-lg px-[45px] py-[50px]">
+      <div
+        class="bg-[#fff] w-[820px] rounded-lg px-[10px] md:px-[45px] md:py-[50px]">
         <div :class="[currentStep == 1 ? '' : 'hidden']" class="form">
           <div>
-            <h2
-              class="text-lg font-bold font-poppins md:text-xl lg:text-2xl text-appGreen400">
-              What ‘s your name
-            </h2>
             <label
               class="block my-5 text-xl font-bold font-poppins text-appGreen400"
               >We're here to guide you every step of the way.</label
@@ -157,8 +154,7 @@ export default {
               id="terms" />
             <span class="block ml-2 text-[#999999] font-poppins text-sm">
               By accepting, I agree to comply with data regulations as outlined
-              in the Puthand Privacy Policy, granting my consent for the
-              collection and processing of my personal data.
+              in the Puthand Privacy Policy.
             </span>
           </span>
 
@@ -238,7 +234,7 @@ export default {
           </div>
         </div>
 
-        <div class="justify-between pt-16">
+        <div class="justify-between pt-5">
           <div class="next-button">
             <div
               :class="[currentStep !== 1 ? 'hidden' : '']"

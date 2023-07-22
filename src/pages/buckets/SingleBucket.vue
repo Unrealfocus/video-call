@@ -57,7 +57,7 @@ export default {
     <div
       v-if="loading == false"
       class="w-[90%] xl:w-[1280px] lg:w-[1125px] mx-auto py-[64px] md:py-[67px] lg:py-[49px]">
-      <div class="title md:">
+      <div class="title py-3">
         <p class="font-[800] text-[32px] font-poppins">
           {{ bucket.bucket.title }}
         </p>
