@@ -77,10 +77,10 @@ export default {
           <div class="w-full">
             <div class="lg:flex justify-between space-x-[10px]">
               <div
-                class="lg:w-[68%] bg-[#000] w-full flex justify-center items-center">
+                class="lg:w-[68%] bg-[#939393] h-[500px] w-auto flex justify-center items-center">
                 <img
                   :src="assets + bucket.images[0].image_url"
-                  class="lg:h-[500px] w-full" />
+                  class="lg:h-[500px]" />
               </div>
               <div class="lg:w-[30%]">
                 <div
@@ -89,7 +89,12 @@ export default {
                     Goal amount
                   </p>
                   <p class="font-poppins font-[700] text-[32px]">
-                    ₦{{ bucket.bucket.goal }}
+                    {{
+                      Intl.NumberFormat("en-US", {
+                        style: "currency",
+                        currency: "NGN",
+                      }).format(parseInt(bucket.bucket.goal))
+                    }}
                   </p>
 
                   <dl class="flex">
