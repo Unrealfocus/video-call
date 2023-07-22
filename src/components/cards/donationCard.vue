@@ -4,7 +4,7 @@ export default {
 };
 </script>
 <template>
-  <li class="flex-shrink-0 w-full">
+  <div class="flex-shrink-0 w-full">
     <figure>
       <img
         :src="assets + item.images[0].image_url"
@@ -81,5 +81,5 @@ export default {
         Donate
       </button>
     </figure>
-  </li>
+  </div>
 </template>
