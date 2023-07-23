@@ -76,10 +76,10 @@
     <p class="pt-10 text-[#939393]">Created {{ formattedCreatedAt }}</p>
 
     <section class="pt-5">
-      <div
+      <!-- <div
         class="flex font-semibold font-poppins bg-[#C8C8C8] rounded-md py-2 px-5 w-[200px]">
         Days:30days left
-      </div>
+      </div> -->
     </section>
     <dl class="flex pt-4">
       <div class="flex flex-1 mr-3 rounded-full bg-[#EAF9F0]">
@@ -360,6 +360,7 @@
 import bucket from "../../components/manageBucket/bucket.vue";
 import moment from "moment";
 import SingleBucket from "../buckets/SingleBucket.vue";
+import copyToClipBoard from "../../hooks/dashboardHooks/manage.ts";
 
 export default {
   name: "manage",
@@ -451,11 +452,10 @@ export default {
     },
 
     copyLinkAndCloseModal() {
-      navigator.clipboard.writeText(
-        "https://puthand.com/bucket/" + this.buck.bucket.bucket_id
-      );
-      alert(" Link copied!");
+      copyToClipBoard();
+      this.showModal1 = false;
     },
+
     closeModal() {
       this.showModal1 = false;
     },
