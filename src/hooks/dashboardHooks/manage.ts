@@ -1,6 +1,6 @@
 const copyToClipBoard = (input: string) => {
   navigator.clipboard.writeText(input);
-  alert("link copied");
+  alert("Bucket link copied to clipboard. \n" + input);
 };
 
 export default copyToClipBoard;

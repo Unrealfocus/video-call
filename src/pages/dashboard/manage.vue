@@ -147,10 +147,10 @@
       </section>
       <div
         v-if="showModal1"
-        class="fixed top-0 left-0 flex items-center justify-center w-screen h-screen bg-gray-800 bg-opacity-50">
+        class="fixed top-0 left-0 flex items-center justify-center w-full h-screen bg-gray-800 bg-opacity-50">
         <div
           ref="modalContainer"
-          class="p-5 bg-white shadow rounded-3xl w-[40%] h-[38%] modal-container">
+          class="p-5 bg-white shadow rounded-3xl w-[80%] lg:w-[40%] modal-container">
           <div class="p-4">
             <h3 class="text-3xl font-bold font-poppins">By Sharing</h3>
             <p class="pt-5 text-base font-medium font-poppins">
@@ -158,32 +158,26 @@
               up to 8 times.
             </p>
             <div class="my-5">
-              <div class="border rounded-3xl border-[#484848] p-2">
+              <div
+                class="border rounded-3xl border-[#484848] p-2 overflow-hidden">
                 <p class="w-full text-[14px]">
                   https://puthand.com/bucket/{{ buck.bucket.bucket_id }}
                 </p>
-
-                <div
-                  v-if="showCopyFeedback"
-                  class="mt-2 text-sm text-green-500">
-                  Link copied!
-                </div>
               </div>
-
-              <div class="flex justify-between py-5">
-                <button
-                  @click="copyLinkAndCloseModal"
-                  class="inset-y-2 right-0 flex md:mx-0 mx-auto items-center justify-center px-5 py-6 text-[white] md:mr-2 bg-[#295F2D] rounded-3xl h-[36px] mt-3 lg:mt-0"
-                  action="input">
-                  copy link
-                </button>
-                <button
-                  @click="closeModal"
-                  class="inset-y-2 right-0 flex md:mx-0 mx-auto items-center justify-center px-5 py-6 text-[white] w-[90px] md:mr-2 bg-red-800 rounded-3xl h-[36px] mt-3 lg:mt-0"
-                  action="input">
-                  close
-                </button>
-              </div>
+            </div>
+            <div class="flex justify-between">
+              <button
+                @click="copyLinkAndCloseModal"
+                class="inset-y-2 right-0 flex md:mx-0 mx-auto items-center justify-center px-5 py-6 text-[white] md:mr-2 bg-[#295F2D] rounded-3xl h-[36px] mt-3 lg:mt-0"
+                action="input">
+                copy link
+              </button>
+              <button
+                @click="closeModal"
+                class="inset-y-2 right-0 flex md:mx-0 mx-auto items-center justify-center px-5 py-6 text-[white] w-[90px] md:mr-2 bg-red-800 rounded-3xl h-[36px] mt-3 lg:mt-0"
+                action="input">
+                close
+              </button>
             </div>
           </div>
         </div>
@@ -452,7 +446,9 @@ export default {
     },
 
     copyLinkAndCloseModal() {
-      copyToClipBoard();
+      copyToClipBoard(
+        "https://puthand.com/bucket/" + this.buck.bucket.bucket_id
+      );
       this.showModal1 = false;
     },
 
