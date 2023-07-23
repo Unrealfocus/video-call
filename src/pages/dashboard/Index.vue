@@ -133,10 +133,10 @@
                 March 22th 2023
               </div>
             </div>
-            <div
-              class="rounded-xl text-start py-2 px-3 border border-[#484848] w-[160px] text-base">
+            <button
+              class="rounded-xl text-start py-2 px-3 border border-[#484848] text-base">
               {{ recent.category }}
-            </div>
+            </button>
           </div>
         </div>
       </section>
@@ -176,11 +176,11 @@
           <!-- flex overflow-x-scroll gap-7 no-scrollbar -->
           <div class="mt-10">
             <ul class="grid grid-cols-1 md:grid-cols-3 gap-7">
-              <DonationCard v-for="item in buckets"
-              :key="item.id"
-              :item="item"
-              :assets="assets"
-          />
+              <DonationCard
+                v-for="item in buckets"
+                :key="item.id"
+                :item="item"
+                :assets="assets" />
             </ul>
           </div>
         </div>
@@ -196,8 +196,8 @@ import DonationCard from "../../components/cards/donationCard.vue";
 
 export default {
   components: {
-    DonationCard
-},
+    DonationCard,
+  },
   data() {
     return {
       assets: "",

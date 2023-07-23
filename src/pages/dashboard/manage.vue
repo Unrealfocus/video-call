@@ -151,28 +151,38 @@
         <div
           ref="modalContainer"
           class="p-5 bg-white shadow rounded-3xl w-[40%] h-[38%] modal-container">
-          <div class="p-8">
+          <div class="p-4">
             <h3 class="text-3xl font-bold font-poppins">By Sharing</h3>
             <p class="pt-5 text-base font-medium font-poppins">
               Sharing fundraisers on social media can increase your donations by
               up to 8 times.
             </p>
-            <div class="relative">
-              <div class="border rounded-3xl py-8 mt-10 border-[#484848]">
-                <p>
-                  ID: <span>{{ concatenatedUrl }}</span>
+            <div class="my-5">
+              <div class="border rounded-3xl border-[#484848] p-2">
+                <p class="w-full text-[14px]">
+                  https://puthand.com/bucket/{{ buck.bucket.bucket_id }}
                 </p>
-                <button
-                  @click="copyLinkAndCloseModal"
-                  class="inset-y-2 right-0 flex md:mx-0 mx-auto items-center justify-center px-5 py-6 text-[white] w-[90px] md:mr-2 bg-[#295F2D] rounded-3xl h-[36px] lg:absolute mt-3 lg:mt-0"
-                  action="input">
-                  {{ copyButtonLabel }}
-                </button>
+
                 <div
                   v-if="showCopyFeedback"
                   class="mt-2 text-sm text-green-500">
                   Link copied!
                 </div>
+              </div>
+
+              <div class="flex justify-between py-5">
+                <button
+                  @click="copyLinkAndCloseModal"
+                  class="inset-y-2 right-0 flex md:mx-0 mx-auto items-center justify-center px-5 py-6 text-[white] md:mr-2 bg-[#295F2D] rounded-3xl h-[36px] mt-3 lg:mt-0"
+                  action="input">
+                  copy link
+                </button>
+                <button
+                  @click="closeModal"
+                  class="inset-y-2 right-0 flex md:mx-0 mx-auto items-center justify-center px-5 py-6 text-[white] w-[90px] md:mr-2 bg-red-800 rounded-3xl h-[36px] mt-3 lg:mt-0"
+                  action="input">
+                  close
+                </button>
               </div>
             </div>
           </div>
@@ -439,25 +449,17 @@ export default {
         reader.readAsDataURL(file);
       }
     },
+
     copyLinkAndCloseModal() {
-      this.concatenatedUrl = id; // Set the current ID based on the parameter
-      const linkText = this.currentUrl;
-      navigator.clipboard
-        .writeText(linkText)
-        .then(() => {
-          console.log("Link copied to clipboard!");
-          this.showCopyFeedback = true;
-          this.copyButtonLabel = "Copied!";
-          setTimeout(() => {
-            this.showCopyFeedback = false;
-            this.copyButtonLabel = "Copy";
-          }, 2000);
-          this.showModal1 = false; // Close the modal
-        })
-        .catch((error) => {
-          console.error("Failed to copy link:", error);
-        });
+      navigator.clipboard.writeText(
+        "https://puthand.com/bucket/" + this.buck.bucket.bucket_id
+      );
+      alert(" Link copied!");
     },
+    closeModal() {
+      this.showModal1 = false;
+    },
+
     withdraw(donated, bucket_id) {
       let payload = {
         donated: donated,
