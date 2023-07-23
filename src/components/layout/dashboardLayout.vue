@@ -56,14 +56,8 @@ export default {
       .get(app)
       .then((res) => {})
       .catch((err) => {
-        let error = err.response.data.message;
+        // let error = err.response.data.message;
 
-        swal(error, {
-          icon: "error",
-          buttons: false,
-          timer: 3000,
-          class: "font-poppins font-[700] text-[300px]",
-        });
         return this.$router.push("/sign-in");
       });
   },

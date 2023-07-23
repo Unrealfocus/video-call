@@ -11,7 +11,7 @@
       class="w-[90%] xl:w-[1280px] lg:w-[1125px] mx-auto py-[64px] md:py-[67px] lg:py-[49px]">
       <div class="serch-filter flex justify-center">
         <!-- filter by categories  -->
-        <div class="categories flex space-x-[20px] overflow-hidden">
+        <!-- <div class="categories flex space-x-[20px] overflow-hidden">
           <div
             @click="toggleCategory(cat)"
             class="border cursor-pointer rounded-lg py-[8px] px-[24px] font-[500] font-poppins text-[16px]"
@@ -21,17 +21,17 @@
             v-for="cat in categories">
             {{ cat.name }}
           </div>
-        </div>
+        </div> -->
       </div>
 
       <div class="content-list">
         <div
           class="md:grid lg:grid-cols-4 grid-cols-2 grid-flow-row auto-rows-max gap-10">
-         <DonationCard v-for="item in buckets"
-          :key="item.id"
-          :item="item"
-          :assets="assets"
-          />
+          <DonationCard
+            v-for="item in buckets"
+            :key="item.id"
+            :item="item"
+            :assets="assets" />
         </div>
       </div>
       <div class="flex justify-center py-52">
@@ -51,7 +51,7 @@ export default {
   name: "SeeBuckets",
   components: {
     navabar_test,
-    DonationCard
+    DonationCard,
   },
   data() {
     return {
