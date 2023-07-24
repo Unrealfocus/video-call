@@ -77,6 +77,29 @@
                 </div>
               </div>
             </div>
+            <div class="border-[#000] border rounded-3xl md:w-[20%]">
+              <div class="space-y-[10px]">
+                <div
+                  class="flex items-center justify-center w-full py-10 mx-auto">
+                  <label for="postFile1">
+                    <img :src="imageUrls[0]" class="w-full" />
+                    <p
+                      class="text-[#939393] font-[500] text-[16px] font-poppins cursor-pointer p-[10px]">
+                      {{
+                        imageFileNames[0]
+                          ? imageFileNames[0]
+                          : "Upload your image here"
+                      }}
+                    </p>
+                  </label>
+                  <input
+                    type="file"
+                    id="postFile1"
+                    @change="chooseImage(0)"
+                    class="hidden" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -215,15 +238,25 @@ export default {
       params: {},
       buck: {},
       assets: "",
-      imageFileNames: ["", "", ""], // Array to hold the filenames of the selected images
-      imageUrls: ["", "", ""],
+      imageFileNames: [], // Array to hold the filenames of the selected images
+      imageUrls: [],
       tabs: ["Edit", "Settings"],
     };
+  },
+  async created() {
+    const app = import.meta.env.VITE_APP_ENGINE;
+    this.assets = import.meta.env.VITE_APP_ASSETS;
+
+    //get buckets
+    await axios.get(app + "bucket/" + this.$route.params.id).then((res) => {
+      this.buck = res.data.data.bucket;
+      this.title = this.buck.title;
+      this.description = this.buck.description;
+    });
   },
   mounted() {
     this.assets = import.meta.env.VITE_APP_ASSETS;
 
-    this.buck = JSON.parse(this.$route.params.id);
     this.title = this.buck.title;
     this.description = this.buck.description;
   },
@@ -251,12 +284,39 @@ export default {
         token: this.$store.state.token,
         bucket_id: this.buck.bucket_id,
         title: this.title,
-        // description: this.description,
+        description: this.description,
       };
 
-      const bucketUpdate = updateBucket(params);
+      updateBucket(params);
 
-      console.log(bucketUpdate);
+      // if (this.imageFileNames.length > 0) {
+      //   const uploadLink =
+      //     import.meta.env.VITE_APP_ENGINE + "upload_bucket_image";
+      //   const data = new FormData();
+
+      //   if (this.imageFile) {
+      //     data.append("image", this.imageFile);
+      //     data.append("bucket_id", this.buck.bucket_id);
+      //   }
+      //   axios.defaults.headers.common["Authorization"] =
+      //     "Bearer " + this.$store.state.token;
+      //   axios.defaults.headers.common["Content-Type"] = "multipart/form-data";
+      //   await axios
+      //     .post(uploadLink, data)
+      //     .then((res) => {})
+      //     .catch((err) => {
+      //       this.loading = false;
+      //       let error = err.response.data.message;
+      //       swal(error, {
+      //         icon: "error",
+      //         buttons: false,
+      //         timer: 3000,
+      //         class: "font-poppins font-[700] text-[300px]",
+      //       });
+      //     });
+
+      //   alert("image uploaded");
+      // }
     },
 
     toggleNext() {
@@ -268,36 +328,7 @@ export default {
     togglePrev() {
       this.manageCount--;
     },
-    async upload() {
-      this.loading = true;
-      const uploadLink =
-        import.meta.env.VITE_APP_ENGINE + "upload_bucket_image";
-      const data = new FormData();
 
-      if (this.imageFile) {
-        data.append("image", this.imageFile);
-        data.append("bucket_id", this.bucket_id);
-      }
-      axios.defaults.headers.common["Authorization"] =
-        "Bearer " + this.$store.state.token;
-      axios.defaults.headers.common["Content-Type"] = "multipart/form-data";
-      await axios
-        .post(uploadLink, data)
-        .then((res) => {
-          this.loading = false;
-          this.currentStep++;
-        })
-        .catch((err) => {
-          this.loading = false;
-          let error = err.response.data.message;
-          swal(error, {
-            icon: "error",
-            buttons: false,
-            timer: 3000,
-            class: "font-poppins font-[700] text-[300px]",
-          });
-        });
-    },
     chooseImage(index) {
       const file = event.target.files[0];
       if (file) {

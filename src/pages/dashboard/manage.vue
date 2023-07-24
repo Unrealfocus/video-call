@@ -484,10 +484,7 @@ export default {
       this.manageCount--;
     },
     toogleSection() {
-      // this.$emit("edit");
-      let param = JSON.stringify(this.buck.bucket);
-
-      this.$router.push("/dashboard/edit/" + param);
+      this.$router.push("/dashboard/edit/" + this.buck.bucket.bucket_id);
     },
     toggleDropdown() {
       this.dropdownOpen = !this.dropdownOpen;

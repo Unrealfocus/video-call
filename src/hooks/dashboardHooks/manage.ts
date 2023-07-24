@@ -24,13 +24,15 @@ const updateBucket = async (params: updateBucketParams) => {
       description: params.description,
       bucket_id: params.bucket_id,
     })
-    .then((res) => {
+    .then(() => {
       return true;
     })
     .catch((err) => {
-      return err.message;
-      // return err.response.data.message;
+      alert(err);
+      // return err.message;
     });
 };
+
+const getSingleBucket = () => {};
 
 export { copyToClipBoard, updateBucket };

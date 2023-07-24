@@ -91,8 +91,6 @@ export default {
       v-if="loading == false"
       class="w-[90%] xl:w-[1280px] lg:w-[1125px] mx-auto py-[64px] md:py-[67px] lg:py-[49px]">
       <div class="title py-3">
-        class="w-[90%] xl:w-[1280px] lg:w-[1125px] mx-auto py-[64px]
-        md:py-[67px] lg:py-[49px]" >
         <div class="title md:">
           <p class="font-[800] text-[32px] font-poppins">
             {{ bucket.bucket.title }}
@@ -114,12 +112,9 @@ export default {
               <div class="lg:flex justify-between space-x-[10px]">
                 <div
                   class="lg:w-[68%] bg-[#939393] h-[500px] w-auto flex justify-center items-center">
-                  class="lg:w-[68%] bg-[#000] w-full flex justify-center
-                  items-center" >
                   <img
                     :src="assets + bucket.images[0].image_url"
                     class="lg:h-[500px]" />
-                  class="lg:h-[500px] w-full" />
                 </div>
                 <div class="lg:w-[30%]">
                   <div
