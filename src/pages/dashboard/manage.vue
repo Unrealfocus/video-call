@@ -100,26 +100,27 @@
       </div>
 
       <div>
-        <div class="flex items-center gap-3 pb-5">
+        <div class="md:flex items-center py-5 space-y-5 space-x-5">
           <button
             class="flex text-left gap-2 items-center bg-appGreen300 rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#FFFFFF] mt-5"
             type="button"
             @click="toogleSection">
             <img src="/basil_edit-outline.svg" alt="" />
-            edit/settings
+            <p>edit/settings</p>
           </button>
-          <div
+
+          <button
+            @click="this.$router.push('/bucket/' + buck.bucket.bucket_id)"
             class="flex py-2 text-sm font-semibold text-left rounded-md font-poppins">
             Preview fundraiser
-          </div>
+          </button>
 
-          <router-link to="/withdrawal"
-            ><button
-              class="flex items-center gap-2 text-left bg-[#EAF9F0] rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#295F2D] mt-5">
-              <img src="/uil_money-withdraw.svg" alt="" />
-              withdrawal
-            </button></router-link
-          >
+          <button
+            @click="this.$router.push('/withdrawal')"
+            class="flex items-center gap-2 text-left bg-[#EAF9F0] rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#295F2D] mt-5">
+            <img src="/uil_money-withdraw.svg" alt="" />
+            withdrawal
+          </button>
         </div>
       </div>
 
@@ -218,7 +219,7 @@
         Share Fundraiser
       </button> -->
       </div>
-      <div v-show="activeTab === 1">
+      <!-- <div v-show="activeTab === 1">
         <div class="space-y-[20px] pb-5">
           <p class="text-lg font-semibold font-poppins text-[#484848]">
             Write a new update
@@ -345,7 +346,7 @@
             </button>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -354,7 +355,7 @@
 import bucket from "../../components/manageBucket/bucket.vue";
 import moment from "moment";
 import SingleBucket from "../buckets/SingleBucket.vue";
-import copyToClipBoard from "../../hooks/dashboardHooks/manage.ts";
+import { copyToClipBoard } from "../../hooks/dashboardHooks/manage.ts";
 
 export default {
   name: "manage",

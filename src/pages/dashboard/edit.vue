@@ -1,6 +1,6 @@
 <template>
-  <div class="mx-auto w-[90%]">
-    <div class="px-[30px] py-[50px] bg-white">
+  <div class="mx-auto w-full md:w-[90%]">
+    <div class="px-[10px] md:px-[30px] py-[50px] bg-white">
       <div>
         <button
           @click="this.$router.push('/dashboard/manage')"
@@ -10,50 +10,51 @@
         </button>
       </div>
 
-      {{ buck }}
-      <section
-        class="flex items-center justify-center mx-auto mt-20 mb-20 gap-7">
-        <div
-          class="bg-[#F3F3F3] px-20"
-          v-for="(tab, index) in tabs"
-          :key="index"
-          :class="[
-            'rounded-full px-10 text-xs py-2',
-            {
-              'bg-appGreen300 text-white': activeTab === index,
-              'text-appGreen300 cursor-pointer': activeTab !== index,
-            },
-          ]"
-          @click="changeTab(index)">
-          {{ tab }}
-        </div>
+      <section class="flex items-center justify-center my-10">
+        <button
+          class="w-full lg:w-[30%] flex items-center justify-center bg-[#F3F3F3] rounded-full cursor-pointer">
+          <div
+            class="w-[50%] rounded-full text-xs py-2"
+            :class="[edit == true ? 'bg-[#295F2D] text-white' : 'bg-[#F3F3F3]']"
+            @click="changeTab()">
+            Edit
+          </div>
+
+          <div
+            class="w-[50%] rounded-full text-xs py-2"
+            :class="[
+              edit == false ? 'bg-[#295F2D] text-white' : 'bg-[#F3F3F3]',
+            ]"
+            @click="changeTab()">
+            Settings
+          </div>
+        </button>
       </section>
-      <div v-show="activeTab === 0">
+
+      <div v-show="edit == true">
         <p class="text-lg font-semibold font-poppins">Fundraiser Title</p>
         <div class="border rounded-2xl w-full border-[#000] p-3">
           <input
             class="w-full bg-transparent border-none outline-none"
-            v-model="bucketContent"
-            @input="updateBucketContent"
+            v-model="title"
             placeholder="Support my community with NEPA Light" />
         </div>
 
-        <p class="py-5 text-lg font-semibold font-poppins">Cover Image</p>
+        <!-- <p class="py-5 text-lg font-semibold font-poppins">Cover Image</p>
 
         <div class="">
-          <!-- <img
+          <img
             :src="assets + buck.images[0].image_url"
             class="rounded-2xl lg:h-[500px]"
-            alt=""
-          /> -->
-        </div>
+            alt="" />
+        </div> -->
 
         <div>
           <p class="text-lg font-semibold font-poppins text-[#484848] py-5">
             Add a Photo
           </p>
           <div class="flex gap-5">
-            <div class="border-[#000] border rounded-3xl w-[20%]">
+            <div class="border-[#000] border rounded-3xl md:w-[20%]">
               <div class="space-y-[10px]">
                 <div
                   class="flex items-center justify-center w-full py-10 mx-auto">
@@ -64,7 +65,7 @@
                       {{
                         imageFileNames[0]
                           ? imageFileNames[0]
-                          : "Drag or upload your images here"
+                          : "Upload your image here"
                       }}
                     </p>
                   </label>
@@ -76,55 +77,11 @@
                 </div>
               </div>
             </div>
-            <div class="border-[#000] border rounded-3xl w-[20%]">
-              <div class="space-y-[10px]">
-                <div class="flex items-center justify-center w-full py-10">
-                  <label for="postFile2">
-                    <img :src="imageUrls[1]" />
-                    <p
-                      class="text-[#939393] font-[500] text-[16px] font-poppins cursor-pointer p-[10px]">
-                      {{
-                        imageFileNames[1]
-                          ? imageFileNames[1]
-                          : "Drag or upload your images here"
-                      }}
-                    </p>
-                  </label>
-                  <input
-                    type="file"
-                    id="postFile2"
-                    @change="chooseImage(1)"
-                    class="hidden" />
-                </div>
-              </div>
-            </div>
-            <div class="border-[#000] border rounded-3xl w-[20%]">
-              <div class="space-y-[10px]">
-                <div class="flex items-center justify-center w-full py-10">
-                  <label for="postFile3">
-                    <img :src="imageUrls[2]" />
-                    <p
-                      class="text-[#939393] font-[500] text-[16px] font-poppins cursor-pointer p-[10px]">
-                      {{
-                        imageFileNames[2]
-                          ? imageFileNames[2]
-                          : "Drag or upload your images here"
-                      }}
-                    </p>
-                  </label>
-                  <input
-                    type="file"
-                    id="postFile3"
-                    @change="chooseImage(2)"
-                    class="hidden" />
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
         <p class="text-[#484848] text-[18px] font-[600] font-poppins py-5">
-          Enter your donation amount
+          Your donation amount
         </p>
         <div
           class="w-full border-2 border-[#93939] rounded-2xl p-3 flex space-x-[10px]">
@@ -133,10 +90,11 @@
             <p class="text-[#176D3A] font-[800] text-[25px]">₦</p>
           </div>
           <input
-            v-model="amount"
+            :value="buck.goal"
             type="number"
             pattern="[0-9]*"
             placeholder="500,000"
+            disabled
             class="bg-[#fff] w-full border-none bg-transparent outline-none rounded full text-[31px] text-[#939393] font-[600]" />
         </div>
         <div class="space-y-[20px]">
@@ -150,7 +108,7 @@
         </div>
       </div>
 
-      <div v-show="activeTab === 1">
+      <div v-show="edit == false">
         <div class="pb-7">
           <p class="text-[#484848] font-poppins font-semibold text-lg">
             Fundraiser Page
@@ -238,6 +196,8 @@
 import bucket from "../../components/manageBucket/bucket.vue";
 import manage from "../dashboard/manage.vue";
 import SingleBucket from "../buckets/SingleBucket.vue";
+import axios from "axios";
+import { updateBucket } from "../../hooks/dashboardHooks/manage.ts";
 
 export default {
   name: "edit",
@@ -248,20 +208,15 @@ export default {
   },
   data() {
     return {
-      bucketContent: "",
-      buck: {
-        bucket: {
-          title: "Default Title", // Replace this with the actual initial title from the database
-        },
-      },
+      title: "",
+      description: "",
       manageCount: 1,
-      activeTab: 0,
-      activeTab: 1,
-      id: "",
+      edit: true,
+      params: {},
       buck: {},
       assets: "",
       imageFileNames: ["", "", ""], // Array to hold the filenames of the selected images
-      imageUrls: ["", "", ""], //
+      imageUrls: ["", "", ""],
       tabs: ["Edit", "Settings"],
     };
   },
@@ -269,7 +224,8 @@ export default {
     this.assets = import.meta.env.VITE_APP_ASSETS;
 
     this.buck = JSON.parse(this.$route.params.id);
-    this.bu;
+    this.title = this.buck.title;
+    this.description = this.buck.description;
   },
   methods: {
     // async updateBucketContent() {
@@ -287,22 +243,27 @@ export default {
     //     // Handle the error or show an error message to the user.
     //   }
     // },
-    // async saveChanges() {
-    //   try {
-    //     await this.updateBucketContent(); // Call the updateBucketContent method to send changes to the backend API
 
-    //     // If the update is successful, you can optionally show a success message or perform additional actions.
-    //     // For example: this.showSuccessMessage = true;
-    //   } catch (error) {
-    //     console.error("Error saving changes:", error);
-    //     // Handle the error or show an error message to the user.
-    //   }
-    // },
+    async saveChanges() {
+      const params = {
+        link: import.meta.env.VITE_APP_ENGINE + "update_bucket",
+        user_id: this.$store.state.user.user_id,
+        token: this.$store.state.token,
+        bucket_id: this.buck.bucket_id,
+        title: this.title,
+        // description: this.description,
+      };
+
+      const bucketUpdate = updateBucket(params);
+
+      console.log(bucketUpdate);
+    },
+
     toggleNext() {
       this.manageCount++;
     },
-    changeTab(index) {
-      this.activeTab = index;
+    changeTab() {
+      this.edit = !this.edit;
     },
     togglePrev() {
       this.manageCount--;
