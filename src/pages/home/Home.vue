@@ -58,14 +58,41 @@ export default {
     <!--Hero Section-->
     <div
       v-if="show"
-      class="bg-white border-l-4 border-green-500 rounded-b text-teal-900 px-4 py-3 shadow-md rounded-lg fixed top-0 right-0 z-40 opacity-100"
+      class="fixed top-0 right-0 z-40 px-4 py-3 text-teal-900 bg-white border-l-4 border-green-500 rounded-lg rounded-b shadow-md opacity-100"
       role="alert">
       <div class="flex">
         <div class="py-1 pr-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
-            class="bi bi-check-circle-fill h-6 w-6"
+            class="w-6 h-6 bi bi-check-circle-fill"
+            viewBox="0 0 16 16"
+            id="IconChangeColor">
+            <path
+              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+              id="mainIconPathAttribute"
+              fill="green"></path>
+          </svg>
+        </div>
+        <div>
+          <p class="font-bold">Thank you</p>
+          <p class="text-sm">You have Register successfully.</p>
+        </div>
+        <div class="relative top-0 right-0">
+          <button @click="hideAlert" class="close-btn">&times;</button>
+        </div>
+      </div>
+    </div>
+    <div
+      v-if="show"
+      class="fixed top-0 right-0 z-40 px-4 py-3 text-teal-900 bg-white border-l-4 border-green-500 rounded-lg rounded-b shadow-md opacity-100"
+      role="alert">
+      <div class="flex">
+        <div class="py-1 pr-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            class="w-6 h-6 bi bi-check-circle-fill"
             viewBox="0 0 16 16"
             id="IconChangeColor">
             <path
@@ -186,7 +213,7 @@ export default {
           <div
             class="grid-flow-row grid-cols-2 gap-2 md:grid lg:grid-cols-4 auto-rows-max">
             <div
-              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover">
+              class="group/item m-2 rounded-lg relative bg-[#F3F3F3] bg-cover hover:text-[#F8B83A] hover:bg-[#2A5E2A] transition-all duration-300">
               <div class="py-[46px]">
                 <div class="w-full">
                   <img src="/handStar.svg" class="mx-auto" />
@@ -198,7 +225,7 @@ export default {
               </div>
             </div>
             <div
-              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover">
+              class="group/item m-2 rounded-lg relative bg-[#F3F3F3] bg-cover hover:text-[#F8B83A] hover:bg-[#2A5E2A] transition-all duration-300">
               <div class="py-[46px]">
                 <div class="w-full">
                   <img src="/Icon02.svg" class="mx-auto" />
@@ -210,7 +237,7 @@ export default {
               </div>
             </div>
             <div
-              class="group/item bg-[#F3F3F3] m-2 rounded-lg relative bg-cover">
+              class="group/item m-2 rounded-lg relative bg-[#F3F3F3] bg-cover hover:text-[#F8B83A] hover:bg-[#2A5E2A] transition-all duration-300">
               <div class="py-[46px]">
                 <div class="w-full">
                   <img src="/Icon01.svg" class="mx-auto" />
@@ -294,12 +321,12 @@ export default {
           DO YOU WANT TO PUT HAND FOR SOMEONE TODAY? 
         </p>
         <p class="mb-4 text-base font-medium leading-4 font-poppins">
-          Here are some campaigns you can donate and put a smile on someone’s
+          Here are some campaigns you can donate to and put a smile on someone’s
           face: 
         </p>
 
         <ul
-          class="md:grid lg:grid-cols-4 grid-cols-2 grid-flow-row auto-rows-max flex overflow-x-scroll gap-10 no-scrollbar">
+          class="flex grid-flow-row grid-cols-2 gap-10 overflow-x-scroll md:grid lg:grid-cols-4 auto-rows-max no-scrollbar">
           <DonationCard
             v-for="item in buckets"
             :key="item.id"

@@ -22,7 +22,7 @@ import Footer from "../../components/layout/footer.vue";
         </h2>
         <p class="text-sm font-medium font-poppins sm:text-base">
           If you need help, you can chat with us on the app or send a message to
-          help@puthands.com.
+          hello@puthand.com.
         </p>
         <div
           class="w-[100%] bg-[#F9F9F9] flex gap-3 px-5 py-3 pb-5 rounded-lg mt-5"
@@ -82,7 +82,7 @@ import Footer from "../../components/layout/footer.vue";
             />
           </label>
           <div class="space-y-[20px]">
-            <p class="font-[600] text-[18px]">Tell us your Story</p>
+            <p class="font-[600] text-[18px]">How can we help you?</p>
             <div class="border rounded-2xl w-full border-[#000] p-3">
               <textarea
                 class="w-full bg-transparent border-none outline-none"

@@ -6,7 +6,9 @@
           <img src="/ham.svg" />
         </div>
         <div class="logo">
-          <img src="/logo1.svg" />
+          <Router-link to="/">
+            <img src="/logo1.svg" alt="logo" />
+          </Router-link>
         </div>
       </div>
 

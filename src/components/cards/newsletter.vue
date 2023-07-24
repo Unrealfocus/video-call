@@ -9,7 +9,7 @@
         </p>
         <p
           class="text-center font-poppins font-normal text-base text-[#242424] pt-2">
-          Sign up to our newsletters to know what we are up to and what’
+          Sign up to our newsletters to know what we are up to and what’s
           trending
         </p>
         <form @submit.prevent="submitNewsletterForm">

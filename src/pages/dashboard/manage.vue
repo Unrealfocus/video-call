@@ -76,10 +76,10 @@
     <p class="pt-10 text-[#939393]">Created {{ formattedCreatedAt }}</p>
 
     <section class="pt-5">
-      <div
+      <!-- <div
         class="flex font-semibold font-poppins bg-[#C8C8C8] rounded-md py-2 px-5 w-[200px]">
         Days:30days left
-      </div>
+      </div> -->
     </section>
     <dl class="flex pt-4">
       <div class="flex flex-1 mr-3 rounded-full bg-[#EAF9F0]">
@@ -94,32 +94,34 @@
       >Total Raised is <span> <img src="/money.svg" alt="" /></span>
       <span class="text-black">{{ buck.donated }}</span></P
     >
-    <div class="items-center lg:flex sm:block">
+    <div class="items-center sm:block">
       <div v-if="manageCount == 3" class="">
         <button @click="toggleNext">toggle page 3</button>
       </div>
 
-      <button
-        class="flex text-left gap-2 items-center bg-appGreen300 rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#FFFFFF] mt-5"
-        type="button"
-        @click="toogleSection">
-        <img src="/basil_edit-outline.svg" alt="" />
-        edit/settings
-      </button>
+      <div>
+        <div class="md:flex items-center py-5 space-y-5 space-x-5">
+          <button
+            class="flex text-left gap-2 items-center bg-appGreen300 rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#FFFFFF] mt-5"
+            type="button"
+            @click="toogleSection">
+            <img src="/basil_edit-outline.svg" alt="" />
+            <p>edit/settings</p>
+          </button>
 
-      <div class="flex items-center gap-3">
-        <div
-          class="flex py-2 text-sm font-semibold text-left rounded-md font-poppins">
-          Preview fundraiser
-        </div>
+          <button
+            @click="this.$router.push('/bucket/' + buck.bucket.bucket_id)"
+            class="flex py-2 text-sm font-semibold text-left rounded-md font-poppins">
+            Preview fundraiser
+          </button>
 
-        <router-link to="/withdrawal"
-          ><button
+          <button
+            @click="this.$router.push('/withdrawal')"
             class="flex items-center gap-2 text-left bg-[#EAF9F0] rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#295F2D] mt-5">
             <img src="/uil_money-withdraw.svg" alt="" />
             withdrawal
-          </button></router-link
-        >
+          </button>
+        </div>
       </div>
 
       <div class="">
@@ -138,11 +140,50 @@
             impressive 60%?"
           </p>
           <button
+            @click="showConfirmationModal1"
             class="px-16 py-2 text-[#295F2D] border-[#295F2D] border rounded-xl">
             share
           </button>
         </div>
       </section>
+      <div
+        v-if="showModal1"
+        class="fixed top-0 left-0 flex items-center justify-center w-full h-screen bg-gray-800 bg-opacity-50">
+        <div
+          ref="modalContainer"
+          class="p-5 bg-white shadow rounded-3xl w-[80%] lg:w-[40%] modal-container">
+          <div class="p-4">
+            <h3 class="text-3xl font-bold font-poppins">By Sharing</h3>
+            <p class="pt-5 text-base font-medium font-poppins">
+              Sharing fundraisers on social media can increase your donations by
+              up to 8 times.
+            </p>
+            <div class="my-5">
+              <div
+                class="border rounded-3xl border-[#484848] p-2 overflow-hidden">
+                <p class="w-full text-[14px]">
+                  https://puthand.com/bucket/{{ buck.bucket.bucket_id }}
+                </p>
+              </div>
+            </div>
+            <div class="flex justify-between">
+              <button
+                @click="copyLinkAndCloseModal"
+                class="inset-y-2 right-0 flex md:mx-0 mx-auto items-center justify-center px-5 py-6 text-[white] md:mr-2 bg-[#295F2D] rounded-3xl h-[36px] mt-3 lg:mt-0"
+                action="input">
+                copy link
+              </button>
+              <button
+                @click="closeModal"
+                class="inset-y-2 right-0 flex md:mx-0 mx-auto items-center justify-center px-5 py-6 text-[white] w-[90px] md:mr-2 bg-red-800 rounded-3xl h-[36px] mt-3 lg:mt-0"
+                action="input">
+                close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <section class="flex items-center mt-20 mb-20">
         <div
           v-for="(tab, index) in tabs"
@@ -178,7 +219,7 @@
         Share Fundraiser
       </button> -->
       </div>
-      <div v-show="activeTab === 1">
+      <!-- <div v-show="activeTab === 1">
         <div class="space-y-[20px] pb-5">
           <p class="text-lg font-semibold font-poppins text-[#484848]">
             Write a new update
@@ -189,14 +230,85 @@
               rows="4"></textarea>
           </div>
 
-          <div class="pt-5"><p>Add a Photos</p></div>
+          <p class="text-lg font-semibold font-poppins text-[#484848]">
+            Add a Photo
+          </p>
+          <div class="flex gap-5">
+            <div class="border-[#000] border rounded-3xl">
+              <div class="space-y-[10px]">
+                <div class="flex items-center justify-center w-full py-10">
+                  <label for="postFile1">
+                    <img :src="imageUrls[0]" />
+                    <p
+                      class="text-[#939393] font-[500] text-[16px] font-poppins cursor-pointer">
+                      {{
+                        imageFileNames[0]
+                          ? imageFileNames[0]
+                          : "Drag or upload your images here"
+                      }}
+                    </p>
+                  </label>
+                  <input
+                    type="file"
+                    id="postFile1"
+                    @change="chooseImage(0)"
+                    class="hidden" />
+                </div>
+              </div>
+            </div>
+            <div class="border-[#000] border rounded-3xl">
+              <div class="space-y-[10px]">
+                <div class="flex items-center justify-center w-full py-10">
+                  <label for="postFile2">
+                    <img :src="imageUrls[1]" />
+                    <p
+                      class="text-[#939393] font-[500] text-[16px] font-poppins cursor-pointer">
+                      {{
+                        imageFileNames[1]
+                          ? imageFileNames[1]
+                          : "Drag or upload your images here"
+                      }}
+                    </p>
+                  </label>
+                  <input
+                    type="file"
+                    id="postFile2"
+                    @change="chooseImage(1)"
+                    class="hidden" />
+                </div>
+              </div>
+            </div>
+            <div class="border-[#000] border rounded-3xl">
+              <div class="space-y-[10px]">
+                <div class="flex items-center justify-center w-full py-10">
+                  <label for="postFile3">
+                    <img :src="imageUrls[2]" />
+                    <p
+                      class="text-[#939393] font-[500] text-[16px] font-poppins cursor-pointer">
+                      {{
+                        imageFileNames[2]
+                          ? imageFileNames[2]
+                          : "Drag or upload your images here"
+                      }}
+                    </p>
+                  </label>
+                  <input
+                    type="file"
+                    id="postFile3"
+                    @change="chooseImage(2)"
+                    class="hidden" />
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div class="pt-10"></div>
 
           <div>
-            <p class="text-lg font-semibold font-poppins text-[#484848]">
+            <button
+              class="text-lg font-semibold font-buttonoppins text-[#484848]">
               Share Update
-            </p>
+            </button>
             <div class="flex items-center gap-2 pt-3">
               <label class="inline-flex items-center">
                 <input
@@ -228,9 +340,13 @@
               class="px-20 py-2 text-base font-semibold text-white bg-appGreen200 rounded-xl font-poppins">
               Save Changes
             </button>
+            <button
+              class="px-20 py-2 text-base font-semibold text-[#295F2D] border border-[#295F2D] rounded-xl font-poppins">
+              Cancel Changes
+            </button>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -238,6 +354,8 @@
 <script>
 import bucket from "../../components/manageBucket/bucket.vue";
 import moment from "moment";
+import SingleBucket from "../buckets/SingleBucket.vue";
+import { copyToClipBoard } from "../../hooks/dashboardHooks/manage.ts";
 
 export default {
   name: "manage",
@@ -245,30 +363,100 @@ export default {
   components: {
     bucket,
     moment,
+    SingleBucket,
   },
   computed: {
     formattedCreatedAt() {
       const createdAt = moment(this.buck.bucket.created_at);
       return createdAt.fromNow(); // Example: "3 days ago"
     },
+    concatenatedUrl() {
+      const origin = window.location.origin;
+      return `${origin}/bucket/${this.id}`;
+    },
   },
   data() {
     return {
+      id: "",
       buck: {},
       assets: "",
       manageCount: 1,
+      imageFileNames: ["", "", ""], // Array to hold the filenames of the selected images
+      imageUrls: ["", "", ""], // Array to hold the URLs of the selected images
       activeTab: 0,
       tabs: ["Donator", "Bucket Updates"],
       dropdownOpen: false,
       showModal: false,
+      showModal1: false,
       showSuccess: false,
+      showCopyFeedback: false,
+      copyButtonLabel: "Copy",
+      condition: true,
     };
   },
   mounted() {
     this.bucket = this.$store.state.bucket;
     this.assets = import.meta.env.VITE_APP_ASSETS;
   },
+  beforeUnmount() {
+    window.removeEventListener("click", this.handleClickOutside);
+  },
   methods: {
+    async upload() {
+      this.loading = true;
+      const uploadLink =
+        import.meta.env.VITE_APP_ENGINE + "upload_bucket_image";
+      const data = new FormData();
+
+      if (this.imageFile) {
+        data.append("image", this.imageFile);
+        data.append("bucket_id", this.bucket_id);
+      }
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + this.$store.state.token;
+      axios.defaults.headers.common["Content-Type"] = "multipart/form-data";
+      await axios
+        .post(uploadLink, data)
+        .then((res) => {
+          this.loading = false;
+          this.currentStep++;
+        })
+        .catch((err) => {
+          this.loading = false;
+          let error = err.response.data.message;
+          swal(error, {
+            icon: "error",
+            buttons: false,
+            timer: 3000,
+            class: "font-poppins font-[700] text-[300px]",
+          });
+        });
+    },
+    chooseImage(index) {
+      const file = event.target.files[0];
+      if (file) {
+        this.imageFileNames[index] = file.name;
+
+        // Read the file and generate a URL for the preview
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.imageUrls[index] = reader.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    },
+
+    copyLinkAndCloseModal() {
+      copyToClipBoard(
+        "https://puthand.com/bucket/" + this.buck.bucket.bucket_id
+      );
+      this.showModal1 = false;
+    },
+
+    closeModal() {
+      this.showModal1 = false;
+    },
+
     withdraw(donated, bucket_id) {
       let payload = {
         donated: donated,
@@ -296,7 +484,7 @@ export default {
       this.manageCount--;
     },
     toogleSection() {
-      this.$emit("edit");
+      this.$router.push("/dashboard/edit/" + this.buck.bucket.bucket_id);
     },
     toggleDropdown() {
       this.dropdownOpen = !this.dropdownOpen;
@@ -304,17 +492,15 @@ export default {
     showConfirmationModal() {
       this.showModal = true;
     },
+    showConfirmationModal1() {
+      this.showModal1 = true;
+    },
     cancelClose() {
       this.showModal = false;
     },
     closeBucket() {
-      // Perform the close bucket action here
       this.showModal = false;
       this.showSuccess = true;
-      // updateAlert("success", "", "Bucket successfully closed");
-      // setTimeout(() => {
-      //   this.showSuccess = false;
-      // }, 1000);
     },
   },
 };
