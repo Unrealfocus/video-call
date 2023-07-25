@@ -209,7 +209,7 @@
       <button
         @click="saveChanges"
         class="flex items-center justify-center mx-auto rounded-md bg-[#295F2D] px-20 text-[#FFFFFF] mt-5 py-3">
-        Save Changes
+        {{ loading == true ? "loading..." : "Save changes" }}
       </button>
     </div>
   </div>
@@ -231,6 +231,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       title: "",
       description: "",
       manageCount: 1,
@@ -278,6 +279,7 @@ export default {
     // },
 
     async saveChanges() {
+      this.loading = true;
       const params = {
         link: import.meta.env.VITE_APP_ENGINE + "update_bucket",
         user_id: this.$store.state.user.user_id,
@@ -287,7 +289,15 @@ export default {
         description: this.description,
       };
 
-      updateBucket(params);
+      const result = updateBucket(params);
+      result == true
+        ? console.log("continue")
+        : swal(error, {
+            icon: "Opps! Something went wrong",
+            buttons: false,
+            timer: 3000,
+            class: "font-poppins font-[700] text-[300px]",
+          });
 
       // if (this.imageFileNames.length > 0) {
       //   const uploadLink =

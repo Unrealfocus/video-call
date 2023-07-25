@@ -28,7 +28,7 @@ const updateBucket = async (params: updateBucketParams) => {
       return true;
     })
     .catch((err) => {
-      alert(err);
+      return false;
       // return err.message;
     });
 };
