@@ -8,6 +8,7 @@ export default {
       email: "",
       password: "",
       loading: false,
+      seePassword: false,
     };
   },
   methods: {
@@ -65,17 +66,23 @@ export default {
               id="email"
               autocomplete="email"
               placeholder="Email address"
-              v-model="email"
-            />
-            <input
-              class="mt-4 app-input"
-              type="password"
-              name="password"
-              id="password"
-              autocomplete="password"
-              placeholder="Password"
-              v-model="password"
-            />
+              v-model="email" />
+
+            <div class="flex items-center justify-between mt-4 app-input">
+              <input
+                class="bg-transparent outline-none"
+                :type="[seePassword == true ? 'password' : 'text']"
+                name="password"
+                id="password"
+                autocomplete="password"
+                placeholder="Password"
+                v-model="password" />
+
+              <div class="" @click="seePassword = !seePassword">
+                <i class="fas fa-eye-slash" v-if="seePassword == false"></i>
+                <i class="fas fa-eye" v-if="seePassword == true"></i>
+              </div>
+            </div>
           </section>
           <div class="py-7 font-poppins font-semibold text-xs text-[#295F2D]">
             Forgotten Password?
@@ -87,8 +94,7 @@ export default {
                 <button
                   @click="this.$router.push('/signup')"
                   class="underline text-appGreen200"
-                  type="button"
-                >
+                  type="button">
                   Sign Up
                 </button></span
               >
@@ -98,8 +104,7 @@ export default {
                 <button
                   type="button"
                   class="w-full rounded-2xl bg-[#2A5E2A] border-[1px] border-[#fff] text-[#fff] py-3 text-[14px] m-3"
-                  @click="signin"
-                >
+                  @click="signin">
                   <span class="text-base font-bold font-poppins">
                     {{ loading == true ? "loading..." : "Sign In" }}</span
                   >

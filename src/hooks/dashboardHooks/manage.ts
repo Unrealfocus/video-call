@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from "sweetalert";
 
 type updateBucketParams = {
   user_id: string;
@@ -28,8 +29,13 @@ const updateBucket = async (params: updateBucketParams) => {
       return true;
     })
     .catch((err) => {
-      return false;
-      // return err.message;
+      swal("Oops! something went wrong", {
+        icon: "error",
+        timer: 3000,
+        buttons: {
+          cancel: false,
+        },
+      });
     });
 };
 

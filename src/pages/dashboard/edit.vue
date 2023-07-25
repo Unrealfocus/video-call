@@ -289,15 +289,8 @@ export default {
         description: this.description,
       };
 
-      const result = updateBucket(params);
-      result == true
-        ? console.log("continue")
-        : swal(error, {
-            icon: "Opps! Something went wrong",
-            buttons: false,
-            timer: 3000,
-            class: "font-poppins font-[700] text-[300px]",
-          });
+      updateBucket(params);
+      this.loading = false;
 
       // if (this.imageFileNames.length > 0) {
       //   const uploadLink =
