@@ -112,7 +112,7 @@ export default {
             <div class="w-full">
               <div class="lg:flex justify-between space-x-[10px]">
                 <div
-                  class="lg:w-[68%] bg-[#939393] h-[500px] w-auto flex justify-center items-center">
+                  class="lg:w-[68%] bg-[#939393] lg:h-[500px] w-auto flex justify-center items-center">
                   <img
                     :src="assets + bucket.images[0].image_url"
                     class="lg:h-[500px]" />
