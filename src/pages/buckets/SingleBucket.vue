@@ -56,6 +56,7 @@ export default {
           console.log("Link copied to clipboard!");
           this.showCopyFeedback = true;
           this.copyButtonLabel = "Copied!";
+          alert("your link has been copied to clip board");
           setTimeout(() => {
             this.showCopyFeedback = false;
             this.copyButtonLabel = "Copy";
@@ -177,28 +178,26 @@ export default {
                 class="fixed top-0 left-0 flex items-center justify-center w-screen h-screen bg-gray-800 bg-opacity-50">
                 <div
                   ref="modalContainer"
-                  class="p-5 bg-white shadow rounded-3xl w-[40%] h-[38%] modal-container">
+                  class="bg-white shadow rounded-3xl w-[90%] md:w-[50%] modal-container">
                   <div class="p-8">
                     <h3 class="text-3xl font-bold font-poppins">By Sharing</h3>
                     <p class="pt-5 text-base font-medium font-poppins">
                       Sharing fundraisers on social media can increase your
                       donations by up to 8 times.
                     </p>
-                    <div class="relative">
+                    <div class="py-5">
                       <div
-                        class="border rounded-3xl py-8 mt-10 border-[#484848]">
-                        <p>{{ currentUrl }}</p>
+                        class="border rounded-full border-[#484848] flex justify-between px-3 items-center py-2">
+                        <p class="w-[200px] overflow-hidden">
+                          {{ currentUrl }}
+                        </p>
+
                         <button
                           @click="copyLinkAndCloseModal"
-                          class="inset-y-2 right-0 flex md:mx-0 mx-auto items-center justify-center px-5 py-6 text-[white] w-[90px] md:mr-2 bg-[#295F2D] rounded-3xl h-[36px] lg:absolute mt-3 lg:mt-0"
+                          class="text-white bg-[#295F2D] rounded-3xl px-5 py-3"
                           action="input">
                           {{ copyButtonLabel }}
                         </button>
-                        <div
-                          v-if="showCopyFeedback"
-                          class="mt-2 text-sm text-green-500">
-                          Link copied!
-                        </div>
                       </div>
                     </div>
                   </div>

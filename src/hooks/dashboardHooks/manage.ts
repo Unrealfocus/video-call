@@ -11,8 +11,14 @@ type updateBucketParams = {
 };
 
 const copyToClipBoard = (input: string) => {
-  navigator.clipboard.writeText(input);
-  alert("Bucket link copied to clipboard. \n" + input);
+  navigator.clipboard
+    .writeText(input)
+    .then(() => {
+      alert("Bucket link copied to clipboard. \n" + input);
+    })
+    .catch(() => {
+      alert("oops! somthing went wrong");
+    });
 };
 
 const updateBucket = async (params: updateBucketParams) => {
