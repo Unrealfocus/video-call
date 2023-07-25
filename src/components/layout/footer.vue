@@ -7,8 +7,7 @@ export default {
 <template>
   <footer class="pt-3 pb-5 mx-3 bg-bgDarkerGreen px-14 rounded-3xl">
     <section
-      class="container grid justify-center mx-auto my-3 lg:grid-cols-2 sm:grid-cols-1 lg:items-center lg:mt-20 sm:mt-20"
-    >
+      class="container grid justify-center mx-auto my-3 lg:grid-cols-2 sm:grid-cols-1 lg:items-center lg:mt-20 sm:mt-20">
       <div class="">
         <img src="/Logo.svg" alt="logo" class="mb-5" />
       </div>
@@ -19,8 +18,7 @@ export default {
             <li
               v-for="category in categories"
               :key="category"
-              class="pb-2 text-sm font-medium font-poppins"
-            >
+              class="pb-2 text-sm font-medium font-poppins">
               <router-link to="/buckets">
                 {{ category.name }}
               </router-link>
@@ -59,16 +57,14 @@ export default {
       </section>
     </section>
     <div
-      class="flex flex-col-reverse justify-between w-full lg:px-24 lg:flex-row"
-    >
+      class="flex flex-col-reverse justify-between w-full lg:px-24 lg:flex-row">
       <div>
         <ul
-          class="md:flex lg:flex sm:block gap-11 mt-20 text-[#fff] items-center"
-        >
+          class="md:flex lg:flex sm:block gap-11 mt-20 text-[#fff] items-center">
           <li class="text-sm font-medium font-poppins">© 2023</li>
           <li class="text-sm font-medium font-poppins">Put Hand</li>
           <li class="text-sm font-medium font-poppins">Terms</li>
-          <li class="text-sm font-medium font-poppins">Private Policy</li>
+          <li class="text-sm font-medium font-poppins">Privacy Policy</li>
         </ul>
       </div>
       <div class="">
