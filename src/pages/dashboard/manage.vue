@@ -116,7 +116,7 @@
           </button>
 
           <button
-            @click="this.$router.push('/withdrawal')"
+            @click="this.$router.push('/withdrawal/' + buck.bucket.bucket_id)"
             class="flex items-center gap-2 text-left bg-[#EAF9F0] rounded-md py-2 px-7 font-semibold font-poppins text-sm text-[#295F2D] mt-5">
             <img src="/uil_money-withdraw.svg" alt="" />
             withdrawal
