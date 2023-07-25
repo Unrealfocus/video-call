@@ -31,14 +31,15 @@
             v-for="item in buckets"
             :key="item.id"
             :item="item"
-            :assets="assets" />
+            :assets="assets"
+            class="my-5" />
         </div>
       </div>
       <div class="flex justify-center py-52">
-        <button
+        <!-- <button
           class="bg-[#fff] border rounded-lg py-[8px] px-[91px] font-[500] font-poppins text-[16px]">
           View more
-        </button>
+        </button> -->
       </div>
     </div>
   </div>

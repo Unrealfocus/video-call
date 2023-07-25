@@ -178,7 +178,7 @@ export default {
                 class="fixed top-0 left-0 flex items-center justify-center w-screen h-screen bg-gray-800 bg-opacity-50">
                 <div
                   ref="modalContainer"
-                  class="bg-white shadow rounded-3xl w-[90%] md:w-[50%] modal-container">
+                  class="bg-white shadow rounded-3xl w-[90%] lg:w-[30%] modal-container">
                   <div class="p-8">
                     <h3 class="text-3xl font-bold font-poppins">By Sharing</h3>
                     <p class="pt-5 text-base font-medium font-poppins">
@@ -188,7 +188,7 @@ export default {
                     <div class="py-5">
                       <div
                         class="border rounded-full border-[#484848] flex justify-between px-3 items-center py-2">
-                        <p class="w-[200px] overflow-hidden">
+                        <p class="lg:w-[w-full] overflow-hidden">
                           {{ currentUrl }}
                         </p>
 
