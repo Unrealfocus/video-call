@@ -79,9 +79,7 @@
               class="rounded-3xl flex-shrink-0 group/item w-[50%] md:w-1/2 lg:w-1/5 p-2 m-2">
               <div
                 class="border-[#000] bg-[#484848] border w-full flex justify-center">
-                <img
-                  :src="assets + image.image_url"
-                  class="h-[200px] w-auto rounded-3xl" />
+                <img :src="assets + image.image_url" class="h-[200px] w-auto" />
                 <div class=""></div>
               </div>
               <div class="py-3">
@@ -266,7 +264,7 @@ export default {
     this.description = this.buck.description;
   },
   methods: {
-    deleteBucketImage(image_id) {
+    async deleteBucketImage(image_id) {
       if (this.images.length < 2) {
         swal("Upload a new image in order to delete this one", {
           icon: "error",
@@ -284,7 +282,9 @@ export default {
         bucket_id: this.buck.bucket_id,
         link: import.meta.env.VITE_APP_ENGINE + "delete_image",
       };
-      deleteImage(params);
+      await deleteImage(params).then(() => {
+        this.$router.go(0);
+      });
     },
 
     async saveChanges() {
