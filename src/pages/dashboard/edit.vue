@@ -56,6 +56,7 @@
           <div class="flex overflow-x-scroll no-scrollbar">
             <!-- class="border-[#000] border rounded-3xl w-[50%] md:w-[20%] h-[200px]"> -->
             <div
+              :class="[images.length > 5 ? 'hidden' : '']"
               class="border-[#000] border rounded-3xl flex justify-center flex-shrink-0 group/item w-[40%] md:w-1/2 lg:w-1/5 p-2 m-2">
               <div class="">
                 <label for="postFile1">
@@ -84,6 +85,7 @@
           <div class="">
             <button
               @click="saveImage"
+              :class="[images.length > 5 ? 'hidden' : '']"
               class="mx-auto rounded-md bg-[#295F2D] px-20 text-[#FFFFFF] mt-5 py-3">
               {{ loading == true ? "loading..." : "Save Image" }}
             </button>

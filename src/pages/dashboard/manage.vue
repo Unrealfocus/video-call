@@ -130,13 +130,17 @@
           class="rounded-2xl lg:h-[500px]"
           alt="" />
       </div>
-      <div class="flex space-x-5 py-5">
+      <div class="flex space-x-2 py-5">
         <div
+          :class="[currentImage == index ? ' bg-[#295F2D]' : '']"
           class="w-[40px] h-[50px] flex items-center cursor-pointer hover:h-[40px]"
           v-for="(image, index) in buck.images"
           :key="index"
           @click="selectImage(index)">
-          <img :src="assets + image.image_url" class="w-full h-[40px]" alt="" />
+          <img
+            :src="assets + image.image_url"
+            class="w-[40px] h-[50px]"
+            alt="" />
         </div>
       </div>
 
