@@ -279,35 +279,6 @@ export default {
 
       updateBucket(params);
       this.loading = false;
-
-      // if (this.imageFileNames.length > 0) {
-      //   const uploadLink =
-      //     import.meta.env.VITE_APP_ENGINE + "upload_bucket_image";
-      //   const data = new FormData();
-
-      //   if (this.imageFile) {
-      //     data.append("image", this.imageFile);
-      //     data.append("bucket_id", this.buck.bucket_id);
-      //   }
-      //   axios.defaults.headers.common["Authorization"] =
-      //     "Bearer " + this.$store.state.token;
-      //   axios.defaults.headers.common["Content-Type"] = "multipart/form-data";
-      //   await axios
-      //     .post(uploadLink, data)
-      //     .then((res) => {})
-      //     .catch((err) => {
-      //       this.loading = false;
-      //       let error = err.response.data.message;
-      //       swal(error, {
-      //         icon: "error",
-      //         buttons: false,
-      //         timer: 3000,
-      //         class: "font-poppins font-[700] text-[300px]",
-      //       });
-      //     });
-
-      //   alert("image uploaded");
-      // }
     },
 
     toggleNext() {
@@ -352,6 +323,7 @@ export default {
             timer: 3000,
             class: "font-poppins font-[700] text-[300px]",
           });
+          this.$router.go(0);
         })
         .catch((err) => {
           this.loading = false;
@@ -374,17 +346,6 @@ export default {
 
     chooseImage(e) {
       this.imageFile = e.target.files[0];
-      // const file = event.target.files[0];
-      // if (file) {
-      //   this.imageFileNames[index] = file.name;
-
-      //   // Read the file and generate a URL for the preview
-      //   const reader = new FileReader();
-      //   reader.onload = () => {
-      //     this.imageUrls[index] = reader.result;
-      //   };
-      //   reader.readAsDataURL(file);
-      // }
     },
   },
 };
