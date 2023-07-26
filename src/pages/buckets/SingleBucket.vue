@@ -105,7 +105,7 @@ export default {
             <p>{{ bucket.category }}</p>
             <img src="/Vector.svg" alt="vector" class="px-2" />
           </button>
-          <div class="author flex space-x-[12px]">
+          <div class="author flex space-x-[12px] py-2">
             <p class="text-[#939393] font-[500]">
               Created by {{ bucket.author }}
             </p>
@@ -128,7 +128,7 @@ export default {
                       v-for="(image, index) in bucket.images"
                       :key="index"
                       @click="selectImage(index)"
-                      class="">
+                      class="cursor-pointer">
                       <img
                         :src="assets + image.image_url"
                         class="w-[50px] h-[50px]" />

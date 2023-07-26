@@ -8,7 +8,7 @@ export default {
       email: "",
       password: "",
       loading: false,
-      seePassword: false,
+      seePassword: true,
     };
   },
   methods: {
