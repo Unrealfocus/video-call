@@ -10,6 +10,10 @@ type updateBucketParams = {
   link: string;
 };
 
+type imageType = {
+  bucket_id: string;
+};
+
 const copyToClipBoard = (input: string) => {
   navigator.clipboard
     .writeText(input)
@@ -45,6 +49,6 @@ const updateBucket = async (params: updateBucketParams) => {
     });
 };
 
-const getSingleBucket = () => {};
+const uploadImage = (params: imageType) => {};
 
-export { copyToClipBoard, updateBucket };
+export { copyToClipBoard, updateBucket, uploadImage };

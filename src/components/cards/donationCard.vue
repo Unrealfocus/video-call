@@ -10,6 +10,7 @@ export default {
         :src="assets + item.images[0].image_url"
         class="object-cover object-center w-full h-44 rounded-2xl"
         alt="" />
+
       <button
         type="button"
         class="flex items-center px-2 py-1 my-3 rounded-lg bg-appGreen100">

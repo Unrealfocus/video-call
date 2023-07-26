@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto w-full md:w-[90%]">
+  <div class="lg:w-[85%] mx-auto">
     <div class="px-[10px] md:px-[30px] py-[50px] bg-white">
       <div>
         <button
@@ -53,53 +53,40 @@
           <p class="text-lg font-semibold font-poppins text-[#484848] py-5">
             Add a Photo
           </p>
-          <div class="flex gap-5">
-            <div class="border-[#000] border rounded-3xl md:w-[20%]">
-              <div class="space-y-[10px]">
-                <div
-                  class="flex items-center justify-center w-full py-10 mx-auto">
-                  <label for="postFile1">
-                    <img :src="imageUrls[0]" class="w-full" />
-                    <p
-                      class="text-[#939393] font-[500] text-[16px] font-poppins cursor-pointer p-[10px]">
-                      {{
-                        imageFileNames[0]
-                          ? imageFileNames[0]
-                          : "Upload your image here"
-                      }}
-                    </p>
-                  </label>
-                  <input
-                    type="file"
-                    id="postFile1"
-                    @change="chooseImage(0)"
-                    class="hidden" />
-                </div>
+          <div class="flex overflow-x-scroll no-scrollbar">
+            <!-- class="border-[#000] border rounded-3xl w-[50%] md:w-[20%] h-[200px]"> -->
+            <div
+              class="border-[#000] border rounded-3xl flex justify-center flex-shrink-0 group/item w-[40%] md:w-1/2 lg:w-1/5 p-2 m-2">
+              <div class="">
+                <label for="postFile1">
+                  <!-- <img :src="imageUrls[0]" class="w-full" /> -->
+                  <p
+                    class="text-[#939393] font-[500] text-[16px] font-poppins cursor-pointer p-[10px]">
+                    {{ imageFile.name ? imageFile.name : "Upload image here" }}
+                  </p>
+                </label>
+                <input
+                  type="file"
+                  id="postFile1"
+                  @change="chooseImage"
+                  class="hidden" />
               </div>
             </div>
-            <div class="border-[#000] border rounded-3xl md:w-[20%]">
-              <div class="space-y-[10px]">
-                <div
-                  class="flex items-center justify-center w-full py-10 mx-auto">
-                  <label for="postFile1">
-                    <img :src="imageUrls[0]" class="w-full" />
-                    <p
-                      class="text-[#939393] font-[500] text-[16px] font-poppins cursor-pointer p-[10px]">
-                      {{
-                        imageFileNames[0]
-                          ? imageFileNames[0]
-                          : "Upload your image here"
-                      }}
-                    </p>
-                  </label>
-                  <input
-                    type="file"
-                    id="postFile1"
-                    @change="chooseImage(0)"
-                    class="hidden" />
-                </div>
-              </div>
+            <!-- class="border-[#000] border rounded-3xl flex justify-center p-2 w-[50%] md:w-[20%] h-[200px] " -->
+            <div
+              v-for="image in images"
+              class="border-[#000] border rounded-3xl flex justify-center flex-shrink-0 group/item w-[50%] md:w-1/2 lg:w-1/5 p-2 m-2">
+              <img
+                :src="assets + image.image_url"
+                class="h-[200px] w-auto rounded-3xl" />
             </div>
+          </div>
+          <div class="">
+            <button
+              @click="saveImage"
+              class="mx-auto rounded-md bg-[#295F2D] px-20 text-[#FFFFFF] mt-5 py-3">
+              {{ loading == true ? "loading..." : "Save Image" }}
+            </button>
           </div>
         </div>
 
@@ -238,9 +225,9 @@ export default {
       edit: true,
       params: {},
       buck: {},
+      images: [],
       assets: "",
-      imageFileNames: [], // Array to hold the filenames of the selected images
-      imageUrls: [],
+      imageFile: [],
       tabs: ["Edit", "Settings"],
     };
   },
@@ -251,6 +238,7 @@ export default {
     //get buckets
     await axios.get(app + "bucket/" + this.$route.params.id).then((res) => {
       this.buck = res.data.data.bucket;
+      this.images = res.data.data.images;
       this.title = this.buck.title;
       this.description = this.buck.description;
     });
@@ -331,19 +319,72 @@ export default {
     togglePrev() {
       this.manageCount--;
     },
-
-    chooseImage(index) {
-      const file = event.target.files[0];
-      if (file) {
-        this.imageFileNames[index] = file.name;
-
-        // Read the file and generate a URL for the preview
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.imageUrls[index] = reader.result;
-        };
-        reader.readAsDataURL(file);
+    async saveImage() {
+      if (this.imageFile.length < 1) {
+        swal("select an image file", {
+          icon: "error",
+          buttons: false,
+          timer: 3000,
+          class: "font-poppins font-[700] text-[300px]",
+        });
+        return;
       }
+      this.loading = true;
+      const uploadLink =
+        import.meta.env.VITE_APP_ENGINE + "upload_bucket_image";
+      const data = new FormData();
+
+      if (this.imageFile) {
+        data.append("image", this.imageFile);
+        data.append("bucket_id", this.buck.bucket_id);
+      }
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + this.$store.state.token;
+      axios.defaults.headers.common["Content-Type"] = "multipart/form-data";
+      await axios
+        .post(uploadLink, data)
+        .then((res) => {
+          this.loading = false;
+          this.imageFile = [];
+          swal("Image added successfully", {
+            icon: "success",
+            buttons: false,
+            timer: 3000,
+            class: "font-poppins font-[700] text-[300px]",
+          });
+        })
+        .catch((err) => {
+          this.loading = false;
+          let error = err.response.data.message;
+          swal(error, {
+            icon: "error",
+            buttons: false,
+            timer: 3000,
+            class: "font-poppins font-[700] text-[300px]",
+          });
+        });
+
+      await axios.get(app + "bucket/" + this.$route.params.id).then((res) => {
+        this.buck = res.data.data.bucket;
+        this.images = res.data.data.images;
+        this.title = this.buck.title;
+        this.description = this.buck.description;
+      });
+    },
+
+    chooseImage(e) {
+      this.imageFile = e.target.files[0];
+      // const file = event.target.files[0];
+      // if (file) {
+      //   this.imageFileNames[index] = file.name;
+
+      //   // Read the file and generate a URL for the preview
+      //   const reader = new FileReader();
+      //   reader.onload = () => {
+      //     this.imageUrls[index] = reader.result;
+      //   };
+      //   reader.readAsDataURL(file);
+      // }
     },
   },
 };
