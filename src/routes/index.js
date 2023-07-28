@@ -7,6 +7,7 @@ import ContactUs from "../pages/contact/contactUs.vue";
 import Index from "../pages/dashboard/Index.vue";
 import dashboardLayout from "../components/layout/dashboardLayout.vue";
 import signin from "../pages/auth/login.vue";
+import ResetPassword from "../pages/auth/reset.vue";
 import AccountSettings from "../pages/dashboard/accountSettings.vue";
 import SecuritySettings from "../pages/dashboard/securitySettings.vue";
 // import DonationsPage from "../pages/dashboard/donation.vue";
@@ -24,6 +25,7 @@ import SeeBuckets from "../pages/buckets/SeeBuckets.vue";
 import SingleBucket from "../pages/buckets/SingleBucket.vue";
 import donate from "../pages/buckets/donate.vue";
 
+
 export const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -35,7 +37,6 @@ export const router = createRouter({
       path: "/about-us",
       component: AboutUs,
     },
-
     {
       path: "/works",
       component: works,
@@ -104,6 +105,10 @@ export const router = createRouter({
     {
       path: "/sign-in",
       component: signin,
+    },
+    {
+      path: "/resetpassword",
+      component: ResetPassword,
     },
     {
       path: "/edit",
