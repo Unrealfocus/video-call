@@ -56,6 +56,7 @@
           <div class="flex overflow-x-scroll no-scrollbar">
             <!-- class="border-[#000] border rounded-3xl w-[50%] md:w-[20%] h-[200px]"> -->
             <div
+              :class="[images.length > 5 ? 'hidden' : '']"
               class="border-[#000] border rounded-3xl flex justify-center flex-shrink-0 group/item w-[40%] md:w-1/2 lg:w-1/5 p-2 m-2">
               <div class="">
                 <label for="postFile1">
@@ -75,15 +76,25 @@
             <!-- class="border-[#000] border rounded-3xl flex justify-center p-2 w-[50%] md:w-[20%] h-[200px] " -->
             <div
               v-for="image in images"
-              class="border-[#000] border rounded-3xl flex justify-center flex-shrink-0 group/item w-[50%] md:w-1/2 lg:w-1/5 p-2 m-2">
-              <img
-                :src="assets + image.image_url"
-                class="h-[200px] w-auto rounded-3xl" />
+              class="rounded-3xl flex-shrink-0 group/item w-[50%] md:w-1/2 lg:w-1/5 p-2 m-2">
+              <div
+                class="border-[#000] bg-[#484848] border w-full flex justify-center">
+                <img :src="assets + image.image_url" class="h-[200px] w-auto" />
+                <div class=""></div>
+              </div>
+              <div class="py-3">
+                <button
+                  @click="deleteBucketImage(image.image_id)"
+                  class="rounded-md px-3 bg-[#FEC8C8] hover:bg-red-500 text-[#B23737]">
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
           <div class="">
             <button
               @click="saveImage"
+              :class="[images.length > 5 ? 'hidden' : '']"
               class="mx-auto rounded-md bg-[#295F2D] px-20 text-[#FFFFFF] mt-5 py-3">
               {{ loading == true ? "loading..." : "Save Image" }}
             </button>
@@ -207,7 +218,10 @@ import bucket from "../../components/manageBucket/bucket.vue";
 import manage from "../dashboard/manage.vue";
 import SingleBucket from "../buckets/SingleBucket.vue";
 import axios from "axios";
-import { updateBucket } from "../../hooks/dashboardHooks/manage.ts";
+import {
+  updateBucket,
+  deleteImage,
+} from "../../hooks/dashboardHooks/manage.ts";
 
 export default {
   name: "edit",
@@ -250,21 +264,28 @@ export default {
     this.description = this.buck.description;
   },
   methods: {
-    // async updateBucketContent() {
-    //   try {
-    //     const updateLink = import.meta.env.VITE_APP_ENGINE + "update_bucket"; // Replace with your backend API endpoint to update the database
-    //     const payload = {
-    //       bucketId: "your_bucket_id", // Replace with the actual bucket ID for which you want to update the content
-    //       content: this.bucketContent,
-    //     };
-    //     await axios.post(updateLink, payload);
-    //     // If the update is successful, you can optionally show a success message or perform additional actions.
-    //     // For example: this.showSuccessMessage = true;
-    //   } catch (error) {
-    //     console.error("Error updating bucket content:", error);
-    //     // Handle the error or show an error message to the user.
-    //   }
-    // },
+    async deleteBucketImage(image_id) {
+      if (this.images.length < 2) {
+        swal("Upload a new image in order to delete this one", {
+          icon: "error",
+          timer: 3000,
+          buttons: {
+            cancel: false,
+          },
+        });
+        return;
+      }
+      const params = {
+        user_id: this.$store.state.user.user_id,
+        token: this.$store.state.token,
+        image_id: image_id,
+        bucket_id: this.buck.bucket_id,
+        link: import.meta.env.VITE_APP_ENGINE + "delete_image",
+      };
+      await deleteImage(params).then(() => {
+        this.$router.go(0);
+      });
+    },
 
     async saveChanges() {
       this.loading = true;
@@ -279,35 +300,6 @@ export default {
 
       updateBucket(params);
       this.loading = false;
-
-      // if (this.imageFileNames.length > 0) {
-      //   const uploadLink =
-      //     import.meta.env.VITE_APP_ENGINE + "upload_bucket_image";
-      //   const data = new FormData();
-
-      //   if (this.imageFile) {
-      //     data.append("image", this.imageFile);
-      //     data.append("bucket_id", this.buck.bucket_id);
-      //   }
-      //   axios.defaults.headers.common["Authorization"] =
-      //     "Bearer " + this.$store.state.token;
-      //   axios.defaults.headers.common["Content-Type"] = "multipart/form-data";
-      //   await axios
-      //     .post(uploadLink, data)
-      //     .then((res) => {})
-      //     .catch((err) => {
-      //       this.loading = false;
-      //       let error = err.response.data.message;
-      //       swal(error, {
-      //         icon: "error",
-      //         buttons: false,
-      //         timer: 3000,
-      //         class: "font-poppins font-[700] text-[300px]",
-      //       });
-      //     });
-
-      //   alert("image uploaded");
-      // }
     },
 
     toggleNext() {
@@ -352,6 +344,7 @@ export default {
             timer: 3000,
             class: "font-poppins font-[700] text-[300px]",
           });
+          this.$router.go(0);
         })
         .catch((err) => {
           this.loading = false;
@@ -374,17 +367,6 @@ export default {
 
     chooseImage(e) {
       this.imageFile = e.target.files[0];
-      // const file = event.target.files[0];
-      // if (file) {
-      //   this.imageFileNames[index] = file.name;
-
-      //   // Read the file and generate a URL for the preview
-      //   const reader = new FileReader();
-      //   reader.onload = () => {
-      //     this.imageUrls[index] = reader.result;
-      //   };
-      //   reader.readAsDataURL(file);
-      // }
     },
   },
 };

@@ -1,5 +1,6 @@
 import axios from "axios";
 import swal from "sweetalert";
+import { useRouter } from "vue-router";
 
 type updateBucketParams = {
   user_id: string;
@@ -11,6 +12,14 @@ type updateBucketParams = {
 };
 
 type imageType = {
+  bucket_id: string;
+};
+
+type deleteImageParams = {
+  image_id: string;
+  link: string;
+  user_id: string;
+  token: string;
   bucket_id: string;
 };
 
@@ -51,4 +60,34 @@ const updateBucket = async (params: updateBucketParams) => {
 
 const uploadImage = (params: imageType) => {};
 
-export { copyToClipBoard, updateBucket, uploadImage };
+const deleteImage = async (params: deleteImageParams) => {
+  axios.defaults.headers.common["Authorization"] = "Bearer " + params.token;
+
+  await axios
+    .post(params.link, {
+      user_id: params.user_id,
+      image_id: params.image_id,
+      bucket_id: params.bucket_id,
+    })
+    .then(() => {
+      swal("Image removed from this bucket", {
+        icon: "success",
+        timer: 3000,
+        buttons: {
+          cancel: false,
+        },
+      });
+      return true;
+    })
+    .catch((err) => {
+      swal("Oops! something went wrong", {
+        icon: "error",
+        timer: 3000,
+        buttons: {
+          cancel: false,
+        },
+      });
+    });
+};
+
+export { copyToClipBoard, updateBucket, uploadImage, deleteImage };

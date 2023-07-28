@@ -126,9 +126,22 @@
 
       <div class="">
         <img
-          :src="assets + buck.images[0].image_url"
+          :src="assets + buck.images[currentImage].image_url"
           class="rounded-2xl lg:h-[500px]"
           alt="" />
+      </div>
+      <div class="flex space-x-2 py-5">
+        <div
+          :class="[currentImage == index ? ' bg-[#295F2D]' : '']"
+          class="w-[40px] h-[50px] flex items-center cursor-pointer hover:h-[40px]"
+          v-for="(image, index) in buck.images"
+          :key="index"
+          @click="selectImage(index)">
+          <img
+            :src="assets + image.image_url"
+            class="w-[40px] h-[50px]"
+            alt="" />
+        </div>
       </div>
 
       <section class="">
@@ -385,6 +398,7 @@ export default {
       imageUrls: ["", "", ""], // Array to hold the URLs of the selected images
       activeTab: 0,
       tabs: ["Donator", "Bucket Updates"],
+      currentImage: 0,
       dropdownOpen: false,
       showModal: false,
       showModal1: false,
@@ -455,6 +469,10 @@ export default {
 
     closeModal() {
       this.showModal1 = false;
+    },
+
+    selectImage(index) {
+      this.currentImage = index;
     },
 
     withdraw(donated, bucket_id) {

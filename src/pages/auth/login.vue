@@ -5,9 +5,9 @@ import ForgetPassword from "../../components/auth/forgetPassword.vue";
 
 export default {
   name: "login",
-  components :{
-     Login,
-     ForgetPassword
+  components: {
+    Login,
+    ForgetPassword,
   },
   data() {
     return {
@@ -15,7 +15,7 @@ export default {
       password: "",
       loading: false,
       seePassword: false,
-      LoginFlow:"signin",
+      LoginFlow: "signin",
     };
   },
   methods: {
@@ -50,18 +50,17 @@ export default {
           });
         });
     },
-  async SendResetEmail() {
-      if(this.email.length<=0){
+    async SendResetEmail() {
+      if (this.email.length <= 0) {
         this.loading = false;
-        let error ="please type in your Email";
-            swal(error, {
-              icon: "error",
-              buttons: false,
-              timer: 3000,
-              class: "font-poppins font-[700] text-[300px]",
-            });
-      }
-      else {
+        let error = "please type in your Email";
+        swal(error, {
+          icon: "error",
+          buttons: false,
+          timer: 3000,
+          class: "font-poppins font-[700] text-[300px]",
+        });
+      } else {
         const Link = import.meta.env.VITE_APP_ENGINE + "forgetpassword";
         this.loading = true;
         await axios
@@ -83,27 +82,25 @@ export default {
             });
           });
       }
-   },
-}
-}
+    },
+  },
+};
 </script>
 <!-- w-[820px] px-[45px] py-[50px] -->
 <template>
   <main class="bg-[#B7B7B7] lg:h-screen">
-    <div v-if="LoginFlow=='signin'">
-      <Login  
+    <div v-if="LoginFlow == 'signin'">
+      <Login
         @signin="signin"
         :loading="loading"
-        @set-Login-Flow="(n) =>LoginFlow=n"
-      />
+        @set-Login-Flow="(n) => (LoginFlow = n)" />
     </div>
-    <div  v-if="LoginFlow=='ForgetPassword'">
-      <ForgetPassword 
+    <div v-if="LoginFlow == 'ForgetPassword'">
+      <ForgetPassword
         @SendResetEmail="SendResetEmail"
         :loading="loading"
         v-model="email"
-        @set-Login-Flow="(n) =>LoginFlow=n"
-      />
+        @set-Login-Flow="(n) => (LoginFlow = n)" />
     </div>
   </main>
 </template>

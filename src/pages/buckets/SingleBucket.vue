@@ -8,6 +8,7 @@ export default {
   },
   data() {
     return {
+      currentImage: 0,
       bucket: {},
       loading: false,
       assets: "",
@@ -48,6 +49,9 @@ export default {
     this.loading = false;
   },
   methods: {
+    selectImage(index) {
+      this.currentImage = index;
+    },
     copyLinkAndCloseModal() {
       const linkText = this.currentUrl;
       navigator.clipboard
@@ -101,7 +105,7 @@ export default {
             <p>{{ bucket.category }}</p>
             <img src="/Vector.svg" alt="vector" class="px-2" />
           </button>
-          <div class="author flex space-x-[12px]">
+          <div class="author flex space-x-[12px] py-2">
             <p class="text-[#939393] font-[500]">
               Created by {{ bucket.author }}
             </p>
@@ -111,12 +115,27 @@ export default {
           <div class="flex space-x-[20px]">
             <div class="w-full">
               <div class="lg:flex justify-between space-x-[10px]">
-                <div
-                  class="lg:w-[68%] bg-[#939393] lg:h-[500px] w-auto flex justify-center items-center">
-                  <img
-                    :src="assets + bucket.images[0].image_url"
-                    class="lg:h-[500px]" />
+                <div class="justify-between w-full lg:w-[68%]">
+                  <div
+                    class="lg:h-[500px] bg-[#939393] w-auto flex justify-center items-center">
+                    <img
+                      :src="assets + bucket.images[currentImage].image_url"
+                      class="lg:h-[500px]" />
+                  </div>
+                  <div class="flex space-x-3 py-5">
+                    <!-- images  -->
+                    <div
+                      v-for="(image, index) in bucket.images"
+                      :key="index"
+                      @click="selectImage(index)"
+                      class="cursor-pointer">
+                      <img
+                        :src="assets + image.image_url"
+                        class="w-[50px] h-[50px]" />
+                    </div>
+                  </div>
                 </div>
+
                 <div class="lg:w-[30%]">
                   <div
                     class="card lg:shadow-lg rounded-2xl lg:p-[30px] space-y-[10px]">
