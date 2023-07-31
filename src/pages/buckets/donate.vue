@@ -10,7 +10,7 @@
         class="bg-[#fff] w-[820px] rounded-lg px-[12px] md:px-[45px] py-[50px]">
         <div class="py-[10px]">
           <button
-            @click="this.$router.push('/bucket/' + bucket.bucket.bucket_id)"
+            @click="prevSlide"
             class="border-2 font-poppins text-[#242424] rounded-2xl px-[23px] py-[12px] font-[700] text-[16px]">
             Back to fund raiser
           </button>
@@ -275,6 +275,9 @@ export default {
       this.currentPage++;
     },
     prevSlide() {
+      if(this.currentPage ==1 ){
+        this.$router.push('/bucket/' + this.$route.params.id)
+      }
       this.currentPage--;
     },
     payWithPaystack() {

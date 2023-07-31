@@ -86,12 +86,13 @@ export default {
 <template>
   <div class="bg-[#fafafa]">
     <navabar_test />
+
     <div
       v-if="loading == true"
       class="flex items-center justify-center w-full h-screen loading">
       <img src="/logo1.svg" class="animate-bounce" />
     </div>
-
+    
     <div
       v-if="loading == false"
       class="w-[90%] xl:w-[1280px] lg:w-[1125px] mx-auto py-[64px] md:py-[67px] lg:py-[49px]">
